@@ -1,0 +1,17 @@
+{
+  "name": "Férias SCM 2027 • Monitor de Voos & Carros",
+  "short_name": "Férias 2027",
+  "description": "Monitor autônomo de viagens para Foz, Pomerode e Curitiba para a família SCM",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f8fafc",
+  "theme_color": "#0284c7",
+  "icons": [
+    {
+      "src": "/logo.svg",
+      "sizes": "192x192 512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
