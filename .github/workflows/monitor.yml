@@ -1,0 +1,40 @@
+name: Monitor Autônomo Férias 2027
+
+on:
+  schedule:
+    # 06:00 UTC = 03:00 Brasília (Varredura da Madrugada / Feirões / Black Friday)
+    - cron: '0 6 * * *'
+    # 11:30 UTC = 08:30 Brasília (Resumo Matinal Diário)
+    - cron: '30 11 * * *'
+  workflow_dispatch: # Permite disparar manualmente pelo painel do GitHub se desejar
+
+jobs:
+  monitor:
+    name: Varredura de Preços de Voos e Carros
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write # Permite comitar o deals.json atualizado
+
+    steps:
+      - name: Checkout do Repositório
+        uses: actions/checkout@v4
+
+      - name: Configurar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Executar Robô de Monitoramento
+        env:
+          NTFY_TOPIC: ${{ secrets.NTFY_TOPIC || 'ferias-recife-sul-2027' }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: |
+          node scripts/monitor.mjs
+
+      - name: Salvar e Publicar Dados Atualizados
+        run: |
+          git config --global user.name "Robo Ferias Bot"
+          git config --global user.email "bot@antigravity.ai"
+          git add public/data/deals.json
+          git diff --quiet && git diff --staged --quiet || (git commit -m "chore(deals): atualiza cotacoes de voos e carros [skip ci]" && git push)
