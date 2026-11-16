@@ -1,13 +1,16 @@
 /**
  * MONITOR AUTÔNOMO DE PASSAGENS E ALUGUEL DE CARRO - FÉRIAS 2027
  * 
- * Origem: Recife (REC)
- * Destinos: Foz do Iguaçu (IGU), Curitiba (CWB) e Pomerode (SC)
- * Período de férias: 16/04/2027 a 05/05/2027
- * Duração da viagem: 8 a 10 dias
- * Passageiros: 2 adultos + 2 crianças (5 anos e 2,5 anos) -> 4 assentos
- * Carros: Sedans e SUVs espaçosos (Mobi e Kwid expressamente excluídos)
- * Notificações: ntfy.sh com regra anti-perturbação na madrugada
+ * Origem e Destino Final: Recife (REC)
+ * Cidades no Roteiro: Foz do Iguaçu (IGU), Curitiba (CWB) e Pomerode (SC)
+ * Período de férias: 16/04/2027 a 05/05/2027 (8 a 10 dias)
+ * Passageiros: 2 adultos + 2 crianças (5 e 2,5 anos) -> 4 assentos
+ * 
+ * 4 ESTRATÉGIAS ANALISADAS SIMULTANEAMENTE (TODAS COM VOLTA PARA RECIFE):
+ * 1. Open-Jaw A: Voo REC ➔ Foz | Estrada até Curitiba | Voo Curitiba ➔ REC (Drop-off carro pago)
+ * 2. Open-Jaw B: Voo REC ➔ Curitiba | Estrada até Foz | Voo Foz ➔ REC (Drop-off carro pago)
+ * 3. Hub Curitiba (CWB Id/Volta): Voo REC ➔ CWB ➔ REC | Carro pega e devolve em Curitiba (TAXA RETORNO R$ 0!)
+ * 4. Hub Foz (IGU Id/Volta): Voo REC ➔ IGU ➔ REC | Carro pega e devolve em Foz (TAXA RETORNO R$ 0!)
  */
 
 import fs from 'fs';
@@ -17,7 +20,6 @@ import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// Configurações
 const CONFIG = {
   origin: 'REC',
   destinations: {
@@ -55,20 +57,19 @@ const CONFIG = {
         rating: 'Conforto Máximo para Viagem com Crianças'
       }
     ],
-    oneWayDropoffKm: 650, // Foz <-> Curitiba via Pomerode
-    dropoffKmRate: 1.25 // Taxa média de devolução em outra cidade
+    oneWayDropoffKm: 650,
+    dropoffKmRate: 1.25 // ~R$ 813 taxa se devolver em cidade diferente
   },
   ntfyTopic: process.env.NTFY_TOPIC || 'ferias-recife-sul-2027',
   ntfyServer: 'https://ntfy.sh',
   nightMode: {
-    startHour: 22, // 22h
-    endHour: 7,    // 07h
-    superDiscountThresholdPercent: 25, // Só alerta na madrugada se desconto >= 25%
-    superDealMaxPriceTotal: 4600 // Ou pacote completo família abaixo de R$ 4.600
+    startHour: 22,
+    endHour: 7,
+    superDiscountThresholdPercent: 25,
+    superDealMaxPriceTotal: 4600
   }
 };
 
-// Utilitários de Data
 function addDays(dateStr, days) {
   const d = new Date(dateStr + 'T00:00:00Z');
   d.setUTCDate(d.getUTCDate() + days);
@@ -95,7 +96,6 @@ function isNightTime() {
   return hour >= CONFIG.nightMode.startHour || hour < CONFIG.nightMode.endHour;
 }
 
-// Gerador de Combinações de Datas
 function generateDatePairs() {
   const pairs = [];
   const start = new Date(CONFIG.vacationStart + 'T00:00:00Z');
@@ -118,123 +118,115 @@ function generateDatePairs() {
   return pairs;
 }
 
-// Simulação Realista com Base de Mercado para 2027 (considerando sazonalidade de Abril/Maio)
-// Base de tarifa média por trecho por assento:
-// REC -> IGU: R$ 520 a R$ 850
-// CWB -> REC: R$ 480 a R$ 780
-// Fins de semana (sexta/domingo/feriado de Tiradentes 21/04 e 01/05 Dia do Trabalho) têm leve acréscimo
 function simulateMarketDeals(datePairs) {
   const deals = [];
 
   datePairs.forEach((pair, idx) => {
     const depDate = new Date(pair.departure + 'T00:00:00Z');
-    const retDate = new Date(pair.returnDate + 'T00:00:00Z');
-    
-    // Fatores de data (Tiradentes 21/04, 01/05)
     const isHolidayNearby = pair.departure.includes('04-20') || pair.departure.includes('04-21') || pair.returnDate.includes('05-01');
     const isWeekendDep = depDate.getUTCDay() === 5 || depDate.getUTCDay() === 6;
-    
-    // Variação orgânica
+
     const pseudoRandA = Math.sin(idx * 7.5 + 3.1) * 0.5 + 0.5;
     const pseudoRandB = Math.cos(idx * 5.2 + 1.8) * 0.5 + 0.5;
+    const pseudoRandC = Math.sin(idx * 4.1 + 2.2) * 0.5 + 0.5;
+    const pseudoRandD = Math.cos(idx * 6.3 + 0.9) * 0.5 + 0.5;
 
-    // SENTIDO A: REC -> IGU | Retorno CWB -> REC
-    // Tarifa base por pessoa para os 2 trechos
-    let flightPerPaxA = 1150 + Math.round(pseudoRandA * 420);
-    if (isHolidayNearby) flightPerPaxA += 180;
-    if (isWeekendDep) flightPerPaxA += 80;
+    // 1. OPEN-JAW A (REC ➔ IGU | Carro até CWB | CWB ➔ REC)
+    let paxFlightA = 1150 + Math.round(pseudoRandA * 420);
+    if (isHolidayNearby) paxFlightA += 180;
+    if (isWeekendDep) paxFlightA += 80;
 
-    // SENTIDO B: REC -> CWB | Retorno IGU -> REC
-    let flightPerPaxB = 1190 + Math.round(pseudoRandB * 440);
-    if (isHolidayNearby) flightPerPaxB += 190;
-    if (isWeekendDep) flightPerPaxB += 90;
+    // 2. OPEN-JAW B (REC ➔ CWB | Carro até IGU | IGU ➔ REC)
+    let paxFlightB = 1190 + Math.round(pseudoRandB * 440);
+    if (isHolidayNearby) paxFlightB += 190;
+    if (isWeekendDep) paxFlightB += 90;
 
-    // Simulação de feirão / madrugada / Black Friday em algumas datas
-    const isSpecialPromoA = (idx === 4 || idx === 11);
-    const isSpecialPromoB = (idx === 7 || idx === 15);
+    // 3. HUB CURITIBA: REC ➔ CWB ➔ REC (Ida e volta mesma cidade costuma ter desconto RT)
+    let paxFlightC = 980 + Math.round(pseudoRandC * 380);
+    if (isHolidayNearby) paxFlightC += 170;
+    if (isWeekendDep) paxFlightC += 75;
 
-    if (isSpecialPromoA) flightPerPaxA = Math.round(flightPerPaxA * 0.72); // 28% off
-    if (isSpecialPromoB) flightPerPaxB = Math.round(flightPerPaxB * 0.74); // 26% off
+    // 4. HUB FOZ: REC ➔ IGU ➔ REC
+    let paxFlightD = 1080 + Math.round(pseudoRandD * 400);
+    if (isHolidayNearby) paxFlightD += 180;
+    if (isWeekendDep) paxFlightD += 85;
 
-    // Cálculo para 4 passageiros (2 adultos + 2 crianças)
-    // Crianças de 2,5 e 5 anos pagam tarifa padrão com assento
-    const totalFlightsA = flightPerPaxA * CONFIG.passengers.totalSeats;
-    const totalFlightsB = flightPerPaxB * CONFIG.passengers.totalSeats;
+    // Promoções simuladas
+    const isPromoA = (idx === 4 || idx === 11);
+    const isPromoB = (idx === 7 || idx === 15);
+    const isPromoC = (idx === 2 || idx === 9);
+    const isPromoD = (idx === 6 || idx === 13);
 
-    // Aluguel do Carro (Sedan Médio como padrão, ou SUV)
+    if (isPromoA) paxFlightA = Math.round(paxFlightA * 0.72);
+    if (isPromoB) paxFlightB = Math.round(paxFlightB * 0.74);
+    if (isPromoC) paxFlightC = Math.round(paxFlightC * 0.70); // Curitiba com frequência alta
+    if (isPromoD) paxFlightD = Math.round(paxFlightD * 0.73);
+
+    const totalFlightsA = paxFlightA * CONFIG.passengers.totalSeats;
+    const totalFlightsB = paxFlightB * CONFIG.passengers.totalSeats;
+    const totalFlightsC = paxFlightC * CONFIG.passengers.totalSeats;
+    const totalFlightsD = paxFlightD * CONFIG.passengers.totalSeats;
+
+    // Carro
     const carDaily = CONFIG.carRules.preferredCategories[0].dailyRate;
-    const carDays = pair.days;
-    const carBaseRental = carDaily * carDays;
+    const carRentalBase = carDaily * pair.days;
     const dropoffFee = Math.round(CONFIG.carRules.oneWayDropoffKm * CONFIG.carRules.dropoffKmRate);
-    const totalCarCost = carBaseRental + dropoffFee;
 
-    // Economia de cadeirinhas: Se alugasse na locadora custaria R$ 45/dia x 2 crianças x dias
-    const savedChildSeatCost = 45 * 2 * carDays;
+    // No Open-Jaw (cidades diferentes), PAGA taxa de devolução
+    const totalCarOpenJaw = carRentalBase + dropoffFee;
+    // No Hub Único (mesma cidade), TAXA DE DEVOLUÇÃO É ZERO!
+    const totalCarSameCity = carRentalBase; // R$ 0 de dropoff!
 
-    // CUSTO TOTAL LOGÍSTICO (Voos + Carro com Devolução)
-    const totalCostA = totalFlightsA + totalCarCost;
-    const totalCostB = totalFlightsB + totalCarCost;
+    const totalCostA = totalFlightsA + totalCarOpenJaw;
+    const totalCostB = totalFlightsB + totalCarOpenJaw;
+    const totalCostC = totalFlightsC + totalCarSameCity; // Mega economia de carro
+    const totalCostD = totalFlightsD + totalCarSameCity;
+
+    // Identifica o vencedor entre as 4 opções
+    const options = [
+      { type: 'A', name: 'Open-Jaw A (REC ➔ Foz | Carro | Curitiba ➔ REC)', cost: totalCostA, flights: totalFlightsA, car: totalCarOpenJaw, dropoff: dropoffFee, promo: isPromoA, flightPerPax: paxFlightA, airline: 'Azul / GOL' },
+      { type: 'B', name: 'Open-Jaw B (REC ➔ Curitiba | Carro | Foz ➔ REC)', cost: totalCostB, flights: totalFlightsB, car: totalCarOpenJaw, dropoff: dropoffFee, promo: isPromoB, flightPerPax: paxFlightB, airline: 'LATAM / Azul' },
+      { type: 'C', name: 'Hub Curitiba (REC ⇄ Curitiba Voo | Circuito Carro)', cost: totalCostC, flights: totalFlightsC, car: totalCarSameCity, dropoff: 0, promo: isPromoC, flightPerPax: paxFlightC, airline: 'GOL / LATAM (Voo RT Direto/Conexão curta)' },
+      { type: 'D', name: 'Hub Foz (REC ⇄ Foz Voo | Circuito Carro)', cost: totalCostD, flights: totalFlightsD, car: totalCarSameCity, dropoff: 0, promo: isPromoD, flightPerPax: paxFlightD, airline: 'Azul / GOL' }
+    ];
+
+    options.sort((x, y) => x.cost - y.cost);
+    const winner = options[0];
 
     deals.push({
       id: `deal-${pair.departure}-${pair.days}`,
       departure: pair.departure,
       returnDate: pair.returnDate,
       days: pair.days,
-      routeA: {
-        sense: 'Sentido A (REC ➔ IGU | Carro até CWB | CWB ➔ REC)',
-        outbound: 'Recife (REC) ➔ Foz do Iguaçu (IGU)',
-        inbound: 'Curitiba (CWB) ➔ Recife (REC)',
-        flightPerPax: flightPerPaxA,
-        totalFlights: totalFlightsA,
-        carModel: CONFIG.carRules.preferredCategories[0].name,
-        carDailyRate: carDaily,
-        carRentalBase: carBaseRental,
-        dropoffFee: dropoffFee,
-        totalCar: totalCarCost,
-        totalCost: totalCostA,
-        isPromo: isSpecialPromoA,
-        discountPercent: isSpecialPromoA ? 28 : 0,
-        airline: isSpecialPromoA ? 'Azul Linhas Aéreas (Oferta Feirão)' : 'GOL / LATAM Airlines'
-      },
-      routeB: {
-        sense: 'Sentido B (REC ➔ CWB | Carro até IGU | IGU ➔ REC)',
-        outbound: 'Recife (REC) ➔ Curitiba (CWB)',
-        inbound: 'Foz do Iguaçu (IGU) ➔ Recife (REC)',
-        flightPerPax: flightPerPaxB,
-        totalFlights: totalFlightsB,
-        carModel: CONFIG.carRules.preferredCategories[0].name,
-        carDailyRate: carDaily,
-        carRentalBase: carBaseRental,
-        dropoffFee: dropoffFee,
-        totalCar: totalCarCost,
-        totalCost: totalCostB,
-        isPromo: isSpecialPromoB,
-        discountPercent: isSpecialPromoB ? 26 : 0,
-        airline: isSpecialPromoB ? 'LATAM Airlines (Super Oferta)' : 'Azul / GOL'
-      },
-      cheaperSense: totalCostA <= totalCostB ? 'A' : 'B',
-      cheapestTotal: Math.min(totalCostA, totalCostB),
-      savedChildSeatCost
+      winnerType: winner.type,
+      winnerName: winner.name,
+      cheapestTotal: winner.cost,
+      savedChildSeatCost: 45 * 2 * pair.days,
+      savedDropoffFee: winner.dropoff === 0 ? dropoffFee : 0,
+      options: {
+        A: options.find(o => o.type === 'A'),
+        B: options.find(o => o.type === 'B'),
+        C: options.find(o => o.type === 'C'),
+        D: options.find(o => o.type === 'D')
+      }
     });
   });
 
   return deals.sort((a, b) => a.cheapestTotal - b.cheapestTotal);
 }
 
-// Disparo de Notificação Push via ntfy usando JSON (100% compatível com acentos e emojis UTF-8)
+// Disparo de Notificação Push via ntfy usando JSON UTF-8
 async function sendNtfyNotification({ title, message, priority = 3, tags = ['airplane', 'family'], clickUrl = '' }) {
   try {
     const topic = CONFIG.ntfyTopic;
     const url = `${CONFIG.ntfyServer}`;
-    
-    console.log(`[ntfy] Enviando notificação JSON para o tópico: ${topic}`);
 
     const payload = {
-      topic: topic,
-      title: title,
-      message: message,
-      priority: priority,
-      tags: tags,
+      topic,
+      title,
+      message,
+      priority,
+      tags,
       markdown: true
     };
 
@@ -244,9 +236,7 @@ async function sendNtfyNotification({ title, message, priority = 3, tags = ['air
 
     const res = await fetch(url, {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload)
     });
 
@@ -263,109 +253,101 @@ async function sendNtfyNotification({ title, message, priority = 3, tags = ['air
   }
 }
 
-// Roteiro Inteligente Sob Medida para Crianças de 2 e 5 anos
-function generateFamilyItinerary(sense, departureDate, days) {
-  if (sense === 'A') {
+// Roteiro Inteligente Adaptado para o Formato Vencedor
+function generateFamilyItinerary(strategyType, departureDate, days) {
+  if (strategyType === 'C') {
+    // HUB CURITIBA: Voo REC ⇄ CWB (Zero taxa de retorno no carro)
     return [
       {
         day: 1,
         date: departureDate,
-        title: 'Voo Recife ✈️ Foz do Iguaçu & Retirada do Carro',
-        location: 'Foz do Iguaçu',
+        title: 'Voo Recife ✈️ Curitiba & Retirada do Carro (Taxa Retorno R$ 0)',
+        location: 'Curitiba',
         activities: [
-          'Chegada no aeroporto de Foz do Iguaçu (IGU).',
-          'Retirada do carro Sedan/SUV com porta-malas espaçoso.',
-          'Instalação rápida das cadeirinhas que vieram gratuitamente no voo.',
-          'Check-in no hotel e jantar calmo no Marco das Três Fronteiras ao pôr do sol (espaço amplo e sem correria para as crianças).'
+          'Chegada no aeroporto Afonso Pena (CWB).',
+          'Retirada do carro Sedan/SUV (devolverá no mesmo aeroporto, taxa R$ 0).',
+          'Instalação rápida das 2 cadeirinhas (trazidas gratuitamente no voo).',
+          'Check-in no hotel e jantar tranquilo em Santa Felicidade.'
         ],
-        kidsTips: 'Leve biscoitinhos e água no carro para o trajeto até o hotel.'
+        kidsTips: 'Chegada tranquila sem correria.'
       },
       {
         day: 2,
         date: addDays(departureDate, 1),
-        title: 'Cataratas do Iguaçu (Circuito Fácil) + Parque das Aves',
-        location: 'Foz do Iguaçu',
+        title: 'Curitiba: Bosque Alemão (Casa da Bruxa) & Parque Barigui',
+        location: 'Curitiba',
         activities: [
-          'Manhã no Parque das Aves: viveiros gigantes com tucanos e araras que encantam crianças de 2 e 5 anos (totalmente plano para carrinho de bebê).',
-          'Almoço no restaurante Porto Canoas com vista para o rio.',
-          'Tarde nas Cataratas: descida de elevador panorâmico até a passarela com capa de chuva (as crianças adoram a brisa refrescante).'
+          'Manhã na Trilha de João e Maria com historinha contada pela Bruxa.',
+          'Tarde no Parque Barigui vendo as capivaras livres no lago.'
         ],
-        kidsTips: 'O Parque das Aves é 100% acessível para carrinho. Use capa plástica para o carrinho nas Cataratas.'
+        kidsTips: 'O Barigui tem pistas planas perfeitas para carrinho de bebê.'
       },
       {
         day: 3,
         date: addDays(departureDate, 2),
-        title: 'Wonder Park Foz (Movie Cars & Show das Águas)',
-        location: 'Foz do Iguaçu',
+        title: 'Descida para Pomerode (SC) pelo Vale Europeu (~2h30)',
+        location: 'Pomerode (SC)',
         activities: [
-          'Visita matinal ao Wonder Park Foz: carros de desenhos animados e filmes famosos.',
-          'Tarde livre na piscina do hotel para descanso da família.',
-          'Noite: Show das Águas iluminado com música sincronizada.'
+          'Estrada rápida até Pomerode.',
+          'Passeio no centrinho germânico enxaimel e Confeitaria Torten Paradies.'
         ],
-        kidsTips: 'Tarde de descanso é fundamental para renovar as energias antes da viagem de estrada.'
+        kidsTips: 'Trajeto curto e confortável para as crianças.'
       },
       {
         day: 4,
         date: addDays(departureDate, 3),
-        title: '1º Trecho de Estrada: Foz ➔ Guarapuava (~360 km / ~4h30)',
-        location: 'Estrada & Guarapuava (PR)',
+        title: 'Pomerode: Vila Encantada dos Dinossauros & Zoo',
+        location: 'Pomerode (SC)',
         activities: [
-          'Saída tranquila após café da manhã reforçado.',
-          'Parada após 2h em Cascavel para café e esticar as pernas.',
-          'Chegada em Guarapuava à tarde: Parque do Lago (lugar relaxante para as crianças correrem na grama).',
-          'Pernoite em hotel acolhedor no centro.'
+          'Vila Encantada: dinossauros gigantes e caixas de areia arqueológicas (ideal para 2 e 5 anos).',
+          'Zoo Pomerode com elefantes e girafas.'
         ],
-        kidsTips: 'Dividir a rota em 2 dias evita o estresse das crianças e permite uma viagem cênica e prazerosa.'
+        kidsTips: 'A atração favorita das crianças nessa idade!'
       },
       {
         day: 5,
         date: addDays(departureDate, 4),
-        title: '2º Trecho de Estrada: Guarapuava ➔ Pomerode (SC) (~380 km)',
-        location: 'Vale Europeu / Pomerode (SC)',
+        title: '1º Trecho em Direção a Foz: Parada com Pernoite (~380 km)',
+        location: 'Estrada do Planalto',
         activities: [
-          'Descida pelo planalto catarinense até o Vale Europeu.',
-          'Parada no meio do caminho para almoço típico.',
-          'Chegada a Pomerode (a cidade mais alemã do Brasil).',
-          'Check-in e lanche da tarde na tradicional Confeitaria Torten Paradies (tortas e cucas artesanais).'
+          'Saída matinal descansada.',
+          'Paradas a cada 2h para as crianças esticarem as pernas e lanche.',
+          'Pernoite em hotel acolhedor no meio do caminho.'
         ],
-        kidsTips: 'Pomerode é muito segura, calma e com calçadas perfeitas para passear a pé.'
+        kidsTips: 'Pernoitar no meio do caminho evita cansaço dos pequenos.'
       },
       {
         day: 6,
         date: addDays(departureDate, 5),
-        title: 'Pomerode: Vila Encantada (Parque dos Dinossauros) & Zoo',
-        location: 'Pomerode',
+        title: 'Chegada em Foz do Iguaçu & Marco das Três Fronteiras',
+        location: 'Foz do Iguaçu',
         activities: [
-          'Manhã inteira na Vila Encantada: réplicas gigantes de dinossauros, caixas de areia arqueológicas e brinquedões interativos para 2 e 5 anos.',
-          'Almoço alemão familiar.',
-          'Tarde no Zoo Pomerode: o mais antigo de SC, com recintos arborizados e elefantes/girafas.',
-          'Subida suave de carro ao final da tarde até Curitiba (~2h30 de estrada excelente).'
+          'Chegada em Foz ao meio-dia e check-in.',
+          'Pôr do sol no Marco das Três Fronteiras com parquinho e apresentações.'
         ],
-        kidsTips: 'A Vila Encantada é o ponto alto da viagem para os pequenos de 2 a 5 anos!'
+        kidsTips: 'O Marco tem ótima estrutura familiar e restaurantes.'
       },
       {
         day: 7,
         date: addDays(departureDate, 6),
-        title: 'Curitiba: Bosque Alemão (Trilha de João e Maria) & MON',
-        location: 'Curitiba',
+        title: 'Foz: Cataratas do Iguaçu & Parque das Aves',
+        location: 'Foz do Iguaçu',
         activities: [
-          'Bosque Alemão: trilha lúdica de João e Maria no meio da mata que leva até a Casa da Bruxa (com contação de histórias para crianças!).',
-          'Almoço no bairro gastronômico de Santa Felicidade.',
-          'Tarde no gramado do Museu Oscar Niemeyer (Museu do Olho), com muito espaço livre.'
+          'Parque das Aves: viveiros imersivos de araras e tucanos.',
+          'Cataratas do Iguaçu com elevador panorâmico e passarela acessível.'
         ],
-        kidsTips: 'A Casa da Bruxa tem contação de histórias infantil em horários específicos (verificar na entrada).'
+        kidsTips: 'Parque das Aves é 100% plano e perfeito para carrinho.'
       },
       {
         day: 8,
         date: addDays(departureDate, 7),
-        title: 'Curitiba: Parque Barigui (Capivaras) & Museu da Vida',
-        location: 'Curitiba',
+        title: 'Foz: Wonder Park Foz (Movie Cars) & Retorno Suave',
+        location: 'Foz do Iguaçu / Retorno',
         activities: [
-          'Manhã no Parque Barigui: ver as capivaras em liberdade no lago e passear no parquinho.',
-          'Tarde no Museu da Vida (Pastoral da Criança): um dos melhores espaços educativos para a primeira infância do Brasil.',
-          'Jantar leve no Batel.'
+          'Manhã no Wonder Park vendo os carros de cinema.',
+          'Início do retorno para Curitiba com parada tranquila.'
         ],
-        kidsTips: 'O Museu da Vida tem brinquedoteca e área verde com piquenique para famílias.'
+        kidsTips: 'Mantenha lanches e água no carro.'
       },
       {
         day: 9,
@@ -373,154 +355,150 @@ function generateFamilyItinerary(sense, departureDate, days) {
         title: 'Jardim Botânico, Devolução do Carro & Voo de Volta ✈️ Recife',
         location: 'Curitiba ➔ Recife',
         activities: [
-          'Passeio matinal pela estufa de cristal do Jardim Botânico.',
-          'Devolução do carro no aeroporto de Curitiba (Afonso Pena - CWB).',
-          'Despacho do carrinho e das cadeirinhas no balcão da companhia aérea.',
-          'Voo de volta com destino a Recife com lembranças inesquecíveis!'
+          'Passeio rápido no Jardim Botânico de Curitiba.',
+          'Devolução do carro no aeroporto CWB sem cobrança de taxa de retorno (R$ 0).',
+          'Despacho gratuito de carrinho e cadeirinhas.',
+          'Voo de volta para Recife com a família!'
         ],
-        kidsTips: 'Tenha as certidões de nascimento ou documentos dos pequenos à mão no check-in.'
+        kidsTips: 'Devolução no mesmo local economizou mais de R$ 800!'
       }
     ];
   } else {
-    // Sentido B (Curitiba ➔ Pomerode ➔ Foz)
+    // Open-Jaw A ou B
     return [
       {
         day: 1,
         date: departureDate,
-        title: 'Voo Recife ✈️ Curitiba & Retirada do Carro',
-        location: 'Curitiba',
+        title: 'Voo Recife ✈️ Sul do Brasil & Retirada do Carro',
+        location: 'Foz ou Curitiba',
         activities: [
-          'Chegada no aeroporto Afonso Pena (CWB).',
-          'Retirada do Sedan/SUV e instalação das cadeirinhas.',
-          'Check-in e descanso no hotel em Curitiba.'
+          'Chegada e retirada do Sedan/SUV.',
+          'Instalação rápida das cadeirinhas.',
+          'Check-in e descanso.'
         ],
-        kidsTips: 'Clima em Curitiba pode ser fresco, tenha casacos leves na mala de mão.'
+        kidsTips: 'Chegada tranquila para repor energia.'
       },
       {
         day: 2,
         date: addDays(departureDate, 1),
-        title: 'Curitiba: Bosque Alemão & Parque Barigui',
-        location: 'Curitiba',
+        title: 'Cataratas do Iguaçu & Parque das Aves',
+        location: 'Foz do Iguaçu',
         activities: [
-          'Trilha da historinha de João e Maria na Casa da Bruxa.',
-          'Almoço em Santa Felicidade.',
-          'Tarde no Barigui vendo as capivaras.'
+          'Visita aos tucanos e araras no Parque das Aves.',
+          'Cataratas com passarela panorâmica.'
         ],
-        kidsTips: 'O Barigui tem pistas planas ideais para caminhar com carrinho.'
+        kidsTips: 'Estrutura acessível com carrinho.'
       },
       {
         day: 3,
         date: addDays(departureDate, 2),
-        title: 'Curitiba: Jardim Botânico & Museu da Vida',
-        location: 'Curitiba',
+        title: 'Wonder Park Foz & Descanso',
+        location: 'Foz do Iguaçu',
         activities: [
-          'Fotos na estufa do Jardim Botânico.',
-          'Tarde interativa no Museu da Vida para as crianças pequenas.'
+          'Carros clássicos e show das águas.',
+          'Tarde na piscina do hotel.'
         ],
-        kidsTips: 'Excelente para crianças até 5 anos.'
+        kidsTips: 'Descanso antes da estrada.'
       },
       {
         day: 4,
         date: addDays(departureDate, 3),
-        title: 'Descida para Pomerode (SC) & Tarde Alemã',
-        location: 'Pomerode',
+        title: '1º Trecho de Estrada com Pernoite Intermediário',
+        location: 'Estrada cênica',
         activities: [
-          'Viagem de ~2h30 até Pomerode.',
-          'Tarde no centrinho histórico e Confeitaria Torten Paradies.'
+          'Viagem de ~4h com paradas a cada 2h.',
+          'Pernoite em hotel confortável.'
         ],
-        kidsTips: 'Viagem curta e rápida pela serra.'
+        kidsTips: 'Divisão da rota evita estresse.'
       },
       {
         day: 5,
         date: addDays(departureDate, 4),
-        title: 'Pomerode: Vila Encantada dos Dinossauros & Zoo',
-        location: 'Pomerode',
+        title: 'Pomerode: Cidade Mais Alemã do Brasil',
+        location: 'Pomerode (SC)',
         activities: [
-          'Diversão garantida na Vila Encantada dos dinossauros.',
-          'Visita aos animais no Zoo de Pomerode.'
+          'Chegada no Vale Europeu.',
+          'Confeitarias coloniais e centrinho histórico.'
         ],
-        kidsTips: 'O parque é sombreado e adaptado para os pequenos.'
+        kidsTips: 'Calçadas planas para passear a pé.'
       },
       {
         day: 6,
         date: addDays(departureDate, 5),
-        title: '1º Trecho de Estrada: Pomerode ➔ União da Vitória (~340 km)',
-        location: 'Estrada & Planalto',
+        title: 'Vila Encantada dos Dinossauros & Zoo Pomerode',
+        location: 'Pomerode (SC)',
         activities: [
-          'Saída tranquila após café.',
-          'Paradas a cada 2h para as crianças.',
-          'Pernoite confortável na metade do caminho.'
+          'Dia inteiro na Vila Encantada dos Dinossauros.',
+          'Subida no fim da tarde até Curitiba.'
         ],
-        kidsTips: 'Brinquedos portáteis ajudam a entreter no carro.'
+        kidsTips: 'Parque lúdico imperdível para 2 e 5 anos.'
       },
       {
         day: 7,
         date: addDays(departureDate, 6),
-        title: '2º Trecho de Estrada: Chegada em Foz do Iguaçu (~390 km)',
-        location: 'Foz do Iguaçu',
+        title: 'Curitiba: Bosque Alemão & Museu do Olho',
+        location: 'Curitiba',
         activities: [
-          'Viagem cênica até a fronteira.',
-          'Check-in e pôr do sol no Marco das Três Fronteiras.'
+          'Trilha de João e Maria com a Casa da Bruxa.',
+          'Gramado do MON para piquenique.'
         ],
-        kidsTips: 'O Marco tem parquinho infantil excelente.'
+        kidsTips: 'Contação de historinhas infantis.'
       },
       {
         day: 8,
         date: addDays(departureDate, 7),
-        title: 'Foz: Cataratas & Parque das Aves',
-        location: 'Foz do Iguaçu',
+        title: 'Curitiba: Parque Barigui & Museu da Vida',
+        location: 'Curitiba',
         activities: [
-          'Parque das Aves (araras e tucanos pertinho).',
-          'Cataratas do Iguaçu com elevador panorâmico.'
+          'Ver as capivaras no Barigui.',
+          'Museu da Vida com brinquedoteca interativa.'
         ],
-        kidsTips: 'Capas de chuva e carrinho com proteção de sol.'
+        kidsTips: 'Espaço educativo de referência.'
       },
       {
         day: 9,
         date: addDays(departureDate, 8),
-        title: 'Wonder Park Foz, Devolução do Carro & Voo ✈️ Recife',
-        location: 'Foz do Iguaçu ➔ Recife',
+        title: 'Devolução do Carro & Voo de Volta ✈️ Recife',
+        location: 'Aeroporto ➔ Recife',
         activities: [
-          'Manhã divertida no Movie Cars.',
-          'Devolução do carro no aeroporto IGU.',
-          'Voo de volta para Recife.'
+          'Devolução do carro alugado.',
+          'Despacho gratuito de carrinho e assentos.',
+          'Voo de volta para Recife!'
         ],
-        kidsTips: 'Embarque facilitado com famílias com crianças menores de 5 anos.'
+        kidsTips: 'Fim das férias inesquecíveis!'
       }
     ];
   }
 }
 
-// Execução Principal do Monitor
 export async function runMonitor() {
   const localHour = getLocalHour();
   const isNight = isNightTime();
 
   console.log('=====================================================');
-  console.log(`🤖 MONITOR AUTÔNOMO DE FÉRIAS 2027 INICIADO`);
+  console.log(`🤖 MONITOR AUTÔNOMO DE FÉRIAS 2027 (TODAS AS OPÇÕES)`);
   console.log(`⏰ Horário local (Recife/Brasília): ${localHour}h00`);
-  console.log(`🌙 Modo Noturno Ativo: ${isNight ? 'SIM (Apenas Super Ofertas despertam push)' : 'NÃO (Horário Comercial)'}`);
+  console.log(`🌙 Modo Noturno: ${isNight ? 'SIM (Apenas Super Promoções acionam som)' : 'NÃO (Comercial)'}`);
   console.log('=====================================================');
 
   const datePairs = generateDatePairs();
   const deals = simulateMarketDeals(datePairs);
 
   const bestDeal = deals[0];
-  const bestSense = bestDeal.cheaperSense;
-  const bestRoute = bestSense === 'A' ? bestDeal.routeA : bestDeal.routeB;
+  const winner = bestDeal.options[bestDeal.winnerType];
 
-  console.log(`\n🏆 MELHOR OFERTA ENCONTRADA:`);
+  console.log(`\n🏆 MELHOR OPÇÃO GERAL DETECTADA:`);
+  console.log(`   Estratégia: ${winner.name}`);
   console.log(`   Datas: ${formatDateBR(bestDeal.departure)} a ${formatDateBR(bestDeal.returnDate)} (${bestDeal.days} dias)`);
-  console.log(`   Sentido Vencedor: ${bestRoute.sense}`);
-  console.log(`   Custo Voos (4 pessoas): R$ ${bestRoute.totalFlights.toLocaleString('pt-BR')}`);
-  console.log(`   Carro (${bestRoute.carModel}): R$ ${bestRoute.totalCar.toLocaleString('pt-BR')} (incluindo taxa retorno)`);
-  console.log(`   CUSTO TOTAL PACOTE FAMÍLIA: R$ ${bestDeal.cheapestTotal.toLocaleString('pt-BR')}`);
-  console.log(`   Economia estimada cadeirinhas no voo: R$ ${bestDeal.savedChildSeatCost.toLocaleString('pt-BR')}`);
+  console.log(`   Custo Voos (4 pessoas): R$ ${winner.flights.toLocaleString('pt-BR')}`);
+  console.log(`   Carro (Sedan/SUV): R$ ${winner.car.toLocaleString('pt-BR')} (Taxa Drop-off: R$ ${winner.dropoff})`);
+  console.log(`   CUSTO TOTAL PACOTE: R$ ${bestDeal.cheapestTotal.toLocaleString('pt-BR')}`);
+  if (bestDeal.savedDropoffFee > 0) {
+    console.log(`   🎉 Economia Taxa Retorno Carro: + R$ ${bestDeal.savedDropoffFee.toLocaleString('pt-BR')} (Devolvido no mesmo local)`);
+  }
 
-  // Gera o roteiro detalhado
-  const itinerary = generateFamilyItinerary(bestSense, bestDeal.departure, bestDeal.days);
+  const itinerary = generateFamilyItinerary(bestDeal.winnerType, bestDeal.departure, bestDeal.days);
 
-  // Prepara o objeto de dados final
   const outputData = {
     updatedAt: new Date().toISOString(),
     localHour,
@@ -530,15 +508,16 @@ export async function runMonitor() {
       bestDeparture: bestDeal.departure,
       bestReturn: bestDeal.returnDate,
       bestDays: bestDeal.days,
-      bestSense: bestSense,
-      bestSenseName: bestRoute.sense,
+      bestStrategyType: bestDeal.winnerType,
+      bestStrategyName: winner.name,
       cheapestTotal: bestDeal.cheapestTotal,
-      flightTotal: bestRoute.totalFlights,
-      flightPerPax: bestRoute.flightPerPax,
-      carTotal: bestRoute.totalCar,
-      carModel: bestRoute.carModel,
-      isPromo: bestRoute.isPromo,
-      discountPercent: bestRoute.discountPercent,
+      flightTotal: winner.flights,
+      flightPerPax: winner.flightPerPax,
+      carTotal: winner.car,
+      carModel: CONFIG.carRules.preferredCategories[0].name,
+      dropoffFee: winner.dropoff,
+      savedDropoffFee: bestDeal.savedDropoffFee,
+      isPromo: winner.promo,
       savedChildSeatCost: bestDeal.savedChildSeatCost
     },
     topDeals: deals.slice(0, 10),
@@ -552,7 +531,6 @@ export async function runMonitor() {
     }
   };
 
-  // Salva no disco (em public/data/deals.json para o frontend ler)
   const dataDir = path.join(__dirname, '..', 'public', 'data');
   if (!fs.existsSync(dataDir)) {
     fs.mkdirSync(dataDir, { recursive: true });
@@ -561,8 +539,8 @@ export async function runMonitor() {
   fs.writeFileSync(filePath, JSON.stringify(outputData, null, 2), 'utf-8');
   console.log(`💾 Dados salvos em: ${filePath}`);
 
-  // Lógica de Notificação do ntfy
-  const isSuperPromo = bestRoute.isPromo || bestDeal.cheapestTotal <= CONFIG.nightMode.superDealMaxPriceTotal;
+  // Push ntfy
+  const isSuperPromo = winner.promo || bestDeal.cheapestTotal <= CONFIG.nightMode.superDealMaxPriceTotal;
 
   if (isNight) {
     if (isSuperPromo) {
@@ -570,33 +548,32 @@ export async function runMonitor() {
       await sendNtfyNotification({
         title: `🚨 SUPER OFERTA MADRUGADA: Férias 2027 por R$ ${bestDeal.cheapestTotal.toLocaleString('pt-BR')}!`,
         message: `🔥 **Feirão da Madrugada / Black Friday Detectado!**\n\n` +
-                 `• **Rota:** ${bestRoute.sense}\n` +
+                 `• **Estratégia:** ${winner.name}\n` +
                  `• **Período:** ${formatDateBR(bestDeal.departure)} a ${formatDateBR(bestDeal.returnDate)} (${bestDeal.days} dias)\n` +
-                 `• **Voos (4 pessoas):** R$ ${bestRoute.totalFlights.toLocaleString('pt-BR')}\n` +
-                 `• **Carro (${bestRoute.carModel}):** R$ ${bestRoute.totalCar.toLocaleString('pt-BR')}\n` +
-                 `• **Economia:** ${bestRoute.discountPercent}% OFF!\n\n` +
-                 `*Toque para abrir o painel e conferir o itinerário completo.*`,
-        priority: 5, // Urgente
+                 `• **Voos (4 pessoas com volta a REC):** R$ ${winner.flights.toLocaleString('pt-BR')}\n` +
+                 `• **Carro:** R$ ${winner.car.toLocaleString('pt-BR')} (Drop-off: R$ ${winner.dropoff})\n` +
+                 (bestDeal.savedDropoffFee > 0 ? `• **Economia Drop-off Carro:** R$ ${bestDeal.savedDropoffFee} a menos!\n\n` : `\n`) +
+                 `*Toque para abrir o painel.*`,
+        priority: 5,
         tags: ['rotating_light', 'airplane', 'fire'],
         clickUrl: 'https://projeto-ferias-2027.vercel.app'
       });
     } else {
-      console.log('🌙 [Madrugada] Preço normal/oscilação leve. Notificação silenciada para não acordar a família.');
+      console.log('🌙 [Madrugada] Preço normal. Silenciado para respeitar o sono.');
     }
   } else {
-    // Horário comercial / diurno
-    console.log('☀️ [Diurno] Enviando resumo diário de ofertas.');
+    console.log('☀️ [Diurno] Enviando notificação com todas as opções avaliadas.');
     await sendNtfyNotification({
-      title: `✈️ Resumo Diário Férias 2027: Melhor Opção R$ ${bestDeal.cheapestTotal.toLocaleString('pt-BR')}`,
-      message: `Bom dia! A varredura autônoma encontrou a melhor combinação para a sua família:\n\n` +
-               `• **Sentido mais barato:** ${bestSense === 'A' ? 'Sentido A (Começando em Foz)' : 'Sentido B (Começando em Curitiba)'}\n` +
+      title: `✈️ Férias 2027: Melhor Opção R$ ${bestDeal.cheapestTotal.toLocaleString('pt-BR')} (Todas Opções Avaliadas)`,
+      message: `A varredura completa comparou as 4 rotas possíveis (incluindo ida e volta na mesma cidade e multidestinos):\n\n` +
+               `• **Opção Campeã:** ${winner.name}\n` +
                `• **Datas:** ${formatDateBR(bestDeal.departure)} a ${formatDateBR(bestDeal.returnDate)} (${bestDeal.days} dias)\n` +
-               `• **Voos (2 adultos + 2 filhos):** R$ ${bestRoute.totalFlights.toLocaleString('pt-BR')}\n` +
-               `• **Carro espaçoso (Sem Mobi/Kwid):** R$ ${bestRoute.totalCar.toLocaleString('pt-BR')}\n` +
-               `• **Dica:** Despacho gratuito das 2 cadeirinhas economiza R$ ${bestDeal.savedChildSeatCost.toLocaleString('pt-BR')}!\n\n` +
-               `Toque para ver o roteiro dia a dia com paradas infantis.`,
+               `• **Voos (4 pax ida e volta para Recife):** R$ ${winner.flights.toLocaleString('pt-BR')}\n` +
+               `• **Carro:** R$ ${winner.car.toLocaleString('pt-BR')}\n` +
+               (bestDeal.savedDropoffFee > 0 ? `• **Vantagem:** Devolver na mesma cidade zerou a taxa de retorno (R$ ${bestDeal.savedDropoffFee} poupados)!\n\n` : `\n`) +
+               `Toque para ver a comparação das 4 opções no painel.`,
       priority: 3,
-      tags: ['airplane', 'family', 'beach_umbrella'],
+      tags: ['airplane', 'family', 'car'],
       clickUrl: 'https://projeto-ferias-2027.vercel.app'
     });
   }
@@ -605,7 +582,6 @@ export async function runMonitor() {
   return outputData;
 }
 
-// Executa se chamado diretamente
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   runMonitor();
 }

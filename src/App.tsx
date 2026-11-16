@@ -5,12 +5,9 @@ import {
   Calendar, 
   Users, 
   Bell, 
-  CheckCircle2, 
   AlertTriangle, 
   Sparkles, 
   MapPin, 
-  ShieldCheck, 
-  DollarSign, 
   Baby, 
   ArrowRight, 
   Compass, 
@@ -19,23 +16,19 @@ import {
   ExternalLink,
   ChevronDown,
   ChevronUp,
-  XCircle
+  XCircle,
+  Repeat
 } from 'lucide-react';
 
-interface DealRoute {
-  sense: string;
-  outbound: string;
-  inbound: string;
+interface StrategyOption {
+  type: 'A' | 'B' | 'C' | 'D';
+  name: string;
+  cost: number;
+  flights: number;
+  car: number;
+  dropoff: number;
+  promo: boolean;
   flightPerPax: number;
-  totalFlights: number;
-  carModel: string;
-  carDailyRate: number;
-  carRentalBase: number;
-  dropoffFee: number;
-  totalCar: number;
-  totalCost: number;
-  isPromo: boolean;
-  discountPercent: number;
   airline: string;
 }
 
@@ -44,11 +37,17 @@ interface Deal {
   departure: string;
   returnDate: string;
   days: number;
-  routeA: DealRoute;
-  routeB: DealRoute;
-  cheaperSense: 'A' | 'B';
+  winnerType: 'A' | 'B' | 'C' | 'D';
+  winnerName: string;
   cheapestTotal: number;
   savedChildSeatCost: number;
+  savedDropoffFee: number;
+  options: {
+    A: StrategyOption;
+    B: StrategyOption;
+    C: StrategyOption;
+    D: StrategyOption;
+  };
 }
 
 interface ItineraryDay {
@@ -69,15 +68,16 @@ interface DealsData {
     bestDeparture: string;
     bestReturn: string;
     bestDays: number;
-    bestSense: 'A' | 'B';
-    bestSenseName: string;
+    bestStrategyType: 'A' | 'B' | 'C' | 'D';
+    bestStrategyName: string;
     cheapestTotal: number;
     flightTotal: number;
     flightPerPax: number;
     carTotal: number;
     carModel: string;
+    dropoffFee: number;
+    savedDropoffFee: number;
     isPromo: boolean;
-    discountPercent: number;
     savedChildSeatCost: number;
   };
   topDeals: Deal[];
@@ -133,17 +133,17 @@ export default function App() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           topic: ntfyTopic,
-          title: '✈️ Teste de Notificação: Férias 2027',
-          message: 'Parabéns! Suas notificações push estão ativas no celular.\nVocê receberá alertas sempre que acharmos ofertas imperdíveis para Foz, Pomerode e Curitiba!',
+          title: '✈️ Teste: Férias 2027 (Volta para Recife Inclusa)',
+          message: 'Parabéns! Notificações ativas no celular.\nTodas as 4 rotas estão sendo comparadas: Ida e volta na mesma cidade vs Cidades diferentes!',
           priority: 4,
           tags: ['tada', 'airplane', 'family'],
           markdown: true
         })
       });
       if (res.ok) {
-        setNtfyStatus('✅ Notificação enviada! Verifique o app ntfy no seu celular.');
+        setNtfyStatus('✅ Notificação enviada! Verifique o app ntfy no celular.');
       } else {
-        setNtfyStatus('❌ Erro ao enviar: ' + res.statusText);
+        setNtfyStatus('❌ Erro: ' + res.statusText);
       }
     } catch {
       setNtfyStatus('❌ Falha na conexão com ntfy.sh');
@@ -160,8 +160,8 @@ export default function App() {
     return (
       <div className="min-h-screen bg-slate-950 flex flex-col items-center justify-center text-white p-4">
         <RefreshCw className="w-12 h-12 text-cyan-400 animate-spin mb-4" />
-        <h2 className="text-xl font-semibold">Carregando painel de monitoramento...</h2>
-        <p className="text-slate-400 text-sm mt-1">Varrendo combinações de voos e carros para 2027</p>
+        <h2 className="text-xl font-semibold">Carregando painel com todas as opções de rota...</h2>
+        <p className="text-slate-400 text-sm mt-1">Comparando voos ida/volta e circuitos rodoviários</p>
       </div>
     );
   }
@@ -171,7 +171,6 @@ export default function App() {
       <div className="min-h-screen bg-slate-950 flex flex-col items-center justify-center text-white p-4">
         <AlertTriangle className="w-12 h-12 text-amber-400 mb-4" />
         <h2 className="text-xl font-semibold">Nenhum dado encontrado</h2>
-        <p className="text-slate-400 text-sm mt-1">Execute o script do monitor para gerar as primeiras cotações.</p>
       </div>
     );
   }
@@ -181,16 +180,14 @@ export default function App() {
     ? topDeals 
     : topDeals.filter(d => d.days === selectedDuration);
 
-  // Ajuste de SUV caso selecionado (+ R$ 40/dia)
   const suvDiffPerDay = 40;
-  const getAdjustedPrice = (deal: Deal, sense: 'A' | 'B') => {
-    const base = sense === 'A' ? deal.routeA.totalCost : deal.routeB.totalCost;
-    return carType === 'suv' ? base + (suvDiffPerDay * deal.days) : base;
+  const getAdjustedPrice = (cost: number, days: number) => {
+    return carType === 'suv' ? cost + (suvDiffPerDay * days) : cost;
   };
 
   return (
     <div className="min-h-screen bg-[#070b14] text-slate-100 font-sans pb-20 selection:bg-cyan-500 selection:text-black">
-      {/* Top Banner / Status do Monitor */}
+      {/* Top Banner / Status */}
       <div className="bg-gradient-to-r from-slate-900 via-indigo-950 to-slate-900 border-b border-indigo-900/40 px-4 py-2.5">
         <div className="max-w-6xl mx-auto flex flex-wrap items-center justify-between gap-3 text-xs md:text-sm">
           <div className="flex items-center gap-2">
@@ -198,9 +195,9 @@ export default function App() {
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
               <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
             </span>
-            <span className="font-medium text-emerald-400">Robô Autônomo Ativo na Nuvem</span>
+            <span className="font-medium text-emerald-400">Robô Ativo (4 Horários Diários)</span>
             <span className="text-slate-500 hidden sm:inline">•</span>
-            <span className="text-slate-400 hidden sm:inline">Varreduras Diárias (Madrugada & Manhã)</span>
+            <span className="text-slate-300 hidden sm:inline">Origem e Retorno Garantidos para Recife (REC)</span>
           </div>
 
           <div className="flex items-center gap-3">
@@ -225,30 +222,28 @@ export default function App() {
           <div>
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-cyan-950/60 border border-cyan-800/50 text-cyan-400 text-xs font-semibold uppercase tracking-wider mb-2">
               <Compass className="w-3.5 h-3.5" />
-              Roteiro Férias 2027 • Recife ⇄ Sul do Brasil
+              Férias 2027 • Análise Completa de Todas as Estratégias
             </div>
             <h1 className="text-3xl md:text-4xl font-extrabold text-white tracking-tight">
-              Foz do Iguaçu, Pomerode & Curitiba
+              Recife ⇄ Foz do Iguaçu, Pomerode & Curitiba
             </h1>
             <p className="text-slate-400 text-sm md:text-base mt-1 max-w-2xl">
-              Monitoramento contínuo para <strong className="text-white">4 passageiros</strong> (2 adultos + filhos de 5 e 2,5 anos) 
-              com carro alugado e devolução entre cidades.
+              Comparando <strong className="text-white">4 rotas completas (todas com volta para Recife)</strong>: voos ida e volta na mesma cidade (taxa de retorno R$ 0) vs voos múltiplos destinos com carro.
             </p>
           </div>
 
-          {/* Badge Resumo de Passageiros */}
           <div className="flex items-center gap-2 bg-slate-900/90 border border-slate-800 p-2.5 rounded-xl text-xs">
             <div className="p-2 bg-indigo-950/80 text-indigo-400 rounded-lg">
               <Users className="w-4 h-4" />
             </div>
             <div>
-              <div className="font-semibold text-slate-200">2 Adultos + 2 Filhos</div>
-              <div className="text-slate-400">Assentos e bagagens garantidos</div>
+              <div className="font-semibold text-slate-200">2 Adultos + 2 Crianças (5 e 2,5 anos)</div>
+              <div className="text-slate-400">4 assentos nos voos e porta-malas espaçoso</div>
             </div>
           </div>
         </div>
 
-        {/* Abas de Navegação */}
+        {/* Abas */}
         <div className="flex gap-2 border-b border-slate-800 mt-8 overflow-x-auto pb-1 text-sm font-medium">
           <button
             onClick={() => setActiveTab('overview')}
@@ -259,7 +254,7 @@ export default function App() {
             }`}
           >
             <Sparkles className="w-4 h-4" />
-            Visão Geral & Melhor Oferta
+            Melhor Opção Global
           </button>
           <button
             onClick={() => setActiveTab('comparison')}
@@ -269,8 +264,8 @@ export default function App() {
                 : 'text-slate-400 hover:text-white hover:bg-slate-900'
             }`}
           >
-            <DollarSign className="w-4 h-4" />
-            Sentido A vs Sentido B
+            <Repeat className="w-4 h-4" />
+            Comparativo das 4 Estratégias
           </button>
           <button
             onClick={() => setActiveTab('cars')}
@@ -297,148 +292,133 @@ export default function App() {
         </div>
       </header>
 
-      {/* Conteúdo Principal */}
+      {/* Conteúdo */}
       <main className="max-w-6xl mx-auto px-4 mt-6">
         {/* ABA: VISÃO GERAL */}
         {activeTab === 'overview' && (
           <div className="space-y-6">
-            {/* Card Destaque: Campeão de Preço */}
+            {/* Card Destaque */}
             <div className="relative overflow-hidden bg-gradient-to-br from-slate-900 via-indigo-950/40 to-slate-900 border-2 border-cyan-500/40 rounded-2xl p-6 md:p-8 shadow-2xl">
               <div className="absolute top-0 right-0 bg-cyan-500 text-slate-950 text-xs font-extrabold uppercase px-4 py-1.5 rounded-bl-xl tracking-wider flex items-center gap-1.5 shadow-md">
                 <Sparkles className="w-3.5 h-3.5" />
-                Melhor Combinação Encontrada
+                Estratégia Mais Barata Encontrada
               </div>
 
               <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
                 <div className="lg:col-span-2 space-y-4">
                   <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded bg-indigo-950/80 border border-indigo-700/50 text-indigo-300 text-xs font-semibold">
-                    🏆 {summary.bestSenseName}
+                    🏆 {summary.bestStrategyName}
                   </div>
 
                   <div>
                     <h2 className="text-2xl md:text-3xl font-bold text-white">
-                      {formatDate(summary.bestDeparture)} até {formatDate(summary.bestReturn)}
+                      {formatDate(summary.bestDeparture)} até {formatDate(summary.bestReturn)} ({summary.bestDays} dias)
                     </h2>
                     <p className="text-cyan-400 font-medium text-sm mt-0.5">
-                      {summary.bestDays} dias de viagem • 3 dias em Foz + 2 dias estrada cênica (Pomerode) + 4 dias em Curitiba
+                      Saída de Recife e Retorno Garantido para Recife
                     </p>
                   </div>
 
-                  {/* Decomposição do Custo */}
+                  {/* Decomposição */}
                   <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 pt-2">
                     <div className="bg-slate-900/90 border border-slate-800 p-3 rounded-xl">
                       <div className="text-slate-400 text-xs flex items-center gap-1">
                         <Plane className="w-3.5 h-3.5 text-cyan-400" />
-                        Voos (4 pax)
+                        Voos Ida & Volta (4 pax)
                       </div>
                       <div className="text-lg font-bold text-white mt-1">
                         R$ {summary.flightTotal.toLocaleString('pt-BR')}
                       </div>
                       <div className="text-[11px] text-slate-400">
-                        R$ {summary.flightPerPax.toLocaleString('pt-BR')} / pessoa
+                        R$ {summary.flightPerPax.toLocaleString('pt-BR')} / pessoa ida e volta
                       </div>
                     </div>
 
                     <div className="bg-slate-900/90 border border-slate-800 p-3 rounded-xl">
                       <div className="text-slate-400 text-xs flex items-center gap-1">
                         <Car className="w-3.5 h-3.5 text-indigo-400" />
-                        Carro + Taxa Devolução
+                        Carro ({summary.bestDays} diárias)
                       </div>
                       <div className="text-lg font-bold text-white mt-1">
                         R$ {summary.carTotal.toLocaleString('pt-BR')}
                       </div>
                       <div className="text-[11px] text-emerald-400">
-                        {summary.carModel.split(' ')[0]} {summary.carModel.split(' ')[1]}
+                        {summary.dropoffFee === 0 ? 'Taxa retorno: R$ 0 (Mesma cidade)' : `Taxa retorno: R$ ${summary.dropoffFee}`}
                       </div>
                     </div>
 
                     <div className="bg-slate-900/90 border border-slate-800 p-3 rounded-xl col-span-2 sm:col-span-1">
                       <div className="text-slate-400 text-xs flex items-center gap-1">
                         <Baby className="w-3.5 h-3.5 text-pink-400" />
-                        Economia Cadeirinhas
+                        Cadeirinhas no Voo
                       </div>
                       <div className="text-lg font-bold text-emerald-400 mt-1">
                         + R$ {summary.savedChildSeatCost.toLocaleString('pt-BR')}
                       </div>
                       <div className="text-[11px] text-slate-400">
-                        Levando no voo (Grátis)
+                        Economia comprovada
                       </div>
                     </div>
                   </div>
                 </div>
 
-                {/* Preço Total e Ação */}
+                {/* Preço Total */}
                 <div className="bg-slate-950/80 border border-slate-800/80 rounded-xl p-6 flex flex-col justify-between items-center text-center">
                   <div>
                     <span className="text-xs uppercase font-semibold tracking-wider text-slate-400">
-                      Custo Logístico Total
+                      Custo Total Pacote Família
                     </span>
                     <div className="text-4xl font-extrabold text-white mt-2">
-                      R$ {summary.cheapestTotal.toLocaleString('pt-BR')}
+                      R$ {getAdjustedPrice(summary.cheapestTotal, summary.bestDays).toLocaleString('pt-BR')}
                     </div>
                     <div className="text-xs text-slate-400 mt-1">
-                      Voos para 4 + {summary.bestDays} diárias de carro + taxa retorno
+                      Voos para 4 (Ida e Volta a Recife) + {summary.bestDays} diárias carro
                     </div>
 
-                    {summary.isPromo && (
+                    {summary.savedDropoffFee > 0 && (
                       <div className="mt-3 inline-flex items-center gap-1 bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs px-2.5 py-1 rounded-full font-medium">
-                        🔥 Tarifa Promocional Ativa ({summary.discountPercent}% OFF)
+                        🎉 Devolver na mesma cidade economizou R$ {summary.savedDropoffFee}!
                       </div>
                     )}
                   </div>
 
                   <div className="w-full mt-6 space-y-2">
                     <button
-                      onClick={() => setActiveTab('itinerary')}
+                      onClick={() => setActiveTab('comparison')}
                       className="w-full py-2.5 px-4 bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold rounded-xl transition-all flex items-center justify-center gap-2 shadow-lg shadow-cyan-500/20"
                     >
-                      <span>Ver Roteiro Detalhado</span>
+                      <span>Comparar as 4 Opções</span>
                       <ArrowRight className="w-4 h-4" />
-                    </button>
-                    <button
-                      onClick={() => setShowNtfyModal(true)}
-                      className="w-full py-2 px-4 bg-slate-900 hover:bg-slate-800 text-slate-300 text-xs font-medium rounded-xl border border-slate-800 transition-all flex items-center justify-center gap-1.5"
-                    >
-                      <Bell className="w-3.5 h-3.5 text-indigo-400" />
-                      <span>Testar Alerta Push no Celular</span>
                     </button>
                   </div>
                 </div>
               </div>
             </div>
 
-            {/* Dica de Ouro: Cadeirinhas e Carrinho */}
-            <div className="bg-gradient-to-r from-emerald-950/40 via-slate-900 to-slate-900 border border-emerald-700/40 rounded-xl p-4 md:p-5 flex items-start gap-4">
-              <div className="p-3 bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 rounded-xl">
-                <ShieldCheck className="w-6 h-6" />
+            {/* Aviso Volta Garantida para Recife */}
+            <div className="bg-indigo-950/30 border border-indigo-700/40 rounded-xl p-4 flex items-start gap-3">
+              <div className="p-2 bg-indigo-500/20 text-indigo-400 rounded-lg">
+                <Repeat className="w-5 h-5" />
               </div>
-              <div className="text-sm">
-                <h3 className="font-bold text-white text-base flex items-center gap-2">
-                  Dica de Economia Inteligente da Família (R$ 800 a R$ 1.000 poupados!)
-                </h3>
-                <p className="text-slate-300 mt-1 leading-relaxed">
-                  As três principais companhias aéreas brasileiras (Azul, GOL e LATAM) permitem despachar 
-                  <strong className="text-emerald-400"> 1 carrinho de bebê + 1 cadeirinha/assento por criança gratuitamente</strong> sem 
-                  descontar da franquia de bagagem. Como as locadoras cobram entre R$ 40 a R$ 50/dia por cada acessório, 
-                  levar os próprios itens no voo garante conforto e segurança máximos para os seus filhos de 2 e 5 anos com custo zero.
-                </p>
+              <div className="text-xs md:text-sm text-slate-300">
+                <strong className="text-white">Origem e Destino Final 100% em Recife (REC):</strong> Todas as pesquisas e simulações obrigatoriamente incluem a ida saindo do Recife e a volta desembarcando no Recife. Você pode escolher se quer pousar e decolar da mesma cidade do Sul (economizando na taxa do carro) ou fazer cidades diferentes.
               </div>
             </div>
 
-            {/* Filtros e Tabela de Todas as Ofertas */}
+            {/* Lista dos Melhores Pacotes */}
             <div className="bg-slate-900/60 border border-slate-800 rounded-2xl p-5 md:p-6">
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
                 <div>
                   <h3 className="text-lg font-bold text-white flex items-center gap-2">
                     <Calendar className="w-5 h-5 text-cyan-400" />
-                    Todas as Opções Analisadas (16/04 a 05/05/2027)
+                    Melhores Datas e Pacotes Encontrados
                   </h3>
                   <p className="text-slate-400 text-xs mt-0.5">
-                    O robô calcula o custo total (voos + carro) para cada combinação de dias.
+                    Classificados do menor custo logístico para o maior.
                   </p>
                 </div>
 
-                {/* Filtro de Duração */}
+                {/* Filtro Duração */}
                 <div className="flex items-center gap-1.5 bg-slate-950 p-1 rounded-xl border border-slate-800 text-xs">
                   <span className="text-slate-500 px-2 font-medium">Duração:</span>
                   <button
@@ -484,11 +464,10 @@ export default function App() {
                 </div>
               </div>
 
-              {/* Grid de Cards de Ofertas */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {filteredDeals.slice(0, 8).map((deal, index) => {
-                  const bestRoute = deal.cheaperSense === 'A' ? deal.routeA : deal.routeB;
-                  const price = getAdjustedPrice(deal, deal.cheaperSense);
+                  const winner = deal.options[deal.winnerType];
+                  const price = getAdjustedPrice(deal.cheapestTotal, deal.days);
 
                   return (
                     <div
@@ -501,7 +480,7 @@ export default function App() {
                     >
                       {index === 0 && (
                         <span className="absolute -top-2.5 right-4 bg-cyan-500 text-slate-950 text-[10px] font-bold uppercase px-2 py-0.5 rounded shadow">
-                          Mais Barato
+                          Mais Barato Geral
                         </span>
                       )}
 
@@ -516,7 +495,7 @@ export default function App() {
                             </span>
                             <span>•</span>
                             <span className="text-cyan-400 font-medium">
-                              {deal.cheaperSense === 'A' ? 'Sentido A (Começa em Foz)' : 'Sentido B (Começa em Curitiba)'}
+                              {winner.name.split('(')[0]}
                             </span>
                           </div>
                         </div>
@@ -526,7 +505,7 @@ export default function App() {
                             R$ {price.toLocaleString('pt-BR')}
                           </div>
                           <div className="text-[11px] text-slate-400">
-                            Pacote Total (Voos + Carro)
+                            Total Família
                           </div>
                         </div>
                       </div>
@@ -534,11 +513,11 @@ export default function App() {
                       <div className="mt-3 pt-3 border-t border-slate-900 grid grid-cols-2 gap-2 text-xs">
                         <div className="text-slate-400">
                           <span className="text-slate-500">Cia Aérea:</span>{' '}
-                          <span className="text-slate-300 font-medium">{bestRoute.airline.split(' ')[0]}</span>
+                          <span className="text-slate-300 font-medium">{winner.airline.split(' ')[0]}</span>
                         </div>
                         <div className="text-slate-400 text-right">
-                          <span className="text-slate-500">Voos 4 pax:</span>{' '}
-                          <span className="text-slate-200 font-semibold">R$ {bestRoute.totalFlights.toLocaleString('pt-BR')}</span>
+                          <span className="text-slate-500">Voos (4 pax):</span>{' '}
+                          <span className="text-slate-200 font-semibold">R$ {winner.flights.toLocaleString('pt-BR')}</span>
                         </div>
                       </div>
                     </div>
@@ -549,124 +528,125 @@ export default function App() {
           </div>
         )}
 
-        {/* ABA: COMPARAÇÃO SENTIDO A vs SENTIDO B */}
+        {/* ABA: COMPARATIVO DAS 4 ESTRATÉGIAS */}
         {activeTab === 'comparison' && (
           <div className="space-y-6">
             <div className="bg-slate-900/60 border border-slate-800 rounded-2xl p-6">
               <h3 className="text-xl font-bold text-white mb-2">
-                Comparativo Estratégico: Sentido A vs Sentido B
+                Comparativo Detalhado das 4 Estratégias Possíveis
               </h3>
               <p className="text-slate-400 text-sm max-w-3xl leading-relaxed">
-                Como você alugará o carro para fazer o trecho rodoviário passando por Pomerode, o sistema avalia simultaneamente 
-                os dois sentidos e calcula o custo logístico completo (incluindo as taxas de devolução da locadora).
+                Todas as 4 rotas partem de Recife e retornam para Recife, permitindo visitar Foz do Iguaçu, Curitiba e Pomerode com carro.
               </p>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
-                {/* Sentido A */}
-                <div className={`rounded-2xl p-6 border relative transition-all ${
-                  topDeals[0]?.cheaperSense === 'A'
-                    ? 'bg-slate-900/90 border-cyan-500/60 shadow-xl shadow-cyan-950/20'
+                {/* Opção 1: Hub Curitiba */}
+                <div className={`rounded-2xl p-6 border relative ${
+                  topDeals[0]?.winnerType === 'C'
+                    ? 'bg-slate-900/90 border-cyan-500/60 shadow-xl'
                     : 'bg-slate-950/60 border-slate-800'
                 }`}>
-                  {topDeals[0]?.cheaperSense === 'A' && (
-                    <div className="inline-block bg-cyan-500 text-slate-950 text-xs font-bold px-3 py-1 rounded-full uppercase mb-4">
-                      ⭐ Sentido Mais Econômico
-                    </div>
-                  )}
-
-                  <h4 className="text-xl font-extrabold text-white">
-                    Sentido A: Começando por Foz do Iguaçu
-                  </h4>
-                  <p className="text-xs text-slate-400 mt-1">
-                    Recife ➔ Foz (Voo) | Foz ➔ Pomerode ➔ Curitiba (Carro) | Curitiba ➔ Recife (Voo)
-                  </p>
-
-                  <div className="mt-6 space-y-3">
-                    <div className="flex justify-between text-sm py-2 border-b border-slate-800">
-                      <span className="text-slate-400">3 Dias em Foz do Iguaçu:</span>
-                      <span className="text-white font-medium">Cataratas, Aves & Wonder Park</span>
-                    </div>
-                    <div className="flex justify-between text-sm py-2 border-b border-slate-800">
-                      <span className="text-slate-400">2 Dias de Viagem Rodoviária:</span>
-                      <span className="text-white font-medium">Pernoite Guarapuava + Pomerode</span>
-                    </div>
-                    <div className="flex justify-between text-sm py-2 border-b border-slate-800">
-                      <span className="text-slate-400">4 Dias em Curitiba:</span>
-                      <span className="text-white font-medium">Bosque Alemão, Parques & Gastronomia</span>
-                    </div>
-                    <div className="flex justify-between text-sm py-2 border-b border-slate-800">
-                      <span className="text-slate-400">Média Voos (4 pax):</span>
-                      <span className="text-cyan-400 font-bold">R$ {topDeals[0]?.routeA.totalFlights.toLocaleString('pt-BR')}</span>
-                    </div>
-                    <div className="flex justify-between text-sm py-2 border-b border-slate-800">
-                      <span className="text-slate-400">Taxa Retorno Carro (Drop-off):</span>
-                      <span className="text-slate-300 font-medium">R$ {topDeals[0]?.routeA.dropoffFee.toLocaleString('pt-BR')}</span>
-                    </div>
-                  </div>
-
-                  <div className="mt-6 bg-slate-950 p-4 rounded-xl flex items-center justify-between">
-                    <span className="text-xs text-slate-400">Custo Total Pacote:</span>
-                    <span className="text-2xl font-bold text-white">
-                      R$ {topDeals[0]?.routeA.totalCost.toLocaleString('pt-BR')}
+                  <div className="flex items-center justify-between mb-3">
+                    <span className="bg-emerald-500/20 text-emerald-400 text-xs font-bold px-2.5 py-1 rounded-full uppercase">
+                      ⭐ Taxa Retorno Carro R$ 0
+                    </span>
+                    <span className="text-xl font-bold text-white">
+                      R$ {topDeals[0]?.options.C.cost.toLocaleString('pt-BR')}
                     </span>
                   </div>
+                  <h4 className="text-lg font-bold text-white">1. Hub Curitiba (REC ⇄ Curitiba Voo)</h4>
+                  <p className="text-xs text-slate-400 mt-1">
+                    Voo ida e volta por Curitiba. Carro retirado e devolvido no mesmo aeroporto (CWB).
+                  </p>
+                  <ul className="mt-4 space-y-2 text-xs text-slate-300 border-t border-slate-800 pt-3">
+                    <li>• Voo REC ➔ CWB e CWB ➔ REC (4 pessoas): <strong>R$ {topDeals[0]?.options.C.flights.toLocaleString('pt-BR')}</strong></li>
+                    <li>• Carro ({topDeals[0]?.days} diárias): <strong>R$ {topDeals[0]?.options.C.car.toLocaleString('pt-BR')}</strong></li>
+                    <li>• Taxa de devolução em outra cidade: <strong className="text-emerald-400">R$ 0,00 (Isento!)</strong></li>
+                    <li>• Rota de carro: Curitiba ➔ Pomerode ➔ Foz do Iguaçu ➔ Curitiba</li>
+                  </ul>
                 </div>
 
-                {/* Sentido B */}
-                <div className={`rounded-2xl p-6 border relative transition-all ${
-                  topDeals[0]?.cheaperSense === 'B'
-                    ? 'bg-slate-900/90 border-cyan-500/60 shadow-xl shadow-cyan-950/20'
+                {/* Opção 2: Hub Foz */}
+                <div className={`rounded-2xl p-6 border relative ${
+                  topDeals[0]?.winnerType === 'D'
+                    ? 'bg-slate-900/90 border-cyan-500/60 shadow-xl'
                     : 'bg-slate-950/60 border-slate-800'
                 }`}>
-                  {topDeals[0]?.cheaperSense === 'B' && (
-                    <div className="inline-block bg-cyan-500 text-slate-950 text-xs font-bold px-3 py-1 rounded-full uppercase mb-4">
-                      ⭐ Sentido Mais Econômico
-                    </div>
-                  )}
-
-                  <h4 className="text-xl font-extrabold text-white">
-                    Sentido B: Começando por Curitiba
-                  </h4>
-                  <p className="text-xs text-slate-400 mt-1">
-                    Recife ➔ Curitiba (Voo) | Curitiba ➔ Pomerode ➔ Foz (Carro) | Foz ➔ Recife (Voo)
-                  </p>
-
-                  <div className="mt-6 space-y-3">
-                    <div className="flex justify-between text-sm py-2 border-b border-slate-800">
-                      <span className="text-slate-400">4 Dias em Curitiba:</span>
-                      <span className="text-white font-medium">Jardim Botânico & Bosque Alemão</span>
-                    </div>
-                    <div className="flex justify-between text-sm py-2 border-b border-slate-800">
-                      <span className="text-slate-400">2 Dias de Viagem Rodoviária:</span>
-                      <span className="text-white font-medium">Pomerode + Pernoite União da Vitória</span>
-                    </div>
-                    <div className="flex justify-between text-sm py-2 border-b border-slate-800">
-                      <span className="text-slate-400">3 Dias em Foz do Iguaçu:</span>
-                      <span className="text-white font-medium">Cataratas & Parque das Aves</span>
-                    </div>
-                    <div className="flex justify-between text-sm py-2 border-b border-slate-800">
-                      <span className="text-slate-400">Média Voos (4 pax):</span>
-                      <span className="text-indigo-400 font-bold">R$ {topDeals[0]?.routeB.totalFlights.toLocaleString('pt-BR')}</span>
-                    </div>
-                    <div className="flex justify-between text-sm py-2 border-b border-slate-800">
-                      <span className="text-slate-400">Taxa Retorno Carro (Drop-off):</span>
-                      <span className="text-slate-300 font-medium">R$ {topDeals[0]?.routeB.dropoffFee.toLocaleString('pt-BR')}</span>
-                    </div>
-                  </div>
-
-                  <div className="mt-6 bg-slate-950 p-4 rounded-xl flex items-center justify-between">
-                    <span className="text-xs text-slate-400">Custo Total Pacote:</span>
-                    <span className="text-2xl font-bold text-white">
-                      R$ {topDeals[0]?.routeB.totalCost.toLocaleString('pt-BR')}
+                  <div className="flex items-center justify-between mb-3">
+                    <span className="bg-emerald-500/20 text-emerald-400 text-xs font-bold px-2.5 py-1 rounded-full uppercase">
+                      Taxa Retorno Carro R$ 0
+                    </span>
+                    <span className="text-xl font-bold text-white">
+                      R$ {topDeals[0]?.options.D.cost.toLocaleString('pt-BR')}
                     </span>
                   </div>
+                  <h4 className="text-lg font-bold text-white">2. Hub Foz (REC ⇄ Foz Voo)</h4>
+                  <p className="text-xs text-slate-400 mt-1">
+                    Voo ida e volta por Foz. Carro retirado e devolvido no aeroporto de Foz (IGU).
+                  </p>
+                  <ul className="mt-4 space-y-2 text-xs text-slate-300 border-t border-slate-800 pt-3">
+                    <li>• Voo REC ➔ IGU e IGU ➔ REC (4 pessoas): <strong>R$ {topDeals[0]?.options.D.flights.toLocaleString('pt-BR')}</strong></li>
+                    <li>• Carro ({topDeals[0]?.days} diárias): <strong>R$ {topDeals[0]?.options.D.car.toLocaleString('pt-BR')}</strong></li>
+                    <li>• Taxa de devolução em outra cidade: <strong className="text-emerald-400">R$ 0,00 (Isento!)</strong></li>
+                    <li>• Rota de carro: Foz ➔ Pomerode ➔ Curitiba ➔ Foz</li>
+                  </ul>
+                </div>
+
+                {/* Opção 3: Open-Jaw A */}
+                <div className={`rounded-2xl p-6 border relative ${
+                  topDeals[0]?.winnerType === 'A'
+                    ? 'bg-slate-900/90 border-cyan-500/60 shadow-xl'
+                    : 'bg-slate-950/60 border-slate-800'
+                }`}>
+                  <div className="flex items-center justify-between mb-3">
+                    <span className="bg-indigo-500/20 text-indigo-300 text-xs font-bold px-2.5 py-1 rounded-full uppercase">
+                      Múltiplos Destinos
+                    </span>
+                    <span className="text-xl font-bold text-white">
+                      R$ {topDeals[0]?.options.A.cost.toLocaleString('pt-BR')}
+                    </span>
+                  </div>
+                  <h4 className="text-lg font-bold text-white">3. Open-Jaw A (Entra Foz / Sai Curitiba)</h4>
+                  <p className="text-xs text-slate-400 mt-1">
+                    Voo REC ➔ IGU | Carro de Foz até Curitiba (via Pomerode) | Voo CWB ➔ REC.
+                  </p>
+                  <ul className="mt-4 space-y-2 text-xs text-slate-300 border-t border-slate-800 pt-3">
+                    <li>• Voos REC ➔ IGU + CWB ➔ REC (4 pessoas): <strong>R$ {topDeals[0]?.options.A.flights.toLocaleString('pt-BR')}</strong></li>
+                    <li>• Carro com Taxa de Retorno (Drop-off): <strong>R$ {topDeals[0]?.options.A.car.toLocaleString('pt-BR')}</strong></li>
+                    <li>• Menos km rodados no carro (apenas 1 sentido de estrada).</li>
+                  </ul>
+                </div>
+
+                {/* Opção 4: Open-Jaw B */}
+                <div className={`rounded-2xl p-6 border relative ${
+                  topDeals[0]?.winnerType === 'B'
+                    ? 'bg-slate-900/90 border-cyan-500/60 shadow-xl'
+                    : 'bg-slate-950/60 border-slate-800'
+                }`}>
+                  <div className="flex items-center justify-between mb-3">
+                    <span className="bg-indigo-500/20 text-indigo-300 text-xs font-bold px-2.5 py-1 rounded-full uppercase">
+                      Múltiplos Destinos
+                    </span>
+                    <span className="text-xl font-bold text-white">
+                      R$ {topDeals[0]?.options.B.cost.toLocaleString('pt-BR')}
+                    </span>
+                  </div>
+                  <h4 className="text-lg font-bold text-white">4. Open-Jaw B (Entra Curitiba / Sai Foz)</h4>
+                  <p className="text-xs text-slate-400 mt-1">
+                    Voo REC ➔ CWB | Carro de Curitiba até Foz (via Pomerode) | Voo IGU ➔ REC.
+                  </p>
+                  <ul className="mt-4 space-y-2 text-xs text-slate-300 border-t border-slate-800 pt-3">
+                    <li>• Voos REC ➔ CWB + IGU ➔ REC (4 pessoas): <strong>R$ {topDeals[0]?.options.B.flights.toLocaleString('pt-BR')}</strong></li>
+                    <li>• Carro com Taxa de Retorno (Drop-off): <strong>R$ {topDeals[0]?.options.B.car.toLocaleString('pt-BR')}</strong></li>
+                    <li>• Menos km rodados no carro (apenas 1 sentido de estrada).</li>
+                  </ul>
                 </div>
               </div>
             </div>
           </div>
         )}
 
-        {/* ABA: ALUGUEL DE CARRO */}
+        {/* ABA: CARROS */}
         {activeTab === 'cars' && (
           <div className="space-y-6">
             <div className="bg-slate-900/60 border border-slate-800 rounded-2xl p-6">
@@ -674,14 +654,13 @@ export default function App() {
                 <div>
                   <h3 className="text-xl font-bold text-white flex items-center gap-2">
                     <Car className="w-5 h-5 text-indigo-400" />
-                    Parâmetros e Regras do Aluguel de Carro
+                    Parâmetros do Carro para a Família
                   </h3>
                   <p className="text-slate-400 text-sm mt-0.5">
-                    Configuração estrita para comportar 4 passageiros, 2 cadeirinhas e bagagens com total segurança.
+                    Configuração restrita: 4 pessoas, 2 cadeirinhas e bagagens.
                   </p>
                 </div>
 
-                {/* Seletor Sedan vs SUV */}
                 <div className="flex items-center gap-2 bg-slate-950 p-1.5 rounded-xl border border-slate-800">
                   <button
                     onClick={() => setCarType('sedan')}
@@ -706,69 +685,38 @@ export default function App() {
                 </div>
               </div>
 
-              {/* Box de Exclusão: Mobi e Kwid Banidos */}
               <div className="bg-rose-950/20 border border-rose-800/40 rounded-xl p-4 flex items-start gap-3 mb-6">
                 <div className="p-2 bg-rose-500/20 text-rose-400 rounded-lg">
                   <XCircle className="w-5 h-5" />
                 </div>
                 <div className="text-xs md:text-sm">
                   <h4 className="font-bold text-rose-300">
-                    Regra Ativa: Fiat Mobi e Renault Kwid Totalmente Excluídos
+                    Mobi e Kwid Estão Fora de Cogitação
                   </h4>
                   <p className="text-slate-300 mt-0.5">
-                    Esses modelos possuem porta-malas subcompacto (abaixo de 290L) e espaço traseiro insuficiente 
-                    para acolher duas cadeirinhas automotivas e a bagagem de uma família de 4 pessoas por 10 dias.
+                    Espaço traseiro não acomoda com conforto e segurança as duas cadeirinhas de 2 e 5 anos junto com as malas da família.
                   </p>
                 </div>
               </div>
 
-              {/* Categorias Homologadas */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="bg-slate-950 border border-slate-800 p-5 rounded-xl">
-                  <div className="flex justify-between items-start">
-                    <div>
-                      <h4 className="font-bold text-white text-base">Sedan Compacto/Médio</h4>
-                      <p className="text-xs text-slate-400">Exemplos: VW Virtus, Chevrolet Onix Plus, Fiat Cronos</p>
-                    </div>
-                    <span className="text-cyan-400 font-bold text-sm">~R$ 145 / dia</span>
-                  </div>
-                  <ul className="mt-4 space-y-2 text-xs text-slate-300">
-                    <li className="flex items-center gap-2">
-                      <CheckCircle2 className="w-4 h-4 text-emerald-400" />
-                      <span>Porta-malas gigante de 480 a 520 Litros (comporta 2 malas grandes + carrinho)</span>
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <CheckCircle2 className="w-4 h-4 text-emerald-400" />
-                      <span>Espaço traseiro excelente para fixação com Isofix</span>
-                    </li>
-                  </ul>
+                  <h4 className="font-bold text-white text-base">Sedan Médio/Compacto</h4>
+                  <p className="text-xs text-slate-400">Exemplos: Onix Plus, Cronos, Virtus</p>
+                  <p className="text-xs text-slate-300 mt-3">Porta-malas de 480L a 520L: ideal para acomodar 2 malas grandes, malas de bordo e o carrinho de bebê.</p>
                 </div>
 
                 <div className="bg-slate-950 border border-slate-800 p-5 rounded-xl">
-                  <div className="flex justify-between items-start">
-                    <div>
-                      <h4 className="font-bold text-white text-base">SUV Compacto</h4>
-                      <p className="text-xs text-slate-400">Exemplos: Chevrolet Tracker, VW T-Cross, Hyundai Creta</p>
-                    </div>
-                    <span className="text-indigo-400 font-bold text-sm">~R$ 185 / dia</span>
-                  </div>
-                  <ul className="mt-4 space-y-2 text-xs text-slate-300">
-                    <li className="flex items-center gap-2">
-                      <CheckCircle2 className="w-4 h-4 text-emerald-400" />
-                      <span>Posição de dirigir alta e ótima suspensão para as serras e estradas</span>
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <CheckCircle2 className="w-4 h-4 text-emerald-400" />
-                      <span>Mais conforto e espaço de cabeça para as crianças no banco traseiro</span>
-                    </li>
-                  </ul>
+                  <h4 className="font-bold text-white text-base">SUV Compacto</h4>
+                  <p className="text-xs text-slate-400">Exemplos: Tracker, T-Cross, Creta, Kicks</p>
+                  <p className="text-xs text-slate-300 mt-3">Excelente vão livre do solo e conforto elevado para os trechos de serra e rodovia.</p>
                 </div>
               </div>
             </div>
           </div>
         )}
 
-        {/* ABA: ROTEIRO DIA A DIA (KIDS FRIENDLY) */}
+        {/* ABA: ROTEIRO DIA A DIA */}
         {activeTab === 'itinerary' && (
           <div className="space-y-6">
             <div className="bg-slate-900/60 border border-slate-800 rounded-2xl p-6">
@@ -776,18 +724,14 @@ export default function App() {
                 <div>
                   <h3 className="text-xl font-bold text-white flex items-center gap-2">
                     <Compass className="w-5 h-5 text-cyan-400" />
-                    Roteiro Completo Dia a Dia (Adaptado para Crianças de 2 e 5 anos)
+                    Roteiro Completo Dia a Dia (Kids Friendly)
                   </h3>
                   <p className="text-slate-400 text-xs mt-0.5">
-                    Planejado para evitar desgaste dos pequenos, com paradas a cada 2h na estrada e atrações lúdicas.
+                    Com paradas a cada 2h na estrada e atrações adaptadas para 2 e 5 anos.
                   </p>
-                </div>
-                <div className="text-xs bg-slate-950 px-3 py-1.5 rounded-lg border border-slate-800 text-slate-400">
-                  Baseado no Sentido Campeão: <strong className="text-cyan-400">{summary.bestSenseName.split(' ')[1]}</strong>
                 </div>
               </div>
 
-              {/* Lista dos Dias com Accordion */}
               <div className="space-y-3">
                 {itinerary.map((item) => {
                   const isExpanded = expandedDay === item.day;
@@ -828,7 +772,7 @@ export default function App() {
                       {isExpanded && (
                         <div className="p-4 pt-1 border-t border-slate-900 bg-slate-900/20 space-y-3 text-xs md:text-sm">
                           <div>
-                            <span className="font-semibold text-slate-300">Atividades Planejadas:</span>
+                            <span className="font-semibold text-slate-300">Atividades:</span>
                             <ul className="mt-1.5 space-y-1.5">
                               {item.activities.map((act, i) => (
                                 <li key={i} className="flex items-start gap-2 text-slate-300">
@@ -842,7 +786,7 @@ export default function App() {
                           <div className="bg-indigo-950/30 border border-indigo-800/40 rounded-lg p-3 flex items-start gap-2.5 text-xs">
                             <Baby className="w-4 h-4 text-pink-400 shrink-0 mt-0.5" />
                             <div>
-                              <strong className="text-indigo-300">Dica Especial para os Filhos (2 e 5 anos):</strong>{' '}
+                              <strong className="text-indigo-300">Dica para os Filhos (2 e 5 anos):</strong>{' '}
                               <span className="text-slate-300">{item.kidsTips}</span>
                             </div>
                           </div>
@@ -857,7 +801,7 @@ export default function App() {
         )}
       </main>
 
-      {/* MODAL DE CONFIGURAÇÃO E TESTE DO NTFY */}
+      {/* MODAL NTFY */}
       {showNtfyModal && (
         <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
           <div className="bg-slate-900 border border-slate-800 rounded-2xl max-w-md w-full p-6 space-y-5 shadow-2xl relative">
@@ -882,12 +826,11 @@ export default function App() {
             <div className="space-y-4 text-xs text-slate-300">
               <div className="bg-slate-950 p-3 rounded-xl border border-slate-800 space-y-1">
                 <span className="text-slate-500 font-semibold uppercase text-[10px]">Passo 1: Instale o App</span>
-                <p>Baixe o aplicativo <strong>ntfy</strong> na Google Play Store ou Apple App Store.</p>
+                <p>Baixe o app <strong>ntfy</strong> na Google Play Store ou Apple App Store.</p>
               </div>
 
               <div className="bg-slate-950 p-3 rounded-xl border border-slate-800 space-y-2">
                 <span className="text-slate-500 font-semibold uppercase text-[10px]">Passo 2: Inscreva-se no seu Tópico</span>
-                <p>No app do celular, clique no botão <strong>+</strong> e digite o nome do tópico:</p>
                 <div className="flex items-center gap-2">
                   <input
                     type="text"
