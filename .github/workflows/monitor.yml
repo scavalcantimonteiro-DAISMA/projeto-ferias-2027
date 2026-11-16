@@ -2,15 +2,19 @@ name: Monitor Autônomo Férias 2027
 
 on:
   schedule:
-    # 06:00 UTC = 03:00 Brasília (Varredura da Madrugada / Feirões / Black Friday)
+    # 06:00 UTC = 03:00 Brasília (Madrugadão / Black Friday / Promoções Relâmpago)
     - cron: '0 6 * * *'
     # 11:30 UTC = 08:30 Brasília (Resumo Matinal Diário)
     - cron: '30 11 * * *'
-  workflow_dispatch: # Permite disparar manualmente pelo painel do GitHub se desejar
+    # 17:00 UTC = 14:00 Brasília (Guerra de Tarifas da Tarde)
+    - cron: '0 17 * * *'
+    # 23:00 UTC = 20:00 Brasília (Abertura de Feirões Noturnos e Fim de Semana)
+    - cron: '0 23 * * *'
+  workflow_dispatch: # Permite disparar manualmente pelo painel do GitHub a qualquer momento
 
 jobs:
   monitor:
-    name: Varredura de Preços de Voos e Carros
+    name: Varredura Contínua de Voos e Carros
     runs-on: ubuntu-latest
 
     permissions:
