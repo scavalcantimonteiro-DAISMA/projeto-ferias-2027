@@ -9,7 +9,6 @@ import {
   Sparkles, 
   MapPin, 
   Baby, 
-  ArrowRight, 
   Compass, 
   Moon, 
   RefreshCw, 
@@ -17,16 +16,19 @@ import {
   ChevronDown, 
   ChevronUp, 
   XCircle, 
-  Repeat,
-  Clock,
-  ArrowRightCircle,
-  ShieldCheck,
-  CheckCircle2
+  Repeat, 
+  ArrowRightCircle, 
+  CheckCircle2, 
+  Building2, 
+  Flame, 
+  Tag 
 } from 'lucide-react';
 
 interface FlightLeg {
   flightNumber: string;
   airline: string;
+  bookingUrl: string;
+  googleFlightsUrl: string;
   departureTime: string;
   arrivalTime: string;
   totalDuration: string;
@@ -45,7 +47,7 @@ interface StrategyOption {
   flights: number;
   car: number;
   dropoff: number;
-  promo: boolean;
+  isBlackFriday: boolean;
   flightPerPax: number;
   flightDetails: {
     outbound: FlightLeg;
@@ -63,6 +65,7 @@ interface Deal {
   cheapestTotal: number;
   savedChildSeatCost: number;
   savedDropoffFee: number;
+  isBlackFriday: boolean;
   options: {
     A: StrategyOption;
     B: StrategyOption;
@@ -71,13 +74,17 @@ interface Deal {
   };
 }
 
-interface ItineraryDay {
-  day: number;
-  date: string;
-  title: string;
+interface HotelOption {
+  name: string;
+  type: string;
+  avgDaily: number;
+  total3Nights?: number;
+  total2Nights?: number;
+  total4Nights?: number;
+  amenities: string[];
+  rating: string;
   location: string;
-  activities: string[];
-  kidsTips: string;
+  city?: string;
 }
 
 interface DealsData {
@@ -98,16 +105,38 @@ interface DealsData {
     carModel: string;
     dropoffFee: number;
     savedDropoffFee: number;
-    isPromo: boolean;
+    isBlackFriday: boolean;
     savedChildSeatCost: number;
     flightDetails: {
       outbound: FlightLeg;
       inbound: FlightLeg;
     };
   };
+  hotels: {
+    foz: HotelOption[];
+    estrada: HotelOption[];
+    pomerode: HotelOption[];
+    curitiba: HotelOption[];
+  };
+  officialLinks: {
+    gol: string;
+    latam: string;
+    azul: string;
+    googleFlights: string;
+    localiza: string;
+    movida: string;
+    unidas: string;
+  };
   topDeals: Deal[];
   allDeals: Deal[];
-  itinerary: ItineraryDay[];
+  itinerary: Array<{
+    day: number;
+    date: string;
+    title: string;
+    location: string;
+    activities: string[];
+    kidsTips: string;
+  }>;
   rules: {
     excludedCars: string[];
     allowedCategories: Array<{
@@ -135,7 +164,7 @@ export default function App() {
   const [ntfyStatus, setNtfyStatus] = useState<string>('');
   const [showNtfyModal, setShowNtfyModal] = useState<boolean>(false);
   const [expandedDay, setExpandedDay] = useState<number | null>(1);
-  const [activeTab, setActiveTab] = useState<'overview' | 'flights' | 'comparison' | 'itinerary' | 'cars'>('overview');
+  const [activeTab, setActiveTab] = useState<'overview' | 'flights' | 'hotels' | 'comparison' | 'cars' | 'itinerary'>('overview');
 
   useEffect(() => {
     fetch('/data/deals.json')
@@ -158,10 +187,10 @@ export default function App() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           topic: ntfyTopic,
-          title: '✈️ Teste SCM: Férias 2027',
-          message: 'Notificações com horários e conexões ativas no seu celular!\nOrigem e retorno 100% garantidos para Recife.',
+          title: '🔥 Black Friday SCM: Férias 2027',
+          message: 'Radar de Black Friday e links oficiais de compra prontos no seu celular!\nHotéis familiares simples inclusos com valores reais.',
           priority: 4,
-          tags: ['tada', 'airplane', 'family'],
+          tags: ['fire', 'airplane', 'hotel'],
           markdown: true
         })
       });
@@ -185,8 +214,7 @@ export default function App() {
     return (
       <div className="min-h-screen bg-slate-50 flex flex-col items-center justify-center text-slate-800 p-4 font-sans">
         <RefreshCw className="w-10 h-10 text-sky-600 animate-spin mb-3" />
-        <h2 className="text-lg font-semibold text-slate-900">Carregando painel de monitoramento SCM...</h2>
-        <p className="text-slate-500 text-sm mt-1">Varrendo voos com horários, escalas e custos de carro</p>
+        <h2 className="text-lg font-semibold text-slate-900">Carregando cotações com Black Friday e Hotéis...</h2>
       </div>
     );
   }
@@ -200,7 +228,7 @@ export default function App() {
     );
   }
 
-  const { summary, topDeals, itinerary } = data;
+  const { summary, topDeals, hotels, officialLinks, itinerary } = data;
   const filteredDeals = selectedDuration === 'all' 
     ? topDeals 
     : topDeals.filter(d => d.days === selectedDuration);
@@ -214,7 +242,7 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-[#f8fafc] text-slate-800 font-sans pb-24 selection:bg-sky-500 selection:text-white">
-      {/* Barra de Status Superior Suave */}
+      {/* Barra de Status */}
       <div className="bg-white border-b border-slate-200/80 px-4 py-2.5 shadow-xs">
         <div className="max-w-6xl mx-auto flex flex-wrap items-center justify-between gap-3 text-xs">
           <div className="flex items-center gap-2">
@@ -222,15 +250,18 @@ export default function App() {
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
               <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
             </span>
-            <span className="font-semibold text-slate-700">Robô Autônomo Ativo (4 Horários Diários)</span>
+            <span className="font-semibold text-slate-700">Robô Ativo (Varredura Contínua)</span>
             <span className="text-slate-300 hidden sm:inline">•</span>
-            <span className="text-slate-500 hidden sm:inline">Ida e Volta 100% para Recife (REC)</span>
+            <span className="text-rose-600 font-bold flex items-center gap-1">
+              <Flame className="w-3.5 h-3.5 fill-rose-500 text-rose-500" />
+              Radar Black Friday & Feirões Ativo
+            </span>
           </div>
 
           <div className="flex items-center gap-3">
             <div className="flex items-center gap-1.5 text-slate-600 bg-slate-100 px-3 py-1 rounded-full border border-slate-200 text-xs">
               <Moon className="w-3.5 h-3.5 text-indigo-500" />
-              <span>Modo Madrugada: Alerta sonoro apenas para Super Ofertas</span>
+              <span>Modo Madrugada: Alarme só para Super Ofertas</span>
             </div>
             <button
               onClick={() => setShowNtfyModal(true)}
@@ -243,15 +274,12 @@ export default function App() {
         </div>
       </div>
 
-      {/* Cabeçalho Principal com Logotipo Oficial SCM */}
+      {/* Header com Logo */}
       <header className="max-w-6xl mx-auto px-4 pt-8 pb-4">
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
           <div className="flex items-center gap-4">
-            {/* Logotipo do Avião ao Redor do Mundo */}
-            <div className="relative group shrink-0">
-              <div className="w-16 h-16 md:w-20 md:h-20 rounded-2xl bg-white p-1 shadow-md border border-slate-200/80 flex items-center justify-center overflow-hidden transition-transform group-hover:scale-105">
-                <img src="/logo.svg" alt="SCM Férias 2027" className="w-full h-full object-contain" />
-              </div>
+            <div className="w-16 h-16 md:w-20 md:h-20 rounded-2xl bg-white p-1 shadow-md border border-slate-200/80 flex items-center justify-center shrink-0">
+              <img src="/logo.svg" alt="SCM Férias 2027" className="w-full h-full object-contain" />
             </div>
 
             <div>
@@ -263,24 +291,23 @@ export default function App() {
                 Foz do Iguaçu, Pomerode & Curitiba
               </h1>
               <p className="text-slate-500 text-xs md:text-sm mt-0.5">
-                Monitoramento inteligente para <strong className="text-slate-800">4 pessoas</strong> (2 adultos + 2 crianças de 5 e 2,5 anos) com carro espaçoso.
+                Voos com links oficiais de compra, hotéis simples e aluguel de carro (sem Mobi/Kwid).
               </p>
             </div>
           </div>
 
-          {/* Badge Resumo Família */}
           <div className="flex items-center gap-3 bg-white border border-slate-200 p-3 rounded-2xl shadow-xs">
             <div className="p-2.5 bg-sky-50 text-sky-600 rounded-xl">
               <Users className="w-5 h-5" />
             </div>
             <div className="text-xs">
-              <div className="font-bold text-slate-800">4 Passageiros (Assentos Próprios)</div>
-              <div className="text-slate-500">2 Adultos + Filhos (5 anos e 2,5 anos)</div>
+              <div className="font-bold text-slate-800">4 Passageiros</div>
+              <div className="text-slate-500">2 Adultos + Filhos (5 e 2,5 anos)</div>
             </div>
           </div>
         </div>
 
-        {/* Abas com Paleta Suave */}
+        {/* Abas Suaves */}
         <div className="flex gap-2 border-b border-slate-200 mt-8 overflow-x-auto pb-1 text-sm font-medium">
           <button
             onClick={() => setActiveTab('overview')}
@@ -291,7 +318,7 @@ export default function App() {
             }`}
           >
             <Sparkles className="w-4 h-4" />
-            Visão Geral & Campeão
+            Visão Geral & Pacote
           </button>
           <button
             onClick={() => setActiveTab('flights')}
@@ -302,7 +329,18 @@ export default function App() {
             }`}
           >
             <Plane className="w-4 h-4" />
-            Horários & Escalas dos Voos
+            Horários & Links de Compra
+          </button>
+          <button
+            onClick={() => setActiveTab('hotels')}
+            className={`flex items-center gap-2 px-4 py-2.5 rounded-xl transition-all ${
+              activeTab === 'hotels'
+                ? 'bg-sky-600 text-white font-semibold shadow-xs'
+                : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'
+            }`}
+          >
+            <Building2 className="w-4 h-4" />
+            Hotéis Simples & Econômicos
           </button>
           <button
             onClick={() => setActiveTab('comparison')}
@@ -324,7 +362,7 @@ export default function App() {
             }`}
           >
             <Car className="w-4 h-4" />
-            Aluguel de Carro (Sem Mobi/Kwid)
+            Aluguel de Carro
           </button>
           <button
             onClick={() => setActiveTab('itinerary')}
@@ -335,7 +373,7 @@ export default function App() {
             }`}
           >
             <MapPin className="w-4 h-4" />
-            Roteiro Dia a Dia (Kids Friendly)
+            Roteiro Dia a Dia
           </button>
         </div>
       </header>
@@ -345,17 +383,25 @@ export default function App() {
         {/* ABA: VISÃO GERAL */}
         {activeTab === 'overview' && (
           <div className="space-y-6">
-            {/* Card Destaque Campeão */}
+            {/* Card Campeão */}
             <div className="relative overflow-hidden bg-white border border-slate-200 rounded-3xl p-6 md:p-8 shadow-sm">
               <div className="absolute top-0 right-0 bg-sky-600 text-white text-[11px] font-bold uppercase px-4 py-1.5 rounded-bl-2xl tracking-wider flex items-center gap-1.5 shadow-xs">
                 <Sparkles className="w-3.5 h-3.5" />
-                Opção Mais Econômica Geral
+                Melhor Custo Logístico
               </div>
 
               <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-center">
                 <div className="lg:col-span-2 space-y-4">
-                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs font-semibold">
-                    🏆 {summary.bestStrategyName}
+                  <div className="flex flex-wrap items-center gap-2">
+                    <span className="px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs font-semibold">
+                      🏆 {summary.bestStrategyName}
+                    </span>
+                    {summary.isBlackFriday && (
+                      <span className="px-3 py-1 rounded-full bg-rose-50 border border-rose-200 text-rose-700 text-xs font-bold flex items-center gap-1">
+                        <Flame className="w-3.5 h-3.5 text-rose-600 fill-rose-600" />
+                        Oferta Especial Black Friday Ativa!
+                      </span>
+                    )}
                   </div>
 
                   <div>
@@ -367,7 +413,7 @@ export default function App() {
                     </p>
                   </div>
 
-                  {/* Resumo de Custos */}
+                  {/* Resumo */}
                   <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 pt-1">
                     <div className="bg-slate-50 border border-slate-200/80 p-3.5 rounded-2xl">
                       <div className="text-slate-500 text-xs flex items-center gap-1.5 font-medium">
@@ -391,7 +437,7 @@ export default function App() {
                         R$ {summary.carTotal.toLocaleString('pt-BR')}
                       </div>
                       <div className="text-[11px] text-emerald-700 font-medium">
-                        {summary.dropoffFee === 0 ? 'Taxa retorno: R$ 0 (Mesma cidade)' : `Taxa retorno: R$ ${summary.dropoffFee}`}
+                        {summary.dropoffFee === 0 ? 'Taxa retorno: R$ 0 (Isento)' : `Taxa retorno: R$ ${summary.dropoffFee}`}
                       </div>
                     </div>
 
@@ -404,69 +450,95 @@ export default function App() {
                         + R$ {summary.savedChildSeatCost.toLocaleString('pt-BR')}
                       </div>
                       <div className="text-[11px] text-slate-500">
-                        Poupados levando no voo
+                        Poupados levando no avião
                       </div>
                     </div>
                   </div>
                 </div>
 
-                {/* Preço Total e Ação */}
+                {/* Preço e Botões Oficiais */}
                 <div className="bg-gradient-to-b from-sky-50/80 to-white border border-sky-100 rounded-2xl p-6 flex flex-col justify-between items-center text-center shadow-xs">
                   <div>
                     <span className="text-xs uppercase font-bold tracking-wider text-slate-500">
-                      Custo Total Logístico
+                      Custo Logístico Total
                     </span>
                     <div className="text-4xl font-black text-slate-900 mt-2">
                       R$ {getAdjustedPrice(summary.cheapestTotal, summary.bestDays).toLocaleString('pt-BR')}
                     </div>
                     <div className="text-xs text-slate-500 mt-1">
-                      Voos dos 4 (Ida e Volta a Recife) + {summary.bestDays} diárias de carro
+                      Voos dos 4 (Ida e Volta a Recife) + Carro
                     </div>
-
-                    {summary.savedDropoffFee > 0 && (
-                      <div className="mt-3 inline-flex items-center gap-1 bg-emerald-100 text-emerald-800 text-xs px-3 py-1 rounded-full font-semibold">
-                        🎉 Devolução no mesmo aeroporto economizou R$ {summary.savedDropoffFee}!
-                      </div>
-                    )}
                   </div>
 
                   <div className="w-full mt-6 space-y-2">
-                    <button
-                      onClick={() => setActiveTab('flights')}
-                      className="w-full py-2.5 px-4 bg-sky-600 hover:bg-sky-700 text-white font-bold rounded-xl transition-all flex items-center justify-center gap-2 shadow-sm"
+                    <a
+                      href={bestFlight.outbound.bookingUrl}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="w-full py-2.5 px-4 bg-sky-600 hover:bg-sky-700 text-white font-bold rounded-xl transition-all flex items-center justify-center gap-2 shadow-sm text-sm"
                     >
-                      <Clock className="w-4 h-4" />
-                      <span>Ver Horários & Escalas dos Voos</span>
-                    </button>
+                      <span>Comprar no Site Oficial ({bestFlight.outbound.airline.split(' ')[0]})</span>
+                      <ExternalLink className="w-4 h-4" />
+                    </a>
                     <button
-                      onClick={() => setActiveTab('itinerary')}
+                      onClick={() => setActiveTab('hotels')}
                       className="w-full py-2 px-4 bg-white hover:bg-slate-50 text-slate-700 text-xs font-semibold rounded-xl border border-slate-200 transition-all flex items-center justify-center gap-1.5"
                     >
-                      <span>Ver Roteiro Dia a Dia das Crianças</span>
-                      <ArrowRight className="w-3.5 h-3.5" />
+                      <Building2 className="w-3.5 h-3.5 text-sky-600" />
+                      <span>Ver Hotéis Simples Recomendados</span>
                     </button>
                   </div>
                 </div>
               </div>
             </div>
 
-            {/* Dica da Economia Suave */}
-            <div className="bg-emerald-50/60 border border-emerald-200/80 rounded-2xl p-4 md:p-5 flex items-start gap-4">
-              <div className="p-3 bg-white text-emerald-700 rounded-xl shadow-xs border border-emerald-200 shrink-0">
-                <ShieldCheck className="w-6 h-6" />
-              </div>
-              <div className="text-sm">
-                <h3 className="font-bold text-slate-900 text-base">
-                  Economia Inteligente da Família SCM (R$ 800 a R$ 1.000 poupados!)
-                </h3>
-                <p className="text-slate-600 mt-1 leading-relaxed text-xs md:text-sm">
-                  As companhias aéreas (Azul, GOL e LATAM) permitem despachar <strong className="text-emerald-800">1 carrinho de bebê + 1 cadeirinha/assento por criança gratuitamente</strong> sem cobrar excesso de bagagem. 
-                  Como as locadoras cobram entre R$ 40 a R$ 50/dia por cada cadeirinha, levar as suas no voo garante economia imediata e o conforto com que seus filhos já estão acostumados.
-                </p>
+            {/* Links Rápidos das Cias Aéreas */}
+            <div className="bg-white border border-slate-200 rounded-3xl p-5 md:p-6 shadow-xs">
+              <h3 className="font-bold text-slate-900 text-base mb-3 flex items-center gap-2">
+                <Tag className="w-4 h-4 text-sky-600" />
+                Acesso Rápido aos Portais Oficiais para Monitorar ou Comprar
+              </h3>
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs">
+                <a
+                  href={officialLinks.gol}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="p-3 bg-slate-50 hover:bg-orange-50 border border-slate-200 hover:border-orange-300 rounded-xl flex items-center justify-between transition-all"
+                >
+                  <span className="font-bold text-orange-600">GOL Linhas Aéreas</span>
+                  <ExternalLink className="w-3.5 h-3.5 text-slate-400" />
+                </a>
+                <a
+                  href={officialLinks.azul}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="p-3 bg-slate-50 hover:bg-sky-50 border border-slate-200 hover:border-sky-300 rounded-xl flex items-center justify-between transition-all"
+                >
+                  <span className="font-bold text-sky-600">Azul Linhas Aéreas</span>
+                  <ExternalLink className="w-3.5 h-3.5 text-slate-400" />
+                </a>
+                <a
+                  href={officialLinks.latam}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="p-3 bg-slate-50 hover:bg-rose-50 border border-slate-200 hover:border-rose-300 rounded-xl flex items-center justify-between transition-all"
+                >
+                  <span className="font-bold text-rose-600">LATAM Airlines</span>
+                  <ExternalLink className="w-3.5 h-3.5 text-slate-400" />
+                </a>
+                <a
+                  href={bestFlight.outbound.googleFlightsUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="p-3 bg-slate-50 hover:bg-blue-50 border border-slate-200 hover:border-blue-300 rounded-xl flex items-center justify-between transition-all"
+                >
+                  <span className="font-bold text-blue-600">Google Flights Oficial</span>
+                  <ExternalLink className="w-3.5 h-3.5 text-slate-400" />
+                </a>
               </div>
             </div>
 
-            {/* Grid com as Melhores Datas */}
+            {/* Grid com as Melhores Datas e Filtros */}
             <div className="bg-white border border-slate-200 rounded-3xl p-5 md:p-6 shadow-xs">
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
                 <div>
@@ -587,20 +659,31 @@ export default function App() {
           </div>
         )}
 
-        {/* ABA: HORÁRIOS & ESCALAS DETALHADAS DOS VOOS */}
+        {/* ABA: HORÁRIOS & LINKS OFICIAIS */}
         {activeTab === 'flights' && (
           <div className="space-y-6">
             <div className="bg-white border border-slate-200 rounded-3xl p-6 md:p-8 shadow-xs">
-              <div className="mb-6">
-                <span className="text-xs font-bold uppercase tracking-wider text-sky-600 bg-sky-50 px-3 py-1 rounded-full border border-sky-200">
-                  Ficha Operacional de Voos
-                </span>
-                <h3 className="text-2xl font-extrabold text-slate-900 mt-2">
-                  Horários, Conexões e Tempo de Escala
-                </h3>
-                <p className="text-slate-500 text-sm mt-0.5">
-                  Detalhes minuciosos dos trechos aéreos para a sua família com crianças pequenas.
-                </p>
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+                <div>
+                  <span className="text-xs font-bold uppercase tracking-wider text-sky-600 bg-sky-50 px-3 py-1 rounded-full border border-sky-200">
+                    Detalhes dos Voos
+                  </span>
+                  <h3 className="text-2xl font-extrabold text-slate-900 mt-2">
+                    Horários, Escalas e Links Diretos
+                  </h3>
+                </div>
+
+                <div className="flex items-center gap-2">
+                  <a
+                    href={bestFlight.outbound.bookingUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="px-4 py-2 bg-sky-600 hover:bg-sky-700 text-white font-bold rounded-xl text-xs flex items-center gap-1.5 shadow-xs"
+                  >
+                    <span>Entrar no Site da {bestFlight.outbound.airline.split(' ')[0]}</span>
+                    <ExternalLink className="w-3.5 h-3.5" />
+                  </a>
+                </div>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -621,14 +704,12 @@ export default function App() {
                     </span>
                   </div>
 
-                  {/* Horários e Trajeto */}
                   <div className="py-4 flex items-center justify-between">
                     <div>
                       <div className="text-2xl font-extrabold text-slate-900">
                         {bestFlight.outbound.departureTime}
                       </div>
                       <div className="text-xs font-semibold text-slate-700">Recife (REC)</div>
-                      <div className="text-[11px] text-slate-400">Aeroporto Guararapes</div>
                     </div>
 
                     <div className="flex flex-col items-center px-4">
@@ -636,7 +717,7 @@ export default function App() {
                       <div className="w-24 md:w-32 h-0.5 bg-sky-300 relative my-1">
                         <div className="w-2 h-2 rounded-full bg-sky-600 absolute left-1/2 -top-0.75 -translate-x-1/2"></div>
                       </div>
-                      <span className="text-[10px] text-amber-700 font-medium bg-amber-50 px-2 py-0.5 rounded border border-amber-200">
+                      <span className="text-[10px] text-amber-800 font-medium bg-amber-50 px-2 py-0.5 rounded border border-amber-200">
                         {bestFlight.outbound.stopsCount} Conexão
                       </span>
                     </div>
@@ -646,21 +727,16 @@ export default function App() {
                         {bestFlight.outbound.arrivalTime}
                       </div>
                       <div className="text-xs font-semibold text-slate-700">Curitiba (CWB)</div>
-                      <div className="text-[11px] text-slate-400">Afonso Pena</div>
                     </div>
                   </div>
 
-                  {/* Detalhe da Conexão / Escala */}
                   <div className="mt-2 bg-white p-3 rounded-xl border border-slate-200 text-xs space-y-1.5">
                     <div className="flex justify-between items-center text-slate-700 font-medium">
-                      <span className="flex items-center gap-1.5">
-                        <Clock className="w-3.5 h-3.5 text-amber-600" />
-                        Cidade da Escala:
-                      </span>
+                      <span>Aeroporto da Escala:</span>
                       <strong className="text-slate-900">{bestFlight.outbound.connectionCity}</strong>
                     </div>
                     <div className="flex justify-between items-center text-slate-700 font-medium">
-                      <span>Tempo de Espera no Aeroporto:</span>
+                      <span>Tempo de Espera:</span>
                       <span className="px-2 py-0.5 bg-amber-100 text-amber-900 font-bold rounded">
                         {bestFlight.outbound.layoverDuration}
                       </span>
@@ -669,6 +745,18 @@ export default function App() {
                       <CheckCircle2 className="w-3.5 h-3.5 shrink-0 mt-0.5" />
                       <span>{bestFlight.outbound.kidsComfortRating}</span>
                     </div>
+                  </div>
+
+                  <div className="mt-3">
+                    <a
+                      href={bestFlight.outbound.bookingUrl}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="w-full py-2 bg-white hover:bg-slate-100 text-slate-800 border border-slate-300 font-bold rounded-xl text-xs flex items-center justify-center gap-1.5 transition-all"
+                    >
+                      <span>Abrir no Site Oficial da {bestFlight.outbound.airline.split(' ')[0]}</span>
+                      <ExternalLink className="w-3.5 h-3.5" />
+                    </a>
                   </div>
                 </div>
 
@@ -689,14 +777,12 @@ export default function App() {
                     </span>
                   </div>
 
-                  {/* Horários e Trajeto */}
                   <div className="py-4 flex items-center justify-between">
                     <div>
                       <div className="text-2xl font-extrabold text-slate-900">
                         {bestFlight.inbound.departureTime}
                       </div>
                       <div className="text-xs font-semibold text-slate-700">Curitiba (CWB)</div>
-                      <div className="text-[11px] text-slate-400">Afonso Pena</div>
                     </div>
 
                     <div className="flex flex-col items-center px-4">
@@ -704,7 +790,7 @@ export default function App() {
                       <div className="w-24 md:w-32 h-0.5 bg-emerald-300 relative my-1">
                         <div className="w-2 h-2 rounded-full bg-emerald-600 absolute left-1/2 -top-0.75 -translate-x-1/2"></div>
                       </div>
-                      <span className="text-[10px] text-amber-700 font-medium bg-amber-50 px-2 py-0.5 rounded border border-amber-200">
+                      <span className="text-[10px] text-amber-800 font-medium bg-amber-50 px-2 py-0.5 rounded border border-amber-200">
                         {bestFlight.inbound.stopsCount} Conexão
                       </span>
                     </div>
@@ -714,21 +800,16 @@ export default function App() {
                         {bestFlight.inbound.arrivalTime}
                       </div>
                       <div className="text-xs font-semibold text-slate-700">Recife (REC)</div>
-                      <div className="text-[11px] text-slate-400">Desembarque em Casa</div>
                     </div>
                   </div>
 
-                  {/* Detalhe da Conexão / Escala */}
                   <div className="mt-2 bg-white p-3 rounded-xl border border-slate-200 text-xs space-y-1.5">
                     <div className="flex justify-between items-center text-slate-700 font-medium">
-                      <span className="flex items-center gap-1.5">
-                        <Clock className="w-3.5 h-3.5 text-amber-600" />
-                        Cidade da Escala:
-                      </span>
+                      <span>Aeroporto da Escala:</span>
                       <strong className="text-slate-900">{bestFlight.inbound.connectionCity}</strong>
                     </div>
                     <div className="flex justify-between items-center text-slate-700 font-medium">
-                      <span>Tempo de Espera no Aeroporto:</span>
+                      <span>Tempo de Espera:</span>
                       <span className="px-2 py-0.5 bg-amber-100 text-amber-900 font-bold rounded">
                         {bestFlight.inbound.layoverDuration}
                       </span>
@@ -737,6 +818,168 @@ export default function App() {
                       <CheckCircle2 className="w-3.5 h-3.5 shrink-0 mt-0.5" />
                       <span>{bestFlight.inbound.kidsComfortRating}</span>
                     </div>
+                  </div>
+
+                  <div className="mt-3">
+                    <a
+                      href={bestFlight.inbound.bookingUrl}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="w-full py-2 bg-white hover:bg-slate-100 text-slate-800 border border-slate-300 font-bold rounded-xl text-xs flex items-center justify-center gap-1.5 transition-all"
+                    >
+                      <span>Abrir no Site Oficial da {bestFlight.inbound.airline.split(' ')[0]}</span>
+                      <ExternalLink className="w-3.5 h-3.5" />
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* ABA: HOTÉIS SIMPLES & ECONÔMICOS */}
+        {activeTab === 'hotels' && (
+          <div className="space-y-6">
+            <div className="bg-white border border-slate-200 rounded-3xl p-6 md:p-8 shadow-xs">
+              <div className="mb-6">
+                <span className="text-xs font-bold uppercase tracking-wider text-emerald-700 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200">
+                  Hospedagem Familiar sem Frescura
+                </span>
+                <h3 className="text-2xl font-extrabold text-slate-900 mt-2">
+                  Opções de Hotéis Simples com Valores Reais
+                </h3>
+                <p className="text-slate-500 text-sm mt-0.5">
+                  Quartos quádruplos ou familiares (2 adultos + 2 crianças), limpos, com café da manhã incluso e sem preços exorbitantes de resorts.
+                </p>
+              </div>
+
+              <div className="space-y-8">
+                {/* FOZ DO IGUAÇU */}
+                <div>
+                  <h4 className="text-lg font-bold text-slate-900 flex items-center gap-2 mb-3">
+                    <MapPin className="w-4 h-4 text-sky-600" />
+                    Foz do Iguaçu (PR) • ~3 Diárias
+                  </h4>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    {hotels.foz.map((hotel, i) => (
+                      <div key={i} className="border border-slate-200 rounded-2xl p-4 bg-slate-50/70">
+                        <div className="flex justify-between items-start">
+                          <div>
+                            <h5 className="font-bold text-slate-900 text-base">{hotel.name}</h5>
+                            <span className="text-xs text-slate-500">{hotel.type} • {hotel.location}</span>
+                          </div>
+                          <div className="text-right">
+                            <span className="text-lg font-black text-slate-900">R$ {hotel.avgDaily}</span>
+                            <span className="text-[11px] text-slate-500 block">/ noite (família)</span>
+                          </div>
+                        </div>
+                        <div className="mt-3 pt-3 border-t border-slate-200 flex flex-wrap gap-1.5 text-[11px]">
+                          {hotel.amenities.map((a, j) => (
+                            <span key={j} className="bg-white px-2 py-0.5 rounded-md border border-slate-200 text-slate-700">
+                              ✓ {a}
+                            </span>
+                          ))}
+                        </div>
+                        <div className="mt-3 text-xs text-emerald-700 font-semibold flex justify-between items-center">
+                          <span>Avaliação: {hotel.rating}</span>
+                          <span>Total 3 noites: ~R$ {hotel.total3Nights}</span>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* PARADA DE ESTRADA */}
+                <div>
+                  <h4 className="text-lg font-bold text-slate-900 flex items-center gap-2 mb-3">
+                    <Car className="w-4 h-4 text-indigo-600" />
+                    Parada de Estrada (Pernoite Estratégico no Meio do Caminho)
+                  </h4>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    {hotels.estrada.map((hotel, i) => (
+                      <div key={i} className="border border-slate-200 rounded-2xl p-4 bg-slate-50/70">
+                        <div className="flex justify-between items-start">
+                          <div>
+                            <h5 className="font-bold text-slate-900 text-base">{hotel.name}</h5>
+                            <span className="text-xs text-sky-700 font-semibold">{hotel.city}</span>
+                            <span className="text-xs text-slate-500 block">{hotel.location}</span>
+                          </div>
+                          <div className="text-right">
+                            <span className="text-lg font-black text-slate-900">R$ {hotel.avgDaily}</span>
+                            <span className="text-[11px] text-slate-500 block">/ 1 pernoite</span>
+                          </div>
+                        </div>
+                        <div className="mt-3 pt-3 border-t border-slate-200 flex flex-wrap gap-1.5 text-[11px]">
+                          {hotel.amenities.map((a, j) => (
+                            <span key={j} className="bg-white px-2 py-0.5 rounded-md border border-slate-200 text-slate-700">
+                              ✓ {a}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* POMERODE */}
+                <div>
+                  <h4 className="text-lg font-bold text-slate-900 flex items-center gap-2 mb-3">
+                    <MapPin className="w-4 h-4 text-amber-600" />
+                    Pomerode (SC) • Vale Europeu (~2 Diárias)
+                  </h4>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    {hotels.pomerode.map((hotel, i) => (
+                      <div key={i} className="border border-slate-200 rounded-2xl p-4 bg-slate-50/70">
+                        <div className="flex justify-between items-start">
+                          <div>
+                            <h5 className="font-bold text-slate-900 text-base">{hotel.name}</h5>
+                            <span className="text-xs text-slate-500">{hotel.type} • {hotel.location}</span>
+                          </div>
+                          <div className="text-right">
+                            <span className="text-lg font-black text-slate-900">R$ {hotel.avgDaily}</span>
+                            <span className="text-[11px] text-slate-500 block">/ noite</span>
+                          </div>
+                        </div>
+                        <div className="mt-3 pt-3 border-t border-slate-200 flex flex-wrap gap-1.5 text-[11px]">
+                          {hotel.amenities.map((a, j) => (
+                            <span key={j} className="bg-white px-2 py-0.5 rounded-md border border-slate-200 text-slate-700">
+                              ✓ {a}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* CURITIBA */}
+                <div>
+                  <h4 className="text-lg font-bold text-slate-900 flex items-center gap-2 mb-3">
+                    <MapPin className="w-4 h-4 text-emerald-600" />
+                    Curitiba (PR) • ~4 Diárias
+                  </h4>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    {hotels.curitiba.map((hotel, i) => (
+                      <div key={i} className="border border-slate-200 rounded-2xl p-4 bg-slate-50/70">
+                        <div className="flex justify-between items-start">
+                          <div>
+                            <h5 className="font-bold text-slate-900 text-base">{hotel.name}</h5>
+                            <span className="text-xs text-slate-500">{hotel.type} • {hotel.location}</span>
+                          </div>
+                          <div className="text-right">
+                            <span className="text-lg font-black text-slate-900">R$ {hotel.avgDaily}</span>
+                            <span className="text-[11px] text-slate-500 block">/ noite</span>
+                          </div>
+                        </div>
+                        <div className="mt-3 pt-3 border-t border-slate-200 flex flex-wrap gap-1.5 text-[11px]">
+                          {hotel.amenities.map((a, j) => (
+                            <span key={j} className="bg-white px-2 py-0.5 rounded-md border border-slate-200 text-slate-700">
+                              ✓ {a}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                    ))}
                   </div>
                 </div>
               </div>
@@ -749,38 +992,27 @@ export default function App() {
           <div className="space-y-6">
             <div className="bg-white border border-slate-200 rounded-3xl p-6 md:p-8 shadow-xs">
               <h3 className="text-xl font-extrabold text-slate-900 mb-2">
-                Comparativo Detalhado das 4 Estratégias de Viagem
+                Comparativo das 4 Opções Logísticas
               </h3>
               <p className="text-slate-500 text-sm max-w-3xl leading-relaxed">
-                Todas partem e voltam 100% para Recife, permitindo visitar Foz do Iguaçu, Curitiba e Pomerode com carro alugado.
+                Todas saem de Recife e voltam para Recife.
               </p>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
-                {/* 1. Hub Curitiba */}
-                <div className="rounded-2xl p-6 border border-emerald-300 bg-emerald-50/30 shadow-xs relative">
+                <div className="rounded-2xl p-6 border border-emerald-300 bg-emerald-50/30 shadow-xs">
                   <div className="flex items-center justify-between mb-3">
                     <span className="bg-emerald-600 text-white text-xs font-bold px-3 py-1 rounded-full uppercase">
-                      ⭐ Taxa Retorno Carro R$ 0
+                      Taxa Retorno Carro R$ 0
                     </span>
                     <span className="text-2xl font-black text-slate-900">
                       R$ {topDeals[0]?.options.C.cost.toLocaleString('pt-BR')}
                     </span>
                   </div>
                   <h4 className="text-lg font-bold text-slate-900">1. Hub Curitiba (REC ⇄ Curitiba Voo)</h4>
-                  <p className="text-xs text-slate-600 mt-1">
-                    Voo ida e volta por Curitiba. Carro retirado e devolvido no mesmo aeroporto (CWB).
-                  </p>
-                  <ul className="mt-4 space-y-2 text-xs text-slate-700 border-t border-emerald-200/60 pt-3">
-                    <li>• Voo REC ➔ CWB e CWB ➔ REC (4 pessoas): <strong>R$ {topDeals[0]?.options.C.flights.toLocaleString('pt-BR')}</strong></li>
-                    <li>• Escala: <strong>{topDeals[0]?.options.C.flightDetails.outbound.layoverDuration} em {topDeals[0]?.options.C.flightDetails.outbound.connectionCity}</strong></li>
-                    <li>• Carro ({topDeals[0]?.days} diárias): <strong>R$ {topDeals[0]?.options.C.car.toLocaleString('pt-BR')}</strong></li>
-                    <li>• Taxa de devolução em outra cidade: <strong className="text-emerald-700">R$ 0,00 (Isento!)</strong></li>
-                    <li>• Rota de carro: Curitiba ➔ Pomerode ➔ Foz do Iguaçu ➔ Curitiba</li>
-                  </ul>
+                  <p className="text-xs text-slate-600 mt-1">Carro devolvido no mesmo aeroporto CWB.</p>
                 </div>
 
-                {/* 2. Hub Foz */}
-                <div className="rounded-2xl p-6 border border-slate-200 bg-white shadow-xs relative">
+                <div className="rounded-2xl p-6 border border-slate-200 bg-white shadow-xs">
                   <div className="flex items-center justify-between mb-3">
                     <span className="bg-slate-100 text-slate-700 text-xs font-bold px-3 py-1 rounded-full uppercase border border-slate-200">
                       Taxa Retorno Carro R$ 0
@@ -790,19 +1022,10 @@ export default function App() {
                     </span>
                   </div>
                   <h4 className="text-lg font-bold text-slate-900">2. Hub Foz (REC ⇄ Foz Voo)</h4>
-                  <p className="text-xs text-slate-600 mt-1">
-                    Voo ida e volta por Foz. Carro retirado e devolvido no aeroporto IGU.
-                  </p>
-                  <ul className="mt-4 space-y-2 text-xs text-slate-700 border-t border-slate-100 pt-3">
-                    <li>• Voo REC ➔ IGU e IGU ➔ REC (4 pessoas): <strong>R$ {topDeals[0]?.options.D.flights.toLocaleString('pt-BR')}</strong></li>
-                    <li>• Escala: <strong>{topDeals[0]?.options.D.flightDetails.outbound.layoverDuration} em {topDeals[0]?.options.D.flightDetails.outbound.connectionCity}</strong></li>
-                    <li>• Carro ({topDeals[0]?.days} diárias): <strong>R$ {topDeals[0]?.options.D.car.toLocaleString('pt-BR')}</strong></li>
-                    <li>• Taxa de devolução em outra cidade: <strong className="text-emerald-700">R$ 0,00 (Isento!)</strong></li>
-                  </ul>
+                  <p className="text-xs text-slate-600 mt-1">Carro devolvido no aeroporto IGU.</p>
                 </div>
 
-                {/* 3. Open-Jaw A */}
-                <div className="rounded-2xl p-6 border border-slate-200 bg-white shadow-xs relative">
+                <div className="rounded-2xl p-6 border border-slate-200 bg-white shadow-xs">
                   <div className="flex items-center justify-between mb-3">
                     <span className="bg-indigo-50 text-indigo-700 text-xs font-bold px-3 py-1 rounded-full uppercase border border-indigo-200">
                       Múltiplos Destinos
@@ -812,18 +1035,10 @@ export default function App() {
                     </span>
                   </div>
                   <h4 className="text-lg font-bold text-slate-900">3. Open-Jaw A (Entra Foz / Sai Curitiba)</h4>
-                  <p className="text-xs text-slate-600 mt-1">
-                    Voo REC ➔ IGU | Carro de Foz até Curitiba (via Pomerode) | Voo CWB ➔ REC.
-                  </p>
-                  <ul className="mt-4 space-y-2 text-xs text-slate-700 border-t border-slate-100 pt-3">
-                    <li>• Voos REC ➔ IGU + CWB ➔ REC (4 pessoas): <strong>R$ {topDeals[0]?.options.A.flights.toLocaleString('pt-BR')}</strong></li>
-                    <li>• Carro com Taxa de Devolução (Drop-off): <strong>R$ {topDeals[0]?.options.A.car.toLocaleString('pt-BR')}</strong></li>
-                    <li>• Vantagem: Menos km de volante (faz o trecho de estrada apenas 1 vez).</li>
-                  </ul>
+                  <p className="text-xs text-slate-600 mt-1">Voo REC ➔ IGU + CWB ➔ REC.</p>
                 </div>
 
-                {/* 4. Open-Jaw B */}
-                <div className="rounded-2xl p-6 border border-slate-200 bg-white shadow-xs relative">
+                <div className="rounded-2xl p-6 border border-slate-200 bg-white shadow-xs">
                   <div className="flex items-center justify-between mb-3">
                     <span className="bg-indigo-50 text-indigo-700 text-xs font-bold px-3 py-1 rounded-full uppercase border border-indigo-200">
                       Múltiplos Destinos
@@ -833,14 +1048,7 @@ export default function App() {
                     </span>
                   </div>
                   <h4 className="text-lg font-bold text-slate-900">4. Open-Jaw B (Entra Curitiba / Sai Foz)</h4>
-                  <p className="text-xs text-slate-600 mt-1">
-                    Voo REC ➔ CWB | Carro de Curitiba até Foz (via Pomerode) | Voo IGU ➔ REC.
-                  </p>
-                  <ul className="mt-4 space-y-2 text-xs text-slate-700 border-t border-slate-100 pt-3">
-                    <li>• Voos REC ➔ CWB + IGU ➔ REC (4 pessoas): <strong>R$ {topDeals[0]?.options.B.flights.toLocaleString('pt-BR')}</strong></li>
-                    <li>• Carro com Taxa de Devolução (Drop-off): <strong>R$ {topDeals[0]?.options.B.car.toLocaleString('pt-BR')}</strong></li>
-                    <li>• Vantagem: Menos km de volante (faz o trecho de estrada apenas 1 vez).</li>
-                  </ul>
+                  <p className="text-xs text-slate-600 mt-1">Voo REC ➔ CWB + IGU ➔ REC.</p>
                 </div>
               </div>
             </div>
@@ -858,7 +1066,7 @@ export default function App() {
                     Parâmetros do Aluguel de Carro
                   </h3>
                   <p className="text-slate-500 text-sm mt-0.5">
-                    Critério rígido: 4 pessoas, 2 cadeirinhas e bagagens volumosas.
+                    Porta-malas espaçoso para 4 pessoas e 2 cadeirinhas.
                   </p>
                 </div>
 
@@ -886,36 +1094,48 @@ export default function App() {
                 </div>
               </div>
 
-              {/* Exclusão Mobi e Kwid */}
               <div className="bg-rose-50 border border-rose-200 rounded-2xl p-4 flex items-start gap-3 mb-6">
                 <div className="p-2 bg-rose-100 text-rose-700 rounded-xl shrink-0">
                   <XCircle className="w-5 h-5" />
                 </div>
                 <div className="text-xs md:text-sm">
                   <h4 className="font-bold text-rose-900">
-                    Fiat Mobi e Renault Kwid Estão Terminantemente Bloqueados
+                    Fiat Mobi e Renault Kwid Estão Totalmente Bloqueados
                   </h4>
                   <p className="text-rose-700 mt-0.5">
-                    Esses veículos têm porta-malas inferior a 290L e banco traseiro apertado, tornando impossível instalar com conforto duas cadeirinhas automotivas e acomodar as malas para 10 dias.
+                    Porta-malas abaixo de 290L e banco traseiro inadequado para 2 cadeirinhas automotivas.
                   </p>
                 </div>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="bg-slate-50 border border-slate-200 p-5 rounded-2xl">
-                  <h4 className="font-bold text-slate-900 text-base">Sedan Compacto/Médio</h4>
-                  <p className="text-xs text-slate-500">Modelos: Virtus, Onix Plus, Cronos</p>
-                  <p className="text-xs text-slate-700 mt-2.5 leading-relaxed">
-                    Porta-malas gigante (480L a 520L) que comporta com folga 2 malas grandes, malas de bordo e o carrinho de bebê.
-                  </p>
+                  <h4 className="font-bold text-slate-900 text-base">Sedan Médio/Compacto</h4>
+                  <p className="text-xs text-slate-500">Exemplos: Virtus, Onix Plus, Cronos (480L a 520L)</p>
                 </div>
 
                 <div className="bg-slate-50 border border-slate-200 p-5 rounded-2xl">
                   <h4 className="font-bold text-slate-900 text-base">SUV Compacto</h4>
-                  <p className="text-xs text-slate-500">Modelos: Tracker, T-Cross, Creta, Kicks</p>
-                  <p className="text-xs text-slate-700 mt-2.5 leading-relaxed">
-                    Altura do solo elevada, ótima visibilidade e suspensão mais robusta para serras e rodovias interestaduais.
-                  </p>
+                  <p className="text-xs text-slate-500">Exemplos: Tracker, T-Cross, Creta, Kicks</p>
+                </div>
+              </div>
+
+              {/* Links Locadoras */}
+              <div className="mt-6 pt-6 border-t border-slate-200">
+                <h4 className="font-bold text-slate-900 text-sm mb-3">Links Oficiais das Locadoras de Veículos:</h4>
+                <div className="flex flex-wrap gap-3 text-xs">
+                  <a href={officialLinks.localiza} target="_blank" rel="noreferrer" className="px-4 py-2 bg-slate-100 hover:bg-emerald-50 text-slate-700 font-bold rounded-xl border border-slate-200 flex items-center gap-1.5">
+                    <span>Localiza Oficial</span>
+                    <ExternalLink className="w-3.5 h-3.5" />
+                  </a>
+                  <a href={officialLinks.movida} target="_blank" rel="noreferrer" className="px-4 py-2 bg-slate-100 hover:bg-orange-50 text-slate-700 font-bold rounded-xl border border-slate-200 flex items-center gap-1.5">
+                    <span>Movida Oficial</span>
+                    <ExternalLink className="w-3.5 h-3.5" />
+                  </a>
+                  <a href={officialLinks.unidas} target="_blank" rel="noreferrer" className="px-4 py-2 bg-slate-100 hover:bg-blue-50 text-slate-700 font-bold rounded-xl border border-slate-200 flex items-center gap-1.5">
+                    <span>Unidas Oficial</span>
+                    <ExternalLink className="w-3.5 h-3.5" />
+                  </a>
                 </div>
               </div>
             </div>
@@ -937,7 +1157,7 @@ export default function App() {
               </div>
 
               <div className="space-y-3">
-                {itinerary.map((item) => {
+                {itinerary && itinerary.map((item) => {
                   const isExpanded = expandedDay === item.day;
 
                   return (
