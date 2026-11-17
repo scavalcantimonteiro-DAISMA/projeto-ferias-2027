@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-17T00:40:44.192Z",
+  "updatedAt": "2026-11-17T00:56:36.638Z",
   "localHour": 21,
   "summary": {
     "totalPairsEvaluated": 33,
@@ -301,13 +301,107 @@
             }
           }
         },
+        "D": {
+          "type": "D",
+          "name": "Hub Foz (REC ⇄ Foz Voo)",
+          "cost": 8980,
+          "flights": 7680,
+          "car": 1160,
+          "dropoff": 0,
+          "flightDetails": {
+            "outbound": {
+              "flightNumber": "LATAM LA 3412 / LA 3844",
+              "airline": "LATAM Airlines",
+              "bookingUrl": "https://www.latamairlines.com/br/pt",
+              "departureTime": "05:45",
+              "arrivalTime": "11:50",
+              "totalDuration": "6h05",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Congonhas - CGH)",
+              "layoverDuration": "1h35",
+              "aircraft": "Airbus A320"
+            },
+            "inbound": {
+              "flightNumber": "LATAM LA 3845 / LA 3413",
+              "airline": "LATAM Airlines",
+              "bookingUrl": "https://www.latamairlines.com/br/pt",
+              "departureTime": "14:15",
+              "arrivalTime": "20:10",
+              "totalDuration": "5h55",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Guarulhos - GRU)",
+              "layoverDuration": "1h20",
+              "aircraft": "Airbus A320"
+            }
+          }
+        },
         "A": {
           "type": "A",
           "name": "Open-Jaw A (Entra Foz / Sai Curitiba)",
           "cost": 9653,
           "flights": 7680,
           "car": 1973,
-          "dropoff": 813
+          "dropoff": 813,
+          "flightDetails": {
+            "outbound": {
+              "flightNumber": "LATAM LA 3412 / LA 3844",
+              "airline": "LATAM Airlines",
+              "bookingUrl": "https://www.latamairlines.com/br/pt",
+              "departureTime": "05:45",
+              "arrivalTime": "11:50",
+              "totalDuration": "6h05",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Congonhas - CGH)",
+              "layoverDuration": "1h35",
+              "aircraft": "Airbus A320"
+            },
+            "inbound": {
+              "flightNumber": "GOL G3 1281 / G3 1623",
+              "airline": "GOL Linhas Aéreas",
+              "bookingUrl": "https://www.voegol.com.br",
+              "departureTime": "13:30",
+              "arrivalTime": "18:55",
+              "totalDuration": "5h25",
+              "stopsCount": 1,
+              "connectionCity": "Campinas (Viracopos - VCP)",
+              "layoverDuration": "1h15",
+              "aircraft": "Boeing 737-800"
+            }
+          }
+        },
+        "B": {
+          "type": "B",
+          "name": "Open-Jaw B (Entra Curitiba / Sai Foz)",
+          "cost": 9653,
+          "flights": 7680,
+          "car": 1973,
+          "dropoff": 813,
+          "flightDetails": {
+            "outbound": {
+              "flightNumber": "GOL G3 1622 / G3 1280",
+              "airline": "GOL Linhas Aéreas",
+              "bookingUrl": "https://www.voegol.com.br",
+              "departureTime": "06:10",
+              "arrivalTime": "11:45",
+              "totalDuration": "5h35",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Guarulhos - GRU)",
+              "layoverDuration": "1h25",
+              "aircraft": "Boeing 737-800"
+            },
+            "inbound": {
+              "flightNumber": "LATAM LA 3845 / LA 3413",
+              "airline": "LATAM Airlines",
+              "bookingUrl": "https://www.latamairlines.com/br/pt",
+              "departureTime": "14:15",
+              "arrivalTime": "20:10",
+              "totalDuration": "5h55",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Guarulhos - GRU)",
+              "layoverDuration": "1h20",
+              "aircraft": "Airbus A320"
+            }
+          }
         }
       }
     },
@@ -366,13 +460,107 @@
             }
           }
         },
+        "D": {
+          "type": "D",
+          "name": "Hub Foz (REC ⇄ Foz Voo)",
+          "cost": 8980,
+          "flights": 7680,
+          "car": 1160,
+          "dropoff": 0,
+          "flightDetails": {
+            "outbound": {
+              "flightNumber": "LATAM LA 3412 / LA 3844",
+              "airline": "LATAM Airlines",
+              "bookingUrl": "https://www.latamairlines.com/br/pt",
+              "departureTime": "05:45",
+              "arrivalTime": "11:50",
+              "totalDuration": "6h05",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Congonhas - CGH)",
+              "layoverDuration": "1h35",
+              "aircraft": "Airbus A320"
+            },
+            "inbound": {
+              "flightNumber": "LATAM LA 3845 / LA 3413",
+              "airline": "LATAM Airlines",
+              "bookingUrl": "https://www.latamairlines.com/br/pt",
+              "departureTime": "14:15",
+              "arrivalTime": "20:10",
+              "totalDuration": "5h55",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Guarulhos - GRU)",
+              "layoverDuration": "1h20",
+              "aircraft": "Airbus A320"
+            }
+          }
+        },
         "A": {
           "type": "A",
           "name": "Open-Jaw A (Entra Foz / Sai Curitiba)",
           "cost": 9653,
           "flights": 7680,
           "car": 1973,
-          "dropoff": 813
+          "dropoff": 813,
+          "flightDetails": {
+            "outbound": {
+              "flightNumber": "LATAM LA 3412 / LA 3844",
+              "airline": "LATAM Airlines",
+              "bookingUrl": "https://www.latamairlines.com/br/pt",
+              "departureTime": "05:45",
+              "arrivalTime": "11:50",
+              "totalDuration": "6h05",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Congonhas - CGH)",
+              "layoverDuration": "1h35",
+              "aircraft": "Airbus A320"
+            },
+            "inbound": {
+              "flightNumber": "GOL G3 1281 / G3 1623",
+              "airline": "GOL Linhas Aéreas",
+              "bookingUrl": "https://www.voegol.com.br",
+              "departureTime": "13:30",
+              "arrivalTime": "18:55",
+              "totalDuration": "5h25",
+              "stopsCount": 1,
+              "connectionCity": "Campinas (Viracopos - VCP)",
+              "layoverDuration": "1h15",
+              "aircraft": "Boeing 737-800"
+            }
+          }
+        },
+        "B": {
+          "type": "B",
+          "name": "Open-Jaw B (Entra Curitiba / Sai Foz)",
+          "cost": 9653,
+          "flights": 7680,
+          "car": 1973,
+          "dropoff": 813,
+          "flightDetails": {
+            "outbound": {
+              "flightNumber": "GOL G3 1622 / G3 1280",
+              "airline": "GOL Linhas Aéreas",
+              "bookingUrl": "https://www.voegol.com.br",
+              "departureTime": "06:10",
+              "arrivalTime": "11:45",
+              "totalDuration": "5h35",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Guarulhos - GRU)",
+              "layoverDuration": "1h25",
+              "aircraft": "Boeing 737-800"
+            },
+            "inbound": {
+              "flightNumber": "LATAM LA 3845 / LA 3413",
+              "airline": "LATAM Airlines",
+              "bookingUrl": "https://www.latamairlines.com/br/pt",
+              "departureTime": "14:15",
+              "arrivalTime": "20:10",
+              "totalDuration": "5h55",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Guarulhos - GRU)",
+              "layoverDuration": "1h20",
+              "aircraft": "Airbus A320"
+            }
+          }
         }
       }
     },
@@ -431,13 +619,107 @@
             }
           }
         },
+        "D": {
+          "type": "D",
+          "name": "Hub Foz (REC ⇄ Foz Voo)",
+          "cost": 8980,
+          "flights": 7680,
+          "car": 1160,
+          "dropoff": 0,
+          "flightDetails": {
+            "outbound": {
+              "flightNumber": "LATAM LA 3412 / LA 3844",
+              "airline": "LATAM Airlines",
+              "bookingUrl": "https://www.latamairlines.com/br/pt",
+              "departureTime": "05:45",
+              "arrivalTime": "11:50",
+              "totalDuration": "6h05",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Congonhas - CGH)",
+              "layoverDuration": "1h35",
+              "aircraft": "Airbus A320"
+            },
+            "inbound": {
+              "flightNumber": "LATAM LA 3845 / LA 3413",
+              "airline": "LATAM Airlines",
+              "bookingUrl": "https://www.latamairlines.com/br/pt",
+              "departureTime": "14:15",
+              "arrivalTime": "20:10",
+              "totalDuration": "5h55",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Guarulhos - GRU)",
+              "layoverDuration": "1h20",
+              "aircraft": "Airbus A320"
+            }
+          }
+        },
         "A": {
           "type": "A",
           "name": "Open-Jaw A (Entra Foz / Sai Curitiba)",
           "cost": 9653,
           "flights": 7680,
           "car": 1973,
-          "dropoff": 813
+          "dropoff": 813,
+          "flightDetails": {
+            "outbound": {
+              "flightNumber": "LATAM LA 3412 / LA 3844",
+              "airline": "LATAM Airlines",
+              "bookingUrl": "https://www.latamairlines.com/br/pt",
+              "departureTime": "05:45",
+              "arrivalTime": "11:50",
+              "totalDuration": "6h05",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Congonhas - CGH)",
+              "layoverDuration": "1h35",
+              "aircraft": "Airbus A320"
+            },
+            "inbound": {
+              "flightNumber": "GOL G3 1281 / G3 1623",
+              "airline": "GOL Linhas Aéreas",
+              "bookingUrl": "https://www.voegol.com.br",
+              "departureTime": "13:30",
+              "arrivalTime": "18:55",
+              "totalDuration": "5h25",
+              "stopsCount": 1,
+              "connectionCity": "Campinas (Viracopos - VCP)",
+              "layoverDuration": "1h15",
+              "aircraft": "Boeing 737-800"
+            }
+          }
+        },
+        "B": {
+          "type": "B",
+          "name": "Open-Jaw B (Entra Curitiba / Sai Foz)",
+          "cost": 9653,
+          "flights": 7680,
+          "car": 1973,
+          "dropoff": 813,
+          "flightDetails": {
+            "outbound": {
+              "flightNumber": "GOL G3 1622 / G3 1280",
+              "airline": "GOL Linhas Aéreas",
+              "bookingUrl": "https://www.voegol.com.br",
+              "departureTime": "06:10",
+              "arrivalTime": "11:45",
+              "totalDuration": "5h35",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Guarulhos - GRU)",
+              "layoverDuration": "1h25",
+              "aircraft": "Boeing 737-800"
+            },
+            "inbound": {
+              "flightNumber": "LATAM LA 3845 / LA 3413",
+              "airline": "LATAM Airlines",
+              "bookingUrl": "https://www.latamairlines.com/br/pt",
+              "departureTime": "14:15",
+              "arrivalTime": "20:10",
+              "totalDuration": "5h55",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Guarulhos - GRU)",
+              "layoverDuration": "1h20",
+              "aircraft": "Airbus A320"
+            }
+          }
         }
       }
     },
@@ -496,13 +778,107 @@
             }
           }
         },
+        "D": {
+          "type": "D",
+          "name": "Hub Foz (REC ⇄ Foz Voo)",
+          "cost": 9125,
+          "flights": 7680,
+          "car": 1305,
+          "dropoff": 0,
+          "flightDetails": {
+            "outbound": {
+              "flightNumber": "LATAM LA 3412 / LA 3844",
+              "airline": "LATAM Airlines",
+              "bookingUrl": "https://www.latamairlines.com/br/pt",
+              "departureTime": "05:45",
+              "arrivalTime": "11:50",
+              "totalDuration": "6h05",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Congonhas - CGH)",
+              "layoverDuration": "1h35",
+              "aircraft": "Airbus A320"
+            },
+            "inbound": {
+              "flightNumber": "LATAM LA 3845 / LA 3413",
+              "airline": "LATAM Airlines",
+              "bookingUrl": "https://www.latamairlines.com/br/pt",
+              "departureTime": "14:15",
+              "arrivalTime": "20:10",
+              "totalDuration": "5h55",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Guarulhos - GRU)",
+              "layoverDuration": "1h20",
+              "aircraft": "Airbus A320"
+            }
+          }
+        },
         "A": {
           "type": "A",
           "name": "Open-Jaw A (Entra Foz / Sai Curitiba)",
           "cost": 9798,
           "flights": 7680,
           "car": 2118,
-          "dropoff": 813
+          "dropoff": 813,
+          "flightDetails": {
+            "outbound": {
+              "flightNumber": "LATAM LA 3412 / LA 3844",
+              "airline": "LATAM Airlines",
+              "bookingUrl": "https://www.latamairlines.com/br/pt",
+              "departureTime": "05:45",
+              "arrivalTime": "11:50",
+              "totalDuration": "6h05",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Congonhas - CGH)",
+              "layoverDuration": "1h35",
+              "aircraft": "Airbus A320"
+            },
+            "inbound": {
+              "flightNumber": "GOL G3 1281 / G3 1623",
+              "airline": "GOL Linhas Aéreas",
+              "bookingUrl": "https://www.voegol.com.br",
+              "departureTime": "13:30",
+              "arrivalTime": "18:55",
+              "totalDuration": "5h25",
+              "stopsCount": 1,
+              "connectionCity": "Campinas (Viracopos - VCP)",
+              "layoverDuration": "1h15",
+              "aircraft": "Boeing 737-800"
+            }
+          }
+        },
+        "B": {
+          "type": "B",
+          "name": "Open-Jaw B (Entra Curitiba / Sai Foz)",
+          "cost": 9798,
+          "flights": 7680,
+          "car": 2118,
+          "dropoff": 813,
+          "flightDetails": {
+            "outbound": {
+              "flightNumber": "GOL G3 1622 / G3 1280",
+              "airline": "GOL Linhas Aéreas",
+              "bookingUrl": "https://www.voegol.com.br",
+              "departureTime": "06:10",
+              "arrivalTime": "11:45",
+              "totalDuration": "5h35",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Guarulhos - GRU)",
+              "layoverDuration": "1h25",
+              "aircraft": "Boeing 737-800"
+            },
+            "inbound": {
+              "flightNumber": "LATAM LA 3845 / LA 3413",
+              "airline": "LATAM Airlines",
+              "bookingUrl": "https://www.latamairlines.com/br/pt",
+              "departureTime": "14:15",
+              "arrivalTime": "20:10",
+              "totalDuration": "5h55",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Guarulhos - GRU)",
+              "layoverDuration": "1h20",
+              "aircraft": "Airbus A320"
+            }
+          }
         }
       }
     },
@@ -561,13 +937,107 @@
             }
           }
         },
+        "D": {
+          "type": "D",
+          "name": "Hub Foz (REC ⇄ Foz Voo)",
+          "cost": 9125,
+          "flights": 7680,
+          "car": 1305,
+          "dropoff": 0,
+          "flightDetails": {
+            "outbound": {
+              "flightNumber": "LATAM LA 3412 / LA 3844",
+              "airline": "LATAM Airlines",
+              "bookingUrl": "https://www.latamairlines.com/br/pt",
+              "departureTime": "05:45",
+              "arrivalTime": "11:50",
+              "totalDuration": "6h05",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Congonhas - CGH)",
+              "layoverDuration": "1h35",
+              "aircraft": "Airbus A320"
+            },
+            "inbound": {
+              "flightNumber": "LATAM LA 3845 / LA 3413",
+              "airline": "LATAM Airlines",
+              "bookingUrl": "https://www.latamairlines.com/br/pt",
+              "departureTime": "14:15",
+              "arrivalTime": "20:10",
+              "totalDuration": "5h55",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Guarulhos - GRU)",
+              "layoverDuration": "1h20",
+              "aircraft": "Airbus A320"
+            }
+          }
+        },
         "A": {
           "type": "A",
           "name": "Open-Jaw A (Entra Foz / Sai Curitiba)",
           "cost": 9798,
           "flights": 7680,
           "car": 2118,
-          "dropoff": 813
+          "dropoff": 813,
+          "flightDetails": {
+            "outbound": {
+              "flightNumber": "LATAM LA 3412 / LA 3844",
+              "airline": "LATAM Airlines",
+              "bookingUrl": "https://www.latamairlines.com/br/pt",
+              "departureTime": "05:45",
+              "arrivalTime": "11:50",
+              "totalDuration": "6h05",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Congonhas - CGH)",
+              "layoverDuration": "1h35",
+              "aircraft": "Airbus A320"
+            },
+            "inbound": {
+              "flightNumber": "GOL G3 1281 / G3 1623",
+              "airline": "GOL Linhas Aéreas",
+              "bookingUrl": "https://www.voegol.com.br",
+              "departureTime": "13:30",
+              "arrivalTime": "18:55",
+              "totalDuration": "5h25",
+              "stopsCount": 1,
+              "connectionCity": "Campinas (Viracopos - VCP)",
+              "layoverDuration": "1h15",
+              "aircraft": "Boeing 737-800"
+            }
+          }
+        },
+        "B": {
+          "type": "B",
+          "name": "Open-Jaw B (Entra Curitiba / Sai Foz)",
+          "cost": 9798,
+          "flights": 7680,
+          "car": 2118,
+          "dropoff": 813,
+          "flightDetails": {
+            "outbound": {
+              "flightNumber": "GOL G3 1622 / G3 1280",
+              "airline": "GOL Linhas Aéreas",
+              "bookingUrl": "https://www.voegol.com.br",
+              "departureTime": "06:10",
+              "arrivalTime": "11:45",
+              "totalDuration": "5h35",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Guarulhos - GRU)",
+              "layoverDuration": "1h25",
+              "aircraft": "Boeing 737-800"
+            },
+            "inbound": {
+              "flightNumber": "LATAM LA 3845 / LA 3413",
+              "airline": "LATAM Airlines",
+              "bookingUrl": "https://www.latamairlines.com/br/pt",
+              "departureTime": "14:15",
+              "arrivalTime": "20:10",
+              "totalDuration": "5h55",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Guarulhos - GRU)",
+              "layoverDuration": "1h20",
+              "aircraft": "Airbus A320"
+            }
+          }
         }
       }
     },
@@ -626,13 +1096,107 @@
             }
           }
         },
+        "D": {
+          "type": "D",
+          "name": "Hub Foz (REC ⇄ Foz Voo)",
+          "cost": 9220,
+          "flights": 7920,
+          "car": 1160,
+          "dropoff": 0,
+          "flightDetails": {
+            "outbound": {
+              "flightNumber": "LATAM LA 3412 / LA 3844",
+              "airline": "LATAM Airlines",
+              "bookingUrl": "https://www.latamairlines.com/br/pt",
+              "departureTime": "05:45",
+              "arrivalTime": "11:50",
+              "totalDuration": "6h05",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Congonhas - CGH)",
+              "layoverDuration": "1h35",
+              "aircraft": "Airbus A320"
+            },
+            "inbound": {
+              "flightNumber": "LATAM LA 3845 / LA 3413",
+              "airline": "LATAM Airlines",
+              "bookingUrl": "https://www.latamairlines.com/br/pt",
+              "departureTime": "14:15",
+              "arrivalTime": "20:10",
+              "totalDuration": "5h55",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Guarulhos - GRU)",
+              "layoverDuration": "1h20",
+              "aircraft": "Airbus A320"
+            }
+          }
+        },
         "A": {
           "type": "A",
           "name": "Open-Jaw A (Entra Foz / Sai Curitiba)",
           "cost": 9893,
           "flights": 7920,
           "car": 1973,
-          "dropoff": 813
+          "dropoff": 813,
+          "flightDetails": {
+            "outbound": {
+              "flightNumber": "LATAM LA 3412 / LA 3844",
+              "airline": "LATAM Airlines",
+              "bookingUrl": "https://www.latamairlines.com/br/pt",
+              "departureTime": "05:45",
+              "arrivalTime": "11:50",
+              "totalDuration": "6h05",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Congonhas - CGH)",
+              "layoverDuration": "1h35",
+              "aircraft": "Airbus A320"
+            },
+            "inbound": {
+              "flightNumber": "GOL G3 1281 / G3 1623",
+              "airline": "GOL Linhas Aéreas",
+              "bookingUrl": "https://www.voegol.com.br",
+              "departureTime": "13:30",
+              "arrivalTime": "18:55",
+              "totalDuration": "5h25",
+              "stopsCount": 1,
+              "connectionCity": "Campinas (Viracopos - VCP)",
+              "layoverDuration": "1h15",
+              "aircraft": "Boeing 737-800"
+            }
+          }
+        },
+        "B": {
+          "type": "B",
+          "name": "Open-Jaw B (Entra Curitiba / Sai Foz)",
+          "cost": 9893,
+          "flights": 7920,
+          "car": 1973,
+          "dropoff": 813,
+          "flightDetails": {
+            "outbound": {
+              "flightNumber": "GOL G3 1622 / G3 1280",
+              "airline": "GOL Linhas Aéreas",
+              "bookingUrl": "https://www.voegol.com.br",
+              "departureTime": "06:10",
+              "arrivalTime": "11:45",
+              "totalDuration": "5h35",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Guarulhos - GRU)",
+              "layoverDuration": "1h25",
+              "aircraft": "Boeing 737-800"
+            },
+            "inbound": {
+              "flightNumber": "LATAM LA 3845 / LA 3413",
+              "airline": "LATAM Airlines",
+              "bookingUrl": "https://www.latamairlines.com/br/pt",
+              "departureTime": "14:15",
+              "arrivalTime": "20:10",
+              "totalDuration": "5h55",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Guarulhos - GRU)",
+              "layoverDuration": "1h20",
+              "aircraft": "Airbus A320"
+            }
+          }
         }
       }
     },
@@ -691,13 +1255,107 @@
             }
           }
         },
+        "D": {
+          "type": "D",
+          "name": "Hub Foz (REC ⇄ Foz Voo)",
+          "cost": 9220,
+          "flights": 7920,
+          "car": 1160,
+          "dropoff": 0,
+          "flightDetails": {
+            "outbound": {
+              "flightNumber": "LATAM LA 3412 / LA 3844",
+              "airline": "LATAM Airlines",
+              "bookingUrl": "https://www.latamairlines.com/br/pt",
+              "departureTime": "05:45",
+              "arrivalTime": "11:50",
+              "totalDuration": "6h05",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Congonhas - CGH)",
+              "layoverDuration": "1h35",
+              "aircraft": "Airbus A320"
+            },
+            "inbound": {
+              "flightNumber": "LATAM LA 3845 / LA 3413",
+              "airline": "LATAM Airlines",
+              "bookingUrl": "https://www.latamairlines.com/br/pt",
+              "departureTime": "14:15",
+              "arrivalTime": "20:10",
+              "totalDuration": "5h55",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Guarulhos - GRU)",
+              "layoverDuration": "1h20",
+              "aircraft": "Airbus A320"
+            }
+          }
+        },
         "A": {
           "type": "A",
           "name": "Open-Jaw A (Entra Foz / Sai Curitiba)",
           "cost": 9893,
           "flights": 7920,
           "car": 1973,
-          "dropoff": 813
+          "dropoff": 813,
+          "flightDetails": {
+            "outbound": {
+              "flightNumber": "LATAM LA 3412 / LA 3844",
+              "airline": "LATAM Airlines",
+              "bookingUrl": "https://www.latamairlines.com/br/pt",
+              "departureTime": "05:45",
+              "arrivalTime": "11:50",
+              "totalDuration": "6h05",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Congonhas - CGH)",
+              "layoverDuration": "1h35",
+              "aircraft": "Airbus A320"
+            },
+            "inbound": {
+              "flightNumber": "GOL G3 1281 / G3 1623",
+              "airline": "GOL Linhas Aéreas",
+              "bookingUrl": "https://www.voegol.com.br",
+              "departureTime": "13:30",
+              "arrivalTime": "18:55",
+              "totalDuration": "5h25",
+              "stopsCount": 1,
+              "connectionCity": "Campinas (Viracopos - VCP)",
+              "layoverDuration": "1h15",
+              "aircraft": "Boeing 737-800"
+            }
+          }
+        },
+        "B": {
+          "type": "B",
+          "name": "Open-Jaw B (Entra Curitiba / Sai Foz)",
+          "cost": 9893,
+          "flights": 7920,
+          "car": 1973,
+          "dropoff": 813,
+          "flightDetails": {
+            "outbound": {
+              "flightNumber": "GOL G3 1622 / G3 1280",
+              "airline": "GOL Linhas Aéreas",
+              "bookingUrl": "https://www.voegol.com.br",
+              "departureTime": "06:10",
+              "arrivalTime": "11:45",
+              "totalDuration": "5h35",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Guarulhos - GRU)",
+              "layoverDuration": "1h25",
+              "aircraft": "Boeing 737-800"
+            },
+            "inbound": {
+              "flightNumber": "LATAM LA 3845 / LA 3413",
+              "airline": "LATAM Airlines",
+              "bookingUrl": "https://www.latamairlines.com/br/pt",
+              "departureTime": "14:15",
+              "arrivalTime": "20:10",
+              "totalDuration": "5h55",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Guarulhos - GRU)",
+              "layoverDuration": "1h20",
+              "aircraft": "Airbus A320"
+            }
+          }
         }
       }
     },
@@ -756,13 +1414,107 @@
             }
           }
         },
+        "D": {
+          "type": "D",
+          "name": "Hub Foz (REC ⇄ Foz Voo)",
+          "cost": 9270,
+          "flights": 7680,
+          "car": 1450,
+          "dropoff": 0,
+          "flightDetails": {
+            "outbound": {
+              "flightNumber": "LATAM LA 3412 / LA 3844",
+              "airline": "LATAM Airlines",
+              "bookingUrl": "https://www.latamairlines.com/br/pt",
+              "departureTime": "05:45",
+              "arrivalTime": "11:50",
+              "totalDuration": "6h05",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Congonhas - CGH)",
+              "layoverDuration": "1h35",
+              "aircraft": "Airbus A320"
+            },
+            "inbound": {
+              "flightNumber": "LATAM LA 3845 / LA 3413",
+              "airline": "LATAM Airlines",
+              "bookingUrl": "https://www.latamairlines.com/br/pt",
+              "departureTime": "14:15",
+              "arrivalTime": "20:10",
+              "totalDuration": "5h55",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Guarulhos - GRU)",
+              "layoverDuration": "1h20",
+              "aircraft": "Airbus A320"
+            }
+          }
+        },
         "A": {
           "type": "A",
           "name": "Open-Jaw A (Entra Foz / Sai Curitiba)",
           "cost": 9943,
           "flights": 7680,
           "car": 2263,
-          "dropoff": 813
+          "dropoff": 813,
+          "flightDetails": {
+            "outbound": {
+              "flightNumber": "LATAM LA 3412 / LA 3844",
+              "airline": "LATAM Airlines",
+              "bookingUrl": "https://www.latamairlines.com/br/pt",
+              "departureTime": "05:45",
+              "arrivalTime": "11:50",
+              "totalDuration": "6h05",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Congonhas - CGH)",
+              "layoverDuration": "1h35",
+              "aircraft": "Airbus A320"
+            },
+            "inbound": {
+              "flightNumber": "GOL G3 1281 / G3 1623",
+              "airline": "GOL Linhas Aéreas",
+              "bookingUrl": "https://www.voegol.com.br",
+              "departureTime": "13:30",
+              "arrivalTime": "18:55",
+              "totalDuration": "5h25",
+              "stopsCount": 1,
+              "connectionCity": "Campinas (Viracopos - VCP)",
+              "layoverDuration": "1h15",
+              "aircraft": "Boeing 737-800"
+            }
+          }
+        },
+        "B": {
+          "type": "B",
+          "name": "Open-Jaw B (Entra Curitiba / Sai Foz)",
+          "cost": 9943,
+          "flights": 7680,
+          "car": 2263,
+          "dropoff": 813,
+          "flightDetails": {
+            "outbound": {
+              "flightNumber": "GOL G3 1622 / G3 1280",
+              "airline": "GOL Linhas Aéreas",
+              "bookingUrl": "https://www.voegol.com.br",
+              "departureTime": "06:10",
+              "arrivalTime": "11:45",
+              "totalDuration": "5h35",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Guarulhos - GRU)",
+              "layoverDuration": "1h25",
+              "aircraft": "Boeing 737-800"
+            },
+            "inbound": {
+              "flightNumber": "LATAM LA 3845 / LA 3413",
+              "airline": "LATAM Airlines",
+              "bookingUrl": "https://www.latamairlines.com/br/pt",
+              "departureTime": "14:15",
+              "arrivalTime": "20:10",
+              "totalDuration": "5h55",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Guarulhos - GRU)",
+              "layoverDuration": "1h20",
+              "aircraft": "Airbus A320"
+            }
+          }
         }
       }
     },
@@ -821,13 +1573,107 @@
             }
           }
         },
+        "D": {
+          "type": "D",
+          "name": "Hub Foz (REC ⇄ Foz Voo)",
+          "cost": 9270,
+          "flights": 7680,
+          "car": 1450,
+          "dropoff": 0,
+          "flightDetails": {
+            "outbound": {
+              "flightNumber": "LATAM LA 3412 / LA 3844",
+              "airline": "LATAM Airlines",
+              "bookingUrl": "https://www.latamairlines.com/br/pt",
+              "departureTime": "05:45",
+              "arrivalTime": "11:50",
+              "totalDuration": "6h05",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Congonhas - CGH)",
+              "layoverDuration": "1h35",
+              "aircraft": "Airbus A320"
+            },
+            "inbound": {
+              "flightNumber": "LATAM LA 3845 / LA 3413",
+              "airline": "LATAM Airlines",
+              "bookingUrl": "https://www.latamairlines.com/br/pt",
+              "departureTime": "14:15",
+              "arrivalTime": "20:10",
+              "totalDuration": "5h55",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Guarulhos - GRU)",
+              "layoverDuration": "1h20",
+              "aircraft": "Airbus A320"
+            }
+          }
+        },
         "A": {
           "type": "A",
           "name": "Open-Jaw A (Entra Foz / Sai Curitiba)",
           "cost": 9943,
           "flights": 7680,
           "car": 2263,
-          "dropoff": 813
+          "dropoff": 813,
+          "flightDetails": {
+            "outbound": {
+              "flightNumber": "LATAM LA 3412 / LA 3844",
+              "airline": "LATAM Airlines",
+              "bookingUrl": "https://www.latamairlines.com/br/pt",
+              "departureTime": "05:45",
+              "arrivalTime": "11:50",
+              "totalDuration": "6h05",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Congonhas - CGH)",
+              "layoverDuration": "1h35",
+              "aircraft": "Airbus A320"
+            },
+            "inbound": {
+              "flightNumber": "GOL G3 1281 / G3 1623",
+              "airline": "GOL Linhas Aéreas",
+              "bookingUrl": "https://www.voegol.com.br",
+              "departureTime": "13:30",
+              "arrivalTime": "18:55",
+              "totalDuration": "5h25",
+              "stopsCount": 1,
+              "connectionCity": "Campinas (Viracopos - VCP)",
+              "layoverDuration": "1h15",
+              "aircraft": "Boeing 737-800"
+            }
+          }
+        },
+        "B": {
+          "type": "B",
+          "name": "Open-Jaw B (Entra Curitiba / Sai Foz)",
+          "cost": 9943,
+          "flights": 7680,
+          "car": 2263,
+          "dropoff": 813,
+          "flightDetails": {
+            "outbound": {
+              "flightNumber": "GOL G3 1622 / G3 1280",
+              "airline": "GOL Linhas Aéreas",
+              "bookingUrl": "https://www.voegol.com.br",
+              "departureTime": "06:10",
+              "arrivalTime": "11:45",
+              "totalDuration": "5h35",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Guarulhos - GRU)",
+              "layoverDuration": "1h25",
+              "aircraft": "Boeing 737-800"
+            },
+            "inbound": {
+              "flightNumber": "LATAM LA 3845 / LA 3413",
+              "airline": "LATAM Airlines",
+              "bookingUrl": "https://www.latamairlines.com/br/pt",
+              "departureTime": "14:15",
+              "arrivalTime": "20:10",
+              "totalDuration": "5h55",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Guarulhos - GRU)",
+              "layoverDuration": "1h20",
+              "aircraft": "Airbus A320"
+            }
+          }
         }
       }
     },
@@ -886,13 +1732,107 @@
             }
           }
         },
+        "D": {
+          "type": "D",
+          "name": "Hub Foz (REC ⇄ Foz Voo)",
+          "cost": 9365,
+          "flights": 7920,
+          "car": 1305,
+          "dropoff": 0,
+          "flightDetails": {
+            "outbound": {
+              "flightNumber": "LATAM LA 3412 / LA 3844",
+              "airline": "LATAM Airlines",
+              "bookingUrl": "https://www.latamairlines.com/br/pt",
+              "departureTime": "05:45",
+              "arrivalTime": "11:50",
+              "totalDuration": "6h05",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Congonhas - CGH)",
+              "layoverDuration": "1h35",
+              "aircraft": "Airbus A320"
+            },
+            "inbound": {
+              "flightNumber": "LATAM LA 3845 / LA 3413",
+              "airline": "LATAM Airlines",
+              "bookingUrl": "https://www.latamairlines.com/br/pt",
+              "departureTime": "14:15",
+              "arrivalTime": "20:10",
+              "totalDuration": "5h55",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Guarulhos - GRU)",
+              "layoverDuration": "1h20",
+              "aircraft": "Airbus A320"
+            }
+          }
+        },
         "A": {
           "type": "A",
           "name": "Open-Jaw A (Entra Foz / Sai Curitiba)",
           "cost": 10038,
           "flights": 7920,
           "car": 2118,
-          "dropoff": 813
+          "dropoff": 813,
+          "flightDetails": {
+            "outbound": {
+              "flightNumber": "LATAM LA 3412 / LA 3844",
+              "airline": "LATAM Airlines",
+              "bookingUrl": "https://www.latamairlines.com/br/pt",
+              "departureTime": "05:45",
+              "arrivalTime": "11:50",
+              "totalDuration": "6h05",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Congonhas - CGH)",
+              "layoverDuration": "1h35",
+              "aircraft": "Airbus A320"
+            },
+            "inbound": {
+              "flightNumber": "GOL G3 1281 / G3 1623",
+              "airline": "GOL Linhas Aéreas",
+              "bookingUrl": "https://www.voegol.com.br",
+              "departureTime": "13:30",
+              "arrivalTime": "18:55",
+              "totalDuration": "5h25",
+              "stopsCount": 1,
+              "connectionCity": "Campinas (Viracopos - VCP)",
+              "layoverDuration": "1h15",
+              "aircraft": "Boeing 737-800"
+            }
+          }
+        },
+        "B": {
+          "type": "B",
+          "name": "Open-Jaw B (Entra Curitiba / Sai Foz)",
+          "cost": 10038,
+          "flights": 7920,
+          "car": 2118,
+          "dropoff": 813,
+          "flightDetails": {
+            "outbound": {
+              "flightNumber": "GOL G3 1622 / G3 1280",
+              "airline": "GOL Linhas Aéreas",
+              "bookingUrl": "https://www.voegol.com.br",
+              "departureTime": "06:10",
+              "arrivalTime": "11:45",
+              "totalDuration": "5h35",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Guarulhos - GRU)",
+              "layoverDuration": "1h25",
+              "aircraft": "Boeing 737-800"
+            },
+            "inbound": {
+              "flightNumber": "LATAM LA 3845 / LA 3413",
+              "airline": "LATAM Airlines",
+              "bookingUrl": "https://www.latamairlines.com/br/pt",
+              "departureTime": "14:15",
+              "arrivalTime": "20:10",
+              "totalDuration": "5h55",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Guarulhos - GRU)",
+              "layoverDuration": "1h20",
+              "aircraft": "Airbus A320"
+            }
+          }
         }
       }
     }
@@ -953,13 +1893,107 @@
             }
           }
         },
+        "D": {
+          "type": "D",
+          "name": "Hub Foz (REC ⇄ Foz Voo)",
+          "cost": 8980,
+          "flights": 7680,
+          "car": 1160,
+          "dropoff": 0,
+          "flightDetails": {
+            "outbound": {
+              "flightNumber": "LATAM LA 3412 / LA 3844",
+              "airline": "LATAM Airlines",
+              "bookingUrl": "https://www.latamairlines.com/br/pt",
+              "departureTime": "05:45",
+              "arrivalTime": "11:50",
+              "totalDuration": "6h05",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Congonhas - CGH)",
+              "layoverDuration": "1h35",
+              "aircraft": "Airbus A320"
+            },
+            "inbound": {
+              "flightNumber": "LATAM LA 3845 / LA 3413",
+              "airline": "LATAM Airlines",
+              "bookingUrl": "https://www.latamairlines.com/br/pt",
+              "departureTime": "14:15",
+              "arrivalTime": "20:10",
+              "totalDuration": "5h55",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Guarulhos - GRU)",
+              "layoverDuration": "1h20",
+              "aircraft": "Airbus A320"
+            }
+          }
+        },
         "A": {
           "type": "A",
           "name": "Open-Jaw A (Entra Foz / Sai Curitiba)",
           "cost": 9653,
           "flights": 7680,
           "car": 1973,
-          "dropoff": 813
+          "dropoff": 813,
+          "flightDetails": {
+            "outbound": {
+              "flightNumber": "LATAM LA 3412 / LA 3844",
+              "airline": "LATAM Airlines",
+              "bookingUrl": "https://www.latamairlines.com/br/pt",
+              "departureTime": "05:45",
+              "arrivalTime": "11:50",
+              "totalDuration": "6h05",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Congonhas - CGH)",
+              "layoverDuration": "1h35",
+              "aircraft": "Airbus A320"
+            },
+            "inbound": {
+              "flightNumber": "GOL G3 1281 / G3 1623",
+              "airline": "GOL Linhas Aéreas",
+              "bookingUrl": "https://www.voegol.com.br",
+              "departureTime": "13:30",
+              "arrivalTime": "18:55",
+              "totalDuration": "5h25",
+              "stopsCount": 1,
+              "connectionCity": "Campinas (Viracopos - VCP)",
+              "layoverDuration": "1h15",
+              "aircraft": "Boeing 737-800"
+            }
+          }
+        },
+        "B": {
+          "type": "B",
+          "name": "Open-Jaw B (Entra Curitiba / Sai Foz)",
+          "cost": 9653,
+          "flights": 7680,
+          "car": 1973,
+          "dropoff": 813,
+          "flightDetails": {
+            "outbound": {
+              "flightNumber": "GOL G3 1622 / G3 1280",
+              "airline": "GOL Linhas Aéreas",
+              "bookingUrl": "https://www.voegol.com.br",
+              "departureTime": "06:10",
+              "arrivalTime": "11:45",
+              "totalDuration": "5h35",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Guarulhos - GRU)",
+              "layoverDuration": "1h25",
+              "aircraft": "Boeing 737-800"
+            },
+            "inbound": {
+              "flightNumber": "LATAM LA 3845 / LA 3413",
+              "airline": "LATAM Airlines",
+              "bookingUrl": "https://www.latamairlines.com/br/pt",
+              "departureTime": "14:15",
+              "arrivalTime": "20:10",
+              "totalDuration": "5h55",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Guarulhos - GRU)",
+              "layoverDuration": "1h20",
+              "aircraft": "Airbus A320"
+            }
+          }
         }
       }
     },
@@ -1018,13 +2052,107 @@
             }
           }
         },
+        "D": {
+          "type": "D",
+          "name": "Hub Foz (REC ⇄ Foz Voo)",
+          "cost": 8980,
+          "flights": 7680,
+          "car": 1160,
+          "dropoff": 0,
+          "flightDetails": {
+            "outbound": {
+              "flightNumber": "LATAM LA 3412 / LA 3844",
+              "airline": "LATAM Airlines",
+              "bookingUrl": "https://www.latamairlines.com/br/pt",
+              "departureTime": "05:45",
+              "arrivalTime": "11:50",
+              "totalDuration": "6h05",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Congonhas - CGH)",
+              "layoverDuration": "1h35",
+              "aircraft": "Airbus A320"
+            },
+            "inbound": {
+              "flightNumber": "LATAM LA 3845 / LA 3413",
+              "airline": "LATAM Airlines",
+              "bookingUrl": "https://www.latamairlines.com/br/pt",
+              "departureTime": "14:15",
+              "arrivalTime": "20:10",
+              "totalDuration": "5h55",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Guarulhos - GRU)",
+              "layoverDuration": "1h20",
+              "aircraft": "Airbus A320"
+            }
+          }
+        },
         "A": {
           "type": "A",
           "name": "Open-Jaw A (Entra Foz / Sai Curitiba)",
           "cost": 9653,
           "flights": 7680,
           "car": 1973,
-          "dropoff": 813
+          "dropoff": 813,
+          "flightDetails": {
+            "outbound": {
+              "flightNumber": "LATAM LA 3412 / LA 3844",
+              "airline": "LATAM Airlines",
+              "bookingUrl": "https://www.latamairlines.com/br/pt",
+              "departureTime": "05:45",
+              "arrivalTime": "11:50",
+              "totalDuration": "6h05",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Congonhas - CGH)",
+              "layoverDuration": "1h35",
+              "aircraft": "Airbus A320"
+            },
+            "inbound": {
+              "flightNumber": "GOL G3 1281 / G3 1623",
+              "airline": "GOL Linhas Aéreas",
+              "bookingUrl": "https://www.voegol.com.br",
+              "departureTime": "13:30",
+              "arrivalTime": "18:55",
+              "totalDuration": "5h25",
+              "stopsCount": 1,
+              "connectionCity": "Campinas (Viracopos - VCP)",
+              "layoverDuration": "1h15",
+              "aircraft": "Boeing 737-800"
+            }
+          }
+        },
+        "B": {
+          "type": "B",
+          "name": "Open-Jaw B (Entra Curitiba / Sai Foz)",
+          "cost": 9653,
+          "flights": 7680,
+          "car": 1973,
+          "dropoff": 813,
+          "flightDetails": {
+            "outbound": {
+              "flightNumber": "GOL G3 1622 / G3 1280",
+              "airline": "GOL Linhas Aéreas",
+              "bookingUrl": "https://www.voegol.com.br",
+              "departureTime": "06:10",
+              "arrivalTime": "11:45",
+              "totalDuration": "5h35",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Guarulhos - GRU)",
+              "layoverDuration": "1h25",
+              "aircraft": "Boeing 737-800"
+            },
+            "inbound": {
+              "flightNumber": "LATAM LA 3845 / LA 3413",
+              "airline": "LATAM Airlines",
+              "bookingUrl": "https://www.latamairlines.com/br/pt",
+              "departureTime": "14:15",
+              "arrivalTime": "20:10",
+              "totalDuration": "5h55",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Guarulhos - GRU)",
+              "layoverDuration": "1h20",
+              "aircraft": "Airbus A320"
+            }
+          }
         }
       }
     },
@@ -1083,13 +2211,107 @@
             }
           }
         },
+        "D": {
+          "type": "D",
+          "name": "Hub Foz (REC ⇄ Foz Voo)",
+          "cost": 8980,
+          "flights": 7680,
+          "car": 1160,
+          "dropoff": 0,
+          "flightDetails": {
+            "outbound": {
+              "flightNumber": "LATAM LA 3412 / LA 3844",
+              "airline": "LATAM Airlines",
+              "bookingUrl": "https://www.latamairlines.com/br/pt",
+              "departureTime": "05:45",
+              "arrivalTime": "11:50",
+              "totalDuration": "6h05",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Congonhas - CGH)",
+              "layoverDuration": "1h35",
+              "aircraft": "Airbus A320"
+            },
+            "inbound": {
+              "flightNumber": "LATAM LA 3845 / LA 3413",
+              "airline": "LATAM Airlines",
+              "bookingUrl": "https://www.latamairlines.com/br/pt",
+              "departureTime": "14:15",
+              "arrivalTime": "20:10",
+              "totalDuration": "5h55",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Guarulhos - GRU)",
+              "layoverDuration": "1h20",
+              "aircraft": "Airbus A320"
+            }
+          }
+        },
         "A": {
           "type": "A",
           "name": "Open-Jaw A (Entra Foz / Sai Curitiba)",
           "cost": 9653,
           "flights": 7680,
           "car": 1973,
-          "dropoff": 813
+          "dropoff": 813,
+          "flightDetails": {
+            "outbound": {
+              "flightNumber": "LATAM LA 3412 / LA 3844",
+              "airline": "LATAM Airlines",
+              "bookingUrl": "https://www.latamairlines.com/br/pt",
+              "departureTime": "05:45",
+              "arrivalTime": "11:50",
+              "totalDuration": "6h05",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Congonhas - CGH)",
+              "layoverDuration": "1h35",
+              "aircraft": "Airbus A320"
+            },
+            "inbound": {
+              "flightNumber": "GOL G3 1281 / G3 1623",
+              "airline": "GOL Linhas Aéreas",
+              "bookingUrl": "https://www.voegol.com.br",
+              "departureTime": "13:30",
+              "arrivalTime": "18:55",
+              "totalDuration": "5h25",
+              "stopsCount": 1,
+              "connectionCity": "Campinas (Viracopos - VCP)",
+              "layoverDuration": "1h15",
+              "aircraft": "Boeing 737-800"
+            }
+          }
+        },
+        "B": {
+          "type": "B",
+          "name": "Open-Jaw B (Entra Curitiba / Sai Foz)",
+          "cost": 9653,
+          "flights": 7680,
+          "car": 1973,
+          "dropoff": 813,
+          "flightDetails": {
+            "outbound": {
+              "flightNumber": "GOL G3 1622 / G3 1280",
+              "airline": "GOL Linhas Aéreas",
+              "bookingUrl": "https://www.voegol.com.br",
+              "departureTime": "06:10",
+              "arrivalTime": "11:45",
+              "totalDuration": "5h35",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Guarulhos - GRU)",
+              "layoverDuration": "1h25",
+              "aircraft": "Boeing 737-800"
+            },
+            "inbound": {
+              "flightNumber": "LATAM LA 3845 / LA 3413",
+              "airline": "LATAM Airlines",
+              "bookingUrl": "https://www.latamairlines.com/br/pt",
+              "departureTime": "14:15",
+              "arrivalTime": "20:10",
+              "totalDuration": "5h55",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Guarulhos - GRU)",
+              "layoverDuration": "1h20",
+              "aircraft": "Airbus A320"
+            }
+          }
         }
       }
     },
@@ -1148,13 +2370,107 @@
             }
           }
         },
+        "D": {
+          "type": "D",
+          "name": "Hub Foz (REC ⇄ Foz Voo)",
+          "cost": 9125,
+          "flights": 7680,
+          "car": 1305,
+          "dropoff": 0,
+          "flightDetails": {
+            "outbound": {
+              "flightNumber": "LATAM LA 3412 / LA 3844",
+              "airline": "LATAM Airlines",
+              "bookingUrl": "https://www.latamairlines.com/br/pt",
+              "departureTime": "05:45",
+              "arrivalTime": "11:50",
+              "totalDuration": "6h05",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Congonhas - CGH)",
+              "layoverDuration": "1h35",
+              "aircraft": "Airbus A320"
+            },
+            "inbound": {
+              "flightNumber": "LATAM LA 3845 / LA 3413",
+              "airline": "LATAM Airlines",
+              "bookingUrl": "https://www.latamairlines.com/br/pt",
+              "departureTime": "14:15",
+              "arrivalTime": "20:10",
+              "totalDuration": "5h55",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Guarulhos - GRU)",
+              "layoverDuration": "1h20",
+              "aircraft": "Airbus A320"
+            }
+          }
+        },
         "A": {
           "type": "A",
           "name": "Open-Jaw A (Entra Foz / Sai Curitiba)",
           "cost": 9798,
           "flights": 7680,
           "car": 2118,
-          "dropoff": 813
+          "dropoff": 813,
+          "flightDetails": {
+            "outbound": {
+              "flightNumber": "LATAM LA 3412 / LA 3844",
+              "airline": "LATAM Airlines",
+              "bookingUrl": "https://www.latamairlines.com/br/pt",
+              "departureTime": "05:45",
+              "arrivalTime": "11:50",
+              "totalDuration": "6h05",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Congonhas - CGH)",
+              "layoverDuration": "1h35",
+              "aircraft": "Airbus A320"
+            },
+            "inbound": {
+              "flightNumber": "GOL G3 1281 / G3 1623",
+              "airline": "GOL Linhas Aéreas",
+              "bookingUrl": "https://www.voegol.com.br",
+              "departureTime": "13:30",
+              "arrivalTime": "18:55",
+              "totalDuration": "5h25",
+              "stopsCount": 1,
+              "connectionCity": "Campinas (Viracopos - VCP)",
+              "layoverDuration": "1h15",
+              "aircraft": "Boeing 737-800"
+            }
+          }
+        },
+        "B": {
+          "type": "B",
+          "name": "Open-Jaw B (Entra Curitiba / Sai Foz)",
+          "cost": 9798,
+          "flights": 7680,
+          "car": 2118,
+          "dropoff": 813,
+          "flightDetails": {
+            "outbound": {
+              "flightNumber": "GOL G3 1622 / G3 1280",
+              "airline": "GOL Linhas Aéreas",
+              "bookingUrl": "https://www.voegol.com.br",
+              "departureTime": "06:10",
+              "arrivalTime": "11:45",
+              "totalDuration": "5h35",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Guarulhos - GRU)",
+              "layoverDuration": "1h25",
+              "aircraft": "Boeing 737-800"
+            },
+            "inbound": {
+              "flightNumber": "LATAM LA 3845 / LA 3413",
+              "airline": "LATAM Airlines",
+              "bookingUrl": "https://www.latamairlines.com/br/pt",
+              "departureTime": "14:15",
+              "arrivalTime": "20:10",
+              "totalDuration": "5h55",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Guarulhos - GRU)",
+              "layoverDuration": "1h20",
+              "aircraft": "Airbus A320"
+            }
+          }
         }
       }
     },
@@ -1213,13 +2529,107 @@
             }
           }
         },
+        "D": {
+          "type": "D",
+          "name": "Hub Foz (REC ⇄ Foz Voo)",
+          "cost": 9125,
+          "flights": 7680,
+          "car": 1305,
+          "dropoff": 0,
+          "flightDetails": {
+            "outbound": {
+              "flightNumber": "LATAM LA 3412 / LA 3844",
+              "airline": "LATAM Airlines",
+              "bookingUrl": "https://www.latamairlines.com/br/pt",
+              "departureTime": "05:45",
+              "arrivalTime": "11:50",
+              "totalDuration": "6h05",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Congonhas - CGH)",
+              "layoverDuration": "1h35",
+              "aircraft": "Airbus A320"
+            },
+            "inbound": {
+              "flightNumber": "LATAM LA 3845 / LA 3413",
+              "airline": "LATAM Airlines",
+              "bookingUrl": "https://www.latamairlines.com/br/pt",
+              "departureTime": "14:15",
+              "arrivalTime": "20:10",
+              "totalDuration": "5h55",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Guarulhos - GRU)",
+              "layoverDuration": "1h20",
+              "aircraft": "Airbus A320"
+            }
+          }
+        },
         "A": {
           "type": "A",
           "name": "Open-Jaw A (Entra Foz / Sai Curitiba)",
           "cost": 9798,
           "flights": 7680,
           "car": 2118,
-          "dropoff": 813
+          "dropoff": 813,
+          "flightDetails": {
+            "outbound": {
+              "flightNumber": "LATAM LA 3412 / LA 3844",
+              "airline": "LATAM Airlines",
+              "bookingUrl": "https://www.latamairlines.com/br/pt",
+              "departureTime": "05:45",
+              "arrivalTime": "11:50",
+              "totalDuration": "6h05",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Congonhas - CGH)",
+              "layoverDuration": "1h35",
+              "aircraft": "Airbus A320"
+            },
+            "inbound": {
+              "flightNumber": "GOL G3 1281 / G3 1623",
+              "airline": "GOL Linhas Aéreas",
+              "bookingUrl": "https://www.voegol.com.br",
+              "departureTime": "13:30",
+              "arrivalTime": "18:55",
+              "totalDuration": "5h25",
+              "stopsCount": 1,
+              "connectionCity": "Campinas (Viracopos - VCP)",
+              "layoverDuration": "1h15",
+              "aircraft": "Boeing 737-800"
+            }
+          }
+        },
+        "B": {
+          "type": "B",
+          "name": "Open-Jaw B (Entra Curitiba / Sai Foz)",
+          "cost": 9798,
+          "flights": 7680,
+          "car": 2118,
+          "dropoff": 813,
+          "flightDetails": {
+            "outbound": {
+              "flightNumber": "GOL G3 1622 / G3 1280",
+              "airline": "GOL Linhas Aéreas",
+              "bookingUrl": "https://www.voegol.com.br",
+              "departureTime": "06:10",
+              "arrivalTime": "11:45",
+              "totalDuration": "5h35",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Guarulhos - GRU)",
+              "layoverDuration": "1h25",
+              "aircraft": "Boeing 737-800"
+            },
+            "inbound": {
+              "flightNumber": "LATAM LA 3845 / LA 3413",
+              "airline": "LATAM Airlines",
+              "bookingUrl": "https://www.latamairlines.com/br/pt",
+              "departureTime": "14:15",
+              "arrivalTime": "20:10",
+              "totalDuration": "5h55",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Guarulhos - GRU)",
+              "layoverDuration": "1h20",
+              "aircraft": "Airbus A320"
+            }
+          }
         }
       }
     },
@@ -1278,13 +2688,107 @@
             }
           }
         },
+        "D": {
+          "type": "D",
+          "name": "Hub Foz (REC ⇄ Foz Voo)",
+          "cost": 9220,
+          "flights": 7920,
+          "car": 1160,
+          "dropoff": 0,
+          "flightDetails": {
+            "outbound": {
+              "flightNumber": "LATAM LA 3412 / LA 3844",
+              "airline": "LATAM Airlines",
+              "bookingUrl": "https://www.latamairlines.com/br/pt",
+              "departureTime": "05:45",
+              "arrivalTime": "11:50",
+              "totalDuration": "6h05",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Congonhas - CGH)",
+              "layoverDuration": "1h35",
+              "aircraft": "Airbus A320"
+            },
+            "inbound": {
+              "flightNumber": "LATAM LA 3845 / LA 3413",
+              "airline": "LATAM Airlines",
+              "bookingUrl": "https://www.latamairlines.com/br/pt",
+              "departureTime": "14:15",
+              "arrivalTime": "20:10",
+              "totalDuration": "5h55",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Guarulhos - GRU)",
+              "layoverDuration": "1h20",
+              "aircraft": "Airbus A320"
+            }
+          }
+        },
         "A": {
           "type": "A",
           "name": "Open-Jaw A (Entra Foz / Sai Curitiba)",
           "cost": 9893,
           "flights": 7920,
           "car": 1973,
-          "dropoff": 813
+          "dropoff": 813,
+          "flightDetails": {
+            "outbound": {
+              "flightNumber": "LATAM LA 3412 / LA 3844",
+              "airline": "LATAM Airlines",
+              "bookingUrl": "https://www.latamairlines.com/br/pt",
+              "departureTime": "05:45",
+              "arrivalTime": "11:50",
+              "totalDuration": "6h05",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Congonhas - CGH)",
+              "layoverDuration": "1h35",
+              "aircraft": "Airbus A320"
+            },
+            "inbound": {
+              "flightNumber": "GOL G3 1281 / G3 1623",
+              "airline": "GOL Linhas Aéreas",
+              "bookingUrl": "https://www.voegol.com.br",
+              "departureTime": "13:30",
+              "arrivalTime": "18:55",
+              "totalDuration": "5h25",
+              "stopsCount": 1,
+              "connectionCity": "Campinas (Viracopos - VCP)",
+              "layoverDuration": "1h15",
+              "aircraft": "Boeing 737-800"
+            }
+          }
+        },
+        "B": {
+          "type": "B",
+          "name": "Open-Jaw B (Entra Curitiba / Sai Foz)",
+          "cost": 9893,
+          "flights": 7920,
+          "car": 1973,
+          "dropoff": 813,
+          "flightDetails": {
+            "outbound": {
+              "flightNumber": "GOL G3 1622 / G3 1280",
+              "airline": "GOL Linhas Aéreas",
+              "bookingUrl": "https://www.voegol.com.br",
+              "departureTime": "06:10",
+              "arrivalTime": "11:45",
+              "totalDuration": "5h35",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Guarulhos - GRU)",
+              "layoverDuration": "1h25",
+              "aircraft": "Boeing 737-800"
+            },
+            "inbound": {
+              "flightNumber": "LATAM LA 3845 / LA 3413",
+              "airline": "LATAM Airlines",
+              "bookingUrl": "https://www.latamairlines.com/br/pt",
+              "departureTime": "14:15",
+              "arrivalTime": "20:10",
+              "totalDuration": "5h55",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Guarulhos - GRU)",
+              "layoverDuration": "1h20",
+              "aircraft": "Airbus A320"
+            }
+          }
         }
       }
     },
@@ -1343,13 +2847,107 @@
             }
           }
         },
+        "D": {
+          "type": "D",
+          "name": "Hub Foz (REC ⇄ Foz Voo)",
+          "cost": 9220,
+          "flights": 7920,
+          "car": 1160,
+          "dropoff": 0,
+          "flightDetails": {
+            "outbound": {
+              "flightNumber": "LATAM LA 3412 / LA 3844",
+              "airline": "LATAM Airlines",
+              "bookingUrl": "https://www.latamairlines.com/br/pt",
+              "departureTime": "05:45",
+              "arrivalTime": "11:50",
+              "totalDuration": "6h05",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Congonhas - CGH)",
+              "layoverDuration": "1h35",
+              "aircraft": "Airbus A320"
+            },
+            "inbound": {
+              "flightNumber": "LATAM LA 3845 / LA 3413",
+              "airline": "LATAM Airlines",
+              "bookingUrl": "https://www.latamairlines.com/br/pt",
+              "departureTime": "14:15",
+              "arrivalTime": "20:10",
+              "totalDuration": "5h55",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Guarulhos - GRU)",
+              "layoverDuration": "1h20",
+              "aircraft": "Airbus A320"
+            }
+          }
+        },
         "A": {
           "type": "A",
           "name": "Open-Jaw A (Entra Foz / Sai Curitiba)",
           "cost": 9893,
           "flights": 7920,
           "car": 1973,
-          "dropoff": 813
+          "dropoff": 813,
+          "flightDetails": {
+            "outbound": {
+              "flightNumber": "LATAM LA 3412 / LA 3844",
+              "airline": "LATAM Airlines",
+              "bookingUrl": "https://www.latamairlines.com/br/pt",
+              "departureTime": "05:45",
+              "arrivalTime": "11:50",
+              "totalDuration": "6h05",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Congonhas - CGH)",
+              "layoverDuration": "1h35",
+              "aircraft": "Airbus A320"
+            },
+            "inbound": {
+              "flightNumber": "GOL G3 1281 / G3 1623",
+              "airline": "GOL Linhas Aéreas",
+              "bookingUrl": "https://www.voegol.com.br",
+              "departureTime": "13:30",
+              "arrivalTime": "18:55",
+              "totalDuration": "5h25",
+              "stopsCount": 1,
+              "connectionCity": "Campinas (Viracopos - VCP)",
+              "layoverDuration": "1h15",
+              "aircraft": "Boeing 737-800"
+            }
+          }
+        },
+        "B": {
+          "type": "B",
+          "name": "Open-Jaw B (Entra Curitiba / Sai Foz)",
+          "cost": 9893,
+          "flights": 7920,
+          "car": 1973,
+          "dropoff": 813,
+          "flightDetails": {
+            "outbound": {
+              "flightNumber": "GOL G3 1622 / G3 1280",
+              "airline": "GOL Linhas Aéreas",
+              "bookingUrl": "https://www.voegol.com.br",
+              "departureTime": "06:10",
+              "arrivalTime": "11:45",
+              "totalDuration": "5h35",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Guarulhos - GRU)",
+              "layoverDuration": "1h25",
+              "aircraft": "Boeing 737-800"
+            },
+            "inbound": {
+              "flightNumber": "LATAM LA 3845 / LA 3413",
+              "airline": "LATAM Airlines",
+              "bookingUrl": "https://www.latamairlines.com/br/pt",
+              "departureTime": "14:15",
+              "arrivalTime": "20:10",
+              "totalDuration": "5h55",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Guarulhos - GRU)",
+              "layoverDuration": "1h20",
+              "aircraft": "Airbus A320"
+            }
+          }
         }
       }
     },
@@ -1408,13 +3006,107 @@
             }
           }
         },
+        "D": {
+          "type": "D",
+          "name": "Hub Foz (REC ⇄ Foz Voo)",
+          "cost": 9270,
+          "flights": 7680,
+          "car": 1450,
+          "dropoff": 0,
+          "flightDetails": {
+            "outbound": {
+              "flightNumber": "LATAM LA 3412 / LA 3844",
+              "airline": "LATAM Airlines",
+              "bookingUrl": "https://www.latamairlines.com/br/pt",
+              "departureTime": "05:45",
+              "arrivalTime": "11:50",
+              "totalDuration": "6h05",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Congonhas - CGH)",
+              "layoverDuration": "1h35",
+              "aircraft": "Airbus A320"
+            },
+            "inbound": {
+              "flightNumber": "LATAM LA 3845 / LA 3413",
+              "airline": "LATAM Airlines",
+              "bookingUrl": "https://www.latamairlines.com/br/pt",
+              "departureTime": "14:15",
+              "arrivalTime": "20:10",
+              "totalDuration": "5h55",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Guarulhos - GRU)",
+              "layoverDuration": "1h20",
+              "aircraft": "Airbus A320"
+            }
+          }
+        },
         "A": {
           "type": "A",
           "name": "Open-Jaw A (Entra Foz / Sai Curitiba)",
           "cost": 9943,
           "flights": 7680,
           "car": 2263,
-          "dropoff": 813
+          "dropoff": 813,
+          "flightDetails": {
+            "outbound": {
+              "flightNumber": "LATAM LA 3412 / LA 3844",
+              "airline": "LATAM Airlines",
+              "bookingUrl": "https://www.latamairlines.com/br/pt",
+              "departureTime": "05:45",
+              "arrivalTime": "11:50",
+              "totalDuration": "6h05",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Congonhas - CGH)",
+              "layoverDuration": "1h35",
+              "aircraft": "Airbus A320"
+            },
+            "inbound": {
+              "flightNumber": "GOL G3 1281 / G3 1623",
+              "airline": "GOL Linhas Aéreas",
+              "bookingUrl": "https://www.voegol.com.br",
+              "departureTime": "13:30",
+              "arrivalTime": "18:55",
+              "totalDuration": "5h25",
+              "stopsCount": 1,
+              "connectionCity": "Campinas (Viracopos - VCP)",
+              "layoverDuration": "1h15",
+              "aircraft": "Boeing 737-800"
+            }
+          }
+        },
+        "B": {
+          "type": "B",
+          "name": "Open-Jaw B (Entra Curitiba / Sai Foz)",
+          "cost": 9943,
+          "flights": 7680,
+          "car": 2263,
+          "dropoff": 813,
+          "flightDetails": {
+            "outbound": {
+              "flightNumber": "GOL G3 1622 / G3 1280",
+              "airline": "GOL Linhas Aéreas",
+              "bookingUrl": "https://www.voegol.com.br",
+              "departureTime": "06:10",
+              "arrivalTime": "11:45",
+              "totalDuration": "5h35",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Guarulhos - GRU)",
+              "layoverDuration": "1h25",
+              "aircraft": "Boeing 737-800"
+            },
+            "inbound": {
+              "flightNumber": "LATAM LA 3845 / LA 3413",
+              "airline": "LATAM Airlines",
+              "bookingUrl": "https://www.latamairlines.com/br/pt",
+              "departureTime": "14:15",
+              "arrivalTime": "20:10",
+              "totalDuration": "5h55",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Guarulhos - GRU)",
+              "layoverDuration": "1h20",
+              "aircraft": "Airbus A320"
+            }
+          }
         }
       }
     },
@@ -1473,13 +3165,107 @@
             }
           }
         },
+        "D": {
+          "type": "D",
+          "name": "Hub Foz (REC ⇄ Foz Voo)",
+          "cost": 9270,
+          "flights": 7680,
+          "car": 1450,
+          "dropoff": 0,
+          "flightDetails": {
+            "outbound": {
+              "flightNumber": "LATAM LA 3412 / LA 3844",
+              "airline": "LATAM Airlines",
+              "bookingUrl": "https://www.latamairlines.com/br/pt",
+              "departureTime": "05:45",
+              "arrivalTime": "11:50",
+              "totalDuration": "6h05",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Congonhas - CGH)",
+              "layoverDuration": "1h35",
+              "aircraft": "Airbus A320"
+            },
+            "inbound": {
+              "flightNumber": "LATAM LA 3845 / LA 3413",
+              "airline": "LATAM Airlines",
+              "bookingUrl": "https://www.latamairlines.com/br/pt",
+              "departureTime": "14:15",
+              "arrivalTime": "20:10",
+              "totalDuration": "5h55",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Guarulhos - GRU)",
+              "layoverDuration": "1h20",
+              "aircraft": "Airbus A320"
+            }
+          }
+        },
         "A": {
           "type": "A",
           "name": "Open-Jaw A (Entra Foz / Sai Curitiba)",
           "cost": 9943,
           "flights": 7680,
           "car": 2263,
-          "dropoff": 813
+          "dropoff": 813,
+          "flightDetails": {
+            "outbound": {
+              "flightNumber": "LATAM LA 3412 / LA 3844",
+              "airline": "LATAM Airlines",
+              "bookingUrl": "https://www.latamairlines.com/br/pt",
+              "departureTime": "05:45",
+              "arrivalTime": "11:50",
+              "totalDuration": "6h05",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Congonhas - CGH)",
+              "layoverDuration": "1h35",
+              "aircraft": "Airbus A320"
+            },
+            "inbound": {
+              "flightNumber": "GOL G3 1281 / G3 1623",
+              "airline": "GOL Linhas Aéreas",
+              "bookingUrl": "https://www.voegol.com.br",
+              "departureTime": "13:30",
+              "arrivalTime": "18:55",
+              "totalDuration": "5h25",
+              "stopsCount": 1,
+              "connectionCity": "Campinas (Viracopos - VCP)",
+              "layoverDuration": "1h15",
+              "aircraft": "Boeing 737-800"
+            }
+          }
+        },
+        "B": {
+          "type": "B",
+          "name": "Open-Jaw B (Entra Curitiba / Sai Foz)",
+          "cost": 9943,
+          "flights": 7680,
+          "car": 2263,
+          "dropoff": 813,
+          "flightDetails": {
+            "outbound": {
+              "flightNumber": "GOL G3 1622 / G3 1280",
+              "airline": "GOL Linhas Aéreas",
+              "bookingUrl": "https://www.voegol.com.br",
+              "departureTime": "06:10",
+              "arrivalTime": "11:45",
+              "totalDuration": "5h35",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Guarulhos - GRU)",
+              "layoverDuration": "1h25",
+              "aircraft": "Boeing 737-800"
+            },
+            "inbound": {
+              "flightNumber": "LATAM LA 3845 / LA 3413",
+              "airline": "LATAM Airlines",
+              "bookingUrl": "https://www.latamairlines.com/br/pt",
+              "departureTime": "14:15",
+              "arrivalTime": "20:10",
+              "totalDuration": "5h55",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Guarulhos - GRU)",
+              "layoverDuration": "1h20",
+              "aircraft": "Airbus A320"
+            }
+          }
         }
       }
     },
@@ -1538,13 +3324,107 @@
             }
           }
         },
+        "D": {
+          "type": "D",
+          "name": "Hub Foz (REC ⇄ Foz Voo)",
+          "cost": 9365,
+          "flights": 7920,
+          "car": 1305,
+          "dropoff": 0,
+          "flightDetails": {
+            "outbound": {
+              "flightNumber": "LATAM LA 3412 / LA 3844",
+              "airline": "LATAM Airlines",
+              "bookingUrl": "https://www.latamairlines.com/br/pt",
+              "departureTime": "05:45",
+              "arrivalTime": "11:50",
+              "totalDuration": "6h05",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Congonhas - CGH)",
+              "layoverDuration": "1h35",
+              "aircraft": "Airbus A320"
+            },
+            "inbound": {
+              "flightNumber": "LATAM LA 3845 / LA 3413",
+              "airline": "LATAM Airlines",
+              "bookingUrl": "https://www.latamairlines.com/br/pt",
+              "departureTime": "14:15",
+              "arrivalTime": "20:10",
+              "totalDuration": "5h55",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Guarulhos - GRU)",
+              "layoverDuration": "1h20",
+              "aircraft": "Airbus A320"
+            }
+          }
+        },
         "A": {
           "type": "A",
           "name": "Open-Jaw A (Entra Foz / Sai Curitiba)",
           "cost": 10038,
           "flights": 7920,
           "car": 2118,
-          "dropoff": 813
+          "dropoff": 813,
+          "flightDetails": {
+            "outbound": {
+              "flightNumber": "LATAM LA 3412 / LA 3844",
+              "airline": "LATAM Airlines",
+              "bookingUrl": "https://www.latamairlines.com/br/pt",
+              "departureTime": "05:45",
+              "arrivalTime": "11:50",
+              "totalDuration": "6h05",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Congonhas - CGH)",
+              "layoverDuration": "1h35",
+              "aircraft": "Airbus A320"
+            },
+            "inbound": {
+              "flightNumber": "GOL G3 1281 / G3 1623",
+              "airline": "GOL Linhas Aéreas",
+              "bookingUrl": "https://www.voegol.com.br",
+              "departureTime": "13:30",
+              "arrivalTime": "18:55",
+              "totalDuration": "5h25",
+              "stopsCount": 1,
+              "connectionCity": "Campinas (Viracopos - VCP)",
+              "layoverDuration": "1h15",
+              "aircraft": "Boeing 737-800"
+            }
+          }
+        },
+        "B": {
+          "type": "B",
+          "name": "Open-Jaw B (Entra Curitiba / Sai Foz)",
+          "cost": 10038,
+          "flights": 7920,
+          "car": 2118,
+          "dropoff": 813,
+          "flightDetails": {
+            "outbound": {
+              "flightNumber": "GOL G3 1622 / G3 1280",
+              "airline": "GOL Linhas Aéreas",
+              "bookingUrl": "https://www.voegol.com.br",
+              "departureTime": "06:10",
+              "arrivalTime": "11:45",
+              "totalDuration": "5h35",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Guarulhos - GRU)",
+              "layoverDuration": "1h25",
+              "aircraft": "Boeing 737-800"
+            },
+            "inbound": {
+              "flightNumber": "LATAM LA 3845 / LA 3413",
+              "airline": "LATAM Airlines",
+              "bookingUrl": "https://www.latamairlines.com/br/pt",
+              "departureTime": "14:15",
+              "arrivalTime": "20:10",
+              "totalDuration": "5h55",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Guarulhos - GRU)",
+              "layoverDuration": "1h20",
+              "aircraft": "Airbus A320"
+            }
+          }
         }
       }
     },
@@ -1603,13 +3483,107 @@
             }
           }
         },
+        "D": {
+          "type": "D",
+          "name": "Hub Foz (REC ⇄ Foz Voo)",
+          "cost": 9365,
+          "flights": 7920,
+          "car": 1305,
+          "dropoff": 0,
+          "flightDetails": {
+            "outbound": {
+              "flightNumber": "LATAM LA 3412 / LA 3844",
+              "airline": "LATAM Airlines",
+              "bookingUrl": "https://www.latamairlines.com/br/pt",
+              "departureTime": "05:45",
+              "arrivalTime": "11:50",
+              "totalDuration": "6h05",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Congonhas - CGH)",
+              "layoverDuration": "1h35",
+              "aircraft": "Airbus A320"
+            },
+            "inbound": {
+              "flightNumber": "LATAM LA 3845 / LA 3413",
+              "airline": "LATAM Airlines",
+              "bookingUrl": "https://www.latamairlines.com/br/pt",
+              "departureTime": "14:15",
+              "arrivalTime": "20:10",
+              "totalDuration": "5h55",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Guarulhos - GRU)",
+              "layoverDuration": "1h20",
+              "aircraft": "Airbus A320"
+            }
+          }
+        },
         "A": {
           "type": "A",
           "name": "Open-Jaw A (Entra Foz / Sai Curitiba)",
           "cost": 10038,
           "flights": 7920,
           "car": 2118,
-          "dropoff": 813
+          "dropoff": 813,
+          "flightDetails": {
+            "outbound": {
+              "flightNumber": "LATAM LA 3412 / LA 3844",
+              "airline": "LATAM Airlines",
+              "bookingUrl": "https://www.latamairlines.com/br/pt",
+              "departureTime": "05:45",
+              "arrivalTime": "11:50",
+              "totalDuration": "6h05",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Congonhas - CGH)",
+              "layoverDuration": "1h35",
+              "aircraft": "Airbus A320"
+            },
+            "inbound": {
+              "flightNumber": "GOL G3 1281 / G3 1623",
+              "airline": "GOL Linhas Aéreas",
+              "bookingUrl": "https://www.voegol.com.br",
+              "departureTime": "13:30",
+              "arrivalTime": "18:55",
+              "totalDuration": "5h25",
+              "stopsCount": 1,
+              "connectionCity": "Campinas (Viracopos - VCP)",
+              "layoverDuration": "1h15",
+              "aircraft": "Boeing 737-800"
+            }
+          }
+        },
+        "B": {
+          "type": "B",
+          "name": "Open-Jaw B (Entra Curitiba / Sai Foz)",
+          "cost": 10038,
+          "flights": 7920,
+          "car": 2118,
+          "dropoff": 813,
+          "flightDetails": {
+            "outbound": {
+              "flightNumber": "GOL G3 1622 / G3 1280",
+              "airline": "GOL Linhas Aéreas",
+              "bookingUrl": "https://www.voegol.com.br",
+              "departureTime": "06:10",
+              "arrivalTime": "11:45",
+              "totalDuration": "5h35",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Guarulhos - GRU)",
+              "layoverDuration": "1h25",
+              "aircraft": "Boeing 737-800"
+            },
+            "inbound": {
+              "flightNumber": "LATAM LA 3845 / LA 3413",
+              "airline": "LATAM Airlines",
+              "bookingUrl": "https://www.latamairlines.com/br/pt",
+              "departureTime": "14:15",
+              "arrivalTime": "20:10",
+              "totalDuration": "5h55",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Guarulhos - GRU)",
+              "layoverDuration": "1h20",
+              "aircraft": "Airbus A320"
+            }
+          }
         }
       }
     },
@@ -1668,13 +3642,107 @@
             }
           }
         },
+        "D": {
+          "type": "D",
+          "name": "Hub Foz (REC ⇄ Foz Voo)",
+          "cost": 9365,
+          "flights": 7920,
+          "car": 1305,
+          "dropoff": 0,
+          "flightDetails": {
+            "outbound": {
+              "flightNumber": "LATAM LA 3412 / LA 3844",
+              "airline": "LATAM Airlines",
+              "bookingUrl": "https://www.latamairlines.com/br/pt",
+              "departureTime": "05:45",
+              "arrivalTime": "11:50",
+              "totalDuration": "6h05",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Congonhas - CGH)",
+              "layoverDuration": "1h35",
+              "aircraft": "Airbus A320"
+            },
+            "inbound": {
+              "flightNumber": "LATAM LA 3845 / LA 3413",
+              "airline": "LATAM Airlines",
+              "bookingUrl": "https://www.latamairlines.com/br/pt",
+              "departureTime": "14:15",
+              "arrivalTime": "20:10",
+              "totalDuration": "5h55",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Guarulhos - GRU)",
+              "layoverDuration": "1h20",
+              "aircraft": "Airbus A320"
+            }
+          }
+        },
         "A": {
           "type": "A",
           "name": "Open-Jaw A (Entra Foz / Sai Curitiba)",
           "cost": 10038,
           "flights": 7920,
           "car": 2118,
-          "dropoff": 813
+          "dropoff": 813,
+          "flightDetails": {
+            "outbound": {
+              "flightNumber": "LATAM LA 3412 / LA 3844",
+              "airline": "LATAM Airlines",
+              "bookingUrl": "https://www.latamairlines.com/br/pt",
+              "departureTime": "05:45",
+              "arrivalTime": "11:50",
+              "totalDuration": "6h05",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Congonhas - CGH)",
+              "layoverDuration": "1h35",
+              "aircraft": "Airbus A320"
+            },
+            "inbound": {
+              "flightNumber": "GOL G3 1281 / G3 1623",
+              "airline": "GOL Linhas Aéreas",
+              "bookingUrl": "https://www.voegol.com.br",
+              "departureTime": "13:30",
+              "arrivalTime": "18:55",
+              "totalDuration": "5h25",
+              "stopsCount": 1,
+              "connectionCity": "Campinas (Viracopos - VCP)",
+              "layoverDuration": "1h15",
+              "aircraft": "Boeing 737-800"
+            }
+          }
+        },
+        "B": {
+          "type": "B",
+          "name": "Open-Jaw B (Entra Curitiba / Sai Foz)",
+          "cost": 10038,
+          "flights": 7920,
+          "car": 2118,
+          "dropoff": 813,
+          "flightDetails": {
+            "outbound": {
+              "flightNumber": "GOL G3 1622 / G3 1280",
+              "airline": "GOL Linhas Aéreas",
+              "bookingUrl": "https://www.voegol.com.br",
+              "departureTime": "06:10",
+              "arrivalTime": "11:45",
+              "totalDuration": "5h35",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Guarulhos - GRU)",
+              "layoverDuration": "1h25",
+              "aircraft": "Boeing 737-800"
+            },
+            "inbound": {
+              "flightNumber": "LATAM LA 3845 / LA 3413",
+              "airline": "LATAM Airlines",
+              "bookingUrl": "https://www.latamairlines.com/br/pt",
+              "departureTime": "14:15",
+              "arrivalTime": "20:10",
+              "totalDuration": "5h55",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Guarulhos - GRU)",
+              "layoverDuration": "1h20",
+              "aircraft": "Airbus A320"
+            }
+          }
         }
       }
     },
@@ -1733,13 +3801,107 @@
             }
           }
         },
+        "D": {
+          "type": "D",
+          "name": "Hub Foz (REC ⇄ Foz Voo)",
+          "cost": 9460,
+          "flights": 8160,
+          "car": 1160,
+          "dropoff": 0,
+          "flightDetails": {
+            "outbound": {
+              "flightNumber": "LATAM LA 3412 / LA 3844",
+              "airline": "LATAM Airlines",
+              "bookingUrl": "https://www.latamairlines.com/br/pt",
+              "departureTime": "05:45",
+              "arrivalTime": "11:50",
+              "totalDuration": "6h05",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Congonhas - CGH)",
+              "layoverDuration": "1h35",
+              "aircraft": "Airbus A320"
+            },
+            "inbound": {
+              "flightNumber": "LATAM LA 3845 / LA 3413",
+              "airline": "LATAM Airlines",
+              "bookingUrl": "https://www.latamairlines.com/br/pt",
+              "departureTime": "14:15",
+              "arrivalTime": "20:10",
+              "totalDuration": "5h55",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Guarulhos - GRU)",
+              "layoverDuration": "1h20",
+              "aircraft": "Airbus A320"
+            }
+          }
+        },
         "A": {
           "type": "A",
           "name": "Open-Jaw A (Entra Foz / Sai Curitiba)",
           "cost": 10133,
           "flights": 8160,
           "car": 1973,
-          "dropoff": 813
+          "dropoff": 813,
+          "flightDetails": {
+            "outbound": {
+              "flightNumber": "LATAM LA 3412 / LA 3844",
+              "airline": "LATAM Airlines",
+              "bookingUrl": "https://www.latamairlines.com/br/pt",
+              "departureTime": "05:45",
+              "arrivalTime": "11:50",
+              "totalDuration": "6h05",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Congonhas - CGH)",
+              "layoverDuration": "1h35",
+              "aircraft": "Airbus A320"
+            },
+            "inbound": {
+              "flightNumber": "GOL G3 1281 / G3 1623",
+              "airline": "GOL Linhas Aéreas",
+              "bookingUrl": "https://www.voegol.com.br",
+              "departureTime": "13:30",
+              "arrivalTime": "18:55",
+              "totalDuration": "5h25",
+              "stopsCount": 1,
+              "connectionCity": "Campinas (Viracopos - VCP)",
+              "layoverDuration": "1h15",
+              "aircraft": "Boeing 737-800"
+            }
+          }
+        },
+        "B": {
+          "type": "B",
+          "name": "Open-Jaw B (Entra Curitiba / Sai Foz)",
+          "cost": 10133,
+          "flights": 8160,
+          "car": 1973,
+          "dropoff": 813,
+          "flightDetails": {
+            "outbound": {
+              "flightNumber": "GOL G3 1622 / G3 1280",
+              "airline": "GOL Linhas Aéreas",
+              "bookingUrl": "https://www.voegol.com.br",
+              "departureTime": "06:10",
+              "arrivalTime": "11:45",
+              "totalDuration": "5h35",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Guarulhos - GRU)",
+              "layoverDuration": "1h25",
+              "aircraft": "Boeing 737-800"
+            },
+            "inbound": {
+              "flightNumber": "LATAM LA 3845 / LA 3413",
+              "airline": "LATAM Airlines",
+              "bookingUrl": "https://www.latamairlines.com/br/pt",
+              "departureTime": "14:15",
+              "arrivalTime": "20:10",
+              "totalDuration": "5h55",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Guarulhos - GRU)",
+              "layoverDuration": "1h20",
+              "aircraft": "Airbus A320"
+            }
+          }
         }
       }
     },
@@ -1798,13 +3960,107 @@
             }
           }
         },
+        "D": {
+          "type": "D",
+          "name": "Hub Foz (REC ⇄ Foz Voo)",
+          "cost": 9460,
+          "flights": 8160,
+          "car": 1160,
+          "dropoff": 0,
+          "flightDetails": {
+            "outbound": {
+              "flightNumber": "LATAM LA 3412 / LA 3844",
+              "airline": "LATAM Airlines",
+              "bookingUrl": "https://www.latamairlines.com/br/pt",
+              "departureTime": "05:45",
+              "arrivalTime": "11:50",
+              "totalDuration": "6h05",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Congonhas - CGH)",
+              "layoverDuration": "1h35",
+              "aircraft": "Airbus A320"
+            },
+            "inbound": {
+              "flightNumber": "LATAM LA 3845 / LA 3413",
+              "airline": "LATAM Airlines",
+              "bookingUrl": "https://www.latamairlines.com/br/pt",
+              "departureTime": "14:15",
+              "arrivalTime": "20:10",
+              "totalDuration": "5h55",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Guarulhos - GRU)",
+              "layoverDuration": "1h20",
+              "aircraft": "Airbus A320"
+            }
+          }
+        },
         "A": {
           "type": "A",
           "name": "Open-Jaw A (Entra Foz / Sai Curitiba)",
           "cost": 10133,
           "flights": 8160,
           "car": 1973,
-          "dropoff": 813
+          "dropoff": 813,
+          "flightDetails": {
+            "outbound": {
+              "flightNumber": "LATAM LA 3412 / LA 3844",
+              "airline": "LATAM Airlines",
+              "bookingUrl": "https://www.latamairlines.com/br/pt",
+              "departureTime": "05:45",
+              "arrivalTime": "11:50",
+              "totalDuration": "6h05",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Congonhas - CGH)",
+              "layoverDuration": "1h35",
+              "aircraft": "Airbus A320"
+            },
+            "inbound": {
+              "flightNumber": "GOL G3 1281 / G3 1623",
+              "airline": "GOL Linhas Aéreas",
+              "bookingUrl": "https://www.voegol.com.br",
+              "departureTime": "13:30",
+              "arrivalTime": "18:55",
+              "totalDuration": "5h25",
+              "stopsCount": 1,
+              "connectionCity": "Campinas (Viracopos - VCP)",
+              "layoverDuration": "1h15",
+              "aircraft": "Boeing 737-800"
+            }
+          }
+        },
+        "B": {
+          "type": "B",
+          "name": "Open-Jaw B (Entra Curitiba / Sai Foz)",
+          "cost": 10133,
+          "flights": 8160,
+          "car": 1973,
+          "dropoff": 813,
+          "flightDetails": {
+            "outbound": {
+              "flightNumber": "GOL G3 1622 / G3 1280",
+              "airline": "GOL Linhas Aéreas",
+              "bookingUrl": "https://www.voegol.com.br",
+              "departureTime": "06:10",
+              "arrivalTime": "11:45",
+              "totalDuration": "5h35",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Guarulhos - GRU)",
+              "layoverDuration": "1h25",
+              "aircraft": "Boeing 737-800"
+            },
+            "inbound": {
+              "flightNumber": "LATAM LA 3845 / LA 3413",
+              "airline": "LATAM Airlines",
+              "bookingUrl": "https://www.latamairlines.com/br/pt",
+              "departureTime": "14:15",
+              "arrivalTime": "20:10",
+              "totalDuration": "5h55",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Guarulhos - GRU)",
+              "layoverDuration": "1h20",
+              "aircraft": "Airbus A320"
+            }
+          }
         }
       }
     },
@@ -1863,13 +4119,107 @@
             }
           }
         },
+        "D": {
+          "type": "D",
+          "name": "Hub Foz (REC ⇄ Foz Voo)",
+          "cost": 9460,
+          "flights": 8160,
+          "car": 1160,
+          "dropoff": 0,
+          "flightDetails": {
+            "outbound": {
+              "flightNumber": "LATAM LA 3412 / LA 3844",
+              "airline": "LATAM Airlines",
+              "bookingUrl": "https://www.latamairlines.com/br/pt",
+              "departureTime": "05:45",
+              "arrivalTime": "11:50",
+              "totalDuration": "6h05",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Congonhas - CGH)",
+              "layoverDuration": "1h35",
+              "aircraft": "Airbus A320"
+            },
+            "inbound": {
+              "flightNumber": "LATAM LA 3845 / LA 3413",
+              "airline": "LATAM Airlines",
+              "bookingUrl": "https://www.latamairlines.com/br/pt",
+              "departureTime": "14:15",
+              "arrivalTime": "20:10",
+              "totalDuration": "5h55",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Guarulhos - GRU)",
+              "layoverDuration": "1h20",
+              "aircraft": "Airbus A320"
+            }
+          }
+        },
         "A": {
           "type": "A",
           "name": "Open-Jaw A (Entra Foz / Sai Curitiba)",
           "cost": 10133,
           "flights": 8160,
           "car": 1973,
-          "dropoff": 813
+          "dropoff": 813,
+          "flightDetails": {
+            "outbound": {
+              "flightNumber": "LATAM LA 3412 / LA 3844",
+              "airline": "LATAM Airlines",
+              "bookingUrl": "https://www.latamairlines.com/br/pt",
+              "departureTime": "05:45",
+              "arrivalTime": "11:50",
+              "totalDuration": "6h05",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Congonhas - CGH)",
+              "layoverDuration": "1h35",
+              "aircraft": "Airbus A320"
+            },
+            "inbound": {
+              "flightNumber": "GOL G3 1281 / G3 1623",
+              "airline": "GOL Linhas Aéreas",
+              "bookingUrl": "https://www.voegol.com.br",
+              "departureTime": "13:30",
+              "arrivalTime": "18:55",
+              "totalDuration": "5h25",
+              "stopsCount": 1,
+              "connectionCity": "Campinas (Viracopos - VCP)",
+              "layoverDuration": "1h15",
+              "aircraft": "Boeing 737-800"
+            }
+          }
+        },
+        "B": {
+          "type": "B",
+          "name": "Open-Jaw B (Entra Curitiba / Sai Foz)",
+          "cost": 10133,
+          "flights": 8160,
+          "car": 1973,
+          "dropoff": 813,
+          "flightDetails": {
+            "outbound": {
+              "flightNumber": "GOL G3 1622 / G3 1280",
+              "airline": "GOL Linhas Aéreas",
+              "bookingUrl": "https://www.voegol.com.br",
+              "departureTime": "06:10",
+              "arrivalTime": "11:45",
+              "totalDuration": "5h35",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Guarulhos - GRU)",
+              "layoverDuration": "1h25",
+              "aircraft": "Boeing 737-800"
+            },
+            "inbound": {
+              "flightNumber": "LATAM LA 3845 / LA 3413",
+              "airline": "LATAM Airlines",
+              "bookingUrl": "https://www.latamairlines.com/br/pt",
+              "departureTime": "14:15",
+              "arrivalTime": "20:10",
+              "totalDuration": "5h55",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Guarulhos - GRU)",
+              "layoverDuration": "1h20",
+              "aircraft": "Airbus A320"
+            }
+          }
         }
       }
     },
@@ -1928,13 +4278,107 @@
             }
           }
         },
+        "D": {
+          "type": "D",
+          "name": "Hub Foz (REC ⇄ Foz Voo)",
+          "cost": 9510,
+          "flights": 7920,
+          "car": 1450,
+          "dropoff": 0,
+          "flightDetails": {
+            "outbound": {
+              "flightNumber": "LATAM LA 3412 / LA 3844",
+              "airline": "LATAM Airlines",
+              "bookingUrl": "https://www.latamairlines.com/br/pt",
+              "departureTime": "05:45",
+              "arrivalTime": "11:50",
+              "totalDuration": "6h05",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Congonhas - CGH)",
+              "layoverDuration": "1h35",
+              "aircraft": "Airbus A320"
+            },
+            "inbound": {
+              "flightNumber": "LATAM LA 3845 / LA 3413",
+              "airline": "LATAM Airlines",
+              "bookingUrl": "https://www.latamairlines.com/br/pt",
+              "departureTime": "14:15",
+              "arrivalTime": "20:10",
+              "totalDuration": "5h55",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Guarulhos - GRU)",
+              "layoverDuration": "1h20",
+              "aircraft": "Airbus A320"
+            }
+          }
+        },
         "A": {
           "type": "A",
           "name": "Open-Jaw A (Entra Foz / Sai Curitiba)",
           "cost": 10183,
           "flights": 7920,
           "car": 2263,
-          "dropoff": 813
+          "dropoff": 813,
+          "flightDetails": {
+            "outbound": {
+              "flightNumber": "LATAM LA 3412 / LA 3844",
+              "airline": "LATAM Airlines",
+              "bookingUrl": "https://www.latamairlines.com/br/pt",
+              "departureTime": "05:45",
+              "arrivalTime": "11:50",
+              "totalDuration": "6h05",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Congonhas - CGH)",
+              "layoverDuration": "1h35",
+              "aircraft": "Airbus A320"
+            },
+            "inbound": {
+              "flightNumber": "GOL G3 1281 / G3 1623",
+              "airline": "GOL Linhas Aéreas",
+              "bookingUrl": "https://www.voegol.com.br",
+              "departureTime": "13:30",
+              "arrivalTime": "18:55",
+              "totalDuration": "5h25",
+              "stopsCount": 1,
+              "connectionCity": "Campinas (Viracopos - VCP)",
+              "layoverDuration": "1h15",
+              "aircraft": "Boeing 737-800"
+            }
+          }
+        },
+        "B": {
+          "type": "B",
+          "name": "Open-Jaw B (Entra Curitiba / Sai Foz)",
+          "cost": 10183,
+          "flights": 7920,
+          "car": 2263,
+          "dropoff": 813,
+          "flightDetails": {
+            "outbound": {
+              "flightNumber": "GOL G3 1622 / G3 1280",
+              "airline": "GOL Linhas Aéreas",
+              "bookingUrl": "https://www.voegol.com.br",
+              "departureTime": "06:10",
+              "arrivalTime": "11:45",
+              "totalDuration": "5h35",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Guarulhos - GRU)",
+              "layoverDuration": "1h25",
+              "aircraft": "Boeing 737-800"
+            },
+            "inbound": {
+              "flightNumber": "LATAM LA 3845 / LA 3413",
+              "airline": "LATAM Airlines",
+              "bookingUrl": "https://www.latamairlines.com/br/pt",
+              "departureTime": "14:15",
+              "arrivalTime": "20:10",
+              "totalDuration": "5h55",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Guarulhos - GRU)",
+              "layoverDuration": "1h20",
+              "aircraft": "Airbus A320"
+            }
+          }
         }
       }
     },
@@ -1993,13 +4437,107 @@
             }
           }
         },
+        "D": {
+          "type": "D",
+          "name": "Hub Foz (REC ⇄ Foz Voo)",
+          "cost": 9510,
+          "flights": 7920,
+          "car": 1450,
+          "dropoff": 0,
+          "flightDetails": {
+            "outbound": {
+              "flightNumber": "LATAM LA 3412 / LA 3844",
+              "airline": "LATAM Airlines",
+              "bookingUrl": "https://www.latamairlines.com/br/pt",
+              "departureTime": "05:45",
+              "arrivalTime": "11:50",
+              "totalDuration": "6h05",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Congonhas - CGH)",
+              "layoverDuration": "1h35",
+              "aircraft": "Airbus A320"
+            },
+            "inbound": {
+              "flightNumber": "LATAM LA 3845 / LA 3413",
+              "airline": "LATAM Airlines",
+              "bookingUrl": "https://www.latamairlines.com/br/pt",
+              "departureTime": "14:15",
+              "arrivalTime": "20:10",
+              "totalDuration": "5h55",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Guarulhos - GRU)",
+              "layoverDuration": "1h20",
+              "aircraft": "Airbus A320"
+            }
+          }
+        },
         "A": {
           "type": "A",
           "name": "Open-Jaw A (Entra Foz / Sai Curitiba)",
           "cost": 10183,
           "flights": 7920,
           "car": 2263,
-          "dropoff": 813
+          "dropoff": 813,
+          "flightDetails": {
+            "outbound": {
+              "flightNumber": "LATAM LA 3412 / LA 3844",
+              "airline": "LATAM Airlines",
+              "bookingUrl": "https://www.latamairlines.com/br/pt",
+              "departureTime": "05:45",
+              "arrivalTime": "11:50",
+              "totalDuration": "6h05",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Congonhas - CGH)",
+              "layoverDuration": "1h35",
+              "aircraft": "Airbus A320"
+            },
+            "inbound": {
+              "flightNumber": "GOL G3 1281 / G3 1623",
+              "airline": "GOL Linhas Aéreas",
+              "bookingUrl": "https://www.voegol.com.br",
+              "departureTime": "13:30",
+              "arrivalTime": "18:55",
+              "totalDuration": "5h25",
+              "stopsCount": 1,
+              "connectionCity": "Campinas (Viracopos - VCP)",
+              "layoverDuration": "1h15",
+              "aircraft": "Boeing 737-800"
+            }
+          }
+        },
+        "B": {
+          "type": "B",
+          "name": "Open-Jaw B (Entra Curitiba / Sai Foz)",
+          "cost": 10183,
+          "flights": 7920,
+          "car": 2263,
+          "dropoff": 813,
+          "flightDetails": {
+            "outbound": {
+              "flightNumber": "GOL G3 1622 / G3 1280",
+              "airline": "GOL Linhas Aéreas",
+              "bookingUrl": "https://www.voegol.com.br",
+              "departureTime": "06:10",
+              "arrivalTime": "11:45",
+              "totalDuration": "5h35",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Guarulhos - GRU)",
+              "layoverDuration": "1h25",
+              "aircraft": "Boeing 737-800"
+            },
+            "inbound": {
+              "flightNumber": "LATAM LA 3845 / LA 3413",
+              "airline": "LATAM Airlines",
+              "bookingUrl": "https://www.latamairlines.com/br/pt",
+              "departureTime": "14:15",
+              "arrivalTime": "20:10",
+              "totalDuration": "5h55",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Guarulhos - GRU)",
+              "layoverDuration": "1h20",
+              "aircraft": "Airbus A320"
+            }
+          }
         }
       }
     },
@@ -2058,13 +4596,107 @@
             }
           }
         },
+        "D": {
+          "type": "D",
+          "name": "Hub Foz (REC ⇄ Foz Voo)",
+          "cost": 9605,
+          "flights": 8160,
+          "car": 1305,
+          "dropoff": 0,
+          "flightDetails": {
+            "outbound": {
+              "flightNumber": "LATAM LA 3412 / LA 3844",
+              "airline": "LATAM Airlines",
+              "bookingUrl": "https://www.latamairlines.com/br/pt",
+              "departureTime": "05:45",
+              "arrivalTime": "11:50",
+              "totalDuration": "6h05",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Congonhas - CGH)",
+              "layoverDuration": "1h35",
+              "aircraft": "Airbus A320"
+            },
+            "inbound": {
+              "flightNumber": "LATAM LA 3845 / LA 3413",
+              "airline": "LATAM Airlines",
+              "bookingUrl": "https://www.latamairlines.com/br/pt",
+              "departureTime": "14:15",
+              "arrivalTime": "20:10",
+              "totalDuration": "5h55",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Guarulhos - GRU)",
+              "layoverDuration": "1h20",
+              "aircraft": "Airbus A320"
+            }
+          }
+        },
         "A": {
           "type": "A",
           "name": "Open-Jaw A (Entra Foz / Sai Curitiba)",
           "cost": 10278,
           "flights": 8160,
           "car": 2118,
-          "dropoff": 813
+          "dropoff": 813,
+          "flightDetails": {
+            "outbound": {
+              "flightNumber": "LATAM LA 3412 / LA 3844",
+              "airline": "LATAM Airlines",
+              "bookingUrl": "https://www.latamairlines.com/br/pt",
+              "departureTime": "05:45",
+              "arrivalTime": "11:50",
+              "totalDuration": "6h05",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Congonhas - CGH)",
+              "layoverDuration": "1h35",
+              "aircraft": "Airbus A320"
+            },
+            "inbound": {
+              "flightNumber": "GOL G3 1281 / G3 1623",
+              "airline": "GOL Linhas Aéreas",
+              "bookingUrl": "https://www.voegol.com.br",
+              "departureTime": "13:30",
+              "arrivalTime": "18:55",
+              "totalDuration": "5h25",
+              "stopsCount": 1,
+              "connectionCity": "Campinas (Viracopos - VCP)",
+              "layoverDuration": "1h15",
+              "aircraft": "Boeing 737-800"
+            }
+          }
+        },
+        "B": {
+          "type": "B",
+          "name": "Open-Jaw B (Entra Curitiba / Sai Foz)",
+          "cost": 10278,
+          "flights": 8160,
+          "car": 2118,
+          "dropoff": 813,
+          "flightDetails": {
+            "outbound": {
+              "flightNumber": "GOL G3 1622 / G3 1280",
+              "airline": "GOL Linhas Aéreas",
+              "bookingUrl": "https://www.voegol.com.br",
+              "departureTime": "06:10",
+              "arrivalTime": "11:45",
+              "totalDuration": "5h35",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Guarulhos - GRU)",
+              "layoverDuration": "1h25",
+              "aircraft": "Boeing 737-800"
+            },
+            "inbound": {
+              "flightNumber": "LATAM LA 3845 / LA 3413",
+              "airline": "LATAM Airlines",
+              "bookingUrl": "https://www.latamairlines.com/br/pt",
+              "departureTime": "14:15",
+              "arrivalTime": "20:10",
+              "totalDuration": "5h55",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Guarulhos - GRU)",
+              "layoverDuration": "1h20",
+              "aircraft": "Airbus A320"
+            }
+          }
         }
       }
     },
@@ -2123,13 +4755,107 @@
             }
           }
         },
+        "D": {
+          "type": "D",
+          "name": "Hub Foz (REC ⇄ Foz Voo)",
+          "cost": 9605,
+          "flights": 8160,
+          "car": 1305,
+          "dropoff": 0,
+          "flightDetails": {
+            "outbound": {
+              "flightNumber": "LATAM LA 3412 / LA 3844",
+              "airline": "LATAM Airlines",
+              "bookingUrl": "https://www.latamairlines.com/br/pt",
+              "departureTime": "05:45",
+              "arrivalTime": "11:50",
+              "totalDuration": "6h05",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Congonhas - CGH)",
+              "layoverDuration": "1h35",
+              "aircraft": "Airbus A320"
+            },
+            "inbound": {
+              "flightNumber": "LATAM LA 3845 / LA 3413",
+              "airline": "LATAM Airlines",
+              "bookingUrl": "https://www.latamairlines.com/br/pt",
+              "departureTime": "14:15",
+              "arrivalTime": "20:10",
+              "totalDuration": "5h55",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Guarulhos - GRU)",
+              "layoverDuration": "1h20",
+              "aircraft": "Airbus A320"
+            }
+          }
+        },
         "A": {
           "type": "A",
           "name": "Open-Jaw A (Entra Foz / Sai Curitiba)",
           "cost": 10278,
           "flights": 8160,
           "car": 2118,
-          "dropoff": 813
+          "dropoff": 813,
+          "flightDetails": {
+            "outbound": {
+              "flightNumber": "LATAM LA 3412 / LA 3844",
+              "airline": "LATAM Airlines",
+              "bookingUrl": "https://www.latamairlines.com/br/pt",
+              "departureTime": "05:45",
+              "arrivalTime": "11:50",
+              "totalDuration": "6h05",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Congonhas - CGH)",
+              "layoverDuration": "1h35",
+              "aircraft": "Airbus A320"
+            },
+            "inbound": {
+              "flightNumber": "GOL G3 1281 / G3 1623",
+              "airline": "GOL Linhas Aéreas",
+              "bookingUrl": "https://www.voegol.com.br",
+              "departureTime": "13:30",
+              "arrivalTime": "18:55",
+              "totalDuration": "5h25",
+              "stopsCount": 1,
+              "connectionCity": "Campinas (Viracopos - VCP)",
+              "layoverDuration": "1h15",
+              "aircraft": "Boeing 737-800"
+            }
+          }
+        },
+        "B": {
+          "type": "B",
+          "name": "Open-Jaw B (Entra Curitiba / Sai Foz)",
+          "cost": 10278,
+          "flights": 8160,
+          "car": 2118,
+          "dropoff": 813,
+          "flightDetails": {
+            "outbound": {
+              "flightNumber": "GOL G3 1622 / G3 1280",
+              "airline": "GOL Linhas Aéreas",
+              "bookingUrl": "https://www.voegol.com.br",
+              "departureTime": "06:10",
+              "arrivalTime": "11:45",
+              "totalDuration": "5h35",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Guarulhos - GRU)",
+              "layoverDuration": "1h25",
+              "aircraft": "Boeing 737-800"
+            },
+            "inbound": {
+              "flightNumber": "LATAM LA 3845 / LA 3413",
+              "airline": "LATAM Airlines",
+              "bookingUrl": "https://www.latamairlines.com/br/pt",
+              "departureTime": "14:15",
+              "arrivalTime": "20:10",
+              "totalDuration": "5h55",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Guarulhos - GRU)",
+              "layoverDuration": "1h20",
+              "aircraft": "Airbus A320"
+            }
+          }
         }
       }
     },
@@ -2188,13 +4914,107 @@
             }
           }
         },
+        "D": {
+          "type": "D",
+          "name": "Hub Foz (REC ⇄ Foz Voo)",
+          "cost": 9700,
+          "flights": 8400,
+          "car": 1160,
+          "dropoff": 0,
+          "flightDetails": {
+            "outbound": {
+              "flightNumber": "LATAM LA 3412 / LA 3844",
+              "airline": "LATAM Airlines",
+              "bookingUrl": "https://www.latamairlines.com/br/pt",
+              "departureTime": "05:45",
+              "arrivalTime": "11:50",
+              "totalDuration": "6h05",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Congonhas - CGH)",
+              "layoverDuration": "1h35",
+              "aircraft": "Airbus A320"
+            },
+            "inbound": {
+              "flightNumber": "LATAM LA 3845 / LA 3413",
+              "airline": "LATAM Airlines",
+              "bookingUrl": "https://www.latamairlines.com/br/pt",
+              "departureTime": "14:15",
+              "arrivalTime": "20:10",
+              "totalDuration": "5h55",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Guarulhos - GRU)",
+              "layoverDuration": "1h20",
+              "aircraft": "Airbus A320"
+            }
+          }
+        },
         "A": {
           "type": "A",
           "name": "Open-Jaw A (Entra Foz / Sai Curitiba)",
           "cost": 10373,
           "flights": 8400,
           "car": 1973,
-          "dropoff": 813
+          "dropoff": 813,
+          "flightDetails": {
+            "outbound": {
+              "flightNumber": "LATAM LA 3412 / LA 3844",
+              "airline": "LATAM Airlines",
+              "bookingUrl": "https://www.latamairlines.com/br/pt",
+              "departureTime": "05:45",
+              "arrivalTime": "11:50",
+              "totalDuration": "6h05",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Congonhas - CGH)",
+              "layoverDuration": "1h35",
+              "aircraft": "Airbus A320"
+            },
+            "inbound": {
+              "flightNumber": "GOL G3 1281 / G3 1623",
+              "airline": "GOL Linhas Aéreas",
+              "bookingUrl": "https://www.voegol.com.br",
+              "departureTime": "13:30",
+              "arrivalTime": "18:55",
+              "totalDuration": "5h25",
+              "stopsCount": 1,
+              "connectionCity": "Campinas (Viracopos - VCP)",
+              "layoverDuration": "1h15",
+              "aircraft": "Boeing 737-800"
+            }
+          }
+        },
+        "B": {
+          "type": "B",
+          "name": "Open-Jaw B (Entra Curitiba / Sai Foz)",
+          "cost": 10373,
+          "flights": 8400,
+          "car": 1973,
+          "dropoff": 813,
+          "flightDetails": {
+            "outbound": {
+              "flightNumber": "GOL G3 1622 / G3 1280",
+              "airline": "GOL Linhas Aéreas",
+              "bookingUrl": "https://www.voegol.com.br",
+              "departureTime": "06:10",
+              "arrivalTime": "11:45",
+              "totalDuration": "5h35",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Guarulhos - GRU)",
+              "layoverDuration": "1h25",
+              "aircraft": "Boeing 737-800"
+            },
+            "inbound": {
+              "flightNumber": "LATAM LA 3845 / LA 3413",
+              "airline": "LATAM Airlines",
+              "bookingUrl": "https://www.latamairlines.com/br/pt",
+              "departureTime": "14:15",
+              "arrivalTime": "20:10",
+              "totalDuration": "5h55",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Guarulhos - GRU)",
+              "layoverDuration": "1h20",
+              "aircraft": "Airbus A320"
+            }
+          }
         }
       }
     },
@@ -2253,13 +5073,107 @@
             }
           }
         },
+        "D": {
+          "type": "D",
+          "name": "Hub Foz (REC ⇄ Foz Voo)",
+          "cost": 9700,
+          "flights": 8400,
+          "car": 1160,
+          "dropoff": 0,
+          "flightDetails": {
+            "outbound": {
+              "flightNumber": "LATAM LA 3412 / LA 3844",
+              "airline": "LATAM Airlines",
+              "bookingUrl": "https://www.latamairlines.com/br/pt",
+              "departureTime": "05:45",
+              "arrivalTime": "11:50",
+              "totalDuration": "6h05",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Congonhas - CGH)",
+              "layoverDuration": "1h35",
+              "aircraft": "Airbus A320"
+            },
+            "inbound": {
+              "flightNumber": "LATAM LA 3845 / LA 3413",
+              "airline": "LATAM Airlines",
+              "bookingUrl": "https://www.latamairlines.com/br/pt",
+              "departureTime": "14:15",
+              "arrivalTime": "20:10",
+              "totalDuration": "5h55",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Guarulhos - GRU)",
+              "layoverDuration": "1h20",
+              "aircraft": "Airbus A320"
+            }
+          }
+        },
         "A": {
           "type": "A",
           "name": "Open-Jaw A (Entra Foz / Sai Curitiba)",
           "cost": 10373,
           "flights": 8400,
           "car": 1973,
-          "dropoff": 813
+          "dropoff": 813,
+          "flightDetails": {
+            "outbound": {
+              "flightNumber": "LATAM LA 3412 / LA 3844",
+              "airline": "LATAM Airlines",
+              "bookingUrl": "https://www.latamairlines.com/br/pt",
+              "departureTime": "05:45",
+              "arrivalTime": "11:50",
+              "totalDuration": "6h05",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Congonhas - CGH)",
+              "layoverDuration": "1h35",
+              "aircraft": "Airbus A320"
+            },
+            "inbound": {
+              "flightNumber": "GOL G3 1281 / G3 1623",
+              "airline": "GOL Linhas Aéreas",
+              "bookingUrl": "https://www.voegol.com.br",
+              "departureTime": "13:30",
+              "arrivalTime": "18:55",
+              "totalDuration": "5h25",
+              "stopsCount": 1,
+              "connectionCity": "Campinas (Viracopos - VCP)",
+              "layoverDuration": "1h15",
+              "aircraft": "Boeing 737-800"
+            }
+          }
+        },
+        "B": {
+          "type": "B",
+          "name": "Open-Jaw B (Entra Curitiba / Sai Foz)",
+          "cost": 10373,
+          "flights": 8400,
+          "car": 1973,
+          "dropoff": 813,
+          "flightDetails": {
+            "outbound": {
+              "flightNumber": "GOL G3 1622 / G3 1280",
+              "airline": "GOL Linhas Aéreas",
+              "bookingUrl": "https://www.voegol.com.br",
+              "departureTime": "06:10",
+              "arrivalTime": "11:45",
+              "totalDuration": "5h35",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Guarulhos - GRU)",
+              "layoverDuration": "1h25",
+              "aircraft": "Boeing 737-800"
+            },
+            "inbound": {
+              "flightNumber": "LATAM LA 3845 / LA 3413",
+              "airline": "LATAM Airlines",
+              "bookingUrl": "https://www.latamairlines.com/br/pt",
+              "departureTime": "14:15",
+              "arrivalTime": "20:10",
+              "totalDuration": "5h55",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Guarulhos - GRU)",
+              "layoverDuration": "1h20",
+              "aircraft": "Airbus A320"
+            }
+          }
         }
       }
     },
@@ -2318,13 +5232,107 @@
             }
           }
         },
+        "D": {
+          "type": "D",
+          "name": "Hub Foz (REC ⇄ Foz Voo)",
+          "cost": 9750,
+          "flights": 8160,
+          "car": 1450,
+          "dropoff": 0,
+          "flightDetails": {
+            "outbound": {
+              "flightNumber": "LATAM LA 3412 / LA 3844",
+              "airline": "LATAM Airlines",
+              "bookingUrl": "https://www.latamairlines.com/br/pt",
+              "departureTime": "05:45",
+              "arrivalTime": "11:50",
+              "totalDuration": "6h05",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Congonhas - CGH)",
+              "layoverDuration": "1h35",
+              "aircraft": "Airbus A320"
+            },
+            "inbound": {
+              "flightNumber": "LATAM LA 3845 / LA 3413",
+              "airline": "LATAM Airlines",
+              "bookingUrl": "https://www.latamairlines.com/br/pt",
+              "departureTime": "14:15",
+              "arrivalTime": "20:10",
+              "totalDuration": "5h55",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Guarulhos - GRU)",
+              "layoverDuration": "1h20",
+              "aircraft": "Airbus A320"
+            }
+          }
+        },
         "A": {
           "type": "A",
           "name": "Open-Jaw A (Entra Foz / Sai Curitiba)",
           "cost": 10423,
           "flights": 8160,
           "car": 2263,
-          "dropoff": 813
+          "dropoff": 813,
+          "flightDetails": {
+            "outbound": {
+              "flightNumber": "LATAM LA 3412 / LA 3844",
+              "airline": "LATAM Airlines",
+              "bookingUrl": "https://www.latamairlines.com/br/pt",
+              "departureTime": "05:45",
+              "arrivalTime": "11:50",
+              "totalDuration": "6h05",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Congonhas - CGH)",
+              "layoverDuration": "1h35",
+              "aircraft": "Airbus A320"
+            },
+            "inbound": {
+              "flightNumber": "GOL G3 1281 / G3 1623",
+              "airline": "GOL Linhas Aéreas",
+              "bookingUrl": "https://www.voegol.com.br",
+              "departureTime": "13:30",
+              "arrivalTime": "18:55",
+              "totalDuration": "5h25",
+              "stopsCount": 1,
+              "connectionCity": "Campinas (Viracopos - VCP)",
+              "layoverDuration": "1h15",
+              "aircraft": "Boeing 737-800"
+            }
+          }
+        },
+        "B": {
+          "type": "B",
+          "name": "Open-Jaw B (Entra Curitiba / Sai Foz)",
+          "cost": 10423,
+          "flights": 8160,
+          "car": 2263,
+          "dropoff": 813,
+          "flightDetails": {
+            "outbound": {
+              "flightNumber": "GOL G3 1622 / G3 1280",
+              "airline": "GOL Linhas Aéreas",
+              "bookingUrl": "https://www.voegol.com.br",
+              "departureTime": "06:10",
+              "arrivalTime": "11:45",
+              "totalDuration": "5h35",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Guarulhos - GRU)",
+              "layoverDuration": "1h25",
+              "aircraft": "Boeing 737-800"
+            },
+            "inbound": {
+              "flightNumber": "LATAM LA 3845 / LA 3413",
+              "airline": "LATAM Airlines",
+              "bookingUrl": "https://www.latamairlines.com/br/pt",
+              "departureTime": "14:15",
+              "arrivalTime": "20:10",
+              "totalDuration": "5h55",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Guarulhos - GRU)",
+              "layoverDuration": "1h20",
+              "aircraft": "Airbus A320"
+            }
+          }
         }
       }
     },
@@ -2383,13 +5391,107 @@
             }
           }
         },
+        "D": {
+          "type": "D",
+          "name": "Hub Foz (REC ⇄ Foz Voo)",
+          "cost": 9750,
+          "flights": 8160,
+          "car": 1450,
+          "dropoff": 0,
+          "flightDetails": {
+            "outbound": {
+              "flightNumber": "LATAM LA 3412 / LA 3844",
+              "airline": "LATAM Airlines",
+              "bookingUrl": "https://www.latamairlines.com/br/pt",
+              "departureTime": "05:45",
+              "arrivalTime": "11:50",
+              "totalDuration": "6h05",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Congonhas - CGH)",
+              "layoverDuration": "1h35",
+              "aircraft": "Airbus A320"
+            },
+            "inbound": {
+              "flightNumber": "LATAM LA 3845 / LA 3413",
+              "airline": "LATAM Airlines",
+              "bookingUrl": "https://www.latamairlines.com/br/pt",
+              "departureTime": "14:15",
+              "arrivalTime": "20:10",
+              "totalDuration": "5h55",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Guarulhos - GRU)",
+              "layoverDuration": "1h20",
+              "aircraft": "Airbus A320"
+            }
+          }
+        },
         "A": {
           "type": "A",
           "name": "Open-Jaw A (Entra Foz / Sai Curitiba)",
           "cost": 10423,
           "flights": 8160,
           "car": 2263,
-          "dropoff": 813
+          "dropoff": 813,
+          "flightDetails": {
+            "outbound": {
+              "flightNumber": "LATAM LA 3412 / LA 3844",
+              "airline": "LATAM Airlines",
+              "bookingUrl": "https://www.latamairlines.com/br/pt",
+              "departureTime": "05:45",
+              "arrivalTime": "11:50",
+              "totalDuration": "6h05",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Congonhas - CGH)",
+              "layoverDuration": "1h35",
+              "aircraft": "Airbus A320"
+            },
+            "inbound": {
+              "flightNumber": "GOL G3 1281 / G3 1623",
+              "airline": "GOL Linhas Aéreas",
+              "bookingUrl": "https://www.voegol.com.br",
+              "departureTime": "13:30",
+              "arrivalTime": "18:55",
+              "totalDuration": "5h25",
+              "stopsCount": 1,
+              "connectionCity": "Campinas (Viracopos - VCP)",
+              "layoverDuration": "1h15",
+              "aircraft": "Boeing 737-800"
+            }
+          }
+        },
+        "B": {
+          "type": "B",
+          "name": "Open-Jaw B (Entra Curitiba / Sai Foz)",
+          "cost": 10423,
+          "flights": 8160,
+          "car": 2263,
+          "dropoff": 813,
+          "flightDetails": {
+            "outbound": {
+              "flightNumber": "GOL G3 1622 / G3 1280",
+              "airline": "GOL Linhas Aéreas",
+              "bookingUrl": "https://www.voegol.com.br",
+              "departureTime": "06:10",
+              "arrivalTime": "11:45",
+              "totalDuration": "5h35",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Guarulhos - GRU)",
+              "layoverDuration": "1h25",
+              "aircraft": "Boeing 737-800"
+            },
+            "inbound": {
+              "flightNumber": "LATAM LA 3845 / LA 3413",
+              "airline": "LATAM Airlines",
+              "bookingUrl": "https://www.latamairlines.com/br/pt",
+              "departureTime": "14:15",
+              "arrivalTime": "20:10",
+              "totalDuration": "5h55",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Guarulhos - GRU)",
+              "layoverDuration": "1h20",
+              "aircraft": "Airbus A320"
+            }
+          }
         }
       }
     },
@@ -2448,13 +5550,107 @@
             }
           }
         },
+        "D": {
+          "type": "D",
+          "name": "Hub Foz (REC ⇄ Foz Voo)",
+          "cost": 9845,
+          "flights": 8400,
+          "car": 1305,
+          "dropoff": 0,
+          "flightDetails": {
+            "outbound": {
+              "flightNumber": "LATAM LA 3412 / LA 3844",
+              "airline": "LATAM Airlines",
+              "bookingUrl": "https://www.latamairlines.com/br/pt",
+              "departureTime": "05:45",
+              "arrivalTime": "11:50",
+              "totalDuration": "6h05",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Congonhas - CGH)",
+              "layoverDuration": "1h35",
+              "aircraft": "Airbus A320"
+            },
+            "inbound": {
+              "flightNumber": "LATAM LA 3845 / LA 3413",
+              "airline": "LATAM Airlines",
+              "bookingUrl": "https://www.latamairlines.com/br/pt",
+              "departureTime": "14:15",
+              "arrivalTime": "20:10",
+              "totalDuration": "5h55",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Guarulhos - GRU)",
+              "layoverDuration": "1h20",
+              "aircraft": "Airbus A320"
+            }
+          }
+        },
         "A": {
           "type": "A",
           "name": "Open-Jaw A (Entra Foz / Sai Curitiba)",
           "cost": 10518,
           "flights": 8400,
           "car": 2118,
-          "dropoff": 813
+          "dropoff": 813,
+          "flightDetails": {
+            "outbound": {
+              "flightNumber": "LATAM LA 3412 / LA 3844",
+              "airline": "LATAM Airlines",
+              "bookingUrl": "https://www.latamairlines.com/br/pt",
+              "departureTime": "05:45",
+              "arrivalTime": "11:50",
+              "totalDuration": "6h05",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Congonhas - CGH)",
+              "layoverDuration": "1h35",
+              "aircraft": "Airbus A320"
+            },
+            "inbound": {
+              "flightNumber": "GOL G3 1281 / G3 1623",
+              "airline": "GOL Linhas Aéreas",
+              "bookingUrl": "https://www.voegol.com.br",
+              "departureTime": "13:30",
+              "arrivalTime": "18:55",
+              "totalDuration": "5h25",
+              "stopsCount": 1,
+              "connectionCity": "Campinas (Viracopos - VCP)",
+              "layoverDuration": "1h15",
+              "aircraft": "Boeing 737-800"
+            }
+          }
+        },
+        "B": {
+          "type": "B",
+          "name": "Open-Jaw B (Entra Curitiba / Sai Foz)",
+          "cost": 10518,
+          "flights": 8400,
+          "car": 2118,
+          "dropoff": 813,
+          "flightDetails": {
+            "outbound": {
+              "flightNumber": "GOL G3 1622 / G3 1280",
+              "airline": "GOL Linhas Aéreas",
+              "bookingUrl": "https://www.voegol.com.br",
+              "departureTime": "06:10",
+              "arrivalTime": "11:45",
+              "totalDuration": "5h35",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Guarulhos - GRU)",
+              "layoverDuration": "1h25",
+              "aircraft": "Boeing 737-800"
+            },
+            "inbound": {
+              "flightNumber": "LATAM LA 3845 / LA 3413",
+              "airline": "LATAM Airlines",
+              "bookingUrl": "https://www.latamairlines.com/br/pt",
+              "departureTime": "14:15",
+              "arrivalTime": "20:10",
+              "totalDuration": "5h55",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Guarulhos - GRU)",
+              "layoverDuration": "1h20",
+              "aircraft": "Airbus A320"
+            }
+          }
         }
       }
     },
@@ -2513,13 +5709,107 @@
             }
           }
         },
+        "D": {
+          "type": "D",
+          "name": "Hub Foz (REC ⇄ Foz Voo)",
+          "cost": 9845,
+          "flights": 8400,
+          "car": 1305,
+          "dropoff": 0,
+          "flightDetails": {
+            "outbound": {
+              "flightNumber": "LATAM LA 3412 / LA 3844",
+              "airline": "LATAM Airlines",
+              "bookingUrl": "https://www.latamairlines.com/br/pt",
+              "departureTime": "05:45",
+              "arrivalTime": "11:50",
+              "totalDuration": "6h05",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Congonhas - CGH)",
+              "layoverDuration": "1h35",
+              "aircraft": "Airbus A320"
+            },
+            "inbound": {
+              "flightNumber": "LATAM LA 3845 / LA 3413",
+              "airline": "LATAM Airlines",
+              "bookingUrl": "https://www.latamairlines.com/br/pt",
+              "departureTime": "14:15",
+              "arrivalTime": "20:10",
+              "totalDuration": "5h55",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Guarulhos - GRU)",
+              "layoverDuration": "1h20",
+              "aircraft": "Airbus A320"
+            }
+          }
+        },
         "A": {
           "type": "A",
           "name": "Open-Jaw A (Entra Foz / Sai Curitiba)",
           "cost": 10518,
           "flights": 8400,
           "car": 2118,
-          "dropoff": 813
+          "dropoff": 813,
+          "flightDetails": {
+            "outbound": {
+              "flightNumber": "LATAM LA 3412 / LA 3844",
+              "airline": "LATAM Airlines",
+              "bookingUrl": "https://www.latamairlines.com/br/pt",
+              "departureTime": "05:45",
+              "arrivalTime": "11:50",
+              "totalDuration": "6h05",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Congonhas - CGH)",
+              "layoverDuration": "1h35",
+              "aircraft": "Airbus A320"
+            },
+            "inbound": {
+              "flightNumber": "GOL G3 1281 / G3 1623",
+              "airline": "GOL Linhas Aéreas",
+              "bookingUrl": "https://www.voegol.com.br",
+              "departureTime": "13:30",
+              "arrivalTime": "18:55",
+              "totalDuration": "5h25",
+              "stopsCount": 1,
+              "connectionCity": "Campinas (Viracopos - VCP)",
+              "layoverDuration": "1h15",
+              "aircraft": "Boeing 737-800"
+            }
+          }
+        },
+        "B": {
+          "type": "B",
+          "name": "Open-Jaw B (Entra Curitiba / Sai Foz)",
+          "cost": 10518,
+          "flights": 8400,
+          "car": 2118,
+          "dropoff": 813,
+          "flightDetails": {
+            "outbound": {
+              "flightNumber": "GOL G3 1622 / G3 1280",
+              "airline": "GOL Linhas Aéreas",
+              "bookingUrl": "https://www.voegol.com.br",
+              "departureTime": "06:10",
+              "arrivalTime": "11:45",
+              "totalDuration": "5h35",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Guarulhos - GRU)",
+              "layoverDuration": "1h25",
+              "aircraft": "Boeing 737-800"
+            },
+            "inbound": {
+              "flightNumber": "LATAM LA 3845 / LA 3413",
+              "airline": "LATAM Airlines",
+              "bookingUrl": "https://www.latamairlines.com/br/pt",
+              "departureTime": "14:15",
+              "arrivalTime": "20:10",
+              "totalDuration": "5h55",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Guarulhos - GRU)",
+              "layoverDuration": "1h20",
+              "aircraft": "Airbus A320"
+            }
+          }
         }
       }
     },
@@ -2578,13 +5868,107 @@
             }
           }
         },
+        "D": {
+          "type": "D",
+          "name": "Hub Foz (REC ⇄ Foz Voo)",
+          "cost": 9940,
+          "flights": 8640,
+          "car": 1160,
+          "dropoff": 0,
+          "flightDetails": {
+            "outbound": {
+              "flightNumber": "LATAM LA 3412 / LA 3844",
+              "airline": "LATAM Airlines",
+              "bookingUrl": "https://www.latamairlines.com/br/pt",
+              "departureTime": "05:45",
+              "arrivalTime": "11:50",
+              "totalDuration": "6h05",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Congonhas - CGH)",
+              "layoverDuration": "1h35",
+              "aircraft": "Airbus A320"
+            },
+            "inbound": {
+              "flightNumber": "LATAM LA 3845 / LA 3413",
+              "airline": "LATAM Airlines",
+              "bookingUrl": "https://www.latamairlines.com/br/pt",
+              "departureTime": "14:15",
+              "arrivalTime": "20:10",
+              "totalDuration": "5h55",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Guarulhos - GRU)",
+              "layoverDuration": "1h20",
+              "aircraft": "Airbus A320"
+            }
+          }
+        },
         "A": {
           "type": "A",
           "name": "Open-Jaw A (Entra Foz / Sai Curitiba)",
           "cost": 10613,
           "flights": 8640,
           "car": 1973,
-          "dropoff": 813
+          "dropoff": 813,
+          "flightDetails": {
+            "outbound": {
+              "flightNumber": "LATAM LA 3412 / LA 3844",
+              "airline": "LATAM Airlines",
+              "bookingUrl": "https://www.latamairlines.com/br/pt",
+              "departureTime": "05:45",
+              "arrivalTime": "11:50",
+              "totalDuration": "6h05",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Congonhas - CGH)",
+              "layoverDuration": "1h35",
+              "aircraft": "Airbus A320"
+            },
+            "inbound": {
+              "flightNumber": "GOL G3 1281 / G3 1623",
+              "airline": "GOL Linhas Aéreas",
+              "bookingUrl": "https://www.voegol.com.br",
+              "departureTime": "13:30",
+              "arrivalTime": "18:55",
+              "totalDuration": "5h25",
+              "stopsCount": 1,
+              "connectionCity": "Campinas (Viracopos - VCP)",
+              "layoverDuration": "1h15",
+              "aircraft": "Boeing 737-800"
+            }
+          }
+        },
+        "B": {
+          "type": "B",
+          "name": "Open-Jaw B (Entra Curitiba / Sai Foz)",
+          "cost": 10613,
+          "flights": 8640,
+          "car": 1973,
+          "dropoff": 813,
+          "flightDetails": {
+            "outbound": {
+              "flightNumber": "GOL G3 1622 / G3 1280",
+              "airline": "GOL Linhas Aéreas",
+              "bookingUrl": "https://www.voegol.com.br",
+              "departureTime": "06:10",
+              "arrivalTime": "11:45",
+              "totalDuration": "5h35",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Guarulhos - GRU)",
+              "layoverDuration": "1h25",
+              "aircraft": "Boeing 737-800"
+            },
+            "inbound": {
+              "flightNumber": "LATAM LA 3845 / LA 3413",
+              "airline": "LATAM Airlines",
+              "bookingUrl": "https://www.latamairlines.com/br/pt",
+              "departureTime": "14:15",
+              "arrivalTime": "20:10",
+              "totalDuration": "5h55",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Guarulhos - GRU)",
+              "layoverDuration": "1h20",
+              "aircraft": "Airbus A320"
+            }
+          }
         }
       }
     },
@@ -2643,13 +6027,107 @@
             }
           }
         },
+        "D": {
+          "type": "D",
+          "name": "Hub Foz (REC ⇄ Foz Voo)",
+          "cost": 9940,
+          "flights": 8640,
+          "car": 1160,
+          "dropoff": 0,
+          "flightDetails": {
+            "outbound": {
+              "flightNumber": "LATAM LA 3412 / LA 3844",
+              "airline": "LATAM Airlines",
+              "bookingUrl": "https://www.latamairlines.com/br/pt",
+              "departureTime": "05:45",
+              "arrivalTime": "11:50",
+              "totalDuration": "6h05",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Congonhas - CGH)",
+              "layoverDuration": "1h35",
+              "aircraft": "Airbus A320"
+            },
+            "inbound": {
+              "flightNumber": "LATAM LA 3845 / LA 3413",
+              "airline": "LATAM Airlines",
+              "bookingUrl": "https://www.latamairlines.com/br/pt",
+              "departureTime": "14:15",
+              "arrivalTime": "20:10",
+              "totalDuration": "5h55",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Guarulhos - GRU)",
+              "layoverDuration": "1h20",
+              "aircraft": "Airbus A320"
+            }
+          }
+        },
         "A": {
           "type": "A",
           "name": "Open-Jaw A (Entra Foz / Sai Curitiba)",
           "cost": 10613,
           "flights": 8640,
           "car": 1973,
-          "dropoff": 813
+          "dropoff": 813,
+          "flightDetails": {
+            "outbound": {
+              "flightNumber": "LATAM LA 3412 / LA 3844",
+              "airline": "LATAM Airlines",
+              "bookingUrl": "https://www.latamairlines.com/br/pt",
+              "departureTime": "05:45",
+              "arrivalTime": "11:50",
+              "totalDuration": "6h05",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Congonhas - CGH)",
+              "layoverDuration": "1h35",
+              "aircraft": "Airbus A320"
+            },
+            "inbound": {
+              "flightNumber": "GOL G3 1281 / G3 1623",
+              "airline": "GOL Linhas Aéreas",
+              "bookingUrl": "https://www.voegol.com.br",
+              "departureTime": "13:30",
+              "arrivalTime": "18:55",
+              "totalDuration": "5h25",
+              "stopsCount": 1,
+              "connectionCity": "Campinas (Viracopos - VCP)",
+              "layoverDuration": "1h15",
+              "aircraft": "Boeing 737-800"
+            }
+          }
+        },
+        "B": {
+          "type": "B",
+          "name": "Open-Jaw B (Entra Curitiba / Sai Foz)",
+          "cost": 10613,
+          "flights": 8640,
+          "car": 1973,
+          "dropoff": 813,
+          "flightDetails": {
+            "outbound": {
+              "flightNumber": "GOL G3 1622 / G3 1280",
+              "airline": "GOL Linhas Aéreas",
+              "bookingUrl": "https://www.voegol.com.br",
+              "departureTime": "06:10",
+              "arrivalTime": "11:45",
+              "totalDuration": "5h35",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Guarulhos - GRU)",
+              "layoverDuration": "1h25",
+              "aircraft": "Boeing 737-800"
+            },
+            "inbound": {
+              "flightNumber": "LATAM LA 3845 / LA 3413",
+              "airline": "LATAM Airlines",
+              "bookingUrl": "https://www.latamairlines.com/br/pt",
+              "departureTime": "14:15",
+              "arrivalTime": "20:10",
+              "totalDuration": "5h55",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Guarulhos - GRU)",
+              "layoverDuration": "1h20",
+              "aircraft": "Airbus A320"
+            }
+          }
         }
       }
     },
@@ -2708,13 +6186,107 @@
             }
           }
         },
+        "D": {
+          "type": "D",
+          "name": "Hub Foz (REC ⇄ Foz Voo)",
+          "cost": 9990,
+          "flights": 8400,
+          "car": 1450,
+          "dropoff": 0,
+          "flightDetails": {
+            "outbound": {
+              "flightNumber": "LATAM LA 3412 / LA 3844",
+              "airline": "LATAM Airlines",
+              "bookingUrl": "https://www.latamairlines.com/br/pt",
+              "departureTime": "05:45",
+              "arrivalTime": "11:50",
+              "totalDuration": "6h05",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Congonhas - CGH)",
+              "layoverDuration": "1h35",
+              "aircraft": "Airbus A320"
+            },
+            "inbound": {
+              "flightNumber": "LATAM LA 3845 / LA 3413",
+              "airline": "LATAM Airlines",
+              "bookingUrl": "https://www.latamairlines.com/br/pt",
+              "departureTime": "14:15",
+              "arrivalTime": "20:10",
+              "totalDuration": "5h55",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Guarulhos - GRU)",
+              "layoverDuration": "1h20",
+              "aircraft": "Airbus A320"
+            }
+          }
+        },
         "A": {
           "type": "A",
           "name": "Open-Jaw A (Entra Foz / Sai Curitiba)",
           "cost": 10663,
           "flights": 8400,
           "car": 2263,
-          "dropoff": 813
+          "dropoff": 813,
+          "flightDetails": {
+            "outbound": {
+              "flightNumber": "LATAM LA 3412 / LA 3844",
+              "airline": "LATAM Airlines",
+              "bookingUrl": "https://www.latamairlines.com/br/pt",
+              "departureTime": "05:45",
+              "arrivalTime": "11:50",
+              "totalDuration": "6h05",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Congonhas - CGH)",
+              "layoverDuration": "1h35",
+              "aircraft": "Airbus A320"
+            },
+            "inbound": {
+              "flightNumber": "GOL G3 1281 / G3 1623",
+              "airline": "GOL Linhas Aéreas",
+              "bookingUrl": "https://www.voegol.com.br",
+              "departureTime": "13:30",
+              "arrivalTime": "18:55",
+              "totalDuration": "5h25",
+              "stopsCount": 1,
+              "connectionCity": "Campinas (Viracopos - VCP)",
+              "layoverDuration": "1h15",
+              "aircraft": "Boeing 737-800"
+            }
+          }
+        },
+        "B": {
+          "type": "B",
+          "name": "Open-Jaw B (Entra Curitiba / Sai Foz)",
+          "cost": 10663,
+          "flights": 8400,
+          "car": 2263,
+          "dropoff": 813,
+          "flightDetails": {
+            "outbound": {
+              "flightNumber": "GOL G3 1622 / G3 1280",
+              "airline": "GOL Linhas Aéreas",
+              "bookingUrl": "https://www.voegol.com.br",
+              "departureTime": "06:10",
+              "arrivalTime": "11:45",
+              "totalDuration": "5h35",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Guarulhos - GRU)",
+              "layoverDuration": "1h25",
+              "aircraft": "Boeing 737-800"
+            },
+            "inbound": {
+              "flightNumber": "LATAM LA 3845 / LA 3413",
+              "airline": "LATAM Airlines",
+              "bookingUrl": "https://www.latamairlines.com/br/pt",
+              "departureTime": "14:15",
+              "arrivalTime": "20:10",
+              "totalDuration": "5h55",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Guarulhos - GRU)",
+              "layoverDuration": "1h20",
+              "aircraft": "Airbus A320"
+            }
+          }
         }
       }
     },
@@ -2773,13 +6345,107 @@
             }
           }
         },
+        "D": {
+          "type": "D",
+          "name": "Hub Foz (REC ⇄ Foz Voo)",
+          "cost": 9990,
+          "flights": 8400,
+          "car": 1450,
+          "dropoff": 0,
+          "flightDetails": {
+            "outbound": {
+              "flightNumber": "LATAM LA 3412 / LA 3844",
+              "airline": "LATAM Airlines",
+              "bookingUrl": "https://www.latamairlines.com/br/pt",
+              "departureTime": "05:45",
+              "arrivalTime": "11:50",
+              "totalDuration": "6h05",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Congonhas - CGH)",
+              "layoverDuration": "1h35",
+              "aircraft": "Airbus A320"
+            },
+            "inbound": {
+              "flightNumber": "LATAM LA 3845 / LA 3413",
+              "airline": "LATAM Airlines",
+              "bookingUrl": "https://www.latamairlines.com/br/pt",
+              "departureTime": "14:15",
+              "arrivalTime": "20:10",
+              "totalDuration": "5h55",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Guarulhos - GRU)",
+              "layoverDuration": "1h20",
+              "aircraft": "Airbus A320"
+            }
+          }
+        },
         "A": {
           "type": "A",
           "name": "Open-Jaw A (Entra Foz / Sai Curitiba)",
           "cost": 10663,
           "flights": 8400,
           "car": 2263,
-          "dropoff": 813
+          "dropoff": 813,
+          "flightDetails": {
+            "outbound": {
+              "flightNumber": "LATAM LA 3412 / LA 3844",
+              "airline": "LATAM Airlines",
+              "bookingUrl": "https://www.latamairlines.com/br/pt",
+              "departureTime": "05:45",
+              "arrivalTime": "11:50",
+              "totalDuration": "6h05",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Congonhas - CGH)",
+              "layoverDuration": "1h35",
+              "aircraft": "Airbus A320"
+            },
+            "inbound": {
+              "flightNumber": "GOL G3 1281 / G3 1623",
+              "airline": "GOL Linhas Aéreas",
+              "bookingUrl": "https://www.voegol.com.br",
+              "departureTime": "13:30",
+              "arrivalTime": "18:55",
+              "totalDuration": "5h25",
+              "stopsCount": 1,
+              "connectionCity": "Campinas (Viracopos - VCP)",
+              "layoverDuration": "1h15",
+              "aircraft": "Boeing 737-800"
+            }
+          }
+        },
+        "B": {
+          "type": "B",
+          "name": "Open-Jaw B (Entra Curitiba / Sai Foz)",
+          "cost": 10663,
+          "flights": 8400,
+          "car": 2263,
+          "dropoff": 813,
+          "flightDetails": {
+            "outbound": {
+              "flightNumber": "GOL G3 1622 / G3 1280",
+              "airline": "GOL Linhas Aéreas",
+              "bookingUrl": "https://www.voegol.com.br",
+              "departureTime": "06:10",
+              "arrivalTime": "11:45",
+              "totalDuration": "5h35",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Guarulhos - GRU)",
+              "layoverDuration": "1h25",
+              "aircraft": "Boeing 737-800"
+            },
+            "inbound": {
+              "flightNumber": "LATAM LA 3845 / LA 3413",
+              "airline": "LATAM Airlines",
+              "bookingUrl": "https://www.latamairlines.com/br/pt",
+              "departureTime": "14:15",
+              "arrivalTime": "20:10",
+              "totalDuration": "5h55",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Guarulhos - GRU)",
+              "layoverDuration": "1h20",
+              "aircraft": "Airbus A320"
+            }
+          }
         }
       }
     },
@@ -2838,13 +6504,107 @@
             }
           }
         },
+        "D": {
+          "type": "D",
+          "name": "Hub Foz (REC ⇄ Foz Voo)",
+          "cost": 10085,
+          "flights": 8640,
+          "car": 1305,
+          "dropoff": 0,
+          "flightDetails": {
+            "outbound": {
+              "flightNumber": "LATAM LA 3412 / LA 3844",
+              "airline": "LATAM Airlines",
+              "bookingUrl": "https://www.latamairlines.com/br/pt",
+              "departureTime": "05:45",
+              "arrivalTime": "11:50",
+              "totalDuration": "6h05",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Congonhas - CGH)",
+              "layoverDuration": "1h35",
+              "aircraft": "Airbus A320"
+            },
+            "inbound": {
+              "flightNumber": "LATAM LA 3845 / LA 3413",
+              "airline": "LATAM Airlines",
+              "bookingUrl": "https://www.latamairlines.com/br/pt",
+              "departureTime": "14:15",
+              "arrivalTime": "20:10",
+              "totalDuration": "5h55",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Guarulhos - GRU)",
+              "layoverDuration": "1h20",
+              "aircraft": "Airbus A320"
+            }
+          }
+        },
         "A": {
           "type": "A",
           "name": "Open-Jaw A (Entra Foz / Sai Curitiba)",
           "cost": 10758,
           "flights": 8640,
           "car": 2118,
-          "dropoff": 813
+          "dropoff": 813,
+          "flightDetails": {
+            "outbound": {
+              "flightNumber": "LATAM LA 3412 / LA 3844",
+              "airline": "LATAM Airlines",
+              "bookingUrl": "https://www.latamairlines.com/br/pt",
+              "departureTime": "05:45",
+              "arrivalTime": "11:50",
+              "totalDuration": "6h05",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Congonhas - CGH)",
+              "layoverDuration": "1h35",
+              "aircraft": "Airbus A320"
+            },
+            "inbound": {
+              "flightNumber": "GOL G3 1281 / G3 1623",
+              "airline": "GOL Linhas Aéreas",
+              "bookingUrl": "https://www.voegol.com.br",
+              "departureTime": "13:30",
+              "arrivalTime": "18:55",
+              "totalDuration": "5h25",
+              "stopsCount": 1,
+              "connectionCity": "Campinas (Viracopos - VCP)",
+              "layoverDuration": "1h15",
+              "aircraft": "Boeing 737-800"
+            }
+          }
+        },
+        "B": {
+          "type": "B",
+          "name": "Open-Jaw B (Entra Curitiba / Sai Foz)",
+          "cost": 10758,
+          "flights": 8640,
+          "car": 2118,
+          "dropoff": 813,
+          "flightDetails": {
+            "outbound": {
+              "flightNumber": "GOL G3 1622 / G3 1280",
+              "airline": "GOL Linhas Aéreas",
+              "bookingUrl": "https://www.voegol.com.br",
+              "departureTime": "06:10",
+              "arrivalTime": "11:45",
+              "totalDuration": "5h35",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Guarulhos - GRU)",
+              "layoverDuration": "1h25",
+              "aircraft": "Boeing 737-800"
+            },
+            "inbound": {
+              "flightNumber": "LATAM LA 3845 / LA 3413",
+              "airline": "LATAM Airlines",
+              "bookingUrl": "https://www.latamairlines.com/br/pt",
+              "departureTime": "14:15",
+              "arrivalTime": "20:10",
+              "totalDuration": "5h55",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Guarulhos - GRU)",
+              "layoverDuration": "1h20",
+              "aircraft": "Airbus A320"
+            }
+          }
         }
       }
     },
@@ -2903,13 +6663,107 @@
             }
           }
         },
+        "D": {
+          "type": "D",
+          "name": "Hub Foz (REC ⇄ Foz Voo)",
+          "cost": 10085,
+          "flights": 8640,
+          "car": 1305,
+          "dropoff": 0,
+          "flightDetails": {
+            "outbound": {
+              "flightNumber": "LATAM LA 3412 / LA 3844",
+              "airline": "LATAM Airlines",
+              "bookingUrl": "https://www.latamairlines.com/br/pt",
+              "departureTime": "05:45",
+              "arrivalTime": "11:50",
+              "totalDuration": "6h05",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Congonhas - CGH)",
+              "layoverDuration": "1h35",
+              "aircraft": "Airbus A320"
+            },
+            "inbound": {
+              "flightNumber": "LATAM LA 3845 / LA 3413",
+              "airline": "LATAM Airlines",
+              "bookingUrl": "https://www.latamairlines.com/br/pt",
+              "departureTime": "14:15",
+              "arrivalTime": "20:10",
+              "totalDuration": "5h55",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Guarulhos - GRU)",
+              "layoverDuration": "1h20",
+              "aircraft": "Airbus A320"
+            }
+          }
+        },
         "A": {
           "type": "A",
           "name": "Open-Jaw A (Entra Foz / Sai Curitiba)",
           "cost": 10758,
           "flights": 8640,
           "car": 2118,
-          "dropoff": 813
+          "dropoff": 813,
+          "flightDetails": {
+            "outbound": {
+              "flightNumber": "LATAM LA 3412 / LA 3844",
+              "airline": "LATAM Airlines",
+              "bookingUrl": "https://www.latamairlines.com/br/pt",
+              "departureTime": "05:45",
+              "arrivalTime": "11:50",
+              "totalDuration": "6h05",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Congonhas - CGH)",
+              "layoverDuration": "1h35",
+              "aircraft": "Airbus A320"
+            },
+            "inbound": {
+              "flightNumber": "GOL G3 1281 / G3 1623",
+              "airline": "GOL Linhas Aéreas",
+              "bookingUrl": "https://www.voegol.com.br",
+              "departureTime": "13:30",
+              "arrivalTime": "18:55",
+              "totalDuration": "5h25",
+              "stopsCount": 1,
+              "connectionCity": "Campinas (Viracopos - VCP)",
+              "layoverDuration": "1h15",
+              "aircraft": "Boeing 737-800"
+            }
+          }
+        },
+        "B": {
+          "type": "B",
+          "name": "Open-Jaw B (Entra Curitiba / Sai Foz)",
+          "cost": 10758,
+          "flights": 8640,
+          "car": 2118,
+          "dropoff": 813,
+          "flightDetails": {
+            "outbound": {
+              "flightNumber": "GOL G3 1622 / G3 1280",
+              "airline": "GOL Linhas Aéreas",
+              "bookingUrl": "https://www.voegol.com.br",
+              "departureTime": "06:10",
+              "arrivalTime": "11:45",
+              "totalDuration": "5h35",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Guarulhos - GRU)",
+              "layoverDuration": "1h25",
+              "aircraft": "Boeing 737-800"
+            },
+            "inbound": {
+              "flightNumber": "LATAM LA 3845 / LA 3413",
+              "airline": "LATAM Airlines",
+              "bookingUrl": "https://www.latamairlines.com/br/pt",
+              "departureTime": "14:15",
+              "arrivalTime": "20:10",
+              "totalDuration": "5h55",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Guarulhos - GRU)",
+              "layoverDuration": "1h20",
+              "aircraft": "Airbus A320"
+            }
+          }
         }
       }
     },
@@ -2968,13 +6822,107 @@
             }
           }
         },
+        "D": {
+          "type": "D",
+          "name": "Hub Foz (REC ⇄ Foz Voo)",
+          "cost": 10230,
+          "flights": 8640,
+          "car": 1450,
+          "dropoff": 0,
+          "flightDetails": {
+            "outbound": {
+              "flightNumber": "LATAM LA 3412 / LA 3844",
+              "airline": "LATAM Airlines",
+              "bookingUrl": "https://www.latamairlines.com/br/pt",
+              "departureTime": "05:45",
+              "arrivalTime": "11:50",
+              "totalDuration": "6h05",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Congonhas - CGH)",
+              "layoverDuration": "1h35",
+              "aircraft": "Airbus A320"
+            },
+            "inbound": {
+              "flightNumber": "LATAM LA 3845 / LA 3413",
+              "airline": "LATAM Airlines",
+              "bookingUrl": "https://www.latamairlines.com/br/pt",
+              "departureTime": "14:15",
+              "arrivalTime": "20:10",
+              "totalDuration": "5h55",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Guarulhos - GRU)",
+              "layoverDuration": "1h20",
+              "aircraft": "Airbus A320"
+            }
+          }
+        },
         "A": {
           "type": "A",
           "name": "Open-Jaw A (Entra Foz / Sai Curitiba)",
           "cost": 10903,
           "flights": 8640,
           "car": 2263,
-          "dropoff": 813
+          "dropoff": 813,
+          "flightDetails": {
+            "outbound": {
+              "flightNumber": "LATAM LA 3412 / LA 3844",
+              "airline": "LATAM Airlines",
+              "bookingUrl": "https://www.latamairlines.com/br/pt",
+              "departureTime": "05:45",
+              "arrivalTime": "11:50",
+              "totalDuration": "6h05",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Congonhas - CGH)",
+              "layoverDuration": "1h35",
+              "aircraft": "Airbus A320"
+            },
+            "inbound": {
+              "flightNumber": "GOL G3 1281 / G3 1623",
+              "airline": "GOL Linhas Aéreas",
+              "bookingUrl": "https://www.voegol.com.br",
+              "departureTime": "13:30",
+              "arrivalTime": "18:55",
+              "totalDuration": "5h25",
+              "stopsCount": 1,
+              "connectionCity": "Campinas (Viracopos - VCP)",
+              "layoverDuration": "1h15",
+              "aircraft": "Boeing 737-800"
+            }
+          }
+        },
+        "B": {
+          "type": "B",
+          "name": "Open-Jaw B (Entra Curitiba / Sai Foz)",
+          "cost": 10903,
+          "flights": 8640,
+          "car": 2263,
+          "dropoff": 813,
+          "flightDetails": {
+            "outbound": {
+              "flightNumber": "GOL G3 1622 / G3 1280",
+              "airline": "GOL Linhas Aéreas",
+              "bookingUrl": "https://www.voegol.com.br",
+              "departureTime": "06:10",
+              "arrivalTime": "11:45",
+              "totalDuration": "5h35",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Guarulhos - GRU)",
+              "layoverDuration": "1h25",
+              "aircraft": "Boeing 737-800"
+            },
+            "inbound": {
+              "flightNumber": "LATAM LA 3845 / LA 3413",
+              "airline": "LATAM Airlines",
+              "bookingUrl": "https://www.latamairlines.com/br/pt",
+              "departureTime": "14:15",
+              "arrivalTime": "20:10",
+              "totalDuration": "5h55",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Guarulhos - GRU)",
+              "layoverDuration": "1h20",
+              "aircraft": "Airbus A320"
+            }
+          }
         }
       }
     },
@@ -3033,13 +6981,107 @@
             }
           }
         },
+        "D": {
+          "type": "D",
+          "name": "Hub Foz (REC ⇄ Foz Voo)",
+          "cost": 10230,
+          "flights": 8640,
+          "car": 1450,
+          "dropoff": 0,
+          "flightDetails": {
+            "outbound": {
+              "flightNumber": "LATAM LA 3412 / LA 3844",
+              "airline": "LATAM Airlines",
+              "bookingUrl": "https://www.latamairlines.com/br/pt",
+              "departureTime": "05:45",
+              "arrivalTime": "11:50",
+              "totalDuration": "6h05",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Congonhas - CGH)",
+              "layoverDuration": "1h35",
+              "aircraft": "Airbus A320"
+            },
+            "inbound": {
+              "flightNumber": "LATAM LA 3845 / LA 3413",
+              "airline": "LATAM Airlines",
+              "bookingUrl": "https://www.latamairlines.com/br/pt",
+              "departureTime": "14:15",
+              "arrivalTime": "20:10",
+              "totalDuration": "5h55",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Guarulhos - GRU)",
+              "layoverDuration": "1h20",
+              "aircraft": "Airbus A320"
+            }
+          }
+        },
         "A": {
           "type": "A",
           "name": "Open-Jaw A (Entra Foz / Sai Curitiba)",
           "cost": 10903,
           "flights": 8640,
           "car": 2263,
-          "dropoff": 813
+          "dropoff": 813,
+          "flightDetails": {
+            "outbound": {
+              "flightNumber": "LATAM LA 3412 / LA 3844",
+              "airline": "LATAM Airlines",
+              "bookingUrl": "https://www.latamairlines.com/br/pt",
+              "departureTime": "05:45",
+              "arrivalTime": "11:50",
+              "totalDuration": "6h05",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Congonhas - CGH)",
+              "layoverDuration": "1h35",
+              "aircraft": "Airbus A320"
+            },
+            "inbound": {
+              "flightNumber": "GOL G3 1281 / G3 1623",
+              "airline": "GOL Linhas Aéreas",
+              "bookingUrl": "https://www.voegol.com.br",
+              "departureTime": "13:30",
+              "arrivalTime": "18:55",
+              "totalDuration": "5h25",
+              "stopsCount": 1,
+              "connectionCity": "Campinas (Viracopos - VCP)",
+              "layoverDuration": "1h15",
+              "aircraft": "Boeing 737-800"
+            }
+          }
+        },
+        "B": {
+          "type": "B",
+          "name": "Open-Jaw B (Entra Curitiba / Sai Foz)",
+          "cost": 10903,
+          "flights": 8640,
+          "car": 2263,
+          "dropoff": 813,
+          "flightDetails": {
+            "outbound": {
+              "flightNumber": "GOL G3 1622 / G3 1280",
+              "airline": "GOL Linhas Aéreas",
+              "bookingUrl": "https://www.voegol.com.br",
+              "departureTime": "06:10",
+              "arrivalTime": "11:45",
+              "totalDuration": "5h35",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Guarulhos - GRU)",
+              "layoverDuration": "1h25",
+              "aircraft": "Boeing 737-800"
+            },
+            "inbound": {
+              "flightNumber": "LATAM LA 3845 / LA 3413",
+              "airline": "LATAM Airlines",
+              "bookingUrl": "https://www.latamairlines.com/br/pt",
+              "departureTime": "14:15",
+              "arrivalTime": "20:10",
+              "totalDuration": "5h55",
+              "stopsCount": 1,
+              "connectionCity": "São Paulo (Guarulhos - GRU)",
+              "layoverDuration": "1h20",
+              "aircraft": "Airbus A320"
+            }
+          }
         }
       }
     }

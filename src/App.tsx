@@ -327,6 +327,87 @@ export default function App() {
           </div>
         </div>
 
+        {/* BARRA GLOBAL FIXA DE FILTROS: DURAÇÃO (8, 9, 10 DIAS) & CARRO (SEMPRE VISÍVEIS) */}
+        <div className="flex flex-wrap items-center justify-between gap-3 bg-white border border-slate-200 p-3.5 rounded-2xl shadow-xs mt-6">
+          <div className="flex flex-wrap items-center gap-2">
+            <span className="text-xs font-bold text-slate-700 flex items-center gap-1.5">
+              <Calendar className="w-4 h-4 text-sky-600" />
+              Filtrar Duração da Viagem:
+            </span>
+            <div className="inline-flex bg-slate-100 p-1 rounded-xl text-xs font-semibold">
+              <button
+                onClick={() => setSelectedDuration('all')}
+                className={`px-3 py-1.5 rounded-lg transition-all ${
+                  selectedDuration === 'all'
+                    ? 'bg-sky-600 text-white font-bold shadow-xs'
+                    : 'text-slate-600 hover:text-slate-900'
+                }`}
+              >
+                Todas as Datas
+              </button>
+              <button
+                onClick={() => setSelectedDuration(8)}
+                className={`px-3 py-1.5 rounded-lg transition-all ${
+                  selectedDuration === 8
+                    ? 'bg-sky-600 text-white font-bold shadow-xs'
+                    : 'text-slate-600 hover:text-slate-900'
+                }`}
+              >
+                8 dias
+              </button>
+              <button
+                onClick={() => setSelectedDuration(9)}
+                className={`px-3 py-1.5 rounded-lg transition-all ${
+                  selectedDuration === 9
+                    ? 'bg-sky-600 text-white font-bold shadow-xs'
+                    : 'text-slate-600 hover:text-slate-900'
+                }`}
+              >
+                9 dias
+              </button>
+              <button
+                onClick={() => setSelectedDuration(10)}
+                className={`px-3 py-1.5 rounded-lg transition-all ${
+                  selectedDuration === 10
+                    ? 'bg-sky-600 text-white font-bold shadow-xs'
+                    : 'text-slate-600 hover:text-slate-900'
+                }`}
+              >
+                10 dias
+              </button>
+            </div>
+          </div>
+
+          <div className="flex flex-wrap items-center gap-2">
+            <span className="text-xs font-bold text-slate-700 flex items-center gap-1.5">
+              <Car className="w-4 h-4 text-emerald-600" />
+              Veículo:
+            </span>
+            <div className="inline-flex bg-slate-100 p-1 rounded-xl text-xs font-semibold">
+              <button
+                onClick={() => setCarType('sedan')}
+                className={`px-3 py-1.5 rounded-lg transition-all ${
+                  carType === 'sedan'
+                    ? 'bg-emerald-600 text-white font-bold shadow-xs'
+                    : 'text-slate-600 hover:text-slate-900'
+                }`}
+              >
+                Sedan (Virtus/Cronos)
+              </button>
+              <button
+                onClick={() => setCarType('suv')}
+                className={`px-3 py-1.5 rounded-lg transition-all ${
+                  carType === 'suv'
+                    ? 'bg-emerald-600 text-white font-bold shadow-xs'
+                    : 'text-slate-600 hover:text-slate-900'
+                }`}
+              >
+                SUV (+R$ 40/dia)
+              </button>
+            </div>
+          </div>
+        </div>
+
         {/* Abas */}
         <div className="flex gap-2 border-b border-slate-200 mt-8 overflow-x-auto pb-1 text-sm font-medium">
           <button
@@ -1131,56 +1212,234 @@ export default function App() {
         )}
 
         {/* COMPARATIVO 4 ROTAS */}
-        {activeTab === 'comparison' && (
-          <div className="space-y-6">
-            <div className="bg-white border border-slate-200 rounded-3xl p-6 md:p-8 shadow-xs">
-              <h3 className="text-xl font-extrabold text-slate-900 mb-2">
-                Comparativo das 4 Opções Logísticas
-              </h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
-                <div className="rounded-2xl p-6 border border-emerald-300 bg-emerald-50/30">
-                  <span className="bg-emerald-600 text-white text-xs font-bold px-3 py-1 rounded-full uppercase">
-                    Taxa Retorno Carro R$ 0
-                  </span>
-                  <div className="text-2xl font-black text-slate-900 mt-2">
-                    R$ {topDeals[0]?.options.C.cost.toLocaleString('pt-BR')}
+        {activeTab === 'comparison' && (() => {
+          const activeDeal = filteredDeals[0] || topDeals[0];
+          const days = activeDeal?.days || 8;
+          const optC = activeDeal?.options?.C;
+          const optD = activeDeal?.options?.D;
+          const optA = activeDeal?.options?.A;
+          const optB = activeDeal?.options?.B;
+
+          return (
+            <div className="space-y-6">
+              <div className="bg-white border border-slate-200 rounded-3xl p-6 md:p-8 shadow-xs">
+                <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
+                  <div>
+                    <span className="text-xs font-bold uppercase tracking-wider text-sky-700 bg-sky-50 px-3 py-1 rounded-full border border-sky-200">
+                      Engenharia Logística Inteligente
+                    </span>
+                    <h3 className="text-2xl font-extrabold text-slate-900 mt-2">
+                      Comparativo das 4 Estratégias de Rota ({days} dias)
+                    </h3>
+                    <p className="text-slate-500 text-xs md:text-sm mt-0.5">
+                      Veja a diferença real de custo entre chegar e sair pela mesma cidade (Hub) versus múltiplos destinos (Open-Jaw).
+                    </p>
                   </div>
-                  <h4 className="text-lg font-bold text-slate-900 mt-2">1. Hub Curitiba (REC ⇄ Curitiba Voo)</h4>
                 </div>
 
-                <div className="rounded-2xl p-6 border border-slate-200 bg-white">
-                  <span className="bg-slate-100 text-slate-700 text-xs font-bold px-3 py-1 rounded-full uppercase border border-slate-200">
-                    Taxa Retorno Carro R$ 0
-                  </span>
-                  <div className="text-2xl font-black text-slate-900 mt-2">
-                    R$ {topDeals[0]?.options.D.cost.toLocaleString('pt-BR')}
-                  </div>
-                  <h4 className="text-lg font-bold text-slate-900 mt-2">2. Hub Foz (REC ⇄ Foz Voo)</h4>
-                </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  {/* ROTA 1: HUB CURITIBA */}
+                  <div className="rounded-3xl p-6 border-2 border-emerald-400 bg-emerald-50/20 shadow-xs relative flex flex-col justify-between">
+                    <div>
+                      <div className="flex items-center justify-between gap-2">
+                        <span className="bg-emerald-600 text-white text-[11px] font-bold px-3 py-1 rounded-full uppercase">
+                          🏆 Campeã em Economia • Taxa Retorno R$ 0
+                        </span>
+                        <span className="text-xs font-bold text-emerald-800 bg-white border border-emerald-200 px-2.5 py-0.5 rounded-lg">
+                          Economia: R$ 813
+                        </span>
+                      </div>
 
-                <div className="rounded-2xl p-6 border border-slate-200 bg-white">
-                  <span className="bg-indigo-50 text-indigo-700 text-xs font-bold px-3 py-1 rounded-full uppercase border border-indigo-200">
-                    Múltiplos Destinos
-                  </span>
-                  <div className="text-2xl font-black text-slate-900 mt-2">
-                    R$ {topDeals[0]?.options.A.cost.toLocaleString('pt-BR')}
-                  </div>
-                  <h4 className="text-lg font-bold text-slate-900 mt-2">3. Open-Jaw A (Entra Foz / Sai Curitiba)</h4>
-                </div>
+                      <h4 className="text-xl font-black text-slate-900 mt-4">
+                        1. Hub Curitiba (REC ⇄ Curitiba Voo | Circuito Carro)
+                      </h4>
 
-                <div className="rounded-2xl p-6 border border-slate-200 bg-white">
-                  <span className="bg-indigo-50 text-indigo-700 text-xs font-bold px-3 py-1 rounded-full uppercase border border-indigo-200">
-                    Múltiplos Destinos
-                  </span>
-                  <div className="text-2xl font-black text-slate-900 mt-2">
-                    R$ {topDeals[0]?.options.B.cost.toLocaleString('pt-BR')}
+                      <div className="mt-3 text-3xl font-black text-slate-900">
+                        R$ {getAdjustedPrice(optC?.cost || 8840, days).toLocaleString('pt-BR')}
+                        <span className="text-xs font-normal text-slate-500 block">Total Real Hoje (4 Pax Voos + {days} diárias Carro)</span>
+                      </div>
+
+                      <div className="mt-4 space-y-2 text-xs text-slate-700 bg-white/80 p-3.5 rounded-2xl border border-emerald-200/80">
+                        <div className="flex justify-between">
+                          <span className="text-slate-500">Voos Ida e Volta (100% Recife):</span>
+                          <strong className="text-slate-900">R$ {(optC?.flights || 7680).toLocaleString('pt-BR')}</strong>
+                        </div>
+                        <div className="flex justify-between">
+                          <span className="text-slate-500">Aluguel do Carro ({days} dias):</span>
+                          <strong className="text-slate-900">R$ {(optC?.car || 1160).toLocaleString('pt-BR')}</strong>
+                        </div>
+                        <div className="flex justify-between">
+                          <span className="text-slate-500">Taxa Devolução Agência:</span>
+                          <strong className="text-emerald-700">R$ 0 (Isento - Devolve em CWB)</strong>
+                        </div>
+                      </div>
+
+                      <p className="mt-3 text-xs text-slate-600 leading-relaxed">
+                        <strong>Como funciona:</strong> Voo direto/conexão rápida Recife ⇄ Curitiba. Pega o carro em Curitiba, desce para Pomerode/Beto Carrero, faz o circuito e devolve no mesmo aeroporto. Sem taxas extras!
+                      </p>
+                    </div>
+
+                    <button
+                      onClick={() => setSelectedDealModal(activeDeal)}
+                      className="mt-5 w-full py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-xl text-xs transition-all shadow-xs"
+                    >
+                      Ver Detalhes do Roteiro Hub Curitiba →
+                    </button>
                   </div>
-                  <h4 className="text-lg font-bold text-slate-900 mt-2">4. Open-Jaw B (Entra Curitiba / Sai Foz)</h4>
+
+                  {/* ROTA 2: HUB FOZ */}
+                  <div className="rounded-3xl p-6 border border-slate-200 bg-white shadow-xs flex flex-col justify-between">
+                    <div>
+                      <div className="flex items-center justify-between gap-2">
+                        <span className="bg-sky-600 text-white text-[11px] font-bold px-3 py-1 rounded-full uppercase">
+                          Hub Foz do Iguaçu • Taxa Retorno R$ 0
+                        </span>
+                        <span className="text-xs font-bold text-sky-800 bg-sky-50 border border-sky-200 px-2.5 py-0.5 rounded-lg">
+                          Cataratas Primeiro
+                        </span>
+                      </div>
+
+                      <h4 className="text-xl font-black text-slate-900 mt-4">
+                        2. Hub Foz (REC ⇄ Foz Voo | Circuito Carro)
+                      </h4>
+
+                      <div className="mt-3 text-3xl font-black text-slate-900">
+                        R$ {getAdjustedPrice(optD?.cost || 8980, days).toLocaleString('pt-BR')}
+                        <span className="text-xs font-normal text-slate-500 block">Total Real Hoje (4 Pax Voos + {days} diárias Carro)</span>
+                      </div>
+
+                      <div className="mt-4 space-y-2 text-xs text-slate-700 bg-slate-50 p-3.5 rounded-2xl border border-slate-200">
+                        <div className="flex justify-between">
+                          <span className="text-slate-500">Voos Ida e Volta (100% Recife):</span>
+                          <strong className="text-slate-900">R$ {(optD?.flights || 7680).toLocaleString('pt-BR')}</strong>
+                        </div>
+                        <div className="flex justify-between">
+                          <span className="text-slate-500">Aluguel do Carro ({days} dias):</span>
+                          <strong className="text-slate-900">R$ {(optD?.car || 1160).toLocaleString('pt-BR')}</strong>
+                        </div>
+                        <div className="flex justify-between">
+                          <span className="text-slate-500">Taxa Devolução Agência:</span>
+                          <strong className="text-emerald-700">R$ 0 (Isento - Devolve em IGU)</strong>
+                        </div>
+                      </div>
+
+                      <p className="mt-3 text-xs text-slate-600 leading-relaxed">
+                        <strong>Como funciona:</strong> Desembarca direto nas Cataratas do Iguaçu. Retira o carro em Foz, viaja pelo circuito e devolve no Aeroporto de Foz.
+                      </p>
+                    </div>
+
+                    <button
+                      onClick={() => setSelectedDealModal(activeDeal)}
+                      className="mt-5 w-full py-2.5 bg-slate-800 hover:bg-slate-900 text-white font-bold rounded-xl text-xs transition-all shadow-xs"
+                    >
+                      Ver Detalhes do Roteiro Hub Foz →
+                    </button>
+                  </div>
+
+                  {/* ROTA 3: OPEN-JAW A */}
+                  <div className="rounded-3xl p-6 border border-slate-200 bg-white shadow-xs flex flex-col justify-between">
+                    <div>
+                      <div className="flex items-center justify-between gap-2">
+                        <span className="bg-amber-100 text-amber-800 text-[11px] font-bold px-3 py-1 rounded-full uppercase border border-amber-300">
+                          Múltiplos Destinos • Paga Taxa Devolução
+                        </span>
+                        <span className="text-xs font-bold text-amber-800 bg-amber-50 px-2.5 py-0.5 rounded-lg border border-amber-200">
+                          Taxa: +R$ 813
+                        </span>
+                      </div>
+
+                      <h4 className="text-xl font-black text-slate-900 mt-4">
+                        3. Open-Jaw A (Entra por Foz / Sai por Curitiba)
+                      </h4>
+
+                      <div className="mt-3 text-3xl font-black text-slate-900">
+                        R$ {getAdjustedPrice(optA?.cost || 9653, days).toLocaleString('pt-BR')}
+                        <span className="text-xs font-normal text-slate-500 block">Total Real Hoje (Voos + Carro + Taxa de Devolução)</span>
+                      </div>
+
+                      <div className="mt-4 space-y-2 text-xs text-slate-700 bg-slate-50 p-3.5 rounded-2xl border border-slate-200">
+                        <div className="flex justify-between">
+                          <span className="text-slate-500">Voos (REC ➔ IGU | CWB ➔ REC):</span>
+                          <strong className="text-slate-900">R$ {(optA?.flights || 7680).toLocaleString('pt-BR')}</strong>
+                        </div>
+                        <div className="flex justify-between">
+                          <span className="text-slate-500">Aluguel do Carro ({days} dias):</span>
+                          <strong className="text-slate-900">R$ {(optA?.car ? optA.car - 813 : 1160).toLocaleString('pt-BR')}</strong>
+                        </div>
+                        <div className="flex justify-between">
+                          <span className="text-slate-500">Taxa Devolução (Foz ➔ Curitiba ~640km):</span>
+                          <strong className="text-rose-600 font-bold">+ R$ 813</strong>
+                        </div>
+                      </div>
+
+                      <p className="mt-3 text-xs text-slate-600 leading-relaxed">
+                        <strong>Vantagem:</strong> Roteiro em linha reta (não precisa dirigir de volta).<br />
+                        <strong>Desvantagem:</strong> A locadora cobra R$ 813 de taxa por entregar o carro em cidade diferente.
+                      </p>
+                    </div>
+
+                    <button
+                      onClick={() => setSelectedDealModal(activeDeal)}
+                      className="mt-5 w-full py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-800 font-bold rounded-xl text-xs transition-all border border-slate-300"
+                    >
+                      Ver Detalhes Open-Jaw A →
+                    </button>
+                  </div>
+
+                  {/* ROTA 4: OPEN-JAW B */}
+                  <div className="rounded-3xl p-6 border border-slate-200 bg-white shadow-xs flex flex-col justify-between">
+                    <div>
+                      <div className="flex items-center justify-between gap-2">
+                        <span className="bg-amber-100 text-amber-800 text-[11px] font-bold px-3 py-1 rounded-full uppercase border border-amber-300">
+                          Múltiplos Destinos • Paga Taxa Devolução
+                        </span>
+                        <span className="text-xs font-bold text-amber-800 bg-amber-50 px-2.5 py-0.5 rounded-lg border border-amber-200">
+                          Taxa: +R$ 813
+                        </span>
+                      </div>
+
+                      <h4 className="text-xl font-black text-slate-900 mt-4">
+                        4. Open-Jaw B (Entra por Curitiba / Sai por Foz)
+                      </h4>
+
+                      <div className="mt-3 text-3xl font-black text-slate-900">
+                        R$ {getAdjustedPrice(optB?.cost || 9653, days).toLocaleString('pt-BR')}
+                        <span className="text-xs font-normal text-slate-500 block">Total Real Hoje (Voos + Carro + Taxa de Devolução)</span>
+                      </div>
+
+                      <div className="mt-4 space-y-2 text-xs text-slate-700 bg-slate-50 p-3.5 rounded-2xl border border-slate-200">
+                        <div className="flex justify-between">
+                          <span className="text-slate-500">Voos (REC ➔ CWB | IGU ➔ REC):</span>
+                          <strong className="text-slate-900">R$ {(optB?.flights || 7680).toLocaleString('pt-BR')}</strong>
+                        </div>
+                        <div className="flex justify-between">
+                          <span className="text-slate-500">Aluguel do Carro ({days} dias):</span>
+                          <strong className="text-slate-900">R$ {(optB?.car ? optB.car - 813 : 1160).toLocaleString('pt-BR')}</strong>
+                        </div>
+                        <div className="flex justify-between">
+                          <span className="text-slate-500">Taxa Devolução (Curitiba ➔ Foz ~640km):</span>
+                          <strong className="text-rose-600 font-bold">+ R$ 813</strong>
+                        </div>
+                      </div>
+
+                      <p className="mt-3 text-xs text-slate-600 leading-relaxed">
+                        <strong>Vantagem:</strong> Começa em Curitiba/Beto Carrero e encerra com chave de ouro em Foz.<br />
+                        <strong>Desvantagem:</strong> Mesma cobrança de taxa de retorno de veículo pela locadora (+R$ 813).
+                      </p>
+                    </div>
+
+                    <button
+                      onClick={() => setSelectedDealModal(activeDeal)}
+                      className="mt-5 w-full py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-800 font-bold rounded-xl text-xs transition-all border border-slate-300"
+                    >
+                      Ver Detalhes Open-Jaw B →
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        )}
+          );
+        })()}
 
         {/* ABA: RESTAURANTES TEMÁTICOS & EM CONTA */}
         {activeTab === 'restaurants' && (
