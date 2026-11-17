@@ -16,6 +16,7 @@ import {
   XCircle, 
   Repeat, 
   Building2, 
+  Utensils,
   Flame, 
   X,
   CreditCard
@@ -71,6 +72,14 @@ interface Deal {
   };
 }
 
+interface RestaurantOption {
+  name: string;
+  category: string;
+  highlight: string;
+  priceRange: string;
+  address: string;
+}
+
 interface HotelOption {
   name: string;
   type: string;
@@ -115,6 +124,11 @@ interface DealsData {
     pomerode: HotelOption[];
     curitiba: HotelOption[];
   };
+  restaurants: {
+    foz: RestaurantOption[];
+    pomerode: RestaurantOption[];
+    curitiba: RestaurantOption[];
+  };
   officialLinks: {
     gol: string;
     latam: string;
@@ -153,7 +167,7 @@ export default function App() {
   const [ntfyStatus, setNtfyStatus] = useState<string>('');
   const [showNtfyModal, setShowNtfyModal] = useState<boolean>(false);
   const [selectedDealModal, setSelectedDealModal] = useState<Deal | null>(null);
-  const [activeTab, setActiveTab] = useState<'overview' | 'flights' | 'hotels' | 'comparison' | 'cars' | 'itinerary'>('overview');
+  const [activeTab, setActiveTab] = useState<'overview' | 'flights' | 'hotels' | 'restaurants' | 'comparison' | 'cars' | 'itinerary'>('overview');
 
   useEffect(() => {
     fetch('/data/deals.json')
@@ -217,7 +231,7 @@ export default function App() {
     );
   }
 
-  const { summary, topDeals, hotels, officialLinks } = data;
+  const { summary, topDeals, hotels, restaurants, officialLinks } = data;
   const filteredDeals = selectedDuration === 'all' 
     ? topDeals 
     : topDeals.filter(d => d.days === selectedDuration);
@@ -329,7 +343,18 @@ export default function App() {
             }`}
           >
             <Building2 className="w-4 h-4" />
-            Hotéis Simples & Econômicos
+            Hotéis Simples
+          </button>
+          <button
+            onClick={() => setActiveTab('restaurants')}
+            className={`flex items-center gap-2 px-4 py-2.5 rounded-xl transition-all ${
+              activeTab === 'restaurants'
+                ? 'bg-sky-600 text-white font-semibold shadow-xs'
+                : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'
+            }`}
+          >
+            <Utensils className="w-4 h-4" />
+            Restaurantes Temáticos & Kids
           </button>
           <button
             onClick={() => setActiveTab('comparison')}
@@ -749,6 +774,108 @@ export default function App() {
           </div>
         )}
 
+        {/* ABA: RESTAURANTES TEMÁTICOS & EM CONTA */}
+        {activeTab === 'restaurants' && (
+          <div className="space-y-6">
+            <div className="bg-white border border-slate-200 rounded-3xl p-6 md:p-8 shadow-xs">
+              <div className="mb-6">
+                <span className="text-xs font-bold uppercase tracking-wider text-amber-700 bg-amber-50 px-3 py-1 rounded-full border border-amber-200">
+                  Gastronomia Lúdica & Econômica
+                </span>
+                <h3 className="text-2xl font-extrabold text-slate-900 mt-2">
+                  Restaurantes Temáticos & Em Conta para a Família
+                </h3>
+                <p className="text-slate-500 text-sm mt-0.5">
+                  Lugares com espaços kids gigantes, dinossauros, shows infantis e opções de refeições fartas com preço justo.
+                </p>
+              </div>
+
+              <div className="space-y-8">
+                {/* CURITIBA */}
+                <div>
+                  <h4 className="text-lg font-bold text-slate-900 flex items-center gap-2 mb-3">
+                    <MapPin className="w-4 h-4 text-emerald-600" />
+                    Curitiba (PR) • Destaques Imperdíveis
+                  </h4>
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    {restaurants.curitiba.map((rest, i) => (
+                      <div key={i} className="border border-slate-200 rounded-2xl p-4.5 bg-slate-50/70 flex flex-col justify-between">
+                        <div>
+                          <div className="flex justify-between items-start">
+                            <span className="text-[11px] font-bold text-emerald-800 bg-emerald-100 px-2 py-0.5 rounded-md">
+                              {rest.category}
+                            </span>
+                          </div>
+                          <h5 className="font-bold text-slate-900 text-base mt-2">{rest.name}</h5>
+                          <p className="text-xs text-slate-600 mt-1.5 leading-relaxed">{rest.highlight}</p>
+                          <span className="text-[11px] text-slate-400 block mt-2">📍 {rest.address}</span>
+                        </div>
+                        <div className="mt-4 pt-3 border-t border-slate-200 text-xs font-bold text-slate-800">
+                          {rest.priceRange}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* FOZ DO IGUAÇU */}
+                <div>
+                  <h4 className="text-lg font-bold text-slate-900 flex items-center gap-2 mb-3">
+                    <MapPin className="w-4 h-4 text-sky-600" />
+                    Foz do Iguaçu (PR) • Temáticos & Buffets Fartos
+                  </h4>
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    {restaurants.foz.map((rest, i) => (
+                      <div key={i} className="border border-slate-200 rounded-2xl p-4.5 bg-slate-50/70 flex flex-col justify-between">
+                        <div>
+                          <div className="flex justify-between items-start">
+                            <span className="text-[11px] font-bold text-sky-800 bg-sky-100 px-2 py-0.5 rounded-md">
+                              {rest.category}
+                            </span>
+                          </div>
+                          <h5 className="font-bold text-slate-900 text-base mt-2">{rest.name}</h5>
+                          <p className="text-xs text-slate-600 mt-1.5 leading-relaxed">{rest.highlight}</p>
+                          <span className="text-[11px] text-slate-400 block mt-2">📍 {rest.address}</span>
+                        </div>
+                        <div className="mt-4 pt-3 border-t border-slate-200 text-xs font-bold text-slate-800">
+                          {rest.priceRange}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* POMERODE */}
+                <div>
+                  <h4 className="text-lg font-bold text-slate-900 flex items-center gap-2 mb-3">
+                    <MapPin className="w-4 h-4 text-amber-600" />
+                    Pomerode (SC) • Tradição Germânica & Parquinhos
+                  </h4>
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    {restaurants.pomerode.map((rest, i) => (
+                      <div key={i} className="border border-slate-200 rounded-2xl p-4.5 bg-slate-50/70 flex flex-col justify-between">
+                        <div>
+                          <div className="flex justify-between items-start">
+                            <span className="text-[11px] font-bold text-amber-800 bg-amber-100 px-2 py-0.5 rounded-md">
+                              {rest.category}
+                            </span>
+                          </div>
+                          <h5 className="font-bold text-slate-900 text-base mt-2">{rest.name}</h5>
+                          <p className="text-xs text-slate-600 mt-1.5 leading-relaxed">{rest.highlight}</p>
+                          <span className="text-[11px] text-slate-400 block mt-2">📍 {rest.address}</span>
+                        </div>
+                        <div className="mt-4 pt-3 border-t border-slate-200 text-xs font-bold text-slate-800">
+                          {rest.priceRange}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+
         {/* HOTÉIS */}
         {activeTab === 'hotels' && (
           <div className="space-y-6">
@@ -857,6 +984,108 @@ export default function App() {
           </div>
         )}
 
+        {/* ABA: RESTAURANTES TEMÁTICOS & EM CONTA */}
+        {activeTab === 'restaurants' && (
+          <div className="space-y-6">
+            <div className="bg-white border border-slate-200 rounded-3xl p-6 md:p-8 shadow-xs">
+              <div className="mb-6">
+                <span className="text-xs font-bold uppercase tracking-wider text-amber-700 bg-amber-50 px-3 py-1 rounded-full border border-amber-200">
+                  Gastronomia Lúdica & Econômica
+                </span>
+                <h3 className="text-2xl font-extrabold text-slate-900 mt-2">
+                  Restaurantes Temáticos & Em Conta para a Família
+                </h3>
+                <p className="text-slate-500 text-sm mt-0.5">
+                  Lugares com espaços kids gigantes, dinossauros, shows infantis e opções de refeições fartas com preço justo.
+                </p>
+              </div>
+
+              <div className="space-y-8">
+                {/* CURITIBA */}
+                <div>
+                  <h4 className="text-lg font-bold text-slate-900 flex items-center gap-2 mb-3">
+                    <MapPin className="w-4 h-4 text-emerald-600" />
+                    Curitiba (PR) • Destaques Imperdíveis
+                  </h4>
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    {restaurants.curitiba.map((rest, i) => (
+                      <div key={i} className="border border-slate-200 rounded-2xl p-4.5 bg-slate-50/70 flex flex-col justify-between">
+                        <div>
+                          <div className="flex justify-between items-start">
+                            <span className="text-[11px] font-bold text-emerald-800 bg-emerald-100 px-2 py-0.5 rounded-md">
+                              {rest.category}
+                            </span>
+                          </div>
+                          <h5 className="font-bold text-slate-900 text-base mt-2">{rest.name}</h5>
+                          <p className="text-xs text-slate-600 mt-1.5 leading-relaxed">{rest.highlight}</p>
+                          <span className="text-[11px] text-slate-400 block mt-2">📍 {rest.address}</span>
+                        </div>
+                        <div className="mt-4 pt-3 border-t border-slate-200 text-xs font-bold text-slate-800">
+                          {rest.priceRange}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* FOZ DO IGUAÇU */}
+                <div>
+                  <h4 className="text-lg font-bold text-slate-900 flex items-center gap-2 mb-3">
+                    <MapPin className="w-4 h-4 text-sky-600" />
+                    Foz do Iguaçu (PR) • Temáticos & Buffets Fartos
+                  </h4>
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    {restaurants.foz.map((rest, i) => (
+                      <div key={i} className="border border-slate-200 rounded-2xl p-4.5 bg-slate-50/70 flex flex-col justify-between">
+                        <div>
+                          <div className="flex justify-between items-start">
+                            <span className="text-[11px] font-bold text-sky-800 bg-sky-100 px-2 py-0.5 rounded-md">
+                              {rest.category}
+                            </span>
+                          </div>
+                          <h5 className="font-bold text-slate-900 text-base mt-2">{rest.name}</h5>
+                          <p className="text-xs text-slate-600 mt-1.5 leading-relaxed">{rest.highlight}</p>
+                          <span className="text-[11px] text-slate-400 block mt-2">📍 {rest.address}</span>
+                        </div>
+                        <div className="mt-4 pt-3 border-t border-slate-200 text-xs font-bold text-slate-800">
+                          {rest.priceRange}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* POMERODE */}
+                <div>
+                  <h4 className="text-lg font-bold text-slate-900 flex items-center gap-2 mb-3">
+                    <MapPin className="w-4 h-4 text-amber-600" />
+                    Pomerode (SC) • Tradição Germânica & Parquinhos
+                  </h4>
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    {restaurants.pomerode.map((rest, i) => (
+                      <div key={i} className="border border-slate-200 rounded-2xl p-4.5 bg-slate-50/70 flex flex-col justify-between">
+                        <div>
+                          <div className="flex justify-between items-start">
+                            <span className="text-[11px] font-bold text-amber-800 bg-amber-100 px-2 py-0.5 rounded-md">
+                              {rest.category}
+                            </span>
+                          </div>
+                          <h5 className="font-bold text-slate-900 text-base mt-2">{rest.name}</h5>
+                          <p className="text-xs text-slate-600 mt-1.5 leading-relaxed">{rest.highlight}</p>
+                          <span className="text-[11px] text-slate-400 block mt-2">📍 {rest.address}</span>
+                        </div>
+                        <div className="mt-4 pt-3 border-t border-slate-200 text-xs font-bold text-slate-800">
+                          {rest.priceRange}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+
         {/* COMPARATIVO 4 ROTAS */}
         {activeTab === 'comparison' && (
           <div className="space-y-6">
@@ -909,6 +1138,108 @@ export default function App() {
           </div>
         )}
 
+        {/* ABA: RESTAURANTES TEMÁTICOS & EM CONTA */}
+        {activeTab === 'restaurants' && (
+          <div className="space-y-6">
+            <div className="bg-white border border-slate-200 rounded-3xl p-6 md:p-8 shadow-xs">
+              <div className="mb-6">
+                <span className="text-xs font-bold uppercase tracking-wider text-amber-700 bg-amber-50 px-3 py-1 rounded-full border border-amber-200">
+                  Gastronomia Lúdica & Econômica
+                </span>
+                <h3 className="text-2xl font-extrabold text-slate-900 mt-2">
+                  Restaurantes Temáticos & Em Conta para a Família
+                </h3>
+                <p className="text-slate-500 text-sm mt-0.5">
+                  Lugares com espaços kids gigantes, dinossauros, shows infantis e opções de refeições fartas com preço justo.
+                </p>
+              </div>
+
+              <div className="space-y-8">
+                {/* CURITIBA */}
+                <div>
+                  <h4 className="text-lg font-bold text-slate-900 flex items-center gap-2 mb-3">
+                    <MapPin className="w-4 h-4 text-emerald-600" />
+                    Curitiba (PR) • Destaques Imperdíveis
+                  </h4>
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    {restaurants.curitiba.map((rest, i) => (
+                      <div key={i} className="border border-slate-200 rounded-2xl p-4.5 bg-slate-50/70 flex flex-col justify-between">
+                        <div>
+                          <div className="flex justify-between items-start">
+                            <span className="text-[11px] font-bold text-emerald-800 bg-emerald-100 px-2 py-0.5 rounded-md">
+                              {rest.category}
+                            </span>
+                          </div>
+                          <h5 className="font-bold text-slate-900 text-base mt-2">{rest.name}</h5>
+                          <p className="text-xs text-slate-600 mt-1.5 leading-relaxed">{rest.highlight}</p>
+                          <span className="text-[11px] text-slate-400 block mt-2">📍 {rest.address}</span>
+                        </div>
+                        <div className="mt-4 pt-3 border-t border-slate-200 text-xs font-bold text-slate-800">
+                          {rest.priceRange}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* FOZ DO IGUAÇU */}
+                <div>
+                  <h4 className="text-lg font-bold text-slate-900 flex items-center gap-2 mb-3">
+                    <MapPin className="w-4 h-4 text-sky-600" />
+                    Foz do Iguaçu (PR) • Temáticos & Buffets Fartos
+                  </h4>
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    {restaurants.foz.map((rest, i) => (
+                      <div key={i} className="border border-slate-200 rounded-2xl p-4.5 bg-slate-50/70 flex flex-col justify-between">
+                        <div>
+                          <div className="flex justify-between items-start">
+                            <span className="text-[11px] font-bold text-sky-800 bg-sky-100 px-2 py-0.5 rounded-md">
+                              {rest.category}
+                            </span>
+                          </div>
+                          <h5 className="font-bold text-slate-900 text-base mt-2">{rest.name}</h5>
+                          <p className="text-xs text-slate-600 mt-1.5 leading-relaxed">{rest.highlight}</p>
+                          <span className="text-[11px] text-slate-400 block mt-2">📍 {rest.address}</span>
+                        </div>
+                        <div className="mt-4 pt-3 border-t border-slate-200 text-xs font-bold text-slate-800">
+                          {rest.priceRange}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* POMERODE */}
+                <div>
+                  <h4 className="text-lg font-bold text-slate-900 flex items-center gap-2 mb-3">
+                    <MapPin className="w-4 h-4 text-amber-600" />
+                    Pomerode (SC) • Tradição Germânica & Parquinhos
+                  </h4>
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    {restaurants.pomerode.map((rest, i) => (
+                      <div key={i} className="border border-slate-200 rounded-2xl p-4.5 bg-slate-50/70 flex flex-col justify-between">
+                        <div>
+                          <div className="flex justify-between items-start">
+                            <span className="text-[11px] font-bold text-amber-800 bg-amber-100 px-2 py-0.5 rounded-md">
+                              {rest.category}
+                            </span>
+                          </div>
+                          <h5 className="font-bold text-slate-900 text-base mt-2">{rest.name}</h5>
+                          <p className="text-xs text-slate-600 mt-1.5 leading-relaxed">{rest.highlight}</p>
+                          <span className="text-[11px] text-slate-400 block mt-2">📍 {rest.address}</span>
+                        </div>
+                        <div className="mt-4 pt-3 border-t border-slate-200 text-xs font-bold text-slate-800">
+                          {rest.priceRange}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+
         {/* CARROS */}
         {activeTab === 'cars' && (
           <div className="space-y-6">
@@ -954,6 +1285,108 @@ export default function App() {
           </div>
         )}
 
+        {/* ABA: RESTAURANTES TEMÁTICOS & EM CONTA */}
+        {activeTab === 'restaurants' && (
+          <div className="space-y-6">
+            <div className="bg-white border border-slate-200 rounded-3xl p-6 md:p-8 shadow-xs">
+              <div className="mb-6">
+                <span className="text-xs font-bold uppercase tracking-wider text-amber-700 bg-amber-50 px-3 py-1 rounded-full border border-amber-200">
+                  Gastronomia Lúdica & Econômica
+                </span>
+                <h3 className="text-2xl font-extrabold text-slate-900 mt-2">
+                  Restaurantes Temáticos & Em Conta para a Família
+                </h3>
+                <p className="text-slate-500 text-sm mt-0.5">
+                  Lugares com espaços kids gigantes, dinossauros, shows infantis e opções de refeições fartas com preço justo.
+                </p>
+              </div>
+
+              <div className="space-y-8">
+                {/* CURITIBA */}
+                <div>
+                  <h4 className="text-lg font-bold text-slate-900 flex items-center gap-2 mb-3">
+                    <MapPin className="w-4 h-4 text-emerald-600" />
+                    Curitiba (PR) • Destaques Imperdíveis
+                  </h4>
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    {restaurants.curitiba.map((rest, i) => (
+                      <div key={i} className="border border-slate-200 rounded-2xl p-4.5 bg-slate-50/70 flex flex-col justify-between">
+                        <div>
+                          <div className="flex justify-between items-start">
+                            <span className="text-[11px] font-bold text-emerald-800 bg-emerald-100 px-2 py-0.5 rounded-md">
+                              {rest.category}
+                            </span>
+                          </div>
+                          <h5 className="font-bold text-slate-900 text-base mt-2">{rest.name}</h5>
+                          <p className="text-xs text-slate-600 mt-1.5 leading-relaxed">{rest.highlight}</p>
+                          <span className="text-[11px] text-slate-400 block mt-2">📍 {rest.address}</span>
+                        </div>
+                        <div className="mt-4 pt-3 border-t border-slate-200 text-xs font-bold text-slate-800">
+                          {rest.priceRange}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* FOZ DO IGUAÇU */}
+                <div>
+                  <h4 className="text-lg font-bold text-slate-900 flex items-center gap-2 mb-3">
+                    <MapPin className="w-4 h-4 text-sky-600" />
+                    Foz do Iguaçu (PR) • Temáticos & Buffets Fartos
+                  </h4>
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    {restaurants.foz.map((rest, i) => (
+                      <div key={i} className="border border-slate-200 rounded-2xl p-4.5 bg-slate-50/70 flex flex-col justify-between">
+                        <div>
+                          <div className="flex justify-between items-start">
+                            <span className="text-[11px] font-bold text-sky-800 bg-sky-100 px-2 py-0.5 rounded-md">
+                              {rest.category}
+                            </span>
+                          </div>
+                          <h5 className="font-bold text-slate-900 text-base mt-2">{rest.name}</h5>
+                          <p className="text-xs text-slate-600 mt-1.5 leading-relaxed">{rest.highlight}</p>
+                          <span className="text-[11px] text-slate-400 block mt-2">📍 {rest.address}</span>
+                        </div>
+                        <div className="mt-4 pt-3 border-t border-slate-200 text-xs font-bold text-slate-800">
+                          {rest.priceRange}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* POMERODE */}
+                <div>
+                  <h4 className="text-lg font-bold text-slate-900 flex items-center gap-2 mb-3">
+                    <MapPin className="w-4 h-4 text-amber-600" />
+                    Pomerode (SC) • Tradição Germânica & Parquinhos
+                  </h4>
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    {restaurants.pomerode.map((rest, i) => (
+                      <div key={i} className="border border-slate-200 rounded-2xl p-4.5 bg-slate-50/70 flex flex-col justify-between">
+                        <div>
+                          <div className="flex justify-between items-start">
+                            <span className="text-[11px] font-bold text-amber-800 bg-amber-100 px-2 py-0.5 rounded-md">
+                              {rest.category}
+                            </span>
+                          </div>
+                          <h5 className="font-bold text-slate-900 text-base mt-2">{rest.name}</h5>
+                          <p className="text-xs text-slate-600 mt-1.5 leading-relaxed">{rest.highlight}</p>
+                          <span className="text-[11px] text-slate-400 block mt-2">📍 {rest.address}</span>
+                        </div>
+                        <div className="mt-4 pt-3 border-t border-slate-200 text-xs font-bold text-slate-800">
+                          {rest.priceRange}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+
         {/* ROTEIRO */}
         {activeTab === 'itinerary' && (
           <div className="space-y-6">
@@ -963,6 +1396,108 @@ export default function App() {
               <div className="space-y-2">
                 <div className="p-4 bg-slate-50 rounded-xl border border-slate-200 text-xs text-slate-700">
                   Roteiro de 8 a 10 dias cobrindo Foz do Iguaçu (Cataratas e Parque das Aves), estrada com pernoite em Guarapuava, Pomerode (Vila Encantada dos Dinossauros) e Curitiba (Bosque Alemão e Barigui) com volta para o Recife.
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* ABA: RESTAURANTES TEMÁTICOS & EM CONTA */}
+        {activeTab === 'restaurants' && (
+          <div className="space-y-6">
+            <div className="bg-white border border-slate-200 rounded-3xl p-6 md:p-8 shadow-xs">
+              <div className="mb-6">
+                <span className="text-xs font-bold uppercase tracking-wider text-amber-700 bg-amber-50 px-3 py-1 rounded-full border border-amber-200">
+                  Gastronomia Lúdica & Econômica
+                </span>
+                <h3 className="text-2xl font-extrabold text-slate-900 mt-2">
+                  Restaurantes Temáticos & Em Conta para a Família
+                </h3>
+                <p className="text-slate-500 text-sm mt-0.5">
+                  Lugares com espaços kids gigantes, dinossauros, shows infantis e opções de refeições fartas com preço justo.
+                </p>
+              </div>
+
+              <div className="space-y-8">
+                {/* CURITIBA */}
+                <div>
+                  <h4 className="text-lg font-bold text-slate-900 flex items-center gap-2 mb-3">
+                    <MapPin className="w-4 h-4 text-emerald-600" />
+                    Curitiba (PR) • Destaques Imperdíveis
+                  </h4>
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    {restaurants.curitiba.map((rest, i) => (
+                      <div key={i} className="border border-slate-200 rounded-2xl p-4.5 bg-slate-50/70 flex flex-col justify-between">
+                        <div>
+                          <div className="flex justify-between items-start">
+                            <span className="text-[11px] font-bold text-emerald-800 bg-emerald-100 px-2 py-0.5 rounded-md">
+                              {rest.category}
+                            </span>
+                          </div>
+                          <h5 className="font-bold text-slate-900 text-base mt-2">{rest.name}</h5>
+                          <p className="text-xs text-slate-600 mt-1.5 leading-relaxed">{rest.highlight}</p>
+                          <span className="text-[11px] text-slate-400 block mt-2">📍 {rest.address}</span>
+                        </div>
+                        <div className="mt-4 pt-3 border-t border-slate-200 text-xs font-bold text-slate-800">
+                          {rest.priceRange}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* FOZ DO IGUAÇU */}
+                <div>
+                  <h4 className="text-lg font-bold text-slate-900 flex items-center gap-2 mb-3">
+                    <MapPin className="w-4 h-4 text-sky-600" />
+                    Foz do Iguaçu (PR) • Temáticos & Buffets Fartos
+                  </h4>
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    {restaurants.foz.map((rest, i) => (
+                      <div key={i} className="border border-slate-200 rounded-2xl p-4.5 bg-slate-50/70 flex flex-col justify-between">
+                        <div>
+                          <div className="flex justify-between items-start">
+                            <span className="text-[11px] font-bold text-sky-800 bg-sky-100 px-2 py-0.5 rounded-md">
+                              {rest.category}
+                            </span>
+                          </div>
+                          <h5 className="font-bold text-slate-900 text-base mt-2">{rest.name}</h5>
+                          <p className="text-xs text-slate-600 mt-1.5 leading-relaxed">{rest.highlight}</p>
+                          <span className="text-[11px] text-slate-400 block mt-2">📍 {rest.address}</span>
+                        </div>
+                        <div className="mt-4 pt-3 border-t border-slate-200 text-xs font-bold text-slate-800">
+                          {rest.priceRange}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* POMERODE */}
+                <div>
+                  <h4 className="text-lg font-bold text-slate-900 flex items-center gap-2 mb-3">
+                    <MapPin className="w-4 h-4 text-amber-600" />
+                    Pomerode (SC) • Tradição Germânica & Parquinhos
+                  </h4>
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    {restaurants.pomerode.map((rest, i) => (
+                      <div key={i} className="border border-slate-200 rounded-2xl p-4.5 bg-slate-50/70 flex flex-col justify-between">
+                        <div>
+                          <div className="flex justify-between items-start">
+                            <span className="text-[11px] font-bold text-amber-800 bg-amber-100 px-2 py-0.5 rounded-md">
+                              {rest.category}
+                            </span>
+                          </div>
+                          <h5 className="font-bold text-slate-900 text-base mt-2">{rest.name}</h5>
+                          <p className="text-xs text-slate-600 mt-1.5 leading-relaxed">{rest.highlight}</p>
+                          <span className="text-[11px] text-slate-400 block mt-2">📍 {rest.address}</span>
+                        </div>
+                        <div className="mt-4 pt-3 border-t border-slate-200 text-xs font-bold text-slate-800">
+                          {rest.priceRange}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
                 </div>
               </div>
             </div>

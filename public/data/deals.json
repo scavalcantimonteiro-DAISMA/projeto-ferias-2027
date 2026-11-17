@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-17T00:00:16.587Z",
+  "updatedAt": "2026-11-17T00:10:46.770Z",
   "localHour": 21,
   "isNightMode": false,
   "summary": {
@@ -164,6 +164,77 @@
         ],
         "rating": "8.2/10 (Econômico e Limpo)",
         "location": "Centro de Curitiba"
+      }
+    ]
+  },
+  "restaurants": {
+    "foz": [
+      {
+        "name": "Jurassic Pizza Foz",
+        "category": "Temático Dinossauros",
+        "highlight": "Dinossauros em tamanho real com som e movimento + Espaço Kids gigante com monitores",
+        "priceRange": "R$ 79 / adulto (Crianças: 2 anos grátis, 5 anos paga meia)",
+        "address": "Av. República Argentina, Centro"
+      },
+      {
+        "name": "Bonnie's Burger (Wonder Park)",
+        "category": "Temático Retrô Anos 50",
+        "highlight": "Estilo filme clássico americano, carros antigos, hambúrgueres e milk-shakes",
+        "priceRange": "Lanches de R$ 32 a R$ 48",
+        "address": "Complexo Wonder Park Foz"
+      },
+      {
+        "name": "Churrascaria do Gaúcho",
+        "category": "Em Conta & Caseiro",
+        "highlight": "Buffet livre com comida caseira (arroz, feijão, carnes e saladas frescas)",
+        "priceRange": "Apenas R$ 49 / pessoa (bebidas à parte)",
+        "address": "Av. Juscelino Kubitschek"
+      }
+    ],
+    "pomerode": [
+      {
+        "name": "Restaurante Torten Paradies",
+        "category": "Temático Colonial Germânico",
+        "highlight": "Buffet com salsichas alemãs, purês caseiros e brinquedoteca para crianças",
+        "priceRange": "Buffet livre ~R$ 58 / pessoa",
+        "address": "Rua XV de Novembro, Centro"
+      },
+      {
+        "name": "Biergarten Pomerânia",
+        "category": "Temático Vila Alemã",
+        "highlight": "Mesas ao ar livre no jardim, música típica e parquinho para crianças correrem",
+        "priceRange": "Pratos família de R$ 90 a R$ 140 (servem 3 a 4 pessoas)",
+        "address": "Rua Hermann Weege"
+      },
+      {
+        "name": "Restaurante Siedlertal",
+        "category": "Em Conta & Tradicional",
+        "highlight": "Buffet a quilo com comida caseira e opções suaves para crianças",
+        "priceRange": "Preço por quilo super econômico (~R$ 45 a R$ 55 por refeição)",
+        "address": "Centro Histórico"
+      }
+    ],
+    "curitiba": [
+      {
+        "name": "Mundo Animal Lanchonete Temática",
+        "category": "Temático Selva (Sucesso Infantil Absoluto)",
+        "highlight": "Show ao vivo com o leão Leonel, ambiente de selva e Playground gigante com monitores 100% grátis",
+        "priceRange": "Porções e tábuas família de R$ 98 a R$ 150 (serve 4 pessoas)",
+        "address": "Av. Iguaçu / Batel"
+      },
+      {
+        "name": "Restaurante Família Madalosso",
+        "category": "Tradicional & Em Conta (O Maior da América)",
+        "highlight": "Rodízio farto de massas, frango a passarinho, polenta e mega parque com carrossel",
+        "priceRange": "R$ 79 / adulto (crianças de 2 anos não pagam, 5 anos paga meia)",
+        "address": "Santa Felicidade (Capital Gastronômica)"
+      },
+      {
+        "name": "Pastelaria Brasileira & Praça Osório",
+        "category": "Econômico & Rápido",
+        "highlight": "Pastel gigante sequinho com caldo de cana no coração de Curitiba",
+        "priceRange": "Pastéis de R$ 12 a R$ 20",
+        "address": "Calçadão da Rua XV de Novembro"
       }
     ]
   },
