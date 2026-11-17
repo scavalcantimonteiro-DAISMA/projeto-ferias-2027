@@ -11,6 +11,12 @@ on:
     # 23:00 UTC = 20:00 Brasília (Abertura de Feirões Noturnos e Fim de Semana)
     - cron: '0 23 * * *'
   workflow_dispatch: # Permite disparar manualmente pelo painel do GitHub a qualquer momento
+  push:
+    branches:
+      - main
+    paths:
+      - 'scripts/**'
+      - '.github/workflows/**'
 
 jobs:
   monitor:
@@ -41,4 +47,4 @@ jobs:
           git config --global user.name "Robo Ferias Bot"
           git config --global user.email "bot@antigravity.ai"
           git add public/data/deals.json
-          git diff --quiet && git diff --staged --quiet || (git commit -m "chore(deals): atualiza cotacoes de voos e carros [skip ci]" && git push)
+          git diff --quiet && git diff --staged --quiet || (git commit -m "chore(deals): atualiza cotacoes automaticas de voos e carros" && git push)

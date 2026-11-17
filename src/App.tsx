@@ -260,21 +260,40 @@ export default function App() {
 
   const bestFlight = summary.flightDetails;
 
+  const formatDateTime = (iso: string) => {
+    try {
+      const d = new Date(iso);
+      return d.toLocaleDateString('pt-BR', {
+        day: '2-digit',
+        month: '2-digit',
+        hour: '2-digit',
+        minute: '2-digit',
+        timeZone: 'America/Recife'
+      });
+    } catch {
+      return 'Hoje';
+    }
+  };
+
   return (
     <div className="min-h-screen bg-[#f8fafc] text-slate-800 font-sans pb-24 selection:bg-sky-500 selection:text-white">
       {/* Barra de Status */}
       <div className="bg-white border-b border-slate-200/80 px-4 py-2.5 shadow-xs">
         <div className="max-w-6xl mx-auto flex flex-wrap items-center justify-between gap-3 text-xs">
-          <div className="flex items-center gap-2">
+          <div className="flex flex-wrap items-center gap-2">
             <span className="flex h-2.5 w-2.5 relative">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
               <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
             </span>
-            <span className="font-semibold text-slate-700">Robô Ativo (4 Horários Diários)</span>
+            <span className="font-bold text-slate-800">Robô de Monitoramento Ativo</span>
+            <span className="text-slate-300 hidden sm:inline">•</span>
+            <span className="text-sky-800 bg-sky-50 px-2.5 py-0.5 rounded-md font-bold text-[11px] border border-sky-200">
+              🕒 Cotação Atualizada: {formatDateTime(data.updatedAt)} (Recife)
+            </span>
             <span className="text-slate-300 hidden sm:inline">•</span>
             <span className="text-rose-600 font-bold flex items-center gap-1">
               <Flame className="w-3.5 h-3.5 fill-rose-500 text-rose-500" />
-              Radar Black Friday & Feirões Ativo
+              Radar Black Friday Ativo
             </span>
           </div>
 
