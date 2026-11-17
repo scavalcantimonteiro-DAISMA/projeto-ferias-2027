@@ -1,9 +1,8 @@
 /**
  * MONITOR AUTÔNOMO DE PASSAGENS E ALUGUEL DE CARRO - FÉRIAS SCM 2027
  * 
- * - Voos com horários, escalas e links oficiais para compra (GOL, LATAM, Azul, Google Flights)
- * - Hotéis simples e econômicos (valores reais para família de 4 pessoas com café incluído)
- * - Radar Black Friday e Feirões da Madrugada com notificação push ntfy
+ * - Deep Links Oficiais Auto-Preenchidos (Google Flights, Skyscanner, Decolar, Kayak)
+ * - Carrega datas exatas, 4 passageiros (2 adultos + 2 crianças) e destinos pré-selecionados
  */
 
 import fs from 'fs';
@@ -53,7 +52,6 @@ const CONFIG = {
     oneWayDropoffKm: 650,
     dropoffKmRate: 1.25
   },
-  // Hotéis simples, limpos e honestos (nada de resort rebuscado) com valores reais para quarto família
   familyHotels: {
     foz: [
       {
@@ -136,7 +134,6 @@ const CONFIG = {
       }
     ]
   },
-  // Restaurantes Temáticos e Em Conta para Família com Crianças
   familyRestaurants: {
     foz: [
       {
@@ -275,13 +272,41 @@ function generateDatePairs() {
   return pairs;
 }
 
-function getFlightDetails(origin, destination, dateStr, isPromo) {
+// GERAÇÃO DE DEEP LINKS AUTO-PREENCHIDOS PARA FECHAR A COMPRA
+function buildPreFilledBookingLinks(origin, destination, departureDate, returnDate) {
+  // 1. Google Flights com busca auto-preenchida para 4 passageiros
+  const googleFlightsRoundTrip = `https://www.google.com/travel/flights?q=passagens%20de%20${origin}%20para%20${destination}%20em%20${departureDate}%20com%20retorno%20${returnDate}%20para%202%20adultos%202%20criancas`;
+  const googleFlightsOneWay = `https://www.google.com/travel/flights?q=passagens%20de%20${origin}%20para%20${destination}%20em%20${departureDate}%20para%202%20adultos%202%20criancas`;
+
+  // 2. Skyscanner com parâmetros pré-selecionados
+  const depSky = departureDate.replace(/-/g, '').slice(2);
+  const retSky = returnDate.replace(/-/g, '').slice(2);
+  const skyscannerRoundTrip = `https://www.skyscanner.com.br/transporte/passagens-aereas/${origin.toLowerCase()}/${destination.toLowerCase()}/${depSky}/${retSky}/?adultsv2=2&childrenv2=5,2`;
+
+  // 3. Decolar com busca pronta
+  const decolarUrl = `https://www.decolar.com/passagens-aereas/sfc/${origin.toLowerCase()}/${destination.toLowerCase()}/${departureDate}/${returnDate}/2/2-5-2`;
+
+  // 4. Kayak
+  const kayakUrl = `https://www.kayak.com.br/flights/${origin}-${destination}/${departureDate}/${returnDate}/2adults/children-2-5`;
+
+  return {
+    googleFlightsRoundTrip,
+    googleFlightsOneWay,
+    skyscannerRoundTrip,
+    decolarUrl,
+    kayakUrl
+  };
+}
+
+function getFlightDetails(origin, destination, departureDate, returnDate, isPromo) {
+  const preFilled = buildPreFilledBookingLinks(origin, destination, departureDate, returnDate);
+
   if (origin === 'REC' && destination === 'CWB') {
     return {
       flightNumber: isPromo ? 'GOL G3 1622 / G3 1280' : 'LATAM LA 3412 / LA 3844',
       airline: isPromo ? 'GOL Linhas Aéreas' : 'LATAM Airlines',
-      bookingUrl: isPromo ? CONFIG.officialLinks.gol : CONFIG.officialLinks.latam,
-      googleFlightsUrl: `https://www.google.com/travel/flights?q=voos%20de%20REC%20para%20CWB%20em%20${dateStr}`,
+      bookingUrl: isPromo ? 'https://www.voegol.com.br' : 'https://www.latamairlines.com/br/pt',
+      preFilledLinks: preFilled,
       departureTime: '06:10',
       arrivalTime: '11:45',
       totalDuration: '5h35',
@@ -298,8 +323,8 @@ function getFlightDetails(origin, destination, dateStr, isPromo) {
     return {
       flightNumber: isPromo ? 'GOL G3 1281 / G3 1623' : 'LATAM LA 3845 / LA 3413',
       airline: isPromo ? 'GOL Linhas Aéreas' : 'LATAM Airlines',
-      bookingUrl: isPromo ? CONFIG.officialLinks.gol : CONFIG.officialLinks.latam,
-      googleFlightsUrl: `https://www.google.com/travel/flights?q=voos%20de%20CWB%20para%20REC%20em%20${dateStr}`,
+      bookingUrl: isPromo ? 'https://www.voegol.com.br' : 'https://www.latamairlines.com/br/pt',
+      preFilledLinks: preFilled,
       departureTime: '13:30',
       arrivalTime: '18:55',
       totalDuration: '5h25',
@@ -316,8 +341,8 @@ function getFlightDetails(origin, destination, dateStr, isPromo) {
     return {
       flightNumber: isPromo ? 'Azul AD 4210 / AD 2840' : 'GOL G3 1510 / G3 1144',
       airline: isPromo ? 'Azul Linhas Aéreas' : 'GOL Linhas Aéreas',
-      bookingUrl: isPromo ? CONFIG.officialLinks.azul : CONFIG.officialLinks.gol,
-      googleFlightsUrl: `https://www.google.com/travel/flights?q=voos%20de%20REC%20para%20IGU%20em%20${dateStr}`,
+      bookingUrl: isPromo ? 'https://www.voeazul.com.br' : 'https://www.voegol.com.br',
+      preFilledLinks: preFilled,
       departureTime: '05:45',
       arrivalTime: '11:50',
       totalDuration: '6h05',
@@ -334,8 +359,8 @@ function getFlightDetails(origin, destination, dateStr, isPromo) {
     return {
       flightNumber: isPromo ? 'Azul AD 2841 / AD 4211' : 'LATAM LA 3145 / LA 3450',
       airline: isPromo ? 'Azul Linhas Aéreas' : 'LATAM Airlines',
-      bookingUrl: isPromo ? CONFIG.officialLinks.azul : CONFIG.officialLinks.latam,
-      googleFlightsUrl: `https://www.google.com/travel/flights?q=voos%20de%20IGU%20para%20REC%20em%20${dateStr}`,
+      bookingUrl: isPromo ? 'https://www.voeazul.com.br' : 'https://www.latamairlines.com/br/pt',
+      preFilledLinks: preFilled,
       departureTime: '14:15',
       arrivalTime: '20:10',
       totalDuration: '5h55',
@@ -351,8 +376,8 @@ function getFlightDetails(origin, destination, dateStr, isPromo) {
   return {
     flightNumber: 'Azul AD 4100 / AD 2150',
     airline: 'Azul Linhas Aéreas',
-    bookingUrl: CONFIG.officialLinks.azul,
-    googleFlightsUrl: 'https://www.google.com/travel/flights',
+    bookingUrl: 'https://www.voeazul.com.br',
+    preFilledLinks: preFilled,
     departureTime: '07:00',
     arrivalTime: '13:00',
     totalDuration: '6h00',
@@ -394,7 +419,6 @@ function simulateMarketDeals(datePairs) {
     if (isHolidayNearby) paxFlightD += 180;
     if (isWeekendDep) paxFlightD += 85;
 
-    // Simulação Black Friday e Feirões Especiais
     const isBlackFridayPromoA = (idx === 4 || idx === 11);
     const isBlackFridayPromoB = (idx === 7 || idx === 15);
     const isBlackFridayPromoC = (idx === 2 || idx === 9);
@@ -402,7 +426,7 @@ function simulateMarketDeals(datePairs) {
 
     if (isBlackFridayPromoA) paxFlightA = Math.round(paxFlightA * 0.72);
     if (isBlackFridayPromoB) paxFlightB = Math.round(paxFlightB * 0.74);
-    if (isBlackFridayPromoC) paxFlightC = Math.round(paxFlightC * 0.70); // 30% OFF Black Friday
+    if (isBlackFridayPromoC) paxFlightC = Math.round(paxFlightC * 0.70);
     if (isBlackFridayPromoD) paxFlightD = Math.round(paxFlightD * 0.73);
 
     const totalFlightsA = paxFlightA * CONFIG.passengers.totalSeats;
@@ -423,20 +447,20 @@ function simulateMarketDeals(datePairs) {
     const totalCostD = totalFlightsD + totalCarSameCity;
 
     const flightDetailsA = {
-      outbound: getFlightDetails('REC', 'IGU', pair.departure, isBlackFridayPromoA),
-      inbound: getFlightDetails('CWB', 'REC', pair.returnDate, isBlackFridayPromoA)
+      outbound: getFlightDetails('REC', 'IGU', pair.departure, pair.returnDate, isBlackFridayPromoA),
+      inbound: getFlightDetails('CWB', 'REC', pair.departure, pair.returnDate, isBlackFridayPromoA)
     };
     const flightDetailsB = {
-      outbound: getFlightDetails('REC', 'CWB', pair.departure, isBlackFridayPromoB),
-      inbound: getFlightDetails('IGU', 'REC', pair.returnDate, isBlackFridayPromoB)
+      outbound: getFlightDetails('REC', 'CWB', pair.departure, pair.returnDate, isBlackFridayPromoB),
+      inbound: getFlightDetails('IGU', 'REC', pair.departure, pair.returnDate, isBlackFridayPromoB)
     };
     const flightDetailsC = {
-      outbound: getFlightDetails('REC', 'CWB', pair.departure, isBlackFridayPromoC),
-      inbound: getFlightDetails('CWB', 'REC', pair.returnDate, isBlackFridayPromoC)
+      outbound: getFlightDetails('REC', 'CWB', pair.departure, pair.returnDate, isBlackFridayPromoC),
+      inbound: getFlightDetails('CWB', 'REC', pair.departure, pair.returnDate, isBlackFridayPromoC)
     };
     const flightDetailsD = {
-      outbound: getFlightDetails('REC', 'IGU', pair.departure, isBlackFridayPromoD),
-      inbound: getFlightDetails('IGU', 'REC', pair.returnDate, isBlackFridayPromoD)
+      outbound: getFlightDetails('REC', 'IGU', pair.departure, pair.returnDate, isBlackFridayPromoD),
+      inbound: getFlightDetails('IGU', 'REC', pair.departure, pair.returnDate, isBlackFridayPromoD)
     };
 
     const options = [
@@ -449,7 +473,8 @@ function simulateMarketDeals(datePairs) {
         dropoff: dropoffFee, 
         isBlackFriday: isBlackFridayPromoA, 
         flightPerPax: paxFlightA, 
-        flightDetails: flightDetailsA 
+        flightDetails: flightDetailsA,
+        preFilledBooking: buildPreFilledBookingLinks('REC', 'IGU', pair.departure, pair.returnDate)
       },
       { 
         type: 'B', 
@@ -460,7 +485,8 @@ function simulateMarketDeals(datePairs) {
         dropoff: dropoffFee, 
         isBlackFriday: isBlackFridayPromoB, 
         flightPerPax: paxFlightB, 
-        flightDetails: flightDetailsB 
+        flightDetails: flightDetailsB,
+        preFilledBooking: buildPreFilledBookingLinks('REC', 'CWB', pair.departure, pair.returnDate)
       },
       { 
         type: 'C', 
@@ -471,7 +497,8 @@ function simulateMarketDeals(datePairs) {
         dropoff: 0, 
         isBlackFriday: isBlackFridayPromoC, 
         flightPerPax: paxFlightC, 
-        flightDetails: flightDetailsC 
+        flightDetails: flightDetailsC,
+        preFilledBooking: buildPreFilledBookingLinks('REC', 'CWB', pair.departure, pair.returnDate)
       },
       { 
         type: 'D', 
@@ -482,7 +509,8 @@ function simulateMarketDeals(datePairs) {
         dropoff: 0, 
         isBlackFriday: isBlackFridayPromoD, 
         flightPerPax: paxFlightD, 
-        flightDetails: flightDetailsD 
+        flightDetails: flightDetailsD,
+        preFilledBooking: buildPreFilledBookingLinks('REC', 'IGU', pair.departure, pair.returnDate)
       }
     ];
 
@@ -500,6 +528,7 @@ function simulateMarketDeals(datePairs) {
       savedChildSeatCost: 45 * 2 * pair.days,
       savedDropoffFee: winner.dropoff === 0 ? dropoffFee : 0,
       isBlackFriday: winner.isBlackFriday,
+      preFilledBooking: winner.preFilledBooking,
       options: {
         A: options.find(o => o.type === 'A'),
         B: options.find(o => o.type === 'B'),
@@ -554,9 +583,8 @@ export async function runMonitor() {
   const isNight = isNightTime();
 
   console.log('=====================================================');
-  console.log(`🤖 MONITOR AUTÔNOMO DE FÉRIAS SCM 2027 (BLACK FRIDAY & HOTÉIS)`);
+  console.log(`🤖 MONITOR AUTÔNOMO DE FÉRIAS SCM 2027 (DEEP LINKS AUTO-PREENCHIDOS)`);
   console.log(`⏰ Horário local (Recife/Brasília): ${localHour}h00`);
-  console.log(`🌙 Modo Noturno: ${isNight ? 'SIM' : 'NÃO'}`);
   console.log('=====================================================');
 
   const datePairs = generateDatePairs();
@@ -567,11 +595,8 @@ export async function runMonitor() {
 
   console.log(`\n🏆 MELHOR OPÇÃO DETECTADA:`);
   console.log(`   Estratégia: ${winner.name}`);
-  console.log(`   Black Friday / Feirão Ativo: ${winner.isBlackFriday ? 'SIM (Desconto Especial)' : 'NÃO'}`);
   console.log(`   Datas: ${formatDateBR(bestDeal.departure)} a ${formatDateBR(bestDeal.returnDate)} (${bestDeal.days} dias)`);
-  console.log(`   Link Compra Ida: ${winner.flightDetails.outbound.bookingUrl}`);
-  console.log(`   Custo Voos (4 pax): R$ ${winner.flights.toLocaleString('pt-BR')}`);
-  console.log(`   Carro: R$ ${winner.car.toLocaleString('pt-BR')}`);
+  console.log(`   Link Auto-Preenchido Google Flights: ${winner.preFilledBooking.googleFlightsRoundTrip}`);
   console.log(`   TOTAL PACOTE: R$ ${bestDeal.cheapestTotal.toLocaleString('pt-BR')}`);
 
   const outputData = {
@@ -594,7 +619,8 @@ export async function runMonitor() {
       savedDropoffFee: bestDeal.savedDropoffFee,
       isBlackFriday: winner.isBlackFriday,
       savedChildSeatCost: bestDeal.savedChildSeatCost,
-      flightDetails: winner.flightDetails
+      flightDetails: winner.flightDetails,
+      preFilledBooking: winner.preFilledBooking
     },
     hotels: CONFIG.familyHotels,
     restaurants: CONFIG.familyRestaurants,
@@ -617,26 +643,13 @@ export async function runMonitor() {
   fs.writeFileSync(filePath, JSON.stringify(outputData, null, 2), 'utf-8');
   console.log(`💾 Dados salvos em: ${filePath}`);
 
-  // Disparo com foco em Black Friday
+  // Disparo ntfy
   if (winner.isBlackFriday) {
     await sendNtfyNotification({
-      title: `🔥 ALERTA BLACK FRIDAY: Férias SCM por R$ ${bestDeal.cheapestTotal.toLocaleString('pt-BR')}!`,
-      message: `Tarifa promocional com desconto agressivo detectada!\n\n` +
-               `• **Estratégia:** ${winner.name}\n` +
-               `• **Datas:** ${formatDateBR(bestDeal.departure)} a ${formatDateBR(bestDeal.returnDate)} (${bestDeal.days} dias)\n` +
-               `• **Voos (4 pessoas com volta a REC):** R$ ${winner.flights.toLocaleString('pt-BR')}\n` +
-               `• **Links Oficiais:** GOL, LATAM e Azul disponíveis no app com 1 clique para comprar antes que esgote!\n\n` +
-               `Toque para abrir os links oficiais e opções de hotéis.`,
+      title: `🔥 OFERTA COM LINK AUTO-PREENCHIDO: R$ ${bestDeal.cheapestTotal.toLocaleString('pt-BR')}!`,
+      message: `Acesse o app para abrir o link do Google Flights / Cia com tudo pré-selecionado (datas e 4 passageiros)!`,
       priority: 4,
-      tags: ['fire', 'airplane', 'shopping_bags'],
-      clickUrl: 'https://projeto-ferias-2027.vercel.app'
-    });
-  } else if (!isNight) {
-    await sendNtfyNotification({
-      title: `✈️ Férias SCM 2027: Pacote R$ ${bestDeal.cheapestTotal.toLocaleString('pt-BR')}`,
-      message: `Resumo com hotéis econômicos e links oficiais de compra atualizados.\nToque para conferir.`,
-      priority: 3,
-      tags: ['airplane', 'family'],
+      tags: ['fire', 'airplane'],
       clickUrl: 'https://projeto-ferias-2027.vercel.app'
     });
   }
