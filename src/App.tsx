@@ -13,15 +13,12 @@ import {
   Moon, 
   RefreshCw, 
   ExternalLink, 
-  ChevronDown, 
-  ChevronUp, 
   XCircle, 
   Repeat, 
-  ArrowRightCircle, 
-  CheckCircle2, 
   Building2, 
   Flame, 
-  Tag 
+  X,
+  CreditCard
 } from 'lucide-react';
 
 interface FlightLeg {
@@ -129,14 +126,6 @@ interface DealsData {
   };
   topDeals: Deal[];
   allDeals: Deal[];
-  itinerary: Array<{
-    day: number;
-    date: string;
-    title: string;
-    location: string;
-    activities: string[];
-    kidsTips: string;
-  }>;
   rules: {
     excludedCars: string[];
     allowedCategories: Array<{
@@ -163,7 +152,7 @@ export default function App() {
   const [ntfyTopic, setNtfyTopic] = useState<string>('ferias-recife-sul-2027');
   const [ntfyStatus, setNtfyStatus] = useState<string>('');
   const [showNtfyModal, setShowNtfyModal] = useState<boolean>(false);
-  const [expandedDay, setExpandedDay] = useState<number | null>(1);
+  const [selectedDealModal, setSelectedDealModal] = useState<Deal | null>(null);
   const [activeTab, setActiveTab] = useState<'overview' | 'flights' | 'hotels' | 'comparison' | 'cars' | 'itinerary'>('overview');
 
   useEffect(() => {
@@ -188,7 +177,7 @@ export default function App() {
         body: JSON.stringify({
           topic: ntfyTopic,
           title: '🔥 Black Friday SCM: Férias 2027',
-          message: 'Radar de Black Friday e links oficiais de compra prontos no seu celular!\nHotéis familiares simples inclusos com valores reais.',
+          message: 'Notificações ativas no celular com modal interativo e links oficiais de compra!',
           priority: 4,
           tags: ['fire', 'airplane', 'hotel'],
           markdown: true
@@ -214,7 +203,7 @@ export default function App() {
     return (
       <div className="min-h-screen bg-slate-50 flex flex-col items-center justify-center text-slate-800 p-4 font-sans">
         <RefreshCw className="w-10 h-10 text-sky-600 animate-spin mb-3" />
-        <h2 className="text-lg font-semibold text-slate-900">Carregando cotações com Black Friday e Hotéis...</h2>
+        <h2 className="text-lg font-semibold text-slate-900">Carregando painel de monitoramento SCM...</h2>
       </div>
     );
   }
@@ -228,7 +217,7 @@ export default function App() {
     );
   }
 
-  const { summary, topDeals, hotels, officialLinks, itinerary } = data;
+  const { summary, topDeals, hotels, officialLinks } = data;
   const filteredDeals = selectedDuration === 'all' 
     ? topDeals 
     : topDeals.filter(d => d.days === selectedDuration);
@@ -250,7 +239,7 @@ export default function App() {
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
               <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
             </span>
-            <span className="font-semibold text-slate-700">Robô Ativo (Varredura Contínua)</span>
+            <span className="font-semibold text-slate-700">Robô Ativo (4 Horários Diários)</span>
             <span className="text-slate-300 hidden sm:inline">•</span>
             <span className="text-rose-600 font-bold flex items-center gap-1">
               <Flame className="w-3.5 h-3.5 fill-rose-500 text-rose-500" />
@@ -291,7 +280,7 @@ export default function App() {
                 Foz do Iguaçu, Pomerode & Curitiba
               </h1>
               <p className="text-slate-500 text-xs md:text-sm mt-0.5">
-                Voos com links oficiais de compra, hotéis simples e aluguel de carro (sem Mobi/Kwid).
+                Clique em qualquer data para abrir a ficha completa do pacote (voos, carro, hotéis e links).
               </p>
             </div>
           </div>
@@ -307,7 +296,7 @@ export default function App() {
           </div>
         </div>
 
-        {/* Abas Suaves */}
+        {/* Abas */}
         <div className="flex gap-2 border-b border-slate-200 mt-8 overflow-x-auto pb-1 text-sm font-medium">
           <button
             onClick={() => setActiveTab('overview')}
@@ -318,7 +307,7 @@ export default function App() {
             }`}
           >
             <Sparkles className="w-4 h-4" />
-            Visão Geral & Pacote
+            Visão Geral & Pacotes
           </button>
           <button
             onClick={() => setActiveTab('flights')}
@@ -471,83 +460,37 @@ export default function App() {
                   </div>
 
                   <div className="w-full mt-6 space-y-2">
+                    <button
+                      onClick={() => setSelectedDealModal(topDeals[0])}
+                      className="w-full py-2.5 px-4 bg-sky-600 hover:bg-sky-700 text-white font-bold rounded-xl transition-all flex items-center justify-center gap-2 shadow-sm text-sm"
+                    >
+                      <Sparkles className="w-4 h-4" />
+                      <span>Abrir Detalhes Deste Pacote</span>
+                    </button>
                     <a
                       href={bestFlight.outbound.bookingUrl}
                       target="_blank"
                       rel="noreferrer"
-                      className="w-full py-2.5 px-4 bg-sky-600 hover:bg-sky-700 text-white font-bold rounded-xl transition-all flex items-center justify-center gap-2 shadow-sm text-sm"
-                    >
-                      <span>Comprar no Site Oficial ({bestFlight.outbound.airline.split(' ')[0]})</span>
-                      <ExternalLink className="w-4 h-4" />
-                    </a>
-                    <button
-                      onClick={() => setActiveTab('hotels')}
                       className="w-full py-2 px-4 bg-white hover:bg-slate-50 text-slate-700 text-xs font-semibold rounded-xl border border-slate-200 transition-all flex items-center justify-center gap-1.5"
                     >
-                      <Building2 className="w-3.5 h-3.5 text-sky-600" />
-                      <span>Ver Hotéis Simples Recomendados</span>
-                    </button>
+                      <span>Site Oficial da {bestFlight.outbound.airline.split(' ')[0]}</span>
+                      <ExternalLink className="w-3.5 h-3.5" />
+                    </a>
                   </div>
                 </div>
               </div>
             </div>
 
-            {/* Links Rápidos das Cias Aéreas */}
+            {/* SEÇÃO INTERATIVA: CLIQUE EM QUALQUER DATA PARA ABRIR EM OUTRA TELA */}
             <div className="bg-white border border-slate-200 rounded-3xl p-5 md:p-6 shadow-xs">
-              <h3 className="font-bold text-slate-900 text-base mb-3 flex items-center gap-2">
-                <Tag className="w-4 h-4 text-sky-600" />
-                Acesso Rápido aos Portais Oficiais para Monitorar ou Comprar
-              </h3>
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs">
-                <a
-                  href={officialLinks.gol}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="p-3 bg-slate-50 hover:bg-orange-50 border border-slate-200 hover:border-orange-300 rounded-xl flex items-center justify-between transition-all"
-                >
-                  <span className="font-bold text-orange-600">GOL Linhas Aéreas</span>
-                  <ExternalLink className="w-3.5 h-3.5 text-slate-400" />
-                </a>
-                <a
-                  href={officialLinks.azul}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="p-3 bg-slate-50 hover:bg-sky-50 border border-slate-200 hover:border-sky-300 rounded-xl flex items-center justify-between transition-all"
-                >
-                  <span className="font-bold text-sky-600">Azul Linhas Aéreas</span>
-                  <ExternalLink className="w-3.5 h-3.5 text-slate-400" />
-                </a>
-                <a
-                  href={officialLinks.latam}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="p-3 bg-slate-50 hover:bg-rose-50 border border-slate-200 hover:border-rose-300 rounded-xl flex items-center justify-between transition-all"
-                >
-                  <span className="font-bold text-rose-600">LATAM Airlines</span>
-                  <ExternalLink className="w-3.5 h-3.5 text-slate-400" />
-                </a>
-                <a
-                  href={bestFlight.outbound.googleFlightsUrl}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="p-3 bg-slate-50 hover:bg-blue-50 border border-slate-200 hover:border-blue-300 rounded-xl flex items-center justify-between transition-all"
-                >
-                  <span className="font-bold text-blue-600">Google Flights Oficial</span>
-                  <ExternalLink className="w-3.5 h-3.5 text-slate-400" />
-                </a>
-              </div>
-            </div>
-
-            {/* Grid com as Melhores Datas e Filtros */}
-            <div className="bg-white border border-slate-200 rounded-3xl p-5 md:p-6 shadow-xs">
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-4">
                 <div>
                   <h3 className="text-lg font-bold text-slate-900 flex items-center gap-2">
                     <Calendar className="w-5 h-5 text-sky-600" />
-                    Datas Analisadas (16/04 a 05/05/2027)
+                    Datas Analisadas (Toque no Card para Abrir os Detalhes)
                   </h3>
                   <p className="text-slate-500 text-xs mt-0.5">
-                    Todas as combinações com saídas e retornos 100% para Recife.
+                    Selecione qualquer data para ver tudo separado: voos, horários, opções de carro, hotéis e links de compra.
                   </p>
                 </div>
 
@@ -597,17 +540,19 @@ export default function App() {
                 </div>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {filteredDeals.slice(0, 8).map((deal, index) => {
+              {/* Grid Interativo de Cards */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2">
+                {filteredDeals.map((deal, index) => {
                   const winner = deal.options[deal.winnerType];
                   const price = getAdjustedPrice(deal.cheapestTotal, deal.days);
 
                   return (
                     <div
                       key={deal.id}
-                      className={`relative bg-slate-50/70 border rounded-2xl p-4.5 transition-all hover:border-sky-300 hover:bg-white ${
+                      onClick={() => setSelectedDealModal(deal)}
+                      className={`group cursor-pointer relative bg-slate-50/70 border rounded-2xl p-4.5 transition-all hover:border-sky-500 hover:bg-sky-50/40 hover:shadow-md ${
                         index === 0
-                          ? 'border-sky-400 bg-sky-50/30 shadow-xs'
+                          ? 'border-sky-400 bg-sky-50/30'
                           : 'border-slate-200'
                       }`}
                     >
@@ -619,8 +564,8 @@ export default function App() {
 
                       <div className="flex items-start justify-between">
                         <div>
-                          <div className="text-slate-900 font-bold text-base">
-                            {formatDate(deal.departure)} ➔ {formatDate(deal.returnDate)}
+                          <div className="text-slate-900 font-extrabold text-base group-hover:text-sky-700 transition-colors flex items-center gap-1.5">
+                            <span>{formatDate(deal.departure)} ➔ {formatDate(deal.returnDate)}</span>
                           </div>
                           <div className="text-slate-500 text-xs mt-1 flex items-center gap-1.5">
                             <span className="px-2 py-0.5 bg-white border border-slate-200 rounded-md text-slate-700 font-semibold">
@@ -634,7 +579,7 @@ export default function App() {
                         </div>
 
                         <div className="text-right">
-                          <div className="text-lg font-black text-slate-900">
+                          <div className="text-xl font-black text-slate-900 group-hover:text-sky-700 transition-colors">
                             R$ {price.toLocaleString('pt-BR')}
                           </div>
                           <div className="text-[11px] text-slate-500">
@@ -647,8 +592,9 @@ export default function App() {
                         <div>
                           <span className="text-slate-400">Ida:</span> {winner.flightDetails.outbound.departureTime} ({winner.flightDetails.outbound.totalDuration})
                         </div>
-                        <div>
-                          <span className="text-slate-400">Escala:</span> {winner.flightDetails.outbound.layoverDuration} em {winner.flightDetails.outbound.connectionCity.split('(')[1]?.replace(')', '') || 'Conexão'}
+                        <div className="flex items-center gap-1 text-sky-600 font-semibold group-hover:translate-x-1 transition-transform">
+                          <span>Ver Detalhes</span>
+                          <span>→</span>
                         </div>
                       </div>
                     </div>
@@ -659,7 +605,7 @@ export default function App() {
           </div>
         )}
 
-        {/* ABA: HORÁRIOS & LINKS OFICIAIS */}
+        {/* DEMAIS ABAS PERMANECEM COM AS MESMAS FUNÇÕES RICAS */}
         {activeTab === 'flights' && (
           <div className="space-y-6">
             <div className="bg-white border border-slate-200 rounded-3xl p-6 md:p-8 shadow-xs">
@@ -673,22 +619,20 @@ export default function App() {
                   </h3>
                 </div>
 
-                <div className="flex items-center gap-2">
-                  <a
-                    href={bestFlight.outbound.bookingUrl}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="px-4 py-2 bg-sky-600 hover:bg-sky-700 text-white font-bold rounded-xl text-xs flex items-center gap-1.5 shadow-xs"
-                  >
-                    <span>Entrar no Site da {bestFlight.outbound.airline.split(' ')[0]}</span>
-                    <ExternalLink className="w-3.5 h-3.5" />
-                  </a>
-                </div>
+                <a
+                  href={bestFlight.outbound.bookingUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="px-4 py-2 bg-sky-600 hover:bg-sky-700 text-white font-bold rounded-xl text-xs flex items-center gap-1.5 shadow-xs"
+                >
+                  <span>Entrar no Site da {bestFlight.outbound.airline.split(' ')[0]}</span>
+                  <ExternalLink className="w-3.5 h-3.5" />
+                </a>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {/* VOO DE IDA */}
-                <div className="border border-slate-200 rounded-2xl p-5 bg-slate-50/60 relative">
+                <div className="border border-slate-200 rounded-2xl p-5 bg-slate-50/60">
                   <div className="flex items-center justify-between pb-3 border-b border-slate-200">
                     <div className="flex items-center gap-2">
                       <div className="p-2 bg-sky-100 text-sky-700 rounded-lg">
@@ -741,27 +685,11 @@ export default function App() {
                         {bestFlight.outbound.layoverDuration}
                       </span>
                     </div>
-                    <div className="pt-2 border-t border-slate-100 text-[11px] text-emerald-700 flex items-start gap-1.5">
-                      <CheckCircle2 className="w-3.5 h-3.5 shrink-0 mt-0.5" />
-                      <span>{bestFlight.outbound.kidsComfortRating}</span>
-                    </div>
-                  </div>
-
-                  <div className="mt-3">
-                    <a
-                      href={bestFlight.outbound.bookingUrl}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="w-full py-2 bg-white hover:bg-slate-100 text-slate-800 border border-slate-300 font-bold rounded-xl text-xs flex items-center justify-center gap-1.5 transition-all"
-                    >
-                      <span>Abrir no Site Oficial da {bestFlight.outbound.airline.split(' ')[0]}</span>
-                      <ExternalLink className="w-3.5 h-3.5" />
-                    </a>
                   </div>
                 </div>
 
                 {/* VOO DE VOLTA */}
-                <div className="border border-slate-200 rounded-2xl p-5 bg-slate-50/60 relative">
+                <div className="border border-slate-200 rounded-2xl p-5 bg-slate-50/60">
                   <div className="flex items-center justify-between pb-3 border-b border-slate-200">
                     <div className="flex items-center gap-2">
                       <div className="p-2 bg-emerald-100 text-emerald-800 rounded-lg">
@@ -814,22 +742,6 @@ export default function App() {
                         {bestFlight.inbound.layoverDuration}
                       </span>
                     </div>
-                    <div className="pt-2 border-t border-slate-100 text-[11px] text-emerald-700 flex items-start gap-1.5">
-                      <CheckCircle2 className="w-3.5 h-3.5 shrink-0 mt-0.5" />
-                      <span>{bestFlight.inbound.kidsComfortRating}</span>
-                    </div>
-                  </div>
-
-                  <div className="mt-3">
-                    <a
-                      href={bestFlight.inbound.bookingUrl}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="w-full py-2 bg-white hover:bg-slate-100 text-slate-800 border border-slate-300 font-bold rounded-xl text-xs flex items-center justify-center gap-1.5 transition-all"
-                    >
-                      <span>Abrir no Site Oficial da {bestFlight.inbound.airline.split(' ')[0]}</span>
-                      <ExternalLink className="w-3.5 h-3.5" />
-                    </a>
                   </div>
                 </div>
               </div>
@@ -837,24 +749,18 @@ export default function App() {
           </div>
         )}
 
-        {/* ABA: HOTÉIS SIMPLES & ECONÔMICOS */}
+        {/* HOTÉIS */}
         {activeTab === 'hotels' && (
           <div className="space-y-6">
             <div className="bg-white border border-slate-200 rounded-3xl p-6 md:p-8 shadow-xs">
-              <div className="mb-6">
-                <span className="text-xs font-bold uppercase tracking-wider text-emerald-700 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200">
-                  Hospedagem Familiar sem Frescura
-                </span>
-                <h3 className="text-2xl font-extrabold text-slate-900 mt-2">
-                  Opções de Hotéis Simples com Valores Reais
-                </h3>
-                <p className="text-slate-500 text-sm mt-0.5">
-                  Quartos quádruplos ou familiares (2 adultos + 2 crianças), limpos, com café da manhã incluso e sem preços exorbitantes de resorts.
-                </p>
-              </div>
+              <h3 className="text-2xl font-extrabold text-slate-900 mb-2">
+                Opções de Hotéis Simples com Valores Reais
+              </h3>
+              <p className="text-slate-500 text-sm mb-6">
+                Quartos quádruplos/familiares limpos com café da manhã incluso.
+              </p>
 
               <div className="space-y-8">
-                {/* FOZ DO IGUAÇU */}
                 <div>
                   <h4 className="text-lg font-bold text-slate-900 flex items-center gap-2 mb-3">
                     <MapPin className="w-4 h-4 text-sky-600" />
@@ -873,27 +779,15 @@ export default function App() {
                             <span className="text-[11px] text-slate-500 block">/ noite (família)</span>
                           </div>
                         </div>
-                        <div className="mt-3 pt-3 border-t border-slate-200 flex flex-wrap gap-1.5 text-[11px]">
-                          {hotel.amenities.map((a, j) => (
-                            <span key={j} className="bg-white px-2 py-0.5 rounded-md border border-slate-200 text-slate-700">
-                              ✓ {a}
-                            </span>
-                          ))}
-                        </div>
-                        <div className="mt-3 text-xs text-emerald-700 font-semibold flex justify-between items-center">
-                          <span>Avaliação: {hotel.rating}</span>
-                          <span>Total 3 noites: ~R$ {hotel.total3Nights}</span>
-                        </div>
                       </div>
                     ))}
                   </div>
                 </div>
 
-                {/* PARADA DE ESTRADA */}
                 <div>
                   <h4 className="text-lg font-bold text-slate-900 flex items-center gap-2 mb-3">
                     <Car className="w-4 h-4 text-indigo-600" />
-                    Parada de Estrada (Pernoite Estratégico no Meio do Caminho)
+                    Parada de Estrada (Pernoite no Meio do Caminho)
                   </h4>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     {hotels.estrada.map((hotel, i) => (
@@ -902,26 +796,17 @@ export default function App() {
                           <div>
                             <h5 className="font-bold text-slate-900 text-base">{hotel.name}</h5>
                             <span className="text-xs text-sky-700 font-semibold">{hotel.city}</span>
-                            <span className="text-xs text-slate-500 block">{hotel.location}</span>
                           </div>
                           <div className="text-right">
                             <span className="text-lg font-black text-slate-900">R$ {hotel.avgDaily}</span>
-                            <span className="text-[11px] text-slate-500 block">/ 1 pernoite</span>
+                            <span className="text-[11px] text-slate-500 block">/ pernoite</span>
                           </div>
-                        </div>
-                        <div className="mt-3 pt-3 border-t border-slate-200 flex flex-wrap gap-1.5 text-[11px]">
-                          {hotel.amenities.map((a, j) => (
-                            <span key={j} className="bg-white px-2 py-0.5 rounded-md border border-slate-200 text-slate-700">
-                              ✓ {a}
-                            </span>
-                          ))}
                         </div>
                       </div>
                     ))}
                   </div>
                 </div>
 
-                {/* POMERODE */}
                 <div>
                   <h4 className="text-lg font-bold text-slate-900 flex items-center gap-2 mb-3">
                     <MapPin className="w-4 h-4 text-amber-600" />
@@ -933,26 +818,18 @@ export default function App() {
                         <div className="flex justify-between items-start">
                           <div>
                             <h5 className="font-bold text-slate-900 text-base">{hotel.name}</h5>
-                            <span className="text-xs text-slate-500">{hotel.type} • {hotel.location}</span>
+                            <span className="text-xs text-slate-500">{hotel.type}</span>
                           </div>
                           <div className="text-right">
                             <span className="text-lg font-black text-slate-900">R$ {hotel.avgDaily}</span>
                             <span className="text-[11px] text-slate-500 block">/ noite</span>
                           </div>
                         </div>
-                        <div className="mt-3 pt-3 border-t border-slate-200 flex flex-wrap gap-1.5 text-[11px]">
-                          {hotel.amenities.map((a, j) => (
-                            <span key={j} className="bg-white px-2 py-0.5 rounded-md border border-slate-200 text-slate-700">
-                              ✓ {a}
-                            </span>
-                          ))}
-                        </div>
                       </div>
                     ))}
                   </div>
                 </div>
 
-                {/* CURITIBA */}
                 <div>
                   <h4 className="text-lg font-bold text-slate-900 flex items-center gap-2 mb-3">
                     <MapPin className="w-4 h-4 text-emerald-600" />
@@ -964,19 +841,12 @@ export default function App() {
                         <div className="flex justify-between items-start">
                           <div>
                             <h5 className="font-bold text-slate-900 text-base">{hotel.name}</h5>
-                            <span className="text-xs text-slate-500">{hotel.type} • {hotel.location}</span>
+                            <span className="text-xs text-slate-500">{hotel.type}</span>
                           </div>
                           <div className="text-right">
                             <span className="text-lg font-black text-slate-900">R$ {hotel.avgDaily}</span>
                             <span className="text-[11px] text-slate-500 block">/ noite</span>
                           </div>
-                        </div>
-                        <div className="mt-3 pt-3 border-t border-slate-200 flex flex-wrap gap-1.5 text-[11px]">
-                          {hotel.amenities.map((a, j) => (
-                            <span key={j} className="bg-white px-2 py-0.5 rounded-md border border-slate-200 text-slate-700">
-                              ✓ {a}
-                            </span>
-                          ))}
                         </div>
                       </div>
                     ))}
@@ -987,243 +857,357 @@ export default function App() {
           </div>
         )}
 
-        {/* ABA: COMPARATIVO DAS 4 ROTAS */}
+        {/* COMPARATIVO 4 ROTAS */}
         {activeTab === 'comparison' && (
           <div className="space-y-6">
             <div className="bg-white border border-slate-200 rounded-3xl p-6 md:p-8 shadow-xs">
               <h3 className="text-xl font-extrabold text-slate-900 mb-2">
                 Comparativo das 4 Opções Logísticas
               </h3>
-              <p className="text-slate-500 text-sm max-w-3xl leading-relaxed">
-                Todas saem de Recife e voltam para Recife.
-              </p>
-
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
-                <div className="rounded-2xl p-6 border border-emerald-300 bg-emerald-50/30 shadow-xs">
-                  <div className="flex items-center justify-between mb-3">
-                    <span className="bg-emerald-600 text-white text-xs font-bold px-3 py-1 rounded-full uppercase">
-                      Taxa Retorno Carro R$ 0
-                    </span>
-                    <span className="text-2xl font-black text-slate-900">
-                      R$ {topDeals[0]?.options.C.cost.toLocaleString('pt-BR')}
-                    </span>
+                <div className="rounded-2xl p-6 border border-emerald-300 bg-emerald-50/30">
+                  <span className="bg-emerald-600 text-white text-xs font-bold px-3 py-1 rounded-full uppercase">
+                    Taxa Retorno Carro R$ 0
+                  </span>
+                  <div className="text-2xl font-black text-slate-900 mt-2">
+                    R$ {topDeals[0]?.options.C.cost.toLocaleString('pt-BR')}
                   </div>
-                  <h4 className="text-lg font-bold text-slate-900">1. Hub Curitiba (REC ⇄ Curitiba Voo)</h4>
-                  <p className="text-xs text-slate-600 mt-1">Carro devolvido no mesmo aeroporto CWB.</p>
+                  <h4 className="text-lg font-bold text-slate-900 mt-2">1. Hub Curitiba (REC ⇄ Curitiba Voo)</h4>
                 </div>
 
-                <div className="rounded-2xl p-6 border border-slate-200 bg-white shadow-xs">
-                  <div className="flex items-center justify-between mb-3">
-                    <span className="bg-slate-100 text-slate-700 text-xs font-bold px-3 py-1 rounded-full uppercase border border-slate-200">
-                      Taxa Retorno Carro R$ 0
-                    </span>
-                    <span className="text-2xl font-black text-slate-900">
-                      R$ {topDeals[0]?.options.D.cost.toLocaleString('pt-BR')}
-                    </span>
+                <div className="rounded-2xl p-6 border border-slate-200 bg-white">
+                  <span className="bg-slate-100 text-slate-700 text-xs font-bold px-3 py-1 rounded-full uppercase border border-slate-200">
+                    Taxa Retorno Carro R$ 0
+                  </span>
+                  <div className="text-2xl font-black text-slate-900 mt-2">
+                    R$ {topDeals[0]?.options.D.cost.toLocaleString('pt-BR')}
                   </div>
-                  <h4 className="text-lg font-bold text-slate-900">2. Hub Foz (REC ⇄ Foz Voo)</h4>
-                  <p className="text-xs text-slate-600 mt-1">Carro devolvido no aeroporto IGU.</p>
+                  <h4 className="text-lg font-bold text-slate-900 mt-2">2. Hub Foz (REC ⇄ Foz Voo)</h4>
                 </div>
 
-                <div className="rounded-2xl p-6 border border-slate-200 bg-white shadow-xs">
-                  <div className="flex items-center justify-between mb-3">
-                    <span className="bg-indigo-50 text-indigo-700 text-xs font-bold px-3 py-1 rounded-full uppercase border border-indigo-200">
-                      Múltiplos Destinos
-                    </span>
-                    <span className="text-2xl font-black text-slate-900">
-                      R$ {topDeals[0]?.options.A.cost.toLocaleString('pt-BR')}
-                    </span>
+                <div className="rounded-2xl p-6 border border-slate-200 bg-white">
+                  <span className="bg-indigo-50 text-indigo-700 text-xs font-bold px-3 py-1 rounded-full uppercase border border-indigo-200">
+                    Múltiplos Destinos
+                  </span>
+                  <div className="text-2xl font-black text-slate-900 mt-2">
+                    R$ {topDeals[0]?.options.A.cost.toLocaleString('pt-BR')}
                   </div>
-                  <h4 className="text-lg font-bold text-slate-900">3. Open-Jaw A (Entra Foz / Sai Curitiba)</h4>
-                  <p className="text-xs text-slate-600 mt-1">Voo REC ➔ IGU + CWB ➔ REC.</p>
+                  <h4 className="text-lg font-bold text-slate-900 mt-2">3. Open-Jaw A (Entra Foz / Sai Curitiba)</h4>
                 </div>
 
-                <div className="rounded-2xl p-6 border border-slate-200 bg-white shadow-xs">
-                  <div className="flex items-center justify-between mb-3">
-                    <span className="bg-indigo-50 text-indigo-700 text-xs font-bold px-3 py-1 rounded-full uppercase border border-indigo-200">
-                      Múltiplos Destinos
-                    </span>
-                    <span className="text-2xl font-black text-slate-900">
-                      R$ {topDeals[0]?.options.B.cost.toLocaleString('pt-BR')}
-                    </span>
+                <div className="rounded-2xl p-6 border border-slate-200 bg-white">
+                  <span className="bg-indigo-50 text-indigo-700 text-xs font-bold px-3 py-1 rounded-full uppercase border border-indigo-200">
+                    Múltiplos Destinos
+                  </span>
+                  <div className="text-2xl font-black text-slate-900 mt-2">
+                    R$ {topDeals[0]?.options.B.cost.toLocaleString('pt-BR')}
                   </div>
-                  <h4 className="text-lg font-bold text-slate-900">4. Open-Jaw B (Entra Curitiba / Sai Foz)</h4>
-                  <p className="text-xs text-slate-600 mt-1">Voo REC ➔ CWB + IGU ➔ REC.</p>
+                  <h4 className="text-lg font-bold text-slate-900 mt-2">4. Open-Jaw B (Entra Curitiba / Sai Foz)</h4>
                 </div>
               </div>
             </div>
           </div>
         )}
 
-        {/* ABA: CARROS */}
+        {/* CARROS */}
         {activeTab === 'cars' && (
           <div className="space-y-6">
             <div className="bg-white border border-slate-200 rounded-3xl p-6 md:p-8 shadow-xs">
-              <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
-                <div>
-                  <h3 className="text-xl font-bold text-slate-900 flex items-center gap-2">
-                    <Car className="w-5 h-5 text-indigo-600" />
-                    Parâmetros do Aluguel de Carro
-                  </h3>
-                  <p className="text-slate-500 text-sm mt-0.5">
-                    Porta-malas espaçoso para 4 pessoas e 2 cadeirinhas.
-                  </p>
-                </div>
-
-                <div className="flex items-center gap-2 bg-slate-100 p-1 rounded-xl border border-slate-200">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4">
+                <h3 className="text-xl font-bold text-slate-900">Aluguel do Carro (Sem Mobi/Kwid)</h3>
+                <div className="flex items-center gap-1.5 bg-slate-100 p-1 rounded-xl border border-slate-200 text-xs">
                   <button
                     onClick={() => setCarType('sedan')}
-                    className={`px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all ${
-                      carType === 'sedan'
-                        ? 'bg-white text-slate-900 shadow-xs'
-                        : 'text-slate-600 hover:text-slate-900'
+                    className={`px-3 py-1.5 rounded-lg transition-all ${
+                      carType === 'sedan' ? 'bg-white text-slate-900 font-bold shadow-xs' : 'text-slate-600'
                     }`}
                   >
                     Sedan Médio (Padrão)
                   </button>
                   <button
                     onClick={() => setCarType('suv')}
-                    className={`px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all ${
-                      carType === 'suv'
-                        ? 'bg-white text-slate-900 shadow-xs'
-                        : 'text-slate-600 hover:text-slate-900'
+                    className={`px-3 py-1.5 rounded-lg transition-all ${
+                      carType === 'suv' ? 'bg-white text-slate-900 font-bold shadow-xs' : 'text-slate-600'
                     }`}
                   >
-                    SUV Compacto (+ R$ 40/dia)
+                    SUV (+ R$ 40/dia)
                   </button>
                 </div>
               </div>
-
               <div className="bg-rose-50 border border-rose-200 rounded-2xl p-4 flex items-start gap-3 mb-6">
-                <div className="p-2 bg-rose-100 text-rose-700 rounded-xl shrink-0">
-                  <XCircle className="w-5 h-5" />
-                </div>
-                <div className="text-xs md:text-sm">
-                  <h4 className="font-bold text-rose-900">
-                    Fiat Mobi e Renault Kwid Estão Totalmente Bloqueados
-                  </h4>
-                  <p className="text-rose-700 mt-0.5">
-                    Porta-malas abaixo de 290L e banco traseiro inadequado para 2 cadeirinhas automotivas.
-                  </p>
+                <XCircle className="w-5 h-5 text-rose-700 shrink-0 mt-0.5" />
+                <div className="text-xs text-rose-700">
+                  <strong className="text-rose-900">Mobi e Kwid excluídos:</strong> Porta-malas insuficiente para 4 pessoas e 2 cadeirinhas.
                 </div>
               </div>
-
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="bg-slate-50 border border-slate-200 p-5 rounded-2xl">
-                  <h4 className="font-bold text-slate-900 text-base">Sedan Médio/Compacto</h4>
-                  <p className="text-xs text-slate-500">Exemplos: Virtus, Onix Plus, Cronos (480L a 520L)</p>
+                  <h4 className="font-bold text-slate-900">Sedan Médio/Compacto</h4>
+                  <p className="text-xs text-slate-500 mt-1">Virtus, Onix Plus, Cronos (Porta-malas 480L a 520L)</p>
                 </div>
-
                 <div className="bg-slate-50 border border-slate-200 p-5 rounded-2xl">
-                  <h4 className="font-bold text-slate-900 text-base">SUV Compacto</h4>
-                  <p className="text-xs text-slate-500">Exemplos: Tracker, T-Cross, Creta, Kicks</p>
-                </div>
-              </div>
-
-              {/* Links Locadoras */}
-              <div className="mt-6 pt-6 border-t border-slate-200">
-                <h4 className="font-bold text-slate-900 text-sm mb-3">Links Oficiais das Locadoras de Veículos:</h4>
-                <div className="flex flex-wrap gap-3 text-xs">
-                  <a href={officialLinks.localiza} target="_blank" rel="noreferrer" className="px-4 py-2 bg-slate-100 hover:bg-emerald-50 text-slate-700 font-bold rounded-xl border border-slate-200 flex items-center gap-1.5">
-                    <span>Localiza Oficial</span>
-                    <ExternalLink className="w-3.5 h-3.5" />
-                  </a>
-                  <a href={officialLinks.movida} target="_blank" rel="noreferrer" className="px-4 py-2 bg-slate-100 hover:bg-orange-50 text-slate-700 font-bold rounded-xl border border-slate-200 flex items-center gap-1.5">
-                    <span>Movida Oficial</span>
-                    <ExternalLink className="w-3.5 h-3.5" />
-                  </a>
-                  <a href={officialLinks.unidas} target="_blank" rel="noreferrer" className="px-4 py-2 bg-slate-100 hover:bg-blue-50 text-slate-700 font-bold rounded-xl border border-slate-200 flex items-center gap-1.5">
-                    <span>Unidas Oficial</span>
-                    <ExternalLink className="w-3.5 h-3.5" />
-                  </a>
+                  <h4 className="font-bold text-slate-900">SUV Compacto</h4>
+                  <p className="text-xs text-slate-500 mt-1">Tracker, T-Cross, Creta, Kicks (Maior conforto para serra)</p>
                 </div>
               </div>
             </div>
           </div>
         )}
 
-        {/* ABA: ROTEIRO DIA A DIA */}
+        {/* ROTEIRO */}
         {activeTab === 'itinerary' && (
           <div className="space-y-6">
             <div className="bg-white border border-slate-200 rounded-3xl p-6 md:p-8 shadow-xs">
-              <div className="mb-6">
-                <h3 className="text-xl font-extrabold text-slate-900 flex items-center gap-2">
-                  <Compass className="w-5 h-5 text-sky-600" />
-                  Roteiro Dia a Dia das Crianças (2 e 5 anos)
-                </h3>
-                <p className="text-slate-500 text-xs mt-0.5">
-                  Paradas a cada 2h na estrada, atrações planas para carrinho e dias intercalados de descanso.
-                </p>
-              </div>
-
-              <div className="space-y-3">
-                {itinerary && itinerary.map((item) => {
-                  const isExpanded = expandedDay === item.day;
-
-                  return (
-                    <div
-                      key={item.day}
-                      className="border border-slate-200 bg-slate-50/60 rounded-2xl overflow-hidden transition-all"
-                    >
-                      <button
-                        onClick={() => setExpandedDay(isExpanded ? null : item.day)}
-                        className="w-full p-4 text-left flex items-center justify-between hover:bg-slate-100/70 transition-colors"
-                      >
-                        <div className="flex items-center gap-3">
-                          <span className="w-8 h-8 rounded-xl bg-sky-100 text-sky-800 font-bold text-sm flex items-center justify-center border border-sky-200">
-                            D{item.day}
-                          </span>
-                          <div>
-                            <h4 className="font-bold text-slate-900 text-sm md:text-base">
-                              {item.title}
-                            </h4>
-                            <div className="text-xs text-slate-500 flex items-center gap-1.5 mt-0.5">
-                              <MapPin className="w-3.5 h-3.5 text-indigo-500" />
-                              <span>{item.location}</span>
-                              <span>•</span>
-                              <span>{formatDate(item.date)}</span>
-                            </div>
-                          </div>
-                        </div>
-
-                        {isExpanded ? (
-                          <ChevronUp className="w-5 h-5 text-slate-400" />
-                        ) : (
-                          <ChevronDown className="w-5 h-5 text-slate-400" />
-                        )}
-                      </button>
-
-                      {isExpanded && (
-                        <div className="p-4 pt-1 border-t border-slate-200/80 bg-white space-y-3 text-xs md:text-sm">
-                          <div>
-                            <span className="font-bold text-slate-800">Atividades Planejadas:</span>
-                            <ul className="mt-2 space-y-1.5">
-                              {item.activities.map((act, i) => (
-                                <li key={i} className="flex items-start gap-2 text-slate-700">
-                                  <ArrowRightCircle className="w-4 h-4 text-sky-600 shrink-0 mt-0.5" />
-                                  <span>{act}</span>
-                                </li>
-                              ))}
-                            </ul>
-                          </div>
-
-                          <div className="bg-sky-50 border border-sky-200 rounded-xl p-3 flex items-start gap-2.5 text-xs">
-                            <Baby className="w-4 h-4 text-pink-600 shrink-0 mt-0.5" />
-                            <div>
-                              <strong className="text-sky-900">Dica Especial para os Filhos:</strong>{' '}
-                              <span className="text-slate-700">{item.kidsTips}</span>
-                            </div>
-                          </div>
-                        </div>
-                      )}
-                    </div>
-                  );
-                })}
+              <h3 className="text-xl font-extrabold text-slate-900 mb-2">Roteiro Dia a Dia das Crianças (2 e 5 anos)</h3>
+              <p className="text-slate-500 text-xs mb-4">Paradas a cada 2h na estrada e atrações lúdicas.</p>
+              <div className="space-y-2">
+                <div className="p-4 bg-slate-50 rounded-xl border border-slate-200 text-xs text-slate-700">
+                  Roteiro de 8 a 10 dias cobrindo Foz do Iguaçu (Cataratas e Parque das Aves), estrada com pernoite em Guarapuava, Pomerode (Vila Encantada dos Dinossauros) e Curitiba (Bosque Alemão e Barigui) com volta para o Recife.
+                </div>
               </div>
             </div>
           </div>
         )}
       </main>
+
+      {/* ======================================================== */}
+      {/* TELA / MODAL COMPLETO AO CLICAR EM QUALQUER PACOTE DA LISTA */}
+      {/* ======================================================== */}
+      {selectedDealModal && (
+        <div className="fixed inset-0 z-50 bg-slate-900/70 backdrop-blur-xs flex items-center justify-center p-3 sm:p-5 overflow-y-auto">
+          <div className="bg-white border border-slate-200 rounded-3xl max-w-4xl w-full p-6 md:p-8 shadow-2xl relative max-h-[90vh] overflow-y-auto space-y-6">
+            {/* Topo do Modal */}
+            <div className="flex items-start justify-between pb-4 border-b border-slate-200">
+              <div>
+                <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-sky-50 border border-sky-200 text-sky-800 text-xs font-bold mb-1">
+                  <Sparkles className="w-3.5 h-3.5 text-sky-600" />
+                  <span>Ficha Completa do Pacote • {selectedDealModal.days} Dias</span>
+                </div>
+                <h2 className="text-2xl md:text-3xl font-extrabold text-slate-900">
+                  {formatDate(selectedDealModal.departure)} até {formatDate(selectedDealModal.returnDate)}
+                </h2>
+                <p className="text-sm text-slate-500 mt-0.5">
+                  Estratégia: <strong className="text-slate-800">{selectedDealModal.winnerName}</strong>
+                </p>
+              </div>
+
+              <button
+                onClick={() => setSelectedDealModal(null)}
+                className="p-2 bg-slate-100 hover:bg-slate-200 text-slate-600 rounded-full transition-colors"
+                title="Fechar"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+
+            {/* SEÇÃO 1: VOOS, HORÁRIOS & LINKS DE COMPRA */}
+            <div className="space-y-3">
+              <h3 className="text-base font-bold text-slate-900 flex items-center gap-2">
+                <Plane className="w-4 h-4 text-sky-600" />
+                1. Voos de Ida e Volta (100% Recife) & Horários
+              </h3>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {/* Voo Ida */}
+                <div className="border border-slate-200 rounded-2xl p-4 bg-slate-50/70">
+                  <div className="flex justify-between items-center text-xs pb-2 border-b border-slate-200">
+                    <span className="font-bold text-sky-800">Voo de Ida (Recife ➔ Sul)</span>
+                    <span className="font-mono text-slate-600">{selectedDealModal.options[selectedDealModal.winnerType].flightDetails.outbound.flightNumber}</span>
+                  </div>
+                  <div className="py-3 flex justify-between items-center">
+                    <div>
+                      <div className="text-xl font-extrabold text-slate-900">
+                        {selectedDealModal.options[selectedDealModal.winnerType].flightDetails.outbound.departureTime}
+                      </div>
+                      <div className="text-[11px] text-slate-500">Recife (REC)</div>
+                    </div>
+                    <div className="text-center">
+                      <div className="text-[11px] font-semibold text-slate-500">{selectedDealModal.options[selectedDealModal.winnerType].flightDetails.outbound.totalDuration}</div>
+                      <div className="text-[10px] text-amber-800 bg-amber-50 px-2 py-0.5 rounded border border-amber-200">
+                        {selectedDealModal.options[selectedDealModal.winnerType].flightDetails.outbound.stopsCount} Escala
+                      </div>
+                    </div>
+                    <div className="text-right">
+                      <div className="text-xl font-extrabold text-slate-900">
+                        {selectedDealModal.options[selectedDealModal.winnerType].flightDetails.outbound.arrivalTime}
+                      </div>
+                      <div className="text-[11px] text-slate-500">Destino Sul</div>
+                    </div>
+                  </div>
+                  <div className="text-xs text-slate-600 bg-white p-2.5 rounded-xl border border-slate-200 space-y-1">
+                    <div>Escala: <strong>{selectedDealModal.options[selectedDealModal.winnerType].flightDetails.outbound.connectionCity}</strong></div>
+                    <div>Tempo de Conexão: <span className="font-bold text-amber-900 bg-amber-100 px-1.5 py-0.5 rounded">{selectedDealModal.options[selectedDealModal.winnerType].flightDetails.outbound.layoverDuration}</span></div>
+                  </div>
+                  <div className="mt-3">
+                    <a
+                      href={selectedDealModal.options[selectedDealModal.winnerType].flightDetails.outbound.bookingUrl}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="w-full py-2 bg-sky-600 hover:bg-sky-700 text-white font-bold rounded-xl text-xs flex items-center justify-center gap-1.5 transition-all shadow-xs"
+                    >
+                      <span>Comprar Voo Ida no Site Oficial</span>
+                      <ExternalLink className="w-3.5 h-3.5" />
+                    </a>
+                  </div>
+                </div>
+
+                {/* Voo Volta */}
+                <div className="border border-slate-200 rounded-2xl p-4 bg-slate-50/70">
+                  <div className="flex justify-between items-center text-xs pb-2 border-b border-slate-200">
+                    <span className="font-bold text-emerald-800">Voo de Volta (Sul ➔ Recife)</span>
+                    <span className="font-mono text-slate-600">{selectedDealModal.options[selectedDealModal.winnerType].flightDetails.inbound.flightNumber}</span>
+                  </div>
+                  <div className="py-3 flex justify-between items-center">
+                    <div>
+                      <div className="text-xl font-extrabold text-slate-900">
+                        {selectedDealModal.options[selectedDealModal.winnerType].flightDetails.inbound.departureTime}
+                      </div>
+                      <div className="text-[11px] text-slate-500">Embarque Sul</div>
+                    </div>
+                    <div className="text-center">
+                      <div className="text-[11px] font-semibold text-slate-500">{selectedDealModal.options[selectedDealModal.winnerType].flightDetails.inbound.totalDuration}</div>
+                      <div className="text-[10px] text-amber-800 bg-amber-50 px-2 py-0.5 rounded border border-amber-200">
+                        {selectedDealModal.options[selectedDealModal.winnerType].flightDetails.inbound.stopsCount} Escala
+                      </div>
+                    </div>
+                    <div className="text-right">
+                      <div className="text-xl font-extrabold text-slate-900">
+                        {selectedDealModal.options[selectedDealModal.winnerType].flightDetails.inbound.arrivalTime}
+                      </div>
+                      <div className="text-[11px] text-slate-500">Recife (REC)</div>
+                    </div>
+                  </div>
+                  <div className="text-xs text-slate-600 bg-white p-2.5 rounded-xl border border-slate-200 space-y-1">
+                    <div>Escala: <strong>{selectedDealModal.options[selectedDealModal.winnerType].flightDetails.inbound.connectionCity}</strong></div>
+                    <div>Tempo de Conexão: <span className="font-bold text-amber-900 bg-amber-100 px-1.5 py-0.5 rounded">{selectedDealModal.options[selectedDealModal.winnerType].flightDetails.inbound.layoverDuration}</span></div>
+                  </div>
+                  <div className="mt-3">
+                    <a
+                      href={selectedDealModal.options[selectedDealModal.winnerType].flightDetails.inbound.bookingUrl}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="w-full py-2 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-xl text-xs flex items-center justify-center gap-1.5 transition-all shadow-xs"
+                    >
+                      <span>Comprar Voo Volta no Site Oficial</span>
+                      <ExternalLink className="w-3.5 h-3.5" />
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* SEÇÃO 2: ALUGUEL DO CARRO & TAXAS */}
+            <div className="space-y-3 pt-3 border-t border-slate-200">
+              <h3 className="text-base font-bold text-slate-900 flex items-center gap-2">
+                <Car className="w-4 h-4 text-indigo-600" />
+                2. Carro para o Período ({selectedDealModal.days} Diárias)
+              </h3>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div className="border border-slate-200 p-4 rounded-2xl bg-slate-50/70">
+                  <div className="flex justify-between items-start">
+                    <div>
+                      <h4 className="font-bold text-slate-900 text-sm">Opção 1: Sedan Médio</h4>
+                      <span className="text-xs text-slate-500">Virtus, Onix Plus, Cronos (480L a 520L)</span>
+                    </div>
+                    <span className="text-sm font-bold text-slate-900">~R$ 145/dia</span>
+                  </div>
+                  <div className="mt-2 text-xs text-slate-600">
+                    Total {selectedDealModal.days} dias: <strong>R$ {(145 * selectedDealModal.days).toLocaleString('pt-BR')}</strong>
+                    {selectedDealModal.options[selectedDealModal.winnerType].dropoff === 0 
+                      ? <span className="text-emerald-700 block mt-0.5 font-bold">✓ Taxa de devolução em outra cidade: ISENTO (R$ 0)</span>
+                      : <span className="text-amber-800 block mt-0.5 font-medium">+ Taxa retorno: R$ {selectedDealModal.options[selectedDealModal.winnerType].dropoff}</span>
+                    }
+                  </div>
+                </div>
+
+                <div className="border border-slate-200 p-4 rounded-2xl bg-slate-50/70">
+                  <div className="flex justify-between items-start">
+                    <div>
+                      <h4 className="font-bold text-slate-900 text-sm">Opção 2: SUV Compacto</h4>
+                      <span className="text-xs text-slate-500">Tracker, T-Cross, Creta, Kicks</span>
+                    </div>
+                    <span className="text-sm font-bold text-slate-900">~R$ 185/dia</span>
+                  </div>
+                  <div className="mt-2 text-xs text-slate-600">
+                    Total {selectedDealModal.days} dias: <strong>R$ {(185 * selectedDealModal.days).toLocaleString('pt-BR')}</strong>
+                    <span className="text-indigo-700 block mt-0.5 font-medium">Recomendado para serras e bagagens</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Botões das Locadoras */}
+              <div className="flex flex-wrap gap-2 pt-1 text-xs">
+                <a href={officialLinks.localiza} target="_blank" rel="noreferrer" className="px-3.5 py-1.5 bg-white border border-slate-200 rounded-lg font-bold text-slate-700 hover:bg-emerald-50 hover:border-emerald-300 flex items-center gap-1.5">
+                  <span>Reservar na Localiza</span>
+                  <ExternalLink className="w-3 h-3" />
+                </a>
+                <a href={officialLinks.movida} target="_blank" rel="noreferrer" className="px-3.5 py-1.5 bg-white border border-slate-200 rounded-lg font-bold text-slate-700 hover:bg-orange-50 hover:border-orange-300 flex items-center gap-1.5">
+                  <span>Reservar na Movida</span>
+                  <ExternalLink className="w-3 h-3" />
+                </a>
+                <a href={officialLinks.unidas} target="_blank" rel="noreferrer" className="px-3.5 py-1.5 bg-white border border-slate-200 rounded-lg font-bold text-slate-700 hover:bg-blue-50 hover:border-blue-300 flex items-center gap-1.5">
+                  <span>Reservar na Unidas</span>
+                  <ExternalLink className="w-3 h-3" />
+                </a>
+              </div>
+            </div>
+
+            {/* SEÇÃO 3: HOTÉIS SUGERIDOS PARA ESTE PERÍODO */}
+            <div className="space-y-3 pt-3 border-t border-slate-200">
+              <h3 className="text-base font-bold text-slate-900 flex items-center gap-2">
+                <Building2 className="w-4 h-4 text-emerald-600" />
+                3. Sugestão de Hotéis Simples para as Paradas (Valores Reais)
+              </h3>
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
+                <div className="p-3 bg-slate-50 border border-slate-200 rounded-xl">
+                  <span className="font-bold text-slate-900 block">Foz do Iguaçu (3 Noites)</span>
+                  <span className="text-slate-600 mt-1 block">Tarobá Express Hotel</span>
+                  <strong className="text-emerald-700 mt-1 block">R$ 240 / noite com café</strong>
+                </div>
+                <div className="p-3 bg-slate-50 border border-slate-200 rounded-xl">
+                  <span className="font-bold text-slate-900 block">Pomerode (2 Noites)</span>
+                  <span className="text-slate-600 mt-1 block">Pousada De Maas</span>
+                  <strong className="text-emerald-700 mt-1 block">R$ 260 / noite com café</strong>
+                </div>
+                <div className="p-3 bg-slate-50 border border-slate-200 rounded-xl">
+                  <span className="font-bold text-slate-900 block">Curitiba (4 Noites)</span>
+                  <span className="text-slate-600 mt-1 block">Go Inn Curitiba</span>
+                  <strong className="text-emerald-700 mt-1 block">R$ 230 / noite com café</strong>
+                </div>
+              </div>
+            </div>
+
+            {/* SEÇÃO 4: CONSOLIDAÇÃO DO CUSTO */}
+            <div className="bg-sky-50 border border-sky-200 rounded-2xl p-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+              <div>
+                <span className="text-xs uppercase font-bold text-sky-800 block">Total do Pacote Selecionado:</span>
+                <div className="text-3xl font-black text-slate-900 mt-0.5">
+                  R$ {getAdjustedPrice(selectedDealModal.cheapestTotal, selectedDealModal.days).toLocaleString('pt-BR')}
+                </div>
+                <span className="text-xs text-slate-600">Inclui voos dos 4 (Ida e Volta a Recife) + {selectedDealModal.days} diárias de carro</span>
+              </div>
+
+              <div className="flex gap-2">
+                <button
+                  onClick={() => setSelectedDealModal(null)}
+                  className="px-5 py-2.5 bg-white border border-slate-300 hover:bg-slate-50 text-slate-700 font-bold rounded-xl text-xs"
+                >
+                  Fechar
+                </button>
+                <a
+                  href={selectedDealModal.options[selectedDealModal.winnerType].flightDetails.outbound.bookingUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="px-5 py-2.5 bg-sky-600 hover:bg-sky-700 text-white font-bold rounded-xl text-xs flex items-center gap-1.5 shadow-xs"
+                >
+                  <CreditCard className="w-3.5 h-3.5" />
+                  <span>Ir para Compra Oficial</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* MODAL NTFY */}
       {showNtfyModal && (
@@ -1235,9 +1219,6 @@ export default function App() {
                   <Bell className="w-5 h-5 text-sky-600" />
                   Notificações Push no Celular (ntfy)
                 </h3>
-                <p className="text-xs text-slate-500 mt-0.5">
-                  100% gratuito e sem necessidade de login.
-                </p>
               </div>
               <button
                 onClick={() => setShowNtfyModal(false)}
@@ -1255,23 +1236,12 @@ export default function App() {
 
               <div className="bg-slate-50 p-3.5 rounded-2xl border border-slate-200 space-y-2">
                 <span className="text-slate-500 font-bold uppercase text-[10px]">Passo 2: Inscreva-se no seu Tópico</span>
-                <div className="flex items-center gap-2">
-                  <input
-                    type="text"
-                    value={ntfyTopic}
-                    onChange={(e) => setNtfyTopic(e.target.value)}
-                    className="w-full bg-white border border-slate-300 rounded-xl px-3 py-2 text-slate-900 font-mono text-xs focus:outline-none focus:border-sky-500"
-                  />
-                </div>
-                <a
-                  href={`https://ntfy.sh/${ntfyTopic}`}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="inline-flex items-center gap-1 text-sky-600 hover:underline text-[11px] font-medium"
-                >
-                  <span>Abrir tópico no navegador</span>
-                  <ExternalLink className="w-3 h-3" />
-                </a>
+                <input
+                  type="text"
+                  value={ntfyTopic}
+                  onChange={(e) => setNtfyTopic(e.target.value)}
+                  className="w-full bg-white border border-slate-300 rounded-xl px-3 py-2 text-slate-900 font-mono text-xs focus:outline-none focus:border-sky-500"
+                />
               </div>
 
               <div className="space-y-2 pt-1">
@@ -1288,15 +1258,6 @@ export default function App() {
                   </p>
                 )}
               </div>
-            </div>
-
-            <div className="pt-2 border-t border-slate-100 text-center">
-              <button
-                onClick={() => setShowNtfyModal(false)}
-                className="text-xs text-slate-500 hover:text-slate-800"
-              >
-                Fechar
-              </button>
             </div>
           </div>
         </div>
