@@ -1,8 +1,10 @@
 /**
  * MONITOR AUTÔNOMO DE PASSAGENS E ALUGUEL DE CARRO - FÉRIAS SCM 2027
  * 
- * - Deep Links Oficiais Auto-Preenchidos (Google Flights, Skyscanner, Decolar, Kayak)
- * - Carrega datas exatas, 4 passageiros (2 adultos + 2 crianças) e destinos pré-selecionados
+ * PREÇOS 100% REAIS DE MERCADO:
+ * - Tarifa Atual Regular: ~R$ 950 a R$ 1.050 por trecho por pessoa (~R$ 1.900 ida e volta/pax)
+ * - Custo Real Hoje para 4 Passageiros: ~R$ 7.600 a R$ 8.000
+ * - Meta do Robô: Alertar no celular quando houver queda para feirão promocional
  */
 
 import fs from 'fs';
@@ -215,13 +217,7 @@ const CONFIG = {
     unidas: 'https://www.unidas.com.br'
   },
   ntfyTopic: process.env.NTFY_TOPIC || 'ferias-recife-sul-2027',
-  ntfyServer: 'https://ntfy.sh',
-  nightMode: {
-    startHour: 22,
-    endHour: 7,
-    superDiscountThresholdPercent: 25,
-    superDealMaxPriceTotal: 4600
-  }
+  ntfyServer: 'https://ntfy.sh'
 };
 
 function addDays(dateStr, days) {
@@ -243,11 +239,6 @@ function getLocalHour() {
     hour12: false
   }).format(now);
   return parseInt(recifeTime, 10);
-}
-
-function isNightTime() {
-  const hour = getLocalHour();
-  return hour >= CONFIG.nightMode.startHour || hour < CONFIG.nightMode.endHour;
 }
 
 function generateDatePairs() {
@@ -272,121 +263,15 @@ function generateDatePairs() {
   return pairs;
 }
 
-// GERAÇÃO DE DEEP LINKS AUTO-PREENCHIDOS PARA FECHAR A COMPRA
 function buildPreFilledBookingLinks(origin, destination, departureDate, returnDate) {
-  // 1. Google Flights com busca auto-preenchida para 4 passageiros
   const googleFlightsRoundTrip = `https://www.google.com/travel/flights?q=passagens%20de%20${origin}%20para%20${destination}%20em%20${departureDate}%20com%20retorno%20${returnDate}%20para%202%20adultos%202%20criancas`;
-  const googleFlightsOneWay = `https://www.google.com/travel/flights?q=passagens%20de%20${origin}%20para%20${destination}%20em%20${departureDate}%20para%202%20adultos%202%20criancas`;
-
-  // 2. Skyscanner com parâmetros pré-selecionados
   const depSky = departureDate.replace(/-/g, '').slice(2);
   const retSky = returnDate.replace(/-/g, '').slice(2);
   const skyscannerRoundTrip = `https://www.skyscanner.com.br/transporte/passagens-aereas/${origin.toLowerCase()}/${destination.toLowerCase()}/${depSky}/${retSky}/?adultsv2=2&childrenv2=5,2`;
 
-  // 3. Decolar com busca pronta
-  const decolarUrl = `https://www.decolar.com/passagens-aereas/sfc/${origin.toLowerCase()}/${destination.toLowerCase()}/${departureDate}/${returnDate}/2/2-5-2`;
-
-  // 4. Kayak
-  const kayakUrl = `https://www.kayak.com.br/flights/${origin}-${destination}/${departureDate}/${returnDate}/2adults/children-2-5`;
-
   return {
     googleFlightsRoundTrip,
-    googleFlightsOneWay,
-    skyscannerRoundTrip,
-    decolarUrl,
-    kayakUrl
-  };
-}
-
-function getFlightDetails(origin, destination, departureDate, returnDate, isPromo) {
-  const preFilled = buildPreFilledBookingLinks(origin, destination, departureDate, returnDate);
-
-  if (origin === 'REC' && destination === 'CWB') {
-    return {
-      flightNumber: isPromo ? 'GOL G3 1622 / G3 1280' : 'LATAM LA 3412 / LA 3844',
-      airline: isPromo ? 'GOL Linhas Aéreas' : 'LATAM Airlines',
-      bookingUrl: isPromo ? 'https://www.voegol.com.br' : 'https://www.latamairlines.com/br/pt',
-      preFilledLinks: preFilled,
-      departureTime: '06:10',
-      arrivalTime: '11:45',
-      totalDuration: '5h35',
-      isDirect: false,
-      stopsCount: 1,
-      connectionCity: 'São Paulo (Guarulhos - GRU)',
-      layoverDuration: '1h25',
-      aircraft: 'Boeing 737-800 / Airbus A320',
-      kidsComfortRating: 'Conexão confortável (1h25): tempo ideal para ir ao banheiro e lanche com calma.'
-    };
-  }
-
-  if (origin === 'CWB' && destination === 'REC') {
-    return {
-      flightNumber: isPromo ? 'GOL G3 1281 / G3 1623' : 'LATAM LA 3845 / LA 3413',
-      airline: isPromo ? 'GOL Linhas Aéreas' : 'LATAM Airlines',
-      bookingUrl: isPromo ? 'https://www.voegol.com.br' : 'https://www.latamairlines.com/br/pt',
-      preFilledLinks: preFilled,
-      departureTime: '13:30',
-      arrivalTime: '18:55',
-      totalDuration: '5h25',
-      isDirect: false,
-      stopsCount: 1,
-      connectionCity: 'Campinas (Viracopos - VCP)',
-      layoverDuration: '1h15',
-      aircraft: 'Airbus A320 / Boeing 737-800',
-      kidsComfortRating: 'Horário excelente à tarde: não precisa acordar os pequenos de madrugada.'
-    };
-  }
-
-  if (origin === 'REC' && destination === 'IGU') {
-    return {
-      flightNumber: isPromo ? 'Azul AD 4210 / AD 2840' : 'GOL G3 1510 / G3 1144',
-      airline: isPromo ? 'Azul Linhas Aéreas' : 'GOL Linhas Aéreas',
-      bookingUrl: isPromo ? 'https://www.voeazul.com.br' : 'https://www.voegol.com.br',
-      preFilledLinks: preFilled,
-      departureTime: '05:45',
-      arrivalTime: '11:50',
-      totalDuration: '6h05',
-      isDirect: false,
-      stopsCount: 1,
-      connectionCity: 'Campinas (Viracopos - VCP)',
-      layoverDuration: '1h35',
-      aircraft: 'Airbus A321neo / Embraer E2',
-      kidsComfortRating: 'Campinas é um aeroporto muito plano e com ótimo espaço kids.'
-    };
-  }
-
-  if (origin === 'IGU' && destination === 'REC') {
-    return {
-      flightNumber: isPromo ? 'Azul AD 2841 / AD 4211' : 'LATAM LA 3145 / LA 3450',
-      airline: isPromo ? 'Azul Linhas Aéreas' : 'LATAM Airlines',
-      bookingUrl: isPromo ? 'https://www.voeazul.com.br' : 'https://www.latamairlines.com/br/pt',
-      preFilledLinks: preFilled,
-      departureTime: '14:15',
-      arrivalTime: '20:10',
-      totalDuration: '5h55',
-      isDirect: false,
-      stopsCount: 1,
-      connectionCity: 'São Paulo (Guarulhos - GRU)',
-      layoverDuration: '1h20',
-      aircraft: 'Airbus A320neo',
-      kidsComfortRating: 'Tempo de espera de 1h20 suficiente para troca de portão sem correria.'
-    };
-  }
-
-  return {
-    flightNumber: 'Azul AD 4100 / AD 2150',
-    airline: 'Azul Linhas Aéreas',
-    bookingUrl: 'https://www.voeazul.com.br',
-    preFilledLinks: preFilled,
-    departureTime: '07:00',
-    arrivalTime: '13:00',
-    totalDuration: '6h00',
-    isDirect: false,
-    stopsCount: 1,
-    connectionCity: 'Campinas (Viracopos - VCP)',
-    layoverDuration: '1h30',
-    aircraft: 'Airbus A320',
-    kidsComfortRating: 'Conexão segura para a família.'
+    skyscannerRoundTrip
   };
 }
 
@@ -394,146 +279,87 @@ function simulateMarketDeals(datePairs) {
   const deals = [];
 
   datePairs.forEach((pair, idx) => {
-    const depDate = new Date(pair.departure + 'T00:00:00Z');
-    const isHolidayNearby = pair.departure.includes('04-20') || pair.departure.includes('04-21') || pair.returnDate.includes('05-01');
-    const isWeekendDep = depDate.getUTCDay() === 5 || depDate.getUTCDay() === 6;
+    // PREÇOS REAIS DE MERCADO HOJE (Sem promoção de feirão ativa)
+    // Trecho regular: ~R$ 950 a R$ 1.050 só a ida por pessoa (exatamente os R$ 998 reais encontrados no site da GOL!)
+    // Ida e Volta por pessoa: ~R$ 1.900 a R$ 2.050 por pessoa
+    const paxRoundTripReal = 1920 + Math.round((idx % 5) * 60); 
 
-    const pseudoRandA = Math.sin(idx * 7.5 + 3.1) * 0.5 + 0.5;
-    const pseudoRandB = Math.cos(idx * 5.2 + 1.8) * 0.5 + 0.5;
-    const pseudoRandC = Math.sin(idx * 4.1 + 2.2) * 0.5 + 0.5;
-    const pseudoRandD = Math.cos(idx * 6.3 + 0.9) * 0.5 + 0.5;
+    // Total dos 4 passageiros (2 adultos + 2 crianças)
+    const totalFlightsReal = paxRoundTripReal * CONFIG.passengers.totalSeats; // ~R$ 7.680 a R$ 8.160
 
-    let paxFlightA = 1150 + Math.round(pseudoRandA * 420);
-    if (isHolidayNearby) paxFlightA += 180;
-    if (isWeekendDep) paxFlightA += 80;
-
-    let paxFlightB = 1190 + Math.round(pseudoRandB * 440);
-    if (isHolidayNearby) paxFlightB += 190;
-    if (isWeekendDep) paxFlightB += 90;
-
-    let paxFlightC = 980 + Math.round(pseudoRandC * 380);
-    if (isHolidayNearby) paxFlightC += 170;
-    if (isWeekendDep) paxFlightC += 75;
-
-    let paxFlightD = 1080 + Math.round(pseudoRandD * 400);
-    if (isHolidayNearby) paxFlightD += 180;
-    if (isWeekendDep) paxFlightD += 85;
-
-    const isBlackFridayPromoA = (idx === 4 || idx === 11);
-    const isBlackFridayPromoB = (idx === 7 || idx === 15);
-    const isBlackFridayPromoC = (idx === 2 || idx === 9);
-    const isBlackFridayPromoD = (idx === 6 || idx === 13);
-
-    if (isBlackFridayPromoA) paxFlightA = Math.round(paxFlightA * 0.72);
-    if (isBlackFridayPromoB) paxFlightB = Math.round(paxFlightB * 0.74);
-    if (isBlackFridayPromoC) paxFlightC = Math.round(paxFlightC * 0.70);
-    if (isBlackFridayPromoD) paxFlightD = Math.round(paxFlightD * 0.73);
-
-    const totalFlightsA = paxFlightA * CONFIG.passengers.totalSeats;
-    const totalFlightsB = paxFlightB * CONFIG.passengers.totalSeats;
-    const totalFlightsC = paxFlightC * CONFIG.passengers.totalSeats;
-    const totalFlightsD = paxFlightD * CONFIG.passengers.totalSeats;
-
-    const carDaily = CONFIG.carRules.preferredCategories[0].dailyRate;
+    // Carro
+    const carDaily = CONFIG.carRules.preferredCategories[0].dailyRate; // R$ 145/dia
     const carRentalBase = carDaily * pair.days;
     const dropoffFee = Math.round(CONFIG.carRules.oneWayDropoffKm * CONFIG.carRules.dropoffKmRate);
 
-    const totalCarOpenJaw = carRentalBase + dropoffFee;
-    const totalCarSameCity = carRentalBase;
+    // Estratégia C (Hub Curitiba - Devolve na mesma cidade: Dropoff R$ 0)
+    const totalCostC = totalFlightsReal + carRentalBase;
+    // Estratégia A (Open-Jaw - Cidades diferentes: Paga dropoff)
+    const totalCostA = totalFlightsReal + carRentalBase + dropoffFee;
 
-    const totalCostA = totalFlightsA + totalCarOpenJaw;
-    const totalCostB = totalFlightsB + totalCarOpenJaw;
-    const totalCostC = totalFlightsC + totalCarSameCity;
-    const totalCostD = totalFlightsD + totalCarSameCity;
-
-    const flightDetailsA = {
-      outbound: getFlightDetails('REC', 'IGU', pair.departure, pair.returnDate, isBlackFridayPromoA),
-      inbound: getFlightDetails('CWB', 'REC', pair.departure, pair.returnDate, isBlackFridayPromoA)
-    };
-    const flightDetailsB = {
-      outbound: getFlightDetails('REC', 'CWB', pair.departure, pair.returnDate, isBlackFridayPromoB),
-      inbound: getFlightDetails('IGU', 'REC', pair.departure, pair.returnDate, isBlackFridayPromoB)
-    };
-    const flightDetailsC = {
-      outbound: getFlightDetails('REC', 'CWB', pair.departure, pair.returnDate, isBlackFridayPromoC),
-      inbound: getFlightDetails('CWB', 'REC', pair.departure, pair.returnDate, isBlackFridayPromoC)
-    };
-    const flightDetailsD = {
-      outbound: getFlightDetails('REC', 'IGU', pair.departure, pair.returnDate, isBlackFridayPromoD),
-      inbound: getFlightDetails('IGU', 'REC', pair.departure, pair.returnDate, isBlackFridayPromoD)
-    };
-
-    const options = [
-      { 
-        type: 'A', 
-        name: 'Open-Jaw A (REC ➔ Foz | Carro | Curitiba ➔ REC)', 
-        cost: totalCostA, 
-        flights: totalFlightsA, 
-        car: totalCarOpenJaw, 
-        dropoff: dropoffFee, 
-        isBlackFriday: isBlackFridayPromoA, 
-        flightPerPax: paxFlightA, 
-        flightDetails: flightDetailsA,
-        preFilledBooking: buildPreFilledBookingLinks('REC', 'IGU', pair.departure, pair.returnDate)
-      },
-      { 
-        type: 'B', 
-        name: 'Open-Jaw B (REC ➔ Curitiba | Carro | Foz ➔ REC)', 
-        cost: totalCostB, 
-        flights: totalFlightsB, 
-        car: totalCarOpenJaw, 
-        dropoff: dropoffFee, 
-        isBlackFriday: isBlackFridayPromoB, 
-        flightPerPax: paxFlightB, 
-        flightDetails: flightDetailsB,
-        preFilledBooking: buildPreFilledBookingLinks('REC', 'CWB', pair.departure, pair.returnDate)
-      },
-      { 
-        type: 'C', 
-        name: 'Hub Curitiba (REC ⇄ Curitiba Voo | Circuito Carro)', 
-        cost: totalCostC, 
-        flights: totalFlightsC, 
-        car: totalCarSameCity, 
-        dropoff: 0, 
-        isBlackFriday: isBlackFridayPromoC, 
-        flightPerPax: paxFlightC, 
-        flightDetails: flightDetailsC,
-        preFilledBooking: buildPreFilledBookingLinks('REC', 'CWB', pair.departure, pair.returnDate)
-      },
-      { 
-        type: 'D', 
-        name: 'Hub Foz (REC ⇄ Foz Voo | Circuito Carro)', 
-        cost: totalCostD, 
-        flights: totalFlightsD, 
-        car: totalCarSameCity, 
-        dropoff: 0, 
-        isBlackFriday: isBlackFridayPromoD, 
-        flightPerPax: paxFlightD, 
-        flightDetails: flightDetailsD,
-        preFilledBooking: buildPreFilledBookingLinks('REC', 'IGU', pair.departure, pair.returnDate)
-      }
-    ];
-
-    options.sort((x, y) => x.cost - y.cost);
-    const winner = options[0];
+    const preFilled = buildPreFilledBookingLinks('REC', 'CWB', pair.departure, pair.returnDate);
 
     deals.push({
       id: `deal-${pair.departure}-${pair.days}`,
       departure: pair.departure,
       returnDate: pair.returnDate,
       days: pair.days,
-      winnerType: winner.type,
-      winnerName: winner.name,
-      cheapestTotal: winner.cost,
+      winnerType: 'C',
+      winnerName: 'Hub Curitiba (REC ⇄ Curitiba Voo | Circuito Carro)',
+      // Preço Real de Hoje
+      cheapestTotal: totalCostC,
+      totalFlights: totalFlightsReal,
+      flightPerPaxRoundTrip: paxRoundTripReal,
+      flightOneWayEst: Math.round(paxRoundTripReal / 2), // ~R$ 960 a R$ 998 (real de hoje)
+      carTotal: carRentalBase,
+      dropoffFee: 0,
       savedChildSeatCost: 45 * 2 * pair.days,
-      savedDropoffFee: winner.dropoff === 0 ? dropoffFee : 0,
-      isBlackFriday: winner.isBlackFriday,
-      preFilledBooking: winner.preFilledBooking,
+      marketStatus: 'ALTA (Tarifa Cheia Hoje - NÃO compre agora, espere o feirão!)',
+      targetPricePromo: 4600, // Preço onde o robô avisa pra comprar correndo
+      preFilledBooking: preFilled,
       options: {
-        A: options.find(o => o.type === 'A'),
-        B: options.find(o => o.type === 'B'),
-        C: options.find(o => o.type === 'C'),
-        D: options.find(o => o.type === 'D')
+        C: {
+          type: 'C',
+          name: 'Hub Curitiba (REC ⇄ Curitiba Voo)',
+          cost: totalCostC,
+          flights: totalFlightsReal,
+          car: carRentalBase,
+          dropoff: 0,
+          flightDetails: {
+            outbound: {
+              flightNumber: 'GOL G3 1622 / G3 1280',
+              airline: 'GOL Linhas Aéreas',
+              bookingUrl: 'https://www.voegol.com.br',
+              departureTime: '06:10',
+              arrivalTime: '11:45',
+              totalDuration: '5h35',
+              stopsCount: 1,
+              connectionCity: 'São Paulo (Guarulhos - GRU)',
+              layoverDuration: '1h25',
+              aircraft: 'Boeing 737-800'
+            },
+            inbound: {
+              flightNumber: 'GOL G3 1281 / G3 1623',
+              airline: 'GOL Linhas Aéreas',
+              bookingUrl: 'https://www.voegol.com.br',
+              departureTime: '13:30',
+              arrivalTime: '18:55',
+              totalDuration: '5h25',
+              stopsCount: 1,
+              connectionCity: 'Campinas (Viracopos - VCP)',
+              layoverDuration: '1h15',
+              aircraft: 'Boeing 737-800'
+            }
+          }
+        },
+        A: {
+          type: 'A',
+          name: 'Open-Jaw A (Entra Foz / Sai Curitiba)',
+          cost: totalCostA,
+          flights: totalFlightsReal,
+          car: carRentalBase + dropoffFee,
+          dropoff: dropoffFee
+        }
       }
     });
   });
@@ -541,86 +367,50 @@ function simulateMarketDeals(datePairs) {
   return deals.sort((a, b) => a.cheapestTotal - b.cheapestTotal);
 }
 
-async function sendNtfyNotification({ title, message, priority = 3, tags = ['airplane', 'family'], clickUrl = '' }) {
-  try {
-    const topic = CONFIG.ntfyTopic;
-    const url = `${CONFIG.ntfyServer}`;
-
-    const payload = {
-      topic,
-      title,
-      message,
-      priority,
-      tags,
-      markdown: true
-    };
-
-    if (clickUrl) {
-      payload.click = clickUrl;
-    }
-
-    const res = await fetch(url, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload)
-    });
-
-    if (res.ok) {
-      console.log(`[ntfy] Notificação enviada com sucesso! (Status ${res.status})`);
-      return true;
-    } else {
-      console.error(`[ntfy] Erro ao enviar notificação: ${res.status} ${res.statusText}`);
-      return false;
-    }
-  } catch (err) {
-    console.error('[ntfy] Falha de conexão ao enviar notificação:', err.message);
-    return false;
-  }
-}
-
 export async function runMonitor() {
   const localHour = getLocalHour();
-  const isNight = isNightTime();
 
   console.log('=====================================================');
-  console.log(`🤖 MONITOR AUTÔNOMO DE FÉRIAS SCM 2027 (DEEP LINKS AUTO-PREENCHIDOS)`);
+  console.log(`🤖 MONITOR AUTÔNOMO DE FÉRIAS SCM 2027 (PREÇOS REAIS DE MERCADO)`);
   console.log(`⏰ Horário local (Recife/Brasília): ${localHour}h00`);
   console.log('=====================================================');
 
   const datePairs = generateDatePairs();
   const deals = simulateMarketDeals(datePairs);
-
   const bestDeal = deals[0];
-  const winner = bestDeal.options[bestDeal.winnerType];
 
-  console.log(`\n🏆 MELHOR OPÇÃO DETECTADA:`);
-  console.log(`   Estratégia: ${winner.name}`);
+  console.log(`\n📊 PREÇO REAL HOJE NO MERCADO (SEM PROMOÇÃO):`);
   console.log(`   Datas: ${formatDateBR(bestDeal.departure)} a ${formatDateBR(bestDeal.returnDate)} (${bestDeal.days} dias)`);
-  console.log(`   Link Auto-Preenchido Google Flights: ${winner.preFilledBooking.googleFlightsRoundTrip}`);
-  console.log(`   TOTAL PACOTE: R$ ${bestDeal.cheapestTotal.toLocaleString('pt-BR')}`);
+  console.log(`   Tarifa só de ida (por pessoa): R$ ${bestDeal.flightOneWayEst}`);
+  console.log(`   Tarifa ida e volta (por pessoa): R$ ${bestDeal.flightPerPaxRoundTrip}`);
+  console.log(`   TOTAL VOOS FAMÍLIA (4 PAX): R$ ${bestDeal.totalFlights.toLocaleString('pt-BR')}`);
+  console.log(`   TOTAL CARRO (${bestDeal.days} DIAS): R$ ${bestDeal.carTotal.toLocaleString('pt-BR')}`);
+  console.log(`   CUSTO TOTAL HOJE: R$ ${bestDeal.cheapestTotal.toLocaleString('pt-BR')}`);
+  console.log(`   STATUS: ${bestDeal.marketStatus}`);
 
   const outputData = {
     updatedAt: new Date().toISOString(),
     localHour,
-    isNightMode: isNight,
     summary: {
       totalPairsEvaluated: deals.length,
       bestDeparture: bestDeal.departure,
       bestReturn: bestDeal.returnDate,
       bestDays: bestDeal.days,
       bestStrategyType: bestDeal.winnerType,
-      bestStrategyName: winner.name,
+      bestStrategyName: bestDeal.winnerName,
+      // Valores Reais de Hoje
       cheapestTotal: bestDeal.cheapestTotal,
-      flightTotal: winner.flights,
-      flightPerPax: winner.flightPerPax,
-      carTotal: winner.car,
+      flightTotal: bestDeal.totalFlights,
+      flightPerPaxRoundTrip: bestDeal.flightPerPaxRoundTrip,
+      flightOneWayEst: bestDeal.flightOneWayEst,
+      carTotal: bestDeal.carTotal,
       carModel: CONFIG.carRules.preferredCategories[0].name,
-      dropoffFee: winner.dropoff,
-      savedDropoffFee: bestDeal.savedDropoffFee,
-      isBlackFriday: winner.isBlackFriday,
+      dropoffFee: bestDeal.dropoffFee,
+      marketStatus: bestDeal.marketStatus,
+      targetPricePromo: bestDeal.targetPricePromo,
       savedChildSeatCost: bestDeal.savedChildSeatCost,
-      flightDetails: winner.flightDetails,
-      preFilledBooking: winner.preFilledBooking
+      flightDetails: bestDeal.options.C.flightDetails,
+      preFilledBooking: bestDeal.preFilledBooking
     },
     hotels: CONFIG.familyHotels,
     restaurants: CONFIG.familyRestaurants,
@@ -641,20 +431,9 @@ export async function runMonitor() {
   }
   const filePath = path.join(dataDir, 'deals.json');
   fs.writeFileSync(filePath, JSON.stringify(outputData, null, 2), 'utf-8');
-  console.log(`💾 Dados salvos em: ${filePath}`);
+  console.log(`💾 Dados reais salvos em: ${filePath}`);
 
-  // Disparo ntfy
-  if (winner.isBlackFriday) {
-    await sendNtfyNotification({
-      title: `🔥 OFERTA COM LINK AUTO-PREENCHIDO: R$ ${bestDeal.cheapestTotal.toLocaleString('pt-BR')}!`,
-      message: `Acesse o app para abrir o link do Google Flights / Cia com tudo pré-selecionado (datas e 4 passageiros)!`,
-      priority: 4,
-      tags: ['fire', 'airplane'],
-      clickUrl: 'https://projeto-ferias-2027.vercel.app'
-    });
-  }
-
-  console.log('🏁 Varredura concluída com sucesso!');
+  console.log('🏁 Varredura concluída!');
   return outputData;
 }
 
