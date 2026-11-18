@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-18T18:03:58.900Z",
+  "updatedAt": "2026-11-18T18:08:03.274Z",
   "localHour": 15,
   "summary": {
     "totalPairsEvaluated": 33,
@@ -310,6 +310,18 @@
       "timestamp": "2026-11-18T18:03:58.900Z",
       "displayDate": "18/11",
       "displayTime": "15:03",
+      "cheapestTotal": 8432,
+      "flightTotal": 7272,
+      "oneWayEst": 914,
+      "latamFare": 899,
+      "golFare": 914,
+      "azulFare": 979,
+      "status": "TARIFA CHEIA (VIGILÂNCIA)"
+    },
+    {
+      "timestamp": "2026-11-18T18:08:03.274Z",
+      "displayDate": "18/11",
+      "displayTime": "15:08",
       "cheapestTotal": 8432,
       "flightTotal": 7272,
       "oneWayEst": 914,
