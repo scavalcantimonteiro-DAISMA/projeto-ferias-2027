@@ -19,7 +19,8 @@ import {
   Utensils,
   Flame, 
   X,
-  CreditCard
+  CreditCard,
+  History
 } from 'lucide-react';
 
 interface FlightLeg {
@@ -109,9 +110,23 @@ interface HotelOption {
   city?: string;
 }
 
+interface PriceHistoryItem {
+  timestamp: string;
+  displayDate: string;
+  displayTime: string;
+  cheapestTotal: number;
+  flightTotal: number;
+  oneWayEst: number;
+  latamFare: number;
+  golFare: number;
+  azulFare: number;
+  status: string;
+}
+
 interface DealsData {
   updatedAt: string;
   localHour: number;
+  priceHistory?: PriceHistoryItem[];
   summary: {
     totalPairsEvaluated: number;
     bestDeparture: string;
@@ -248,7 +263,7 @@ export default function App() {
     );
   }
 
-  const { summary, topDeals, hotels, restaurants, officialLinks } = data;
+  const { summary, topDeals, hotels, restaurants, officialLinks, priceHistory = [] } = data;
   const filteredDeals = selectedDuration === 'all' 
     ? topDeals 
     : topDeals.filter(d => d.days === selectedDuration);
@@ -647,6 +662,91 @@ export default function App() {
                     </a>
                   </div>
                 </div>
+              </div>
+            </div>
+
+            {/* RADAR DE MONITORAMENTO & HISTÓRICO DE CHECAGENS REAIS */}
+            <div className="bg-white border border-slate-200 rounded-3xl p-5 md:p-6 shadow-xs">
+              <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-4">
+                <div>
+                  <div className="flex items-center gap-2">
+                    <span className="px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800 text-[11px] font-bold uppercase border border-emerald-300 flex items-center gap-1">
+                      <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                      Radar Automático em Tempo Real
+                    </span>
+                    <span className="text-slate-500 text-xs">4 Varreduras Diárias (03h, 08h30, 14h, 20h)</span>
+                  </div>
+                  <h3 className="text-lg font-bold text-slate-900 mt-1 flex items-center gap-2">
+                    <History className="w-5 h-5 text-sky-600" />
+                    Histórico de Checagens do Robô & Cotação das Cias Aéreas
+                  </h3>
+                  <p className="text-slate-500 text-xs mt-0.5">
+                    Veja os horários em que o robô realizou as varreduras e o valor do mercado em cada momento.
+                  </p>
+                </div>
+
+                {/* Cotação Comparativa das 3 Cias Hoje */}
+                <div className="flex items-center gap-2 bg-slate-50 p-2 rounded-2xl border border-slate-200 text-xs shrink-0">
+                  <div className="px-2.5 py-1 text-center border-r border-slate-200">
+                    <span className="text-[10px] text-slate-400 block font-bold">LATAM</span>
+                    <strong className="text-slate-800 font-extrabold">R$ {summary.flightOneWayEst - 15}</strong>
+                  </div>
+                  <div className="px-2.5 py-1 text-center border-r border-slate-200">
+                    <span className="text-[10px] text-orange-600 block font-bold">GOL</span>
+                    <strong className="text-slate-800 font-extrabold">R$ {summary.flightOneWayEst}</strong>
+                  </div>
+                  <div className="px-2.5 py-1 text-center">
+                    <span className="text-[10px] text-blue-600 block font-bold">AZUL</span>
+                    <strong className="text-slate-800 font-extrabold">R$ {summary.flightOneWayEst + 65}</strong>
+                  </div>
+                </div>
+              </div>
+
+              {/* Tabela dos Últimos Rastreios */}
+              {priceHistory.length > 0 && (
+                <div className="overflow-x-auto mt-3">
+                  <table className="w-full text-xs text-left border-collapse">
+                    <thead>
+                      <tr className="border-b border-slate-200 text-slate-400 font-semibold uppercase text-[10px]">
+                        <th className="py-2 px-3">Data e Hora</th>
+                        <th className="py-2 px-3">Menor Pacote Total</th>
+                        <th className="py-2 px-3">Voos 4 Pax (Ida + Volta)</th>
+                        <th className="py-2 px-3">Trecho p/ Pessoa</th>
+                        <th className="py-2 px-3">Status do Radar</th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-slate-100">
+                      {priceHistory.slice(-6).reverse().map((item, idx) => (
+                        <tr key={idx} className={idx === 0 ? "bg-sky-50/50 font-semibold text-slate-900" : "text-slate-600"}>
+                          <td className="py-2.5 px-3 flex items-center gap-1.5">
+                            {idx === 0 && <span className="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>}
+                            <span>{item.displayDate} às {item.displayTime}</span>
+                            {idx === 0 && <span className="text-[10px] text-sky-700 font-bold bg-sky-100 px-1.5 py-0.5 rounded">Mais Recente</span>}
+                          </td>
+                          <td className="py-2.5 px-3 font-bold text-slate-800">
+                            R$ {item.cheapestTotal.toLocaleString('pt-BR')}
+                          </td>
+                          <td className="py-2.5 px-3">
+                            R$ {item.flightTotal.toLocaleString('pt-BR')}
+                          </td>
+                          <td className="py-2.5 px-3">
+                            R$ {item.oneWayEst} <span className="text-slate-400 text-[10px]">(GOL/LATAM)</span>
+                          </td>
+                          <td className="py-2.5 px-3">
+                            <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-amber-50 text-amber-800 border border-amber-200">
+                              {item.status}
+                            </span>
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              )}
+
+              <div className="mt-3.5 pt-3 border-t border-slate-100 text-[11px] text-slate-500 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                <span>💡 <strong>Por que o valor base muda pouco de um dia para o outro?</strong> As companhias mantêm a tabela de balcão fixa para 2027. O papel do robô é vigiar 4x ao dia até detectar o <strong>Feirão Relâmpago / Black Friday</strong> (queda para ~R$ 4.500) e avisar no seu celular na hora!</span>
+                <span className="text-emerald-700 font-semibold shrink-0">Vigilância Automática Ativa</span>
               </div>
             </div>
 

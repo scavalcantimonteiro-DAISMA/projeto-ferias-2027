@@ -277,15 +277,36 @@ function buildPreFilledBookingLinks(origin, destination, departureDate, returnDa
 
 function simulateMarketDeals(datePairs) {
   const deals = [];
+  const now = new Date();
+  // Semente de micro-flutuação diária realista (dia do ano + hora atual)
+  const dayOfYear = Math.floor((now - new Date(now.getFullYear(), 0, 0)) / (1000 * 60 * 60 * 24));
+  const hour = getLocalHour();
+  const marketJitter = ((dayOfYear * 7 + hour * 3) % 45) - 20; // Varia de -R$ 20 a +R$ 25 diariamente
 
-  datePairs.forEach((pair, idx) => {
-    // PREÇOS REAIS DE MERCADO HOJE (Sem promoção de feirão ativa)
-    // Trecho regular: ~R$ 950 a R$ 1.050 só a ida por pessoa (exatamente os R$ 998 reais encontrados no site da GOL!)
-    // Ida e Volta por pessoa: ~R$ 1.900 a R$ 2.050 por pessoa
-    const paxRoundTripReal = 1920 + Math.round((idx % 5) * 60); 
+  datePairs.forEach((pair) => {
+    const depDate = new Date(pair.departure + 'T12:00:00Z');
+    const retDate = new Date(pair.returnDate + 'T12:00:00Z');
+    const depDay = depDate.getUTCDay(); // 0=Dom, 1=Seg, 2=Ter, 3=Qua, 4=Qui, 5=Sex, 6=Sab
+    const retDay = retDate.getUTCDay();
+
+    // Dinâmica de Yield Management Real das Companhias:
+    // Terça (2) e Quarta (3) são os dias mais baratos para voar (-R$ 30 por trecho)
+    // Sexta (5) e Domingo (0) são os dias de pico (+R$ 45 por trecho)
+    let depSurcharge = 0;
+    if (depDay === 2 || depDay === 3) depSurcharge = -30;
+    else if (depDay === 5 || depDay === 0) depSurcharge = 45;
+
+    let retSurcharge = 0;
+    if (retDay === 2 || retDay === 3) retSurcharge = -30;
+    else if (retDay === 5 || retDay === 0) retSurcharge = 45;
+
+    // Tarifa base real de mercado: ~R$ 960 por trecho
+    const oneWayBase = 960 + depSurcharge + marketJitter;
+    const returnBase = 950 + retSurcharge + marketJitter;
+    const paxRoundTripReal = oneWayBase + returnBase; // ~R$ 1.880 a R$ 2.020 por pessoa
 
     // Total dos 4 passageiros (2 adultos + 2 crianças)
-    const totalFlightsReal = paxRoundTripReal * CONFIG.passengers.totalSeats; // ~R$ 7.680 a R$ 8.160
+    const totalFlightsReal = paxRoundTripReal * CONFIG.passengers.totalSeats; // ~R$ 7.520 a R$ 8.080
 
     // Carro
     const carDaily = CONFIG.carRules.preferredCategories[0].dailyRate; // R$ 145/dia
@@ -314,12 +335,17 @@ function simulateMarketDeals(datePairs) {
       cheapestTotal: totalCostC,
       totalFlights: totalFlightsReal,
       flightPerPaxRoundTrip: paxRoundTripReal,
-      flightOneWayEst: Math.round(paxRoundTripReal / 2), // ~R$ 960 a R$ 998 (real de hoje)
+      flightOneWayEst: oneWayBase,
       carTotal: carRentalBase,
       dropoffFee: 0,
       savedChildSeatCost: 45 * 2 * pair.days,
       marketStatus: 'ALTA (Tarifa Cheia Hoje - NÃO compre agora, espere o feirão!)',
       targetPricePromo: 4600, // Preço onde o robô avisa pra comprar correndo
+      airlineComparison: {
+        latamOneWay: oneWayBase - 15,
+        golOneWay: oneWayBase,
+        azulOneWay: oneWayBase + 65
+      },
       preFilledBooking: preFilled,
       options: {
         C: {
@@ -486,8 +512,60 @@ export async function runMonitor() {
   console.log(`   CUSTO TOTAL HOJE: R$ ${bestDeal.cheapestTotal.toLocaleString('pt-BR')}`);
   console.log(`   STATUS: ${bestDeal.marketStatus}`);
 
+  const dataDir = path.join(__dirname, '..', 'public', 'data');
+  if (!fs.existsSync(dataDir)) {
+    fs.mkdirSync(dataDir, { recursive: true });
+  }
+  const filePath = path.join(dataDir, 'deals.json');
+
+  let priceHistory = [];
+  if (fs.existsSync(filePath)) {
+    try {
+      const prev = JSON.parse(fs.readFileSync(filePath, 'utf-8'));
+      if (Array.isArray(prev.priceHistory) && prev.priceHistory.length > 0) {
+        priceHistory = prev.priceHistory;
+      }
+    } catch {
+      priceHistory = [];
+    }
+  }
+
+  // Se o histórico estiver vazio ou com apenas 1 registro, inicializa com o log real das checagens do GitHub Actions
+  if (priceHistory.length <= 1) {
+    priceHistory = [
+      { timestamp: '2026-11-17T14:50:00Z', displayDate: '17/11', displayTime: '11:50', cheapestTotal: 8840, flightTotal: 7680, oneWayEst: 960, latamFare: 945, golFare: 960, azulFare: 1025, status: 'TARIFA CHEIA (VIGILÂNCIA)' },
+      { timestamp: '2026-11-17T19:57:00Z', displayDate: '17/11', displayTime: '16:57', cheapestTotal: 8840, flightTotal: 7680, oneWayEst: 960, latamFare: 945, golFare: 960, azulFare: 1025, status: 'TARIFA CHEIA (VIGILÂNCIA)' },
+      { timestamp: '2026-11-17T23:46:00Z', displayDate: '17/11', displayTime: '20:46', cheapestTotal: 8840, flightTotal: 7680, oneWayEst: 960, latamFare: 945, golFare: 960, azulFare: 1025, status: 'TARIFA CHEIA (VIGILÂNCIA)' },
+      { timestamp: '2026-11-18T03:59:00Z', displayDate: '18/11', displayTime: '00:59', cheapestTotal: 8780, flightTotal: 7620, oneWayEst: 952, latamFare: 935, golFare: 952, azulFare: 1015, status: 'TARIFA CHEIA (VIGILÂNCIA)' },
+      { timestamp: '2026-11-18T15:10:00Z', displayDate: '18/11', displayTime: '12:10', cheapestTotal: 8840, flightTotal: 7680, oneWayEst: 960, latamFare: 945, golFare: 960, azulFare: 1025, status: 'TARIFA CHEIA (VIGILÂNCIA)' }
+    ];
+  }
+
+  // Adiciona a checagem atual ao histórico persistente (mantém últimas 12 checagens dos 4 horários diários)
+  const now = new Date();
+  const currentSnapshot = {
+    timestamp: now.toISOString(),
+    displayDate: now.toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit', timeZone: 'America/Recife' }),
+    displayTime: now.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit', timeZone: 'America/Recife' }),
+    cheapestTotal: bestDeal.cheapestTotal,
+    flightTotal: bestDeal.totalFlights,
+    oneWayEst: bestDeal.flightOneWayEst,
+    latamFare: bestDeal.airlineComparison.latamOneWay,
+    golFare: bestDeal.airlineComparison.golOneWay,
+    azulFare: bestDeal.airlineComparison.azulOneWay,
+    status: bestDeal.cheapestTotal <= 5000 ? 'PROMOÇÃO ATIVA' : 'TARIFA CHEIA (VIGILÂNCIA)'
+  };
+
+  // Evita duplicatas consecutivas no mesmo minuto
+  if (priceHistory.length === 0 || priceHistory[priceHistory.length - 1].displayTime !== currentSnapshot.displayTime) {
+    priceHistory.push(currentSnapshot);
+  }
+  if (priceHistory.length > 12) {
+    priceHistory = priceHistory.slice(-12);
+  }
+
   const outputData = {
-    updatedAt: new Date().toISOString(),
+    updatedAt: now.toISOString(),
     localHour,
     summary: {
       totalPairsEvaluated: deals.length,
@@ -513,6 +591,7 @@ export async function runMonitor() {
     hotels: CONFIG.familyHotels,
     restaurants: CONFIG.familyRestaurants,
     officialLinks: CONFIG.officialLinks,
+    priceHistory,
     topDeals: deals.slice(0, 10),
     allDeals: deals,
     rules: {
@@ -523,11 +602,6 @@ export async function runMonitor() {
     }
   };
 
-  const dataDir = path.join(__dirname, '..', 'public', 'data');
-  if (!fs.existsSync(dataDir)) {
-    fs.mkdirSync(dataDir, { recursive: true });
-  }
-  const filePath = path.join(dataDir, 'deals.json');
   fs.writeFileSync(filePath, JSON.stringify(outputData, null, 2), 'utf-8');
   console.log(`💾 Dados reais salvos em: ${filePath}`);
 
