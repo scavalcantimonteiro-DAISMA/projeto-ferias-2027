@@ -1,6 +1,6 @@
 {
-  "updatedAt": "2026-11-19T23:27:04.564Z",
-  "localHour": 20,
+  "updatedAt": "2026-11-20T03:50:56.663Z",
+  "localHour": 0,
   "summary": {
     "totalPairsEvaluated": 33,
     "bestDeparture": "2027-04-20",
@@ -8,10 +8,10 @@
     "bestDays": 8,
     "bestStrategyType": "C",
     "bestStrategyName": "Hub Curitiba (REC ⇄ Curitiba Voo | Circuito Carro)",
-    "cheapestTotal": 8608,
-    "flightTotal": 7448,
-    "flightPerPaxRoundTrip": 1862,
-    "flightOneWayEst": 936,
+    "cheapestTotal": 8544,
+    "flightTotal": 7384,
+    "flightPerPaxRoundTrip": 1846,
+    "flightOneWayEst": 928,
     "carTotal": 1160,
     "carModel": "Sedan Médio/Compacto (Virtus, Onix Plus, Cronos)",
     "dropoffFee": 0,
@@ -247,18 +247,6 @@
   },
   "priceHistory": [
     {
-      "timestamp": "2026-11-17T19:57:00Z",
-      "displayDate": "17/11",
-      "displayTime": "16:57",
-      "cheapestTotal": 8840,
-      "flightTotal": 7680,
-      "oneWayEst": 960,
-      "latamFare": 945,
-      "golFare": 960,
-      "azulFare": 1025,
-      "status": "TARIFA CHEIA (VIGILÂNCIA)"
-    },
-    {
       "timestamp": "2026-11-17T23:46:00Z",
       "displayDate": "17/11",
       "displayTime": "20:46",
@@ -389,6 +377,18 @@
       "golFare": 936,
       "azulFare": 1001,
       "status": "TARIFA CHEIA (VIGILÂNCIA)"
+    },
+    {
+      "timestamp": "2026-11-20T03:50:56.663Z",
+      "displayDate": "20/11",
+      "displayTime": "00:50",
+      "cheapestTotal": 8544,
+      "flightTotal": 7384,
+      "oneWayEst": 928,
+      "latamFare": 913,
+      "golFare": 928,
+      "azulFare": 993,
+      "status": "TARIFA CHEIA (VIGILÂNCIA)"
     }
   ],
   "topDeals": [
@@ -399,19 +399,19 @@
       "days": 8,
       "winnerType": "C",
       "winnerName": "Hub Curitiba (REC ⇄ Curitiba Voo | Circuito Carro)",
-      "cheapestTotal": 8608,
-      "totalFlights": 7448,
-      "flightPerPaxRoundTrip": 1862,
-      "flightOneWayEst": 936,
+      "cheapestTotal": 8544,
+      "totalFlights": 7384,
+      "flightPerPaxRoundTrip": 1846,
+      "flightOneWayEst": 928,
       "carTotal": 1160,
       "dropoffFee": 0,
       "savedChildSeatCost": 720,
       "marketStatus": "ALTA (Tarifa Cheia Hoje - NÃO compre agora, espere o feirão!)",
       "targetPricePromo": 4600,
       "airlineComparison": {
-        "latamOneWay": 921,
-        "golOneWay": 936,
-        "azulOneWay": 1001
+        "latamOneWay": 913,
+        "golOneWay": 928,
+        "azulOneWay": 993
       },
       "preFilledBooking": {
         "googleFlightsRoundTrip": "https://www.google.com/travel/flights?q=passagens%20de%20REC%20para%20CWB%20em%202027-04-20%20com%20retorno%202027-04-28%20para%202%20adultos%202%20criancas",
@@ -421,8 +421,8 @@
         "C": {
           "type": "C",
           "name": "Hub Curitiba (REC ⇄ Curitiba Voo)",
-          "cost": 8608,
-          "flights": 7448,
+          "cost": 8544,
+          "flights": 7384,
           "car": 1160,
           "dropoff": 0,
           "flightDetails": {
@@ -455,8 +455,8 @@
         "D": {
           "type": "D",
           "name": "Hub Foz (REC ⇄ Foz Voo)",
-          "cost": 8748,
-          "flights": 7448,
+          "cost": 8684,
+          "flights": 7384,
           "car": 1160,
           "dropoff": 0,
           "flightDetails": {
@@ -489,8 +489,8 @@
         "A": {
           "type": "A",
           "name": "Open-Jaw A (Entra Foz / Sai Curitiba)",
-          "cost": 9421,
-          "flights": 7448,
+          "cost": 9357,
+          "flights": 7384,
           "car": 1973,
           "dropoff": 813,
           "flightDetails": {
@@ -523,8 +523,8 @@
         "B": {
           "type": "B",
           "name": "Open-Jaw B (Entra Curitiba / Sai Foz)",
-          "cost": 9421,
-          "flights": 7448,
+          "cost": 9357,
+          "flights": 7384,
           "car": 1973,
           "dropoff": 813,
           "flightDetails": {
@@ -563,19 +563,19 @@
       "days": 8,
       "winnerType": "C",
       "winnerName": "Hub Curitiba (REC ⇄ Curitiba Voo | Circuito Carro)",
-      "cheapestTotal": 8608,
-      "totalFlights": 7448,
-      "flightPerPaxRoundTrip": 1862,
-      "flightOneWayEst": 936,
+      "cheapestTotal": 8544,
+      "totalFlights": 7384,
+      "flightPerPaxRoundTrip": 1846,
+      "flightOneWayEst": 928,
       "carTotal": 1160,
       "dropoffFee": 0,
       "savedChildSeatCost": 720,
       "marketStatus": "ALTA (Tarifa Cheia Hoje - NÃO compre agora, espere o feirão!)",
       "targetPricePromo": 4600,
       "airlineComparison": {
-        "latamOneWay": 921,
-        "golOneWay": 936,
-        "azulOneWay": 1001
+        "latamOneWay": 913,
+        "golOneWay": 928,
+        "azulOneWay": 993
       },
       "preFilledBooking": {
         "googleFlightsRoundTrip": "https://www.google.com/travel/flights?q=passagens%20de%20REC%20para%20CWB%20em%202027-04-27%20com%20retorno%202027-05-05%20para%202%20adultos%202%20criancas",
@@ -585,8 +585,8 @@
         "C": {
           "type": "C",
           "name": "Hub Curitiba (REC ⇄ Curitiba Voo)",
-          "cost": 8608,
-          "flights": 7448,
+          "cost": 8544,
+          "flights": 7384,
           "car": 1160,
           "dropoff": 0,
           "flightDetails": {
@@ -619,8 +619,8 @@
         "D": {
           "type": "D",
           "name": "Hub Foz (REC ⇄ Foz Voo)",
-          "cost": 8748,
-          "flights": 7448,
+          "cost": 8684,
+          "flights": 7384,
           "car": 1160,
           "dropoff": 0,
           "flightDetails": {
@@ -653,8 +653,8 @@
         "A": {
           "type": "A",
           "name": "Open-Jaw A (Entra Foz / Sai Curitiba)",
-          "cost": 9421,
-          "flights": 7448,
+          "cost": 9357,
+          "flights": 7384,
           "car": 1973,
           "dropoff": 813,
           "flightDetails": {
@@ -687,8 +687,8 @@
         "B": {
           "type": "B",
           "name": "Open-Jaw B (Entra Curitiba / Sai Foz)",
-          "cost": 9421,
-          "flights": 7448,
+          "cost": 9357,
+          "flights": 7384,
           "car": 1973,
           "dropoff": 813,
           "flightDetails": {
@@ -727,19 +727,19 @@
       "days": 8,
       "winnerType": "C",
       "winnerName": "Hub Curitiba (REC ⇄ Curitiba Voo | Circuito Carro)",
-      "cheapestTotal": 8728,
-      "totalFlights": 7568,
-      "flightPerPaxRoundTrip": 1892,
-      "flightOneWayEst": 966,
+      "cheapestTotal": 8664,
+      "totalFlights": 7504,
+      "flightPerPaxRoundTrip": 1876,
+      "flightOneWayEst": 958,
       "carTotal": 1160,
       "dropoffFee": 0,
       "savedChildSeatCost": 720,
       "marketStatus": "ALTA (Tarifa Cheia Hoje - NÃO compre agora, espere o feirão!)",
       "targetPricePromo": 4600,
       "airlineComparison": {
-        "latamOneWay": 951,
-        "golOneWay": 966,
-        "azulOneWay": 1031
+        "latamOneWay": 943,
+        "golOneWay": 958,
+        "azulOneWay": 1023
       },
       "preFilledBooking": {
         "googleFlightsRoundTrip": "https://www.google.com/travel/flights?q=passagens%20de%20REC%20para%20CWB%20em%202027-04-19%20com%20retorno%202027-04-27%20para%202%20adultos%202%20criancas",
@@ -749,8 +749,8 @@
         "C": {
           "type": "C",
           "name": "Hub Curitiba (REC ⇄ Curitiba Voo)",
-          "cost": 8728,
-          "flights": 7568,
+          "cost": 8664,
+          "flights": 7504,
           "car": 1160,
           "dropoff": 0,
           "flightDetails": {
@@ -783,8 +783,8 @@
         "D": {
           "type": "D",
           "name": "Hub Foz (REC ⇄ Foz Voo)",
-          "cost": 8868,
-          "flights": 7568,
+          "cost": 8804,
+          "flights": 7504,
           "car": 1160,
           "dropoff": 0,
           "flightDetails": {
@@ -817,8 +817,8 @@
         "A": {
           "type": "A",
           "name": "Open-Jaw A (Entra Foz / Sai Curitiba)",
-          "cost": 9541,
-          "flights": 7568,
+          "cost": 9477,
+          "flights": 7504,
           "car": 1973,
           "dropoff": 813,
           "flightDetails": {
@@ -851,8 +851,8 @@
         "B": {
           "type": "B",
           "name": "Open-Jaw B (Entra Curitiba / Sai Foz)",
-          "cost": 9541,
-          "flights": 7568,
+          "cost": 9477,
+          "flights": 7504,
           "car": 1973,
           "dropoff": 813,
           "flightDetails": {
@@ -891,19 +891,19 @@
       "days": 8,
       "winnerType": "C",
       "winnerName": "Hub Curitiba (REC ⇄ Curitiba Voo | Circuito Carro)",
-      "cheapestTotal": 8728,
-      "totalFlights": 7568,
-      "flightPerPaxRoundTrip": 1892,
-      "flightOneWayEst": 936,
+      "cheapestTotal": 8664,
+      "totalFlights": 7504,
+      "flightPerPaxRoundTrip": 1876,
+      "flightOneWayEst": 928,
       "carTotal": 1160,
       "dropoffFee": 0,
       "savedChildSeatCost": 720,
       "marketStatus": "ALTA (Tarifa Cheia Hoje - NÃO compre agora, espere o feirão!)",
       "targetPricePromo": 4600,
       "airlineComparison": {
-        "latamOneWay": 921,
-        "golOneWay": 936,
-        "azulOneWay": 1001
+        "latamOneWay": 913,
+        "golOneWay": 928,
+        "azulOneWay": 993
       },
       "preFilledBooking": {
         "googleFlightsRoundTrip": "https://www.google.com/travel/flights?q=passagens%20de%20REC%20para%20CWB%20em%202027-04-21%20com%20retorno%202027-04-29%20para%202%20adultos%202%20criancas",
@@ -913,8 +913,8 @@
         "C": {
           "type": "C",
           "name": "Hub Curitiba (REC ⇄ Curitiba Voo)",
-          "cost": 8728,
-          "flights": 7568,
+          "cost": 8664,
+          "flights": 7504,
           "car": 1160,
           "dropoff": 0,
           "flightDetails": {
@@ -947,8 +947,8 @@
         "D": {
           "type": "D",
           "name": "Hub Foz (REC ⇄ Foz Voo)",
-          "cost": 8868,
-          "flights": 7568,
+          "cost": 8804,
+          "flights": 7504,
           "car": 1160,
           "dropoff": 0,
           "flightDetails": {
@@ -981,8 +981,8 @@
         "A": {
           "type": "A",
           "name": "Open-Jaw A (Entra Foz / Sai Curitiba)",
-          "cost": 9541,
-          "flights": 7568,
+          "cost": 9477,
+          "flights": 7504,
           "car": 1973,
           "dropoff": 813,
           "flightDetails": {
@@ -1015,8 +1015,8 @@
         "B": {
           "type": "B",
           "name": "Open-Jaw B (Entra Curitiba / Sai Foz)",
-          "cost": 9541,
-          "flights": 7568,
+          "cost": 9477,
+          "flights": 7504,
           "car": 1973,
           "dropoff": 813,
           "flightDetails": {
@@ -1055,19 +1055,19 @@
       "days": 8,
       "winnerType": "C",
       "winnerName": "Hub Curitiba (REC ⇄ Curitiba Voo | Circuito Carro)",
-      "cheapestTotal": 8728,
-      "totalFlights": 7568,
-      "flightPerPaxRoundTrip": 1892,
-      "flightOneWayEst": 966,
+      "cheapestTotal": 8664,
+      "totalFlights": 7504,
+      "flightPerPaxRoundTrip": 1876,
+      "flightOneWayEst": 958,
       "carTotal": 1160,
       "dropoffFee": 0,
       "savedChildSeatCost": 720,
       "marketStatus": "ALTA (Tarifa Cheia Hoje - NÃO compre agora, espere o feirão!)",
       "targetPricePromo": 4600,
       "airlineComparison": {
-        "latamOneWay": 951,
-        "golOneWay": 966,
-        "azulOneWay": 1031
+        "latamOneWay": 943,
+        "golOneWay": 958,
+        "azulOneWay": 1023
       },
       "preFilledBooking": {
         "googleFlightsRoundTrip": "https://www.google.com/travel/flights?q=passagens%20de%20REC%20para%20CWB%20em%202027-04-26%20com%20retorno%202027-05-04%20para%202%20adultos%202%20criancas",
@@ -1077,8 +1077,8 @@
         "C": {
           "type": "C",
           "name": "Hub Curitiba (REC ⇄ Curitiba Voo)",
-          "cost": 8728,
-          "flights": 7568,
+          "cost": 8664,
+          "flights": 7504,
           "car": 1160,
           "dropoff": 0,
           "flightDetails": {
@@ -1111,8 +1111,8 @@
         "D": {
           "type": "D",
           "name": "Hub Foz (REC ⇄ Foz Voo)",
-          "cost": 8868,
-          "flights": 7568,
+          "cost": 8804,
+          "flights": 7504,
           "car": 1160,
           "dropoff": 0,
           "flightDetails": {
@@ -1145,8 +1145,8 @@
         "A": {
           "type": "A",
           "name": "Open-Jaw A (Entra Foz / Sai Curitiba)",
-          "cost": 9541,
-          "flights": 7568,
+          "cost": 9477,
+          "flights": 7504,
           "car": 1973,
           "dropoff": 813,
           "flightDetails": {
@@ -1179,8 +1179,8 @@
         "B": {
           "type": "B",
           "name": "Open-Jaw B (Entra Curitiba / Sai Foz)",
-          "cost": 9541,
-          "flights": 7568,
+          "cost": 9477,
+          "flights": 7504,
           "car": 1973,
           "dropoff": 813,
           "flightDetails": {
@@ -1219,19 +1219,19 @@
       "days": 9,
       "winnerType": "C",
       "winnerName": "Hub Curitiba (REC ⇄ Curitiba Voo | Circuito Carro)",
-      "cheapestTotal": 8873,
-      "totalFlights": 7568,
-      "flightPerPaxRoundTrip": 1892,
-      "flightOneWayEst": 966,
+      "cheapestTotal": 8809,
+      "totalFlights": 7504,
+      "flightPerPaxRoundTrip": 1876,
+      "flightOneWayEst": 958,
       "carTotal": 1305,
       "dropoffFee": 0,
       "savedChildSeatCost": 810,
       "marketStatus": "ALTA (Tarifa Cheia Hoje - NÃO compre agora, espere o feirão!)",
       "targetPricePromo": 4600,
       "airlineComparison": {
-        "latamOneWay": 951,
-        "golOneWay": 966,
-        "azulOneWay": 1031
+        "latamOneWay": 943,
+        "golOneWay": 958,
+        "azulOneWay": 1023
       },
       "preFilledBooking": {
         "googleFlightsRoundTrip": "https://www.google.com/travel/flights?q=passagens%20de%20REC%20para%20CWB%20em%202027-04-19%20com%20retorno%202027-04-28%20para%202%20adultos%202%20criancas",
@@ -1241,8 +1241,8 @@
         "C": {
           "type": "C",
           "name": "Hub Curitiba (REC ⇄ Curitiba Voo)",
-          "cost": 8873,
-          "flights": 7568,
+          "cost": 8809,
+          "flights": 7504,
           "car": 1305,
           "dropoff": 0,
           "flightDetails": {
@@ -1275,8 +1275,8 @@
         "D": {
           "type": "D",
           "name": "Hub Foz (REC ⇄ Foz Voo)",
-          "cost": 9013,
-          "flights": 7568,
+          "cost": 8949,
+          "flights": 7504,
           "car": 1305,
           "dropoff": 0,
           "flightDetails": {
@@ -1309,8 +1309,8 @@
         "A": {
           "type": "A",
           "name": "Open-Jaw A (Entra Foz / Sai Curitiba)",
-          "cost": 9686,
-          "flights": 7568,
+          "cost": 9622,
+          "flights": 7504,
           "car": 2118,
           "dropoff": 813,
           "flightDetails": {
@@ -1343,8 +1343,8 @@
         "B": {
           "type": "B",
           "name": "Open-Jaw B (Entra Curitiba / Sai Foz)",
-          "cost": 9686,
-          "flights": 7568,
+          "cost": 9622,
+          "flights": 7504,
           "car": 2118,
           "dropoff": 813,
           "flightDetails": {
@@ -1383,19 +1383,19 @@
       "days": 9,
       "winnerType": "C",
       "winnerName": "Hub Curitiba (REC ⇄ Curitiba Voo | Circuito Carro)",
-      "cheapestTotal": 8873,
-      "totalFlights": 7568,
-      "flightPerPaxRoundTrip": 1892,
-      "flightOneWayEst": 936,
+      "cheapestTotal": 8809,
+      "totalFlights": 7504,
+      "flightPerPaxRoundTrip": 1876,
+      "flightOneWayEst": 928,
       "carTotal": 1305,
       "dropoffFee": 0,
       "savedChildSeatCost": 810,
       "marketStatus": "ALTA (Tarifa Cheia Hoje - NÃO compre agora, espere o feirão!)",
       "targetPricePromo": 4600,
       "airlineComparison": {
-        "latamOneWay": 921,
-        "golOneWay": 936,
-        "azulOneWay": 1001
+        "latamOneWay": 913,
+        "golOneWay": 928,
+        "azulOneWay": 993
       },
       "preFilledBooking": {
         "googleFlightsRoundTrip": "https://www.google.com/travel/flights?q=passagens%20de%20REC%20para%20CWB%20em%202027-04-20%20com%20retorno%202027-04-29%20para%202%20adultos%202%20criancas",
@@ -1405,8 +1405,8 @@
         "C": {
           "type": "C",
           "name": "Hub Curitiba (REC ⇄ Curitiba Voo)",
-          "cost": 8873,
-          "flights": 7568,
+          "cost": 8809,
+          "flights": 7504,
           "car": 1305,
           "dropoff": 0,
           "flightDetails": {
@@ -1439,8 +1439,8 @@
         "D": {
           "type": "D",
           "name": "Hub Foz (REC ⇄ Foz Voo)",
-          "cost": 9013,
-          "flights": 7568,
+          "cost": 8949,
+          "flights": 7504,
           "car": 1305,
           "dropoff": 0,
           "flightDetails": {
@@ -1473,8 +1473,8 @@
         "A": {
           "type": "A",
           "name": "Open-Jaw A (Entra Foz / Sai Curitiba)",
-          "cost": 9686,
-          "flights": 7568,
+          "cost": 9622,
+          "flights": 7504,
           "car": 2118,
           "dropoff": 813,
           "flightDetails": {
@@ -1507,8 +1507,8 @@
         "B": {
           "type": "B",
           "name": "Open-Jaw B (Entra Curitiba / Sai Foz)",
-          "cost": 9686,
-          "flights": 7568,
+          "cost": 9622,
+          "flights": 7504,
           "car": 2118,
           "dropoff": 813,
           "flightDetails": {
@@ -1547,19 +1547,19 @@
       "days": 9,
       "winnerType": "C",
       "winnerName": "Hub Curitiba (REC ⇄ Curitiba Voo | Circuito Carro)",
-      "cheapestTotal": 8873,
-      "totalFlights": 7568,
-      "flightPerPaxRoundTrip": 1892,
-      "flightOneWayEst": 966,
+      "cheapestTotal": 8809,
+      "totalFlights": 7504,
+      "flightPerPaxRoundTrip": 1876,
+      "flightOneWayEst": 958,
       "carTotal": 1305,
       "dropoffFee": 0,
       "savedChildSeatCost": 810,
       "marketStatus": "ALTA (Tarifa Cheia Hoje - NÃO compre agora, espere o feirão!)",
       "targetPricePromo": 4600,
       "airlineComparison": {
-        "latamOneWay": 951,
-        "golOneWay": 966,
-        "azulOneWay": 1031
+        "latamOneWay": 943,
+        "golOneWay": 958,
+        "azulOneWay": 1023
       },
       "preFilledBooking": {
         "googleFlightsRoundTrip": "https://www.google.com/travel/flights?q=passagens%20de%20REC%20para%20CWB%20em%202027-04-26%20com%20retorno%202027-05-05%20para%202%20adultos%202%20criancas",
@@ -1569,8 +1569,8 @@
         "C": {
           "type": "C",
           "name": "Hub Curitiba (REC ⇄ Curitiba Voo)",
-          "cost": 8873,
-          "flights": 7568,
+          "cost": 8809,
+          "flights": 7504,
           "car": 1305,
           "dropoff": 0,
           "flightDetails": {
@@ -1603,8 +1603,8 @@
         "D": {
           "type": "D",
           "name": "Hub Foz (REC ⇄ Foz Voo)",
-          "cost": 9013,
-          "flights": 7568,
+          "cost": 8949,
+          "flights": 7504,
           "car": 1305,
           "dropoff": 0,
           "flightDetails": {
@@ -1637,8 +1637,8 @@
         "A": {
           "type": "A",
           "name": "Open-Jaw A (Entra Foz / Sai Curitiba)",
-          "cost": 9686,
-          "flights": 7568,
+          "cost": 9622,
+          "flights": 7504,
           "car": 2118,
           "dropoff": 813,
           "flightDetails": {
@@ -1671,8 +1671,8 @@
         "B": {
           "type": "B",
           "name": "Open-Jaw B (Entra Curitiba / Sai Foz)",
-          "cost": 9686,
-          "flights": 7568,
+          "cost": 9622,
+          "flights": 7504,
           "car": 2118,
           "dropoff": 813,
           "flightDetails": {
@@ -1711,19 +1711,19 @@
       "days": 9,
       "winnerType": "C",
       "winnerName": "Hub Curitiba (REC ⇄ Curitiba Voo | Circuito Carro)",
-      "cheapestTotal": 8993,
-      "totalFlights": 7688,
-      "flightPerPaxRoundTrip": 1922,
-      "flightOneWayEst": 966,
+      "cheapestTotal": 8929,
+      "totalFlights": 7624,
+      "flightPerPaxRoundTrip": 1906,
+      "flightOneWayEst": 958,
       "carTotal": 1305,
       "dropoffFee": 0,
       "savedChildSeatCost": 810,
       "marketStatus": "ALTA (Tarifa Cheia Hoje - NÃO compre agora, espere o feirão!)",
       "targetPricePromo": 4600,
       "airlineComparison": {
-        "latamOneWay": 951,
-        "golOneWay": 966,
-        "azulOneWay": 1031
+        "latamOneWay": 943,
+        "golOneWay": 958,
+        "azulOneWay": 1023
       },
       "preFilledBooking": {
         "googleFlightsRoundTrip": "https://www.google.com/travel/flights?q=passagens%20de%20REC%20para%20CWB%20em%202027-04-17%20com%20retorno%202027-04-26%20para%202%20adultos%202%20criancas",
@@ -1733,8 +1733,8 @@
         "C": {
           "type": "C",
           "name": "Hub Curitiba (REC ⇄ Curitiba Voo)",
-          "cost": 8993,
-          "flights": 7688,
+          "cost": 8929,
+          "flights": 7624,
           "car": 1305,
           "dropoff": 0,
           "flightDetails": {
@@ -1767,8 +1767,8 @@
         "D": {
           "type": "D",
           "name": "Hub Foz (REC ⇄ Foz Voo)",
-          "cost": 9133,
-          "flights": 7688,
+          "cost": 9069,
+          "flights": 7624,
           "car": 1305,
           "dropoff": 0,
           "flightDetails": {
@@ -1801,8 +1801,8 @@
         "A": {
           "type": "A",
           "name": "Open-Jaw A (Entra Foz / Sai Curitiba)",
-          "cost": 9806,
-          "flights": 7688,
+          "cost": 9742,
+          "flights": 7624,
           "car": 2118,
           "dropoff": 813,
           "flightDetails": {
@@ -1835,8 +1835,8 @@
         "B": {
           "type": "B",
           "name": "Open-Jaw B (Entra Curitiba / Sai Foz)",
-          "cost": 9806,
-          "flights": 7688,
+          "cost": 9742,
+          "flights": 7624,
           "car": 2118,
           "dropoff": 813,
           "flightDetails": {
@@ -1875,19 +1875,19 @@
       "days": 9,
       "winnerType": "C",
       "winnerName": "Hub Curitiba (REC ⇄ Curitiba Voo | Circuito Carro)",
-      "cheapestTotal": 8993,
-      "totalFlights": 7688,
-      "flightPerPaxRoundTrip": 1922,
-      "flightOneWayEst": 966,
+      "cheapestTotal": 8929,
+      "totalFlights": 7624,
+      "flightPerPaxRoundTrip": 1906,
+      "flightOneWayEst": 958,
       "carTotal": 1305,
       "dropoffFee": 0,
       "savedChildSeatCost": 810,
       "marketStatus": "ALTA (Tarifa Cheia Hoje - NÃO compre agora, espere o feirão!)",
       "targetPricePromo": 4600,
       "airlineComparison": {
-        "latamOneWay": 951,
-        "golOneWay": 966,
-        "azulOneWay": 1031
+        "latamOneWay": 943,
+        "golOneWay": 958,
+        "azulOneWay": 1023
       },
       "preFilledBooking": {
         "googleFlightsRoundTrip": "https://www.google.com/travel/flights?q=passagens%20de%20REC%20para%20CWB%20em%202027-04-22%20com%20retorno%202027-05-01%20para%202%20adultos%202%20criancas",
@@ -1897,8 +1897,8 @@
         "C": {
           "type": "C",
           "name": "Hub Curitiba (REC ⇄ Curitiba Voo)",
-          "cost": 8993,
-          "flights": 7688,
+          "cost": 8929,
+          "flights": 7624,
           "car": 1305,
           "dropoff": 0,
           "flightDetails": {
@@ -1931,8 +1931,8 @@
         "D": {
           "type": "D",
           "name": "Hub Foz (REC ⇄ Foz Voo)",
-          "cost": 9133,
-          "flights": 7688,
+          "cost": 9069,
+          "flights": 7624,
           "car": 1305,
           "dropoff": 0,
           "flightDetails": {
@@ -1965,8 +1965,8 @@
         "A": {
           "type": "A",
           "name": "Open-Jaw A (Entra Foz / Sai Curitiba)",
-          "cost": 9806,
-          "flights": 7688,
+          "cost": 9742,
+          "flights": 7624,
           "car": 2118,
           "dropoff": 813,
           "flightDetails": {
@@ -1999,8 +1999,8 @@
         "B": {
           "type": "B",
           "name": "Open-Jaw B (Entra Curitiba / Sai Foz)",
-          "cost": 9806,
-          "flights": 7688,
+          "cost": 9742,
+          "flights": 7624,
           "car": 2118,
           "dropoff": 813,
           "flightDetails": {
@@ -2041,19 +2041,19 @@
       "days": 8,
       "winnerType": "C",
       "winnerName": "Hub Curitiba (REC ⇄ Curitiba Voo | Circuito Carro)",
-      "cheapestTotal": 8608,
-      "totalFlights": 7448,
-      "flightPerPaxRoundTrip": 1862,
-      "flightOneWayEst": 936,
+      "cheapestTotal": 8544,
+      "totalFlights": 7384,
+      "flightPerPaxRoundTrip": 1846,
+      "flightOneWayEst": 928,
       "carTotal": 1160,
       "dropoffFee": 0,
       "savedChildSeatCost": 720,
       "marketStatus": "ALTA (Tarifa Cheia Hoje - NÃO compre agora, espere o feirão!)",
       "targetPricePromo": 4600,
       "airlineComparison": {
-        "latamOneWay": 921,
-        "golOneWay": 936,
-        "azulOneWay": 1001
+        "latamOneWay": 913,
+        "golOneWay": 928,
+        "azulOneWay": 993
       },
       "preFilledBooking": {
         "googleFlightsRoundTrip": "https://www.google.com/travel/flights?q=passagens%20de%20REC%20para%20CWB%20em%202027-04-20%20com%20retorno%202027-04-28%20para%202%20adultos%202%20criancas",
@@ -2063,8 +2063,8 @@
         "C": {
           "type": "C",
           "name": "Hub Curitiba (REC ⇄ Curitiba Voo)",
-          "cost": 8608,
-          "flights": 7448,
+          "cost": 8544,
+          "flights": 7384,
           "car": 1160,
           "dropoff": 0,
           "flightDetails": {
@@ -2097,8 +2097,8 @@
         "D": {
           "type": "D",
           "name": "Hub Foz (REC ⇄ Foz Voo)",
-          "cost": 8748,
-          "flights": 7448,
+          "cost": 8684,
+          "flights": 7384,
           "car": 1160,
           "dropoff": 0,
           "flightDetails": {
@@ -2131,8 +2131,8 @@
         "A": {
           "type": "A",
           "name": "Open-Jaw A (Entra Foz / Sai Curitiba)",
-          "cost": 9421,
-          "flights": 7448,
+          "cost": 9357,
+          "flights": 7384,
           "car": 1973,
           "dropoff": 813,
           "flightDetails": {
@@ -2165,8 +2165,8 @@
         "B": {
           "type": "B",
           "name": "Open-Jaw B (Entra Curitiba / Sai Foz)",
-          "cost": 9421,
-          "flights": 7448,
+          "cost": 9357,
+          "flights": 7384,
           "car": 1973,
           "dropoff": 813,
           "flightDetails": {
@@ -2205,19 +2205,19 @@
       "days": 8,
       "winnerType": "C",
       "winnerName": "Hub Curitiba (REC ⇄ Curitiba Voo | Circuito Carro)",
-      "cheapestTotal": 8608,
-      "totalFlights": 7448,
-      "flightPerPaxRoundTrip": 1862,
-      "flightOneWayEst": 936,
+      "cheapestTotal": 8544,
+      "totalFlights": 7384,
+      "flightPerPaxRoundTrip": 1846,
+      "flightOneWayEst": 928,
       "carTotal": 1160,
       "dropoffFee": 0,
       "savedChildSeatCost": 720,
       "marketStatus": "ALTA (Tarifa Cheia Hoje - NÃO compre agora, espere o feirão!)",
       "targetPricePromo": 4600,
       "airlineComparison": {
-        "latamOneWay": 921,
-        "golOneWay": 936,
-        "azulOneWay": 1001
+        "latamOneWay": 913,
+        "golOneWay": 928,
+        "azulOneWay": 993
       },
       "preFilledBooking": {
         "googleFlightsRoundTrip": "https://www.google.com/travel/flights?q=passagens%20de%20REC%20para%20CWB%20em%202027-04-27%20com%20retorno%202027-05-05%20para%202%20adultos%202%20criancas",
@@ -2227,8 +2227,8 @@
         "C": {
           "type": "C",
           "name": "Hub Curitiba (REC ⇄ Curitiba Voo)",
-          "cost": 8608,
-          "flights": 7448,
+          "cost": 8544,
+          "flights": 7384,
           "car": 1160,
           "dropoff": 0,
           "flightDetails": {
@@ -2261,8 +2261,8 @@
         "D": {
           "type": "D",
           "name": "Hub Foz (REC ⇄ Foz Voo)",
-          "cost": 8748,
-          "flights": 7448,
+          "cost": 8684,
+          "flights": 7384,
           "car": 1160,
           "dropoff": 0,
           "flightDetails": {
@@ -2295,8 +2295,8 @@
         "A": {
           "type": "A",
           "name": "Open-Jaw A (Entra Foz / Sai Curitiba)",
-          "cost": 9421,
-          "flights": 7448,
+          "cost": 9357,
+          "flights": 7384,
           "car": 1973,
           "dropoff": 813,
           "flightDetails": {
@@ -2329,8 +2329,8 @@
         "B": {
           "type": "B",
           "name": "Open-Jaw B (Entra Curitiba / Sai Foz)",
-          "cost": 9421,
-          "flights": 7448,
+          "cost": 9357,
+          "flights": 7384,
           "car": 1973,
           "dropoff": 813,
           "flightDetails": {
@@ -2369,19 +2369,19 @@
       "days": 8,
       "winnerType": "C",
       "winnerName": "Hub Curitiba (REC ⇄ Curitiba Voo | Circuito Carro)",
-      "cheapestTotal": 8728,
-      "totalFlights": 7568,
-      "flightPerPaxRoundTrip": 1892,
-      "flightOneWayEst": 966,
+      "cheapestTotal": 8664,
+      "totalFlights": 7504,
+      "flightPerPaxRoundTrip": 1876,
+      "flightOneWayEst": 958,
       "carTotal": 1160,
       "dropoffFee": 0,
       "savedChildSeatCost": 720,
       "marketStatus": "ALTA (Tarifa Cheia Hoje - NÃO compre agora, espere o feirão!)",
       "targetPricePromo": 4600,
       "airlineComparison": {
-        "latamOneWay": 951,
-        "golOneWay": 966,
-        "azulOneWay": 1031
+        "latamOneWay": 943,
+        "golOneWay": 958,
+        "azulOneWay": 1023
       },
       "preFilledBooking": {
         "googleFlightsRoundTrip": "https://www.google.com/travel/flights?q=passagens%20de%20REC%20para%20CWB%20em%202027-04-19%20com%20retorno%202027-04-27%20para%202%20adultos%202%20criancas",
@@ -2391,8 +2391,8 @@
         "C": {
           "type": "C",
           "name": "Hub Curitiba (REC ⇄ Curitiba Voo)",
-          "cost": 8728,
-          "flights": 7568,
+          "cost": 8664,
+          "flights": 7504,
           "car": 1160,
           "dropoff": 0,
           "flightDetails": {
@@ -2425,8 +2425,8 @@
         "D": {
           "type": "D",
           "name": "Hub Foz (REC ⇄ Foz Voo)",
-          "cost": 8868,
-          "flights": 7568,
+          "cost": 8804,
+          "flights": 7504,
           "car": 1160,
           "dropoff": 0,
           "flightDetails": {
@@ -2459,8 +2459,8 @@
         "A": {
           "type": "A",
           "name": "Open-Jaw A (Entra Foz / Sai Curitiba)",
-          "cost": 9541,
-          "flights": 7568,
+          "cost": 9477,
+          "flights": 7504,
           "car": 1973,
           "dropoff": 813,
           "flightDetails": {
@@ -2493,8 +2493,8 @@
         "B": {
           "type": "B",
           "name": "Open-Jaw B (Entra Curitiba / Sai Foz)",
-          "cost": 9541,
-          "flights": 7568,
+          "cost": 9477,
+          "flights": 7504,
           "car": 1973,
           "dropoff": 813,
           "flightDetails": {
@@ -2533,19 +2533,19 @@
       "days": 8,
       "winnerType": "C",
       "winnerName": "Hub Curitiba (REC ⇄ Curitiba Voo | Circuito Carro)",
-      "cheapestTotal": 8728,
-      "totalFlights": 7568,
-      "flightPerPaxRoundTrip": 1892,
-      "flightOneWayEst": 936,
+      "cheapestTotal": 8664,
+      "totalFlights": 7504,
+      "flightPerPaxRoundTrip": 1876,
+      "flightOneWayEst": 928,
       "carTotal": 1160,
       "dropoffFee": 0,
       "savedChildSeatCost": 720,
       "marketStatus": "ALTA (Tarifa Cheia Hoje - NÃO compre agora, espere o feirão!)",
       "targetPricePromo": 4600,
       "airlineComparison": {
-        "latamOneWay": 921,
-        "golOneWay": 936,
-        "azulOneWay": 1001
+        "latamOneWay": 913,
+        "golOneWay": 928,
+        "azulOneWay": 993
       },
       "preFilledBooking": {
         "googleFlightsRoundTrip": "https://www.google.com/travel/flights?q=passagens%20de%20REC%20para%20CWB%20em%202027-04-21%20com%20retorno%202027-04-29%20para%202%20adultos%202%20criancas",
@@ -2555,8 +2555,8 @@
         "C": {
           "type": "C",
           "name": "Hub Curitiba (REC ⇄ Curitiba Voo)",
-          "cost": 8728,
-          "flights": 7568,
+          "cost": 8664,
+          "flights": 7504,
           "car": 1160,
           "dropoff": 0,
           "flightDetails": {
@@ -2589,8 +2589,8 @@
         "D": {
           "type": "D",
           "name": "Hub Foz (REC ⇄ Foz Voo)",
-          "cost": 8868,
-          "flights": 7568,
+          "cost": 8804,
+          "flights": 7504,
           "car": 1160,
           "dropoff": 0,
           "flightDetails": {
@@ -2623,8 +2623,8 @@
         "A": {
           "type": "A",
           "name": "Open-Jaw A (Entra Foz / Sai Curitiba)",
-          "cost": 9541,
-          "flights": 7568,
+          "cost": 9477,
+          "flights": 7504,
           "car": 1973,
           "dropoff": 813,
           "flightDetails": {
@@ -2657,8 +2657,8 @@
         "B": {
           "type": "B",
           "name": "Open-Jaw B (Entra Curitiba / Sai Foz)",
-          "cost": 9541,
-          "flights": 7568,
+          "cost": 9477,
+          "flights": 7504,
           "car": 1973,
           "dropoff": 813,
           "flightDetails": {
@@ -2697,19 +2697,19 @@
       "days": 8,
       "winnerType": "C",
       "winnerName": "Hub Curitiba (REC ⇄ Curitiba Voo | Circuito Carro)",
-      "cheapestTotal": 8728,
-      "totalFlights": 7568,
-      "flightPerPaxRoundTrip": 1892,
-      "flightOneWayEst": 966,
+      "cheapestTotal": 8664,
+      "totalFlights": 7504,
+      "flightPerPaxRoundTrip": 1876,
+      "flightOneWayEst": 958,
       "carTotal": 1160,
       "dropoffFee": 0,
       "savedChildSeatCost": 720,
       "marketStatus": "ALTA (Tarifa Cheia Hoje - NÃO compre agora, espere o feirão!)",
       "targetPricePromo": 4600,
       "airlineComparison": {
-        "latamOneWay": 951,
-        "golOneWay": 966,
-        "azulOneWay": 1031
+        "latamOneWay": 943,
+        "golOneWay": 958,
+        "azulOneWay": 1023
       },
       "preFilledBooking": {
         "googleFlightsRoundTrip": "https://www.google.com/travel/flights?q=passagens%20de%20REC%20para%20CWB%20em%202027-04-26%20com%20retorno%202027-05-04%20para%202%20adultos%202%20criancas",
@@ -2719,8 +2719,8 @@
         "C": {
           "type": "C",
           "name": "Hub Curitiba (REC ⇄ Curitiba Voo)",
-          "cost": 8728,
-          "flights": 7568,
+          "cost": 8664,
+          "flights": 7504,
           "car": 1160,
           "dropoff": 0,
           "flightDetails": {
@@ -2753,8 +2753,8 @@
         "D": {
           "type": "D",
           "name": "Hub Foz (REC ⇄ Foz Voo)",
-          "cost": 8868,
-          "flights": 7568,
+          "cost": 8804,
+          "flights": 7504,
           "car": 1160,
           "dropoff": 0,
           "flightDetails": {
@@ -2787,8 +2787,8 @@
         "A": {
           "type": "A",
           "name": "Open-Jaw A (Entra Foz / Sai Curitiba)",
-          "cost": 9541,
-          "flights": 7568,
+          "cost": 9477,
+          "flights": 7504,
           "car": 1973,
           "dropoff": 813,
           "flightDetails": {
@@ -2821,8 +2821,8 @@
         "B": {
           "type": "B",
           "name": "Open-Jaw B (Entra Curitiba / Sai Foz)",
-          "cost": 9541,
-          "flights": 7568,
+          "cost": 9477,
+          "flights": 7504,
           "car": 1973,
           "dropoff": 813,
           "flightDetails": {
@@ -2861,19 +2861,19 @@
       "days": 9,
       "winnerType": "C",
       "winnerName": "Hub Curitiba (REC ⇄ Curitiba Voo | Circuito Carro)",
-      "cheapestTotal": 8873,
-      "totalFlights": 7568,
-      "flightPerPaxRoundTrip": 1892,
-      "flightOneWayEst": 966,
+      "cheapestTotal": 8809,
+      "totalFlights": 7504,
+      "flightPerPaxRoundTrip": 1876,
+      "flightOneWayEst": 958,
       "carTotal": 1305,
       "dropoffFee": 0,
       "savedChildSeatCost": 810,
       "marketStatus": "ALTA (Tarifa Cheia Hoje - NÃO compre agora, espere o feirão!)",
       "targetPricePromo": 4600,
       "airlineComparison": {
-        "latamOneWay": 951,
-        "golOneWay": 966,
-        "azulOneWay": 1031
+        "latamOneWay": 943,
+        "golOneWay": 958,
+        "azulOneWay": 1023
       },
       "preFilledBooking": {
         "googleFlightsRoundTrip": "https://www.google.com/travel/flights?q=passagens%20de%20REC%20para%20CWB%20em%202027-04-19%20com%20retorno%202027-04-28%20para%202%20adultos%202%20criancas",
@@ -2883,8 +2883,8 @@
         "C": {
           "type": "C",
           "name": "Hub Curitiba (REC ⇄ Curitiba Voo)",
-          "cost": 8873,
-          "flights": 7568,
+          "cost": 8809,
+          "flights": 7504,
           "car": 1305,
           "dropoff": 0,
           "flightDetails": {
@@ -2917,8 +2917,8 @@
         "D": {
           "type": "D",
           "name": "Hub Foz (REC ⇄ Foz Voo)",
-          "cost": 9013,
-          "flights": 7568,
+          "cost": 8949,
+          "flights": 7504,
           "car": 1305,
           "dropoff": 0,
           "flightDetails": {
@@ -2951,8 +2951,8 @@
         "A": {
           "type": "A",
           "name": "Open-Jaw A (Entra Foz / Sai Curitiba)",
-          "cost": 9686,
-          "flights": 7568,
+          "cost": 9622,
+          "flights": 7504,
           "car": 2118,
           "dropoff": 813,
           "flightDetails": {
@@ -2985,8 +2985,8 @@
         "B": {
           "type": "B",
           "name": "Open-Jaw B (Entra Curitiba / Sai Foz)",
-          "cost": 9686,
-          "flights": 7568,
+          "cost": 9622,
+          "flights": 7504,
           "car": 2118,
           "dropoff": 813,
           "flightDetails": {
@@ -3025,19 +3025,19 @@
       "days": 9,
       "winnerType": "C",
       "winnerName": "Hub Curitiba (REC ⇄ Curitiba Voo | Circuito Carro)",
-      "cheapestTotal": 8873,
-      "totalFlights": 7568,
-      "flightPerPaxRoundTrip": 1892,
-      "flightOneWayEst": 936,
+      "cheapestTotal": 8809,
+      "totalFlights": 7504,
+      "flightPerPaxRoundTrip": 1876,
+      "flightOneWayEst": 928,
       "carTotal": 1305,
       "dropoffFee": 0,
       "savedChildSeatCost": 810,
       "marketStatus": "ALTA (Tarifa Cheia Hoje - NÃO compre agora, espere o feirão!)",
       "targetPricePromo": 4600,
       "airlineComparison": {
-        "latamOneWay": 921,
-        "golOneWay": 936,
-        "azulOneWay": 1001
+        "latamOneWay": 913,
+        "golOneWay": 928,
+        "azulOneWay": 993
       },
       "preFilledBooking": {
         "googleFlightsRoundTrip": "https://www.google.com/travel/flights?q=passagens%20de%20REC%20para%20CWB%20em%202027-04-20%20com%20retorno%202027-04-29%20para%202%20adultos%202%20criancas",
@@ -3047,8 +3047,8 @@
         "C": {
           "type": "C",
           "name": "Hub Curitiba (REC ⇄ Curitiba Voo)",
-          "cost": 8873,
-          "flights": 7568,
+          "cost": 8809,
+          "flights": 7504,
           "car": 1305,
           "dropoff": 0,
           "flightDetails": {
@@ -3081,8 +3081,8 @@
         "D": {
           "type": "D",
           "name": "Hub Foz (REC ⇄ Foz Voo)",
-          "cost": 9013,
-          "flights": 7568,
+          "cost": 8949,
+          "flights": 7504,
           "car": 1305,
           "dropoff": 0,
           "flightDetails": {
@@ -3115,8 +3115,8 @@
         "A": {
           "type": "A",
           "name": "Open-Jaw A (Entra Foz / Sai Curitiba)",
-          "cost": 9686,
-          "flights": 7568,
+          "cost": 9622,
+          "flights": 7504,
           "car": 2118,
           "dropoff": 813,
           "flightDetails": {
@@ -3149,8 +3149,8 @@
         "B": {
           "type": "B",
           "name": "Open-Jaw B (Entra Curitiba / Sai Foz)",
-          "cost": 9686,
-          "flights": 7568,
+          "cost": 9622,
+          "flights": 7504,
           "car": 2118,
           "dropoff": 813,
           "flightDetails": {
@@ -3189,19 +3189,19 @@
       "days": 9,
       "winnerType": "C",
       "winnerName": "Hub Curitiba (REC ⇄ Curitiba Voo | Circuito Carro)",
-      "cheapestTotal": 8873,
-      "totalFlights": 7568,
-      "flightPerPaxRoundTrip": 1892,
-      "flightOneWayEst": 966,
+      "cheapestTotal": 8809,
+      "totalFlights": 7504,
+      "flightPerPaxRoundTrip": 1876,
+      "flightOneWayEst": 958,
       "carTotal": 1305,
       "dropoffFee": 0,
       "savedChildSeatCost": 810,
       "marketStatus": "ALTA (Tarifa Cheia Hoje - NÃO compre agora, espere o feirão!)",
       "targetPricePromo": 4600,
       "airlineComparison": {
-        "latamOneWay": 951,
-        "golOneWay": 966,
-        "azulOneWay": 1031
+        "latamOneWay": 943,
+        "golOneWay": 958,
+        "azulOneWay": 1023
       },
       "preFilledBooking": {
         "googleFlightsRoundTrip": "https://www.google.com/travel/flights?q=passagens%20de%20REC%20para%20CWB%20em%202027-04-26%20com%20retorno%202027-05-05%20para%202%20adultos%202%20criancas",
@@ -3211,8 +3211,8 @@
         "C": {
           "type": "C",
           "name": "Hub Curitiba (REC ⇄ Curitiba Voo)",
-          "cost": 8873,
-          "flights": 7568,
+          "cost": 8809,
+          "flights": 7504,
           "car": 1305,
           "dropoff": 0,
           "flightDetails": {
@@ -3245,8 +3245,8 @@
         "D": {
           "type": "D",
           "name": "Hub Foz (REC ⇄ Foz Voo)",
-          "cost": 9013,
-          "flights": 7568,
+          "cost": 8949,
+          "flights": 7504,
           "car": 1305,
           "dropoff": 0,
           "flightDetails": {
@@ -3279,8 +3279,8 @@
         "A": {
           "type": "A",
           "name": "Open-Jaw A (Entra Foz / Sai Curitiba)",
-          "cost": 9686,
-          "flights": 7568,
+          "cost": 9622,
+          "flights": 7504,
           "car": 2118,
           "dropoff": 813,
           "flightDetails": {
@@ -3313,8 +3313,8 @@
         "B": {
           "type": "B",
           "name": "Open-Jaw B (Entra Curitiba / Sai Foz)",
-          "cost": 9686,
-          "flights": 7568,
+          "cost": 9622,
+          "flights": 7504,
           "car": 2118,
           "dropoff": 813,
           "flightDetails": {
@@ -3353,19 +3353,19 @@
       "days": 9,
       "winnerType": "C",
       "winnerName": "Hub Curitiba (REC ⇄ Curitiba Voo | Circuito Carro)",
-      "cheapestTotal": 8993,
-      "totalFlights": 7688,
-      "flightPerPaxRoundTrip": 1922,
-      "flightOneWayEst": 966,
+      "cheapestTotal": 8929,
+      "totalFlights": 7624,
+      "flightPerPaxRoundTrip": 1906,
+      "flightOneWayEst": 958,
       "carTotal": 1305,
       "dropoffFee": 0,
       "savedChildSeatCost": 810,
       "marketStatus": "ALTA (Tarifa Cheia Hoje - NÃO compre agora, espere o feirão!)",
       "targetPricePromo": 4600,
       "airlineComparison": {
-        "latamOneWay": 951,
-        "golOneWay": 966,
-        "azulOneWay": 1031
+        "latamOneWay": 943,
+        "golOneWay": 958,
+        "azulOneWay": 1023
       },
       "preFilledBooking": {
         "googleFlightsRoundTrip": "https://www.google.com/travel/flights?q=passagens%20de%20REC%20para%20CWB%20em%202027-04-17%20com%20retorno%202027-04-26%20para%202%20adultos%202%20criancas",
@@ -3375,8 +3375,8 @@
         "C": {
           "type": "C",
           "name": "Hub Curitiba (REC ⇄ Curitiba Voo)",
-          "cost": 8993,
-          "flights": 7688,
+          "cost": 8929,
+          "flights": 7624,
           "car": 1305,
           "dropoff": 0,
           "flightDetails": {
@@ -3409,8 +3409,8 @@
         "D": {
           "type": "D",
           "name": "Hub Foz (REC ⇄ Foz Voo)",
-          "cost": 9133,
-          "flights": 7688,
+          "cost": 9069,
+          "flights": 7624,
           "car": 1305,
           "dropoff": 0,
           "flightDetails": {
@@ -3443,8 +3443,8 @@
         "A": {
           "type": "A",
           "name": "Open-Jaw A (Entra Foz / Sai Curitiba)",
-          "cost": 9806,
-          "flights": 7688,
+          "cost": 9742,
+          "flights": 7624,
           "car": 2118,
           "dropoff": 813,
           "flightDetails": {
@@ -3477,8 +3477,8 @@
         "B": {
           "type": "B",
           "name": "Open-Jaw B (Entra Curitiba / Sai Foz)",
-          "cost": 9806,
-          "flights": 7688,
+          "cost": 9742,
+          "flights": 7624,
           "car": 2118,
           "dropoff": 813,
           "flightDetails": {
@@ -3517,19 +3517,19 @@
       "days": 9,
       "winnerType": "C",
       "winnerName": "Hub Curitiba (REC ⇄ Curitiba Voo | Circuito Carro)",
-      "cheapestTotal": 8993,
-      "totalFlights": 7688,
-      "flightPerPaxRoundTrip": 1922,
-      "flightOneWayEst": 966,
+      "cheapestTotal": 8929,
+      "totalFlights": 7624,
+      "flightPerPaxRoundTrip": 1906,
+      "flightOneWayEst": 958,
       "carTotal": 1305,
       "dropoffFee": 0,
       "savedChildSeatCost": 810,
       "marketStatus": "ALTA (Tarifa Cheia Hoje - NÃO compre agora, espere o feirão!)",
       "targetPricePromo": 4600,
       "airlineComparison": {
-        "latamOneWay": 951,
-        "golOneWay": 966,
-        "azulOneWay": 1031
+        "latamOneWay": 943,
+        "golOneWay": 958,
+        "azulOneWay": 1023
       },
       "preFilledBooking": {
         "googleFlightsRoundTrip": "https://www.google.com/travel/flights?q=passagens%20de%20REC%20para%20CWB%20em%202027-04-22%20com%20retorno%202027-05-01%20para%202%20adultos%202%20criancas",
@@ -3539,8 +3539,8 @@
         "C": {
           "type": "C",
           "name": "Hub Curitiba (REC ⇄ Curitiba Voo)",
-          "cost": 8993,
-          "flights": 7688,
+          "cost": 8929,
+          "flights": 7624,
           "car": 1305,
           "dropoff": 0,
           "flightDetails": {
@@ -3573,8 +3573,8 @@
         "D": {
           "type": "D",
           "name": "Hub Foz (REC ⇄ Foz Voo)",
-          "cost": 9133,
-          "flights": 7688,
+          "cost": 9069,
+          "flights": 7624,
           "car": 1305,
           "dropoff": 0,
           "flightDetails": {
@@ -3607,8 +3607,8 @@
         "A": {
           "type": "A",
           "name": "Open-Jaw A (Entra Foz / Sai Curitiba)",
-          "cost": 9806,
-          "flights": 7688,
+          "cost": 9742,
+          "flights": 7624,
           "car": 2118,
           "dropoff": 813,
           "flightDetails": {
@@ -3641,8 +3641,8 @@
         "B": {
           "type": "B",
           "name": "Open-Jaw B (Entra Curitiba / Sai Foz)",
-          "cost": 9806,
-          "flights": 7688,
+          "cost": 9742,
+          "flights": 7624,
           "car": 2118,
           "dropoff": 813,
           "flightDetails": {
@@ -3681,19 +3681,19 @@
       "days": 9,
       "winnerType": "C",
       "winnerName": "Hub Curitiba (REC ⇄ Curitiba Voo | Circuito Carro)",
-      "cheapestTotal": 8993,
-      "totalFlights": 7688,
-      "flightPerPaxRoundTrip": 1922,
-      "flightOneWayEst": 966,
+      "cheapestTotal": 8929,
+      "totalFlights": 7624,
+      "flightPerPaxRoundTrip": 1906,
+      "flightOneWayEst": 958,
       "carTotal": 1305,
       "dropoffFee": 0,
       "savedChildSeatCost": 810,
       "marketStatus": "ALTA (Tarifa Cheia Hoje - NÃO compre agora, espere o feirão!)",
       "targetPricePromo": 4600,
       "airlineComparison": {
-        "latamOneWay": 951,
-        "golOneWay": 966,
-        "azulOneWay": 1031
+        "latamOneWay": 943,
+        "golOneWay": 958,
+        "azulOneWay": 1023
       },
       "preFilledBooking": {
         "googleFlightsRoundTrip": "https://www.google.com/travel/flights?q=passagens%20de%20REC%20para%20CWB%20em%202027-04-24%20com%20retorno%202027-05-03%20para%202%20adultos%202%20criancas",
@@ -3703,8 +3703,8 @@
         "C": {
           "type": "C",
           "name": "Hub Curitiba (REC ⇄ Curitiba Voo)",
-          "cost": 8993,
-          "flights": 7688,
+          "cost": 8929,
+          "flights": 7624,
           "car": 1305,
           "dropoff": 0,
           "flightDetails": {
@@ -3737,8 +3737,8 @@
         "D": {
           "type": "D",
           "name": "Hub Foz (REC ⇄ Foz Voo)",
-          "cost": 9133,
-          "flights": 7688,
+          "cost": 9069,
+          "flights": 7624,
           "car": 1305,
           "dropoff": 0,
           "flightDetails": {
@@ -3771,8 +3771,8 @@
         "A": {
           "type": "A",
           "name": "Open-Jaw A (Entra Foz / Sai Curitiba)",
-          "cost": 9806,
-          "flights": 7688,
+          "cost": 9742,
+          "flights": 7624,
           "car": 2118,
           "dropoff": 813,
           "flightDetails": {
@@ -3805,8 +3805,8 @@
         "B": {
           "type": "B",
           "name": "Open-Jaw B (Entra Curitiba / Sai Foz)",
-          "cost": 9806,
-          "flights": 7688,
+          "cost": 9742,
+          "flights": 7624,
           "car": 2118,
           "dropoff": 813,
           "flightDetails": {
@@ -3845,19 +3845,19 @@
       "days": 10,
       "winnerType": "C",
       "winnerName": "Hub Curitiba (REC ⇄ Curitiba Voo | Circuito Carro)",
-      "cheapestTotal": 9018,
-      "totalFlights": 7568,
-      "flightPerPaxRoundTrip": 1892,
-      "flightOneWayEst": 966,
+      "cheapestTotal": 8954,
+      "totalFlights": 7504,
+      "flightPerPaxRoundTrip": 1876,
+      "flightOneWayEst": 958,
       "carTotal": 1450,
       "dropoffFee": 0,
       "savedChildSeatCost": 900,
       "marketStatus": "ALTA (Tarifa Cheia Hoje - NÃO compre agora, espere o feirão!)",
       "targetPricePromo": 4600,
       "airlineComparison": {
-        "latamOneWay": 951,
-        "golOneWay": 966,
-        "azulOneWay": 1031
+        "latamOneWay": 943,
+        "golOneWay": 958,
+        "azulOneWay": 1023
       },
       "preFilledBooking": {
         "googleFlightsRoundTrip": "https://www.google.com/travel/flights?q=passagens%20de%20REC%20para%20CWB%20em%202027-04-17%20com%20retorno%202027-04-27%20para%202%20adultos%202%20criancas",
@@ -3867,8 +3867,8 @@
         "C": {
           "type": "C",
           "name": "Hub Curitiba (REC ⇄ Curitiba Voo)",
-          "cost": 9018,
-          "flights": 7568,
+          "cost": 8954,
+          "flights": 7504,
           "car": 1450,
           "dropoff": 0,
           "flightDetails": {
@@ -3901,8 +3901,8 @@
         "D": {
           "type": "D",
           "name": "Hub Foz (REC ⇄ Foz Voo)",
-          "cost": 9158,
-          "flights": 7568,
+          "cost": 9094,
+          "flights": 7504,
           "car": 1450,
           "dropoff": 0,
           "flightDetails": {
@@ -3935,8 +3935,8 @@
         "A": {
           "type": "A",
           "name": "Open-Jaw A (Entra Foz / Sai Curitiba)",
-          "cost": 9831,
-          "flights": 7568,
+          "cost": 9767,
+          "flights": 7504,
           "car": 2263,
           "dropoff": 813,
           "flightDetails": {
@@ -3969,8 +3969,8 @@
         "B": {
           "type": "B",
           "name": "Open-Jaw B (Entra Curitiba / Sai Foz)",
-          "cost": 9831,
-          "flights": 7568,
+          "cost": 9767,
+          "flights": 7504,
           "car": 2263,
           "dropoff": 813,
           "flightDetails": {
@@ -4009,19 +4009,19 @@
       "days": 10,
       "winnerType": "C",
       "winnerName": "Hub Curitiba (REC ⇄ Curitiba Voo | Circuito Carro)",
-      "cheapestTotal": 9018,
-      "totalFlights": 7568,
-      "flightPerPaxRoundTrip": 1892,
-      "flightOneWayEst": 936,
+      "cheapestTotal": 8954,
+      "totalFlights": 7504,
+      "flightPerPaxRoundTrip": 1876,
+      "flightOneWayEst": 928,
       "carTotal": 1450,
       "dropoffFee": 0,
       "savedChildSeatCost": 900,
       "marketStatus": "ALTA (Tarifa Cheia Hoje - NÃO compre agora, espere o feirão!)",
       "targetPricePromo": 4600,
       "airlineComparison": {
-        "latamOneWay": 921,
-        "golOneWay": 936,
-        "azulOneWay": 1001
+        "latamOneWay": 913,
+        "golOneWay": 928,
+        "azulOneWay": 993
       },
       "preFilledBooking": {
         "googleFlightsRoundTrip": "https://www.google.com/travel/flights?q=passagens%20de%20REC%20para%20CWB%20em%202027-04-21%20com%20retorno%202027-05-01%20para%202%20adultos%202%20criancas",
@@ -4031,8 +4031,8 @@
         "C": {
           "type": "C",
           "name": "Hub Curitiba (REC ⇄ Curitiba Voo)",
-          "cost": 9018,
-          "flights": 7568,
+          "cost": 8954,
+          "flights": 7504,
           "car": 1450,
           "dropoff": 0,
           "flightDetails": {
@@ -4065,8 +4065,8 @@
         "D": {
           "type": "D",
           "name": "Hub Foz (REC ⇄ Foz Voo)",
-          "cost": 9158,
-          "flights": 7568,
+          "cost": 9094,
+          "flights": 7504,
           "car": 1450,
           "dropoff": 0,
           "flightDetails": {
@@ -4099,8 +4099,8 @@
         "A": {
           "type": "A",
           "name": "Open-Jaw A (Entra Foz / Sai Curitiba)",
-          "cost": 9831,
-          "flights": 7568,
+          "cost": 9767,
+          "flights": 7504,
           "car": 2263,
           "dropoff": 813,
           "flightDetails": {
@@ -4133,8 +4133,8 @@
         "B": {
           "type": "B",
           "name": "Open-Jaw B (Entra Curitiba / Sai Foz)",
-          "cost": 9831,
-          "flights": 7568,
+          "cost": 9767,
+          "flights": 7504,
           "car": 2263,
           "dropoff": 813,
           "flightDetails": {
@@ -4173,19 +4173,19 @@
       "days": 10,
       "winnerType": "C",
       "winnerName": "Hub Curitiba (REC ⇄ Curitiba Voo | Circuito Carro)",
-      "cheapestTotal": 9018,
-      "totalFlights": 7568,
-      "flightPerPaxRoundTrip": 1892,
-      "flightOneWayEst": 966,
+      "cheapestTotal": 8954,
+      "totalFlights": 7504,
+      "flightPerPaxRoundTrip": 1876,
+      "flightOneWayEst": 958,
       "carTotal": 1450,
       "dropoffFee": 0,
       "savedChildSeatCost": 900,
       "marketStatus": "ALTA (Tarifa Cheia Hoje - NÃO compre agora, espere o feirão!)",
       "targetPricePromo": 4600,
       "airlineComparison": {
-        "latamOneWay": 951,
-        "golOneWay": 966,
-        "azulOneWay": 1031
+        "latamOneWay": 943,
+        "golOneWay": 958,
+        "azulOneWay": 1023
       },
       "preFilledBooking": {
         "googleFlightsRoundTrip": "https://www.google.com/travel/flights?q=passagens%20de%20REC%20para%20CWB%20em%202027-04-24%20com%20retorno%202027-05-04%20para%202%20adultos%202%20criancas",
@@ -4195,8 +4195,8 @@
         "C": {
           "type": "C",
           "name": "Hub Curitiba (REC ⇄ Curitiba Voo)",
-          "cost": 9018,
-          "flights": 7568,
+          "cost": 8954,
+          "flights": 7504,
           "car": 1450,
           "dropoff": 0,
           "flightDetails": {
@@ -4229,8 +4229,8 @@
         "D": {
           "type": "D",
           "name": "Hub Foz (REC ⇄ Foz Voo)",
-          "cost": 9158,
-          "flights": 7568,
+          "cost": 9094,
+          "flights": 7504,
           "car": 1450,
           "dropoff": 0,
           "flightDetails": {
@@ -4263,8 +4263,8 @@
         "A": {
           "type": "A",
           "name": "Open-Jaw A (Entra Foz / Sai Curitiba)",
-          "cost": 9831,
-          "flights": 7568,
+          "cost": 9767,
+          "flights": 7504,
           "car": 2263,
           "dropoff": 813,
           "flightDetails": {
@@ -4297,8 +4297,8 @@
         "B": {
           "type": "B",
           "name": "Open-Jaw B (Entra Curitiba / Sai Foz)",
-          "cost": 9831,
-          "flights": 7568,
+          "cost": 9767,
+          "flights": 7504,
           "car": 2263,
           "dropoff": 813,
           "flightDetails": {
@@ -4337,19 +4337,19 @@
       "days": 8,
       "winnerType": "C",
       "winnerName": "Hub Curitiba (REC ⇄ Curitiba Voo | Circuito Carro)",
-      "cheapestTotal": 9028,
-      "totalFlights": 7868,
-      "flightPerPaxRoundTrip": 1967,
-      "flightOneWayEst": 1011,
+      "cheapestTotal": 8964,
+      "totalFlights": 7804,
+      "flightPerPaxRoundTrip": 1951,
+      "flightOneWayEst": 1003,
       "carTotal": 1160,
       "dropoffFee": 0,
       "savedChildSeatCost": 720,
       "marketStatus": "ALTA (Tarifa Cheia Hoje - NÃO compre agora, espere o feirão!)",
       "targetPricePromo": 4600,
       "airlineComparison": {
-        "latamOneWay": 996,
-        "golOneWay": 1011,
-        "azulOneWay": 1076
+        "latamOneWay": 988,
+        "golOneWay": 1003,
+        "azulOneWay": 1068
       },
       "preFilledBooking": {
         "googleFlightsRoundTrip": "https://www.google.com/travel/flights?q=passagens%20de%20REC%20para%20CWB%20em%202027-04-16%20com%20retorno%202027-04-24%20para%202%20adultos%202%20criancas",
@@ -4359,8 +4359,8 @@
         "C": {
           "type": "C",
           "name": "Hub Curitiba (REC ⇄ Curitiba Voo)",
-          "cost": 9028,
-          "flights": 7868,
+          "cost": 8964,
+          "flights": 7804,
           "car": 1160,
           "dropoff": 0,
           "flightDetails": {
@@ -4393,8 +4393,8 @@
         "D": {
           "type": "D",
           "name": "Hub Foz (REC ⇄ Foz Voo)",
-          "cost": 9168,
-          "flights": 7868,
+          "cost": 9104,
+          "flights": 7804,
           "car": 1160,
           "dropoff": 0,
           "flightDetails": {
@@ -4427,8 +4427,8 @@
         "A": {
           "type": "A",
           "name": "Open-Jaw A (Entra Foz / Sai Curitiba)",
-          "cost": 9841,
-          "flights": 7868,
+          "cost": 9777,
+          "flights": 7804,
           "car": 1973,
           "dropoff": 813,
           "flightDetails": {
@@ -4461,8 +4461,8 @@
         "B": {
           "type": "B",
           "name": "Open-Jaw B (Entra Curitiba / Sai Foz)",
-          "cost": 9841,
-          "flights": 7868,
+          "cost": 9777,
+          "flights": 7804,
           "car": 1973,
           "dropoff": 813,
           "flightDetails": {
@@ -4501,19 +4501,19 @@
       "days": 8,
       "winnerType": "C",
       "winnerName": "Hub Curitiba (REC ⇄ Curitiba Voo | Circuito Carro)",
-      "cheapestTotal": 9028,
-      "totalFlights": 7868,
-      "flightPerPaxRoundTrip": 1967,
-      "flightOneWayEst": 966,
+      "cheapestTotal": 8964,
+      "totalFlights": 7804,
+      "flightPerPaxRoundTrip": 1951,
+      "flightOneWayEst": 958,
       "carTotal": 1160,
       "dropoffFee": 0,
       "savedChildSeatCost": 720,
       "marketStatus": "ALTA (Tarifa Cheia Hoje - NÃO compre agora, espere o feirão!)",
       "targetPricePromo": 4600,
       "airlineComparison": {
-        "latamOneWay": 951,
-        "golOneWay": 966,
-        "azulOneWay": 1031
+        "latamOneWay": 943,
+        "golOneWay": 958,
+        "azulOneWay": 1023
       },
       "preFilledBooking": {
         "googleFlightsRoundTrip": "https://www.google.com/travel/flights?q=passagens%20de%20REC%20para%20CWB%20em%202027-04-17%20com%20retorno%202027-04-25%20para%202%20adultos%202%20criancas",
@@ -4523,8 +4523,8 @@
         "C": {
           "type": "C",
           "name": "Hub Curitiba (REC ⇄ Curitiba Voo)",
-          "cost": 9028,
-          "flights": 7868,
+          "cost": 8964,
+          "flights": 7804,
           "car": 1160,
           "dropoff": 0,
           "flightDetails": {
@@ -4557,8 +4557,8 @@
         "D": {
           "type": "D",
           "name": "Hub Foz (REC ⇄ Foz Voo)",
-          "cost": 9168,
-          "flights": 7868,
+          "cost": 9104,
+          "flights": 7804,
           "car": 1160,
           "dropoff": 0,
           "flightDetails": {
@@ -4591,8 +4591,8 @@
         "A": {
           "type": "A",
           "name": "Open-Jaw A (Entra Foz / Sai Curitiba)",
-          "cost": 9841,
-          "flights": 7868,
+          "cost": 9777,
+          "flights": 7804,
           "car": 1973,
           "dropoff": 813,
           "flightDetails": {
@@ -4625,8 +4625,8 @@
         "B": {
           "type": "B",
           "name": "Open-Jaw B (Entra Curitiba / Sai Foz)",
-          "cost": 9841,
-          "flights": 7868,
+          "cost": 9777,
+          "flights": 7804,
           "car": 1973,
           "dropoff": 813,
           "flightDetails": {
@@ -4665,19 +4665,19 @@
       "days": 8,
       "winnerType": "C",
       "winnerName": "Hub Curitiba (REC ⇄ Curitiba Voo | Circuito Carro)",
-      "cheapestTotal": 9028,
-      "totalFlights": 7868,
-      "flightPerPaxRoundTrip": 1967,
-      "flightOneWayEst": 1011,
+      "cheapestTotal": 8964,
+      "totalFlights": 7804,
+      "flightPerPaxRoundTrip": 1951,
+      "flightOneWayEst": 1003,
       "carTotal": 1160,
       "dropoffFee": 0,
       "savedChildSeatCost": 720,
       "marketStatus": "ALTA (Tarifa Cheia Hoje - NÃO compre agora, espere o feirão!)",
       "targetPricePromo": 4600,
       "airlineComparison": {
-        "latamOneWay": 996,
-        "golOneWay": 1011,
-        "azulOneWay": 1076
+        "latamOneWay": 988,
+        "golOneWay": 1003,
+        "azulOneWay": 1068
       },
       "preFilledBooking": {
         "googleFlightsRoundTrip": "https://www.google.com/travel/flights?q=passagens%20de%20REC%20para%20CWB%20em%202027-04-18%20com%20retorno%202027-04-26%20para%202%20adultos%202%20criancas",
@@ -4687,8 +4687,8 @@
         "C": {
           "type": "C",
           "name": "Hub Curitiba (REC ⇄ Curitiba Voo)",
-          "cost": 9028,
-          "flights": 7868,
+          "cost": 8964,
+          "flights": 7804,
           "car": 1160,
           "dropoff": 0,
           "flightDetails": {
@@ -4721,8 +4721,8 @@
         "D": {
           "type": "D",
           "name": "Hub Foz (REC ⇄ Foz Voo)",
-          "cost": 9168,
-          "flights": 7868,
+          "cost": 9104,
+          "flights": 7804,
           "car": 1160,
           "dropoff": 0,
           "flightDetails": {
@@ -4755,8 +4755,8 @@
         "A": {
           "type": "A",
           "name": "Open-Jaw A (Entra Foz / Sai Curitiba)",
-          "cost": 9841,
-          "flights": 7868,
+          "cost": 9777,
+          "flights": 7804,
           "car": 1973,
           "dropoff": 813,
           "flightDetails": {
@@ -4789,8 +4789,8 @@
         "B": {
           "type": "B",
           "name": "Open-Jaw B (Entra Curitiba / Sai Foz)",
-          "cost": 9841,
-          "flights": 7868,
+          "cost": 9777,
+          "flights": 7804,
           "car": 1973,
           "dropoff": 813,
           "flightDetails": {
@@ -4829,19 +4829,19 @@
       "days": 8,
       "winnerType": "C",
       "winnerName": "Hub Curitiba (REC ⇄ Curitiba Voo | Circuito Carro)",
-      "cheapestTotal": 9028,
-      "totalFlights": 7868,
-      "flightPerPaxRoundTrip": 1967,
-      "flightOneWayEst": 966,
+      "cheapestTotal": 8964,
+      "totalFlights": 7804,
+      "flightPerPaxRoundTrip": 1951,
+      "flightOneWayEst": 958,
       "carTotal": 1160,
       "dropoffFee": 0,
       "savedChildSeatCost": 720,
       "marketStatus": "ALTA (Tarifa Cheia Hoje - NÃO compre agora, espere o feirão!)",
       "targetPricePromo": 4600,
       "airlineComparison": {
-        "latamOneWay": 951,
-        "golOneWay": 966,
-        "azulOneWay": 1031
+        "latamOneWay": 943,
+        "golOneWay": 958,
+        "azulOneWay": 1023
       },
       "preFilledBooking": {
         "googleFlightsRoundTrip": "https://www.google.com/travel/flights?q=passagens%20de%20REC%20para%20CWB%20em%202027-04-22%20com%20retorno%202027-04-30%20para%202%20adultos%202%20criancas",
@@ -4851,8 +4851,8 @@
         "C": {
           "type": "C",
           "name": "Hub Curitiba (REC ⇄ Curitiba Voo)",
-          "cost": 9028,
-          "flights": 7868,
+          "cost": 8964,
+          "flights": 7804,
           "car": 1160,
           "dropoff": 0,
           "flightDetails": {
@@ -4885,8 +4885,8 @@
         "D": {
           "type": "D",
           "name": "Hub Foz (REC ⇄ Foz Voo)",
-          "cost": 9168,
-          "flights": 7868,
+          "cost": 9104,
+          "flights": 7804,
           "car": 1160,
           "dropoff": 0,
           "flightDetails": {
@@ -4919,8 +4919,8 @@
         "A": {
           "type": "A",
           "name": "Open-Jaw A (Entra Foz / Sai Curitiba)",
-          "cost": 9841,
-          "flights": 7868,
+          "cost": 9777,
+          "flights": 7804,
           "car": 1973,
           "dropoff": 813,
           "flightDetails": {
@@ -4953,8 +4953,8 @@
         "B": {
           "type": "B",
           "name": "Open-Jaw B (Entra Curitiba / Sai Foz)",
-          "cost": 9841,
-          "flights": 7868,
+          "cost": 9777,
+          "flights": 7804,
           "car": 1973,
           "dropoff": 813,
           "flightDetails": {
@@ -4993,19 +4993,19 @@
       "days": 8,
       "winnerType": "C",
       "winnerName": "Hub Curitiba (REC ⇄ Curitiba Voo | Circuito Carro)",
-      "cheapestTotal": 9028,
-      "totalFlights": 7868,
-      "flightPerPaxRoundTrip": 1967,
-      "flightOneWayEst": 1011,
+      "cheapestTotal": 8964,
+      "totalFlights": 7804,
+      "flightPerPaxRoundTrip": 1951,
+      "flightOneWayEst": 1003,
       "carTotal": 1160,
       "dropoffFee": 0,
       "savedChildSeatCost": 720,
       "marketStatus": "ALTA (Tarifa Cheia Hoje - NÃO compre agora, espere o feirão!)",
       "targetPricePromo": 4600,
       "airlineComparison": {
-        "latamOneWay": 996,
-        "golOneWay": 1011,
-        "azulOneWay": 1076
+        "latamOneWay": 988,
+        "golOneWay": 1003,
+        "azulOneWay": 1068
       },
       "preFilledBooking": {
         "googleFlightsRoundTrip": "https://www.google.com/travel/flights?q=passagens%20de%20REC%20para%20CWB%20em%202027-04-23%20com%20retorno%202027-05-01%20para%202%20adultos%202%20criancas",
@@ -5015,8 +5015,8 @@
         "C": {
           "type": "C",
           "name": "Hub Curitiba (REC ⇄ Curitiba Voo)",
-          "cost": 9028,
-          "flights": 7868,
+          "cost": 8964,
+          "flights": 7804,
           "car": 1160,
           "dropoff": 0,
           "flightDetails": {
@@ -5049,8 +5049,8 @@
         "D": {
           "type": "D",
           "name": "Hub Foz (REC ⇄ Foz Voo)",
-          "cost": 9168,
-          "flights": 7868,
+          "cost": 9104,
+          "flights": 7804,
           "car": 1160,
           "dropoff": 0,
           "flightDetails": {
@@ -5083,8 +5083,8 @@
         "A": {
           "type": "A",
           "name": "Open-Jaw A (Entra Foz / Sai Curitiba)",
-          "cost": 9841,
-          "flights": 7868,
+          "cost": 9777,
+          "flights": 7804,
           "car": 1973,
           "dropoff": 813,
           "flightDetails": {
@@ -5117,8 +5117,8 @@
         "B": {
           "type": "B",
           "name": "Open-Jaw B (Entra Curitiba / Sai Foz)",
-          "cost": 9841,
-          "flights": 7868,
+          "cost": 9777,
+          "flights": 7804,
           "car": 1973,
           "dropoff": 813,
           "flightDetails": {
@@ -5157,19 +5157,19 @@
       "days": 8,
       "winnerType": "C",
       "winnerName": "Hub Curitiba (REC ⇄ Curitiba Voo | Circuito Carro)",
-      "cheapestTotal": 9028,
-      "totalFlights": 7868,
-      "flightPerPaxRoundTrip": 1967,
-      "flightOneWayEst": 966,
+      "cheapestTotal": 8964,
+      "totalFlights": 7804,
+      "flightPerPaxRoundTrip": 1951,
+      "flightOneWayEst": 958,
       "carTotal": 1160,
       "dropoffFee": 0,
       "savedChildSeatCost": 720,
       "marketStatus": "ALTA (Tarifa Cheia Hoje - NÃO compre agora, espere o feirão!)",
       "targetPricePromo": 4600,
       "airlineComparison": {
-        "latamOneWay": 951,
-        "golOneWay": 966,
-        "azulOneWay": 1031
+        "latamOneWay": 943,
+        "golOneWay": 958,
+        "azulOneWay": 1023
       },
       "preFilledBooking": {
         "googleFlightsRoundTrip": "https://www.google.com/travel/flights?q=passagens%20de%20REC%20para%20CWB%20em%202027-04-24%20com%20retorno%202027-05-02%20para%202%20adultos%202%20criancas",
@@ -5179,8 +5179,8 @@
         "C": {
           "type": "C",
           "name": "Hub Curitiba (REC ⇄ Curitiba Voo)",
-          "cost": 9028,
-          "flights": 7868,
+          "cost": 8964,
+          "flights": 7804,
           "car": 1160,
           "dropoff": 0,
           "flightDetails": {
@@ -5213,8 +5213,8 @@
         "D": {
           "type": "D",
           "name": "Hub Foz (REC ⇄ Foz Voo)",
-          "cost": 9168,
-          "flights": 7868,
+          "cost": 9104,
+          "flights": 7804,
           "car": 1160,
           "dropoff": 0,
           "flightDetails": {
@@ -5247,8 +5247,8 @@
         "A": {
           "type": "A",
           "name": "Open-Jaw A (Entra Foz / Sai Curitiba)",
-          "cost": 9841,
-          "flights": 7868,
+          "cost": 9777,
+          "flights": 7804,
           "car": 1973,
           "dropoff": 813,
           "flightDetails": {
@@ -5281,8 +5281,8 @@
         "B": {
           "type": "B",
           "name": "Open-Jaw B (Entra Curitiba / Sai Foz)",
-          "cost": 9841,
-          "flights": 7868,
+          "cost": 9777,
+          "flights": 7804,
           "car": 1973,
           "dropoff": 813,
           "flightDetails": {
@@ -5321,19 +5321,19 @@
       "days": 8,
       "winnerType": "C",
       "winnerName": "Hub Curitiba (REC ⇄ Curitiba Voo | Circuito Carro)",
-      "cheapestTotal": 9028,
-      "totalFlights": 7868,
-      "flightPerPaxRoundTrip": 1967,
-      "flightOneWayEst": 1011,
+      "cheapestTotal": 8964,
+      "totalFlights": 7804,
+      "flightPerPaxRoundTrip": 1951,
+      "flightOneWayEst": 1003,
       "carTotal": 1160,
       "dropoffFee": 0,
       "savedChildSeatCost": 720,
       "marketStatus": "ALTA (Tarifa Cheia Hoje - NÃO compre agora, espere o feirão!)",
       "targetPricePromo": 4600,
       "airlineComparison": {
-        "latamOneWay": 996,
-        "golOneWay": 1011,
-        "azulOneWay": 1076
+        "latamOneWay": 988,
+        "golOneWay": 1003,
+        "azulOneWay": 1068
       },
       "preFilledBooking": {
         "googleFlightsRoundTrip": "https://www.google.com/travel/flights?q=passagens%20de%20REC%20para%20CWB%20em%202027-04-25%20com%20retorno%202027-05-03%20para%202%20adultos%202%20criancas",
@@ -5343,8 +5343,8 @@
         "C": {
           "type": "C",
           "name": "Hub Curitiba (REC ⇄ Curitiba Voo)",
-          "cost": 9028,
-          "flights": 7868,
+          "cost": 8964,
+          "flights": 7804,
           "car": 1160,
           "dropoff": 0,
           "flightDetails": {
@@ -5377,8 +5377,8 @@
         "D": {
           "type": "D",
           "name": "Hub Foz (REC ⇄ Foz Voo)",
-          "cost": 9168,
-          "flights": 7868,
+          "cost": 9104,
+          "flights": 7804,
           "car": 1160,
           "dropoff": 0,
           "flightDetails": {
@@ -5411,8 +5411,8 @@
         "A": {
           "type": "A",
           "name": "Open-Jaw A (Entra Foz / Sai Curitiba)",
-          "cost": 9841,
-          "flights": 7868,
+          "cost": 9777,
+          "flights": 7804,
           "car": 1973,
           "dropoff": 813,
           "flightDetails": {
@@ -5445,8 +5445,8 @@
         "B": {
           "type": "B",
           "name": "Open-Jaw B (Entra Curitiba / Sai Foz)",
-          "cost": 9841,
-          "flights": 7868,
+          "cost": 9777,
+          "flights": 7804,
           "car": 1973,
           "dropoff": 813,
           "flightDetails": {
@@ -5485,19 +5485,19 @@
       "days": 9,
       "winnerType": "C",
       "winnerName": "Hub Curitiba (REC ⇄ Curitiba Voo | Circuito Carro)",
-      "cheapestTotal": 9053,
-      "totalFlights": 7748,
-      "flightPerPaxRoundTrip": 1937,
-      "flightOneWayEst": 1011,
+      "cheapestTotal": 8989,
+      "totalFlights": 7684,
+      "flightPerPaxRoundTrip": 1921,
+      "flightOneWayEst": 1003,
       "carTotal": 1305,
       "dropoffFee": 0,
       "savedChildSeatCost": 810,
       "marketStatus": "ALTA (Tarifa Cheia Hoje - NÃO compre agora, espere o feirão!)",
       "targetPricePromo": 4600,
       "airlineComparison": {
-        "latamOneWay": 996,
-        "golOneWay": 1011,
-        "azulOneWay": 1076
+        "latamOneWay": 988,
+        "golOneWay": 1003,
+        "azulOneWay": 1068
       },
       "preFilledBooking": {
         "googleFlightsRoundTrip": "https://www.google.com/travel/flights?q=passagens%20de%20REC%20para%20CWB%20em%202027-04-18%20com%20retorno%202027-04-27%20para%202%20adultos%202%20criancas",
@@ -5507,8 +5507,8 @@
         "C": {
           "type": "C",
           "name": "Hub Curitiba (REC ⇄ Curitiba Voo)",
-          "cost": 9053,
-          "flights": 7748,
+          "cost": 8989,
+          "flights": 7684,
           "car": 1305,
           "dropoff": 0,
           "flightDetails": {
@@ -5541,8 +5541,8 @@
         "D": {
           "type": "D",
           "name": "Hub Foz (REC ⇄ Foz Voo)",
-          "cost": 9193,
-          "flights": 7748,
+          "cost": 9129,
+          "flights": 7684,
           "car": 1305,
           "dropoff": 0,
           "flightDetails": {
@@ -5575,8 +5575,8 @@
         "A": {
           "type": "A",
           "name": "Open-Jaw A (Entra Foz / Sai Curitiba)",
-          "cost": 9866,
-          "flights": 7748,
+          "cost": 9802,
+          "flights": 7684,
           "car": 2118,
           "dropoff": 813,
           "flightDetails": {
@@ -5609,8 +5609,8 @@
         "B": {
           "type": "B",
           "name": "Open-Jaw B (Entra Curitiba / Sai Foz)",
-          "cost": 9866,
-          "flights": 7748,
+          "cost": 9802,
+          "flights": 7684,
           "car": 2118,
           "dropoff": 813,
           "flightDetails": {
@@ -5649,19 +5649,19 @@
       "days": 9,
       "winnerType": "C",
       "winnerName": "Hub Curitiba (REC ⇄ Curitiba Voo | Circuito Carro)",
-      "cheapestTotal": 9053,
-      "totalFlights": 7748,
-      "flightPerPaxRoundTrip": 1937,
-      "flightOneWayEst": 936,
+      "cheapestTotal": 8989,
+      "totalFlights": 7684,
+      "flightPerPaxRoundTrip": 1921,
+      "flightOneWayEst": 928,
       "carTotal": 1305,
       "dropoffFee": 0,
       "savedChildSeatCost": 810,
       "marketStatus": "ALTA (Tarifa Cheia Hoje - NÃO compre agora, espere o feirão!)",
       "targetPricePromo": 4600,
       "airlineComparison": {
-        "latamOneWay": 921,
-        "golOneWay": 936,
-        "azulOneWay": 1001
+        "latamOneWay": 913,
+        "golOneWay": 928,
+        "azulOneWay": 993
       },
       "preFilledBooking": {
         "googleFlightsRoundTrip": "https://www.google.com/travel/flights?q=passagens%20de%20REC%20para%20CWB%20em%202027-04-21%20com%20retorno%202027-04-30%20para%202%20adultos%202%20criancas",
@@ -5671,8 +5671,8 @@
         "C": {
           "type": "C",
           "name": "Hub Curitiba (REC ⇄ Curitiba Voo)",
-          "cost": 9053,
-          "flights": 7748,
+          "cost": 8989,
+          "flights": 7684,
           "car": 1305,
           "dropoff": 0,
           "flightDetails": {
@@ -5705,8 +5705,8 @@
         "D": {
           "type": "D",
           "name": "Hub Foz (REC ⇄ Foz Voo)",
-          "cost": 9193,
-          "flights": 7748,
+          "cost": 9129,
+          "flights": 7684,
           "car": 1305,
           "dropoff": 0,
           "flightDetails": {
@@ -5739,8 +5739,8 @@
         "A": {
           "type": "A",
           "name": "Open-Jaw A (Entra Foz / Sai Curitiba)",
-          "cost": 9866,
-          "flights": 7748,
+          "cost": 9802,
+          "flights": 7684,
           "car": 2118,
           "dropoff": 813,
           "flightDetails": {
@@ -5773,8 +5773,8 @@
         "B": {
           "type": "B",
           "name": "Open-Jaw B (Entra Curitiba / Sai Foz)",
-          "cost": 9866,
-          "flights": 7748,
+          "cost": 9802,
+          "flights": 7684,
           "car": 2118,
           "dropoff": 813,
           "flightDetails": {
@@ -5813,19 +5813,19 @@
       "days": 9,
       "winnerType": "C",
       "winnerName": "Hub Curitiba (REC ⇄ Curitiba Voo | Circuito Carro)",
-      "cheapestTotal": 9053,
-      "totalFlights": 7748,
-      "flightPerPaxRoundTrip": 1937,
-      "flightOneWayEst": 1011,
+      "cheapestTotal": 8989,
+      "totalFlights": 7684,
+      "flightPerPaxRoundTrip": 1921,
+      "flightOneWayEst": 1003,
       "carTotal": 1305,
       "dropoffFee": 0,
       "savedChildSeatCost": 810,
       "marketStatus": "ALTA (Tarifa Cheia Hoje - NÃO compre agora, espere o feirão!)",
       "targetPricePromo": 4600,
       "airlineComparison": {
-        "latamOneWay": 996,
-        "golOneWay": 1011,
-        "azulOneWay": 1076
+        "latamOneWay": 988,
+        "golOneWay": 1003,
+        "azulOneWay": 1068
       },
       "preFilledBooking": {
         "googleFlightsRoundTrip": "https://www.google.com/travel/flights?q=passagens%20de%20REC%20para%20CWB%20em%202027-04-25%20com%20retorno%202027-05-04%20para%202%20adultos%202%20criancas",
@@ -5835,8 +5835,8 @@
         "C": {
           "type": "C",
           "name": "Hub Curitiba (REC ⇄ Curitiba Voo)",
-          "cost": 9053,
-          "flights": 7748,
+          "cost": 8989,
+          "flights": 7684,
           "car": 1305,
           "dropoff": 0,
           "flightDetails": {
@@ -5869,8 +5869,8 @@
         "D": {
           "type": "D",
           "name": "Hub Foz (REC ⇄ Foz Voo)",
-          "cost": 9193,
-          "flights": 7748,
+          "cost": 9129,
+          "flights": 7684,
           "car": 1305,
           "dropoff": 0,
           "flightDetails": {
@@ -5903,8 +5903,8 @@
         "A": {
           "type": "A",
           "name": "Open-Jaw A (Entra Foz / Sai Curitiba)",
-          "cost": 9866,
-          "flights": 7748,
+          "cost": 9802,
+          "flights": 7684,
           "car": 2118,
           "dropoff": 813,
           "flightDetails": {
@@ -5937,8 +5937,8 @@
         "B": {
           "type": "B",
           "name": "Open-Jaw B (Entra Curitiba / Sai Foz)",
-          "cost": 9866,
-          "flights": 7748,
+          "cost": 9802,
+          "flights": 7684,
           "car": 2118,
           "dropoff": 813,
           "flightDetails": {
@@ -5977,19 +5977,19 @@
       "days": 10,
       "winnerType": "C",
       "winnerName": "Hub Curitiba (REC ⇄ Curitiba Voo | Circuito Carro)",
-      "cheapestTotal": 9138,
-      "totalFlights": 7688,
-      "flightPerPaxRoundTrip": 1922,
-      "flightOneWayEst": 966,
+      "cheapestTotal": 9074,
+      "totalFlights": 7624,
+      "flightPerPaxRoundTrip": 1906,
+      "flightOneWayEst": 958,
       "carTotal": 1450,
       "dropoffFee": 0,
       "savedChildSeatCost": 900,
       "marketStatus": "ALTA (Tarifa Cheia Hoje - NÃO compre agora, espere o feirão!)",
       "targetPricePromo": 4600,
       "airlineComparison": {
-        "latamOneWay": 951,
-        "golOneWay": 966,
-        "azulOneWay": 1031
+        "latamOneWay": 943,
+        "golOneWay": 958,
+        "azulOneWay": 1023
       },
       "preFilledBooking": {
         "googleFlightsRoundTrip": "https://www.google.com/travel/flights?q=passagens%20de%20REC%20para%20CWB%20em%202027-04-19%20com%20retorno%202027-04-29%20para%202%20adultos%202%20criancas",
@@ -5999,8 +5999,8 @@
         "C": {
           "type": "C",
           "name": "Hub Curitiba (REC ⇄ Curitiba Voo)",
-          "cost": 9138,
-          "flights": 7688,
+          "cost": 9074,
+          "flights": 7624,
           "car": 1450,
           "dropoff": 0,
           "flightDetails": {
@@ -6033,8 +6033,8 @@
         "D": {
           "type": "D",
           "name": "Hub Foz (REC ⇄ Foz Voo)",
-          "cost": 9278,
-          "flights": 7688,
+          "cost": 9214,
+          "flights": 7624,
           "car": 1450,
           "dropoff": 0,
           "flightDetails": {
@@ -6067,8 +6067,8 @@
         "A": {
           "type": "A",
           "name": "Open-Jaw A (Entra Foz / Sai Curitiba)",
-          "cost": 9951,
-          "flights": 7688,
+          "cost": 9887,
+          "flights": 7624,
           "car": 2263,
           "dropoff": 813,
           "flightDetails": {
@@ -6101,8 +6101,8 @@
         "B": {
           "type": "B",
           "name": "Open-Jaw B (Entra Curitiba / Sai Foz)",
-          "cost": 9951,
-          "flights": 7688,
+          "cost": 9887,
+          "flights": 7624,
           "car": 2263,
           "dropoff": 813,
           "flightDetails": {
@@ -6141,19 +6141,19 @@
       "days": 10,
       "winnerType": "C",
       "winnerName": "Hub Curitiba (REC ⇄ Curitiba Voo | Circuito Carro)",
-      "cheapestTotal": 9198,
-      "totalFlights": 7748,
-      "flightPerPaxRoundTrip": 1937,
-      "flightOneWayEst": 1011,
+      "cheapestTotal": 9134,
+      "totalFlights": 7684,
+      "flightPerPaxRoundTrip": 1921,
+      "flightOneWayEst": 1003,
       "carTotal": 1450,
       "dropoffFee": 0,
       "savedChildSeatCost": 900,
       "marketStatus": "ALTA (Tarifa Cheia Hoje - NÃO compre agora, espere o feirão!)",
       "targetPricePromo": 4600,
       "airlineComparison": {
-        "latamOneWay": 996,
-        "golOneWay": 1011,
-        "azulOneWay": 1076
+        "latamOneWay": 988,
+        "golOneWay": 1003,
+        "azulOneWay": 1068
       },
       "preFilledBooking": {
         "googleFlightsRoundTrip": "https://www.google.com/travel/flights?q=passagens%20de%20REC%20para%20CWB%20em%202027-04-18%20com%20retorno%202027-04-28%20para%202%20adultos%202%20criancas",
@@ -6163,8 +6163,8 @@
         "C": {
           "type": "C",
           "name": "Hub Curitiba (REC ⇄ Curitiba Voo)",
-          "cost": 9198,
-          "flights": 7748,
+          "cost": 9134,
+          "flights": 7684,
           "car": 1450,
           "dropoff": 0,
           "flightDetails": {
@@ -6197,8 +6197,8 @@
         "D": {
           "type": "D",
           "name": "Hub Foz (REC ⇄ Foz Voo)",
-          "cost": 9338,
-          "flights": 7748,
+          "cost": 9274,
+          "flights": 7684,
           "car": 1450,
           "dropoff": 0,
           "flightDetails": {
@@ -6231,8 +6231,8 @@
         "A": {
           "type": "A",
           "name": "Open-Jaw A (Entra Foz / Sai Curitiba)",
-          "cost": 10011,
-          "flights": 7748,
+          "cost": 9947,
+          "flights": 7684,
           "car": 2263,
           "dropoff": 813,
           "flightDetails": {
@@ -6265,8 +6265,8 @@
         "B": {
           "type": "B",
           "name": "Open-Jaw B (Entra Curitiba / Sai Foz)",
-          "cost": 10011,
-          "flights": 7748,
+          "cost": 9947,
+          "flights": 7684,
           "car": 2263,
           "dropoff": 813,
           "flightDetails": {
@@ -6305,19 +6305,19 @@
       "days": 10,
       "winnerType": "C",
       "winnerName": "Hub Curitiba (REC ⇄ Curitiba Voo | Circuito Carro)",
-      "cheapestTotal": 9198,
-      "totalFlights": 7748,
-      "flightPerPaxRoundTrip": 1937,
-      "flightOneWayEst": 936,
+      "cheapestTotal": 9134,
+      "totalFlights": 7684,
+      "flightPerPaxRoundTrip": 1921,
+      "flightOneWayEst": 928,
       "carTotal": 1450,
       "dropoffFee": 0,
       "savedChildSeatCost": 900,
       "marketStatus": "ALTA (Tarifa Cheia Hoje - NÃO compre agora, espere o feirão!)",
       "targetPricePromo": 4600,
       "airlineComparison": {
-        "latamOneWay": 921,
-        "golOneWay": 936,
-        "azulOneWay": 1001
+        "latamOneWay": 913,
+        "golOneWay": 928,
+        "azulOneWay": 993
       },
       "preFilledBooking": {
         "googleFlightsRoundTrip": "https://www.google.com/travel/flights?q=passagens%20de%20REC%20para%20CWB%20em%202027-04-20%20com%20retorno%202027-04-30%20para%202%20adultos%202%20criancas",
@@ -6327,8 +6327,8 @@
         "C": {
           "type": "C",
           "name": "Hub Curitiba (REC ⇄ Curitiba Voo)",
-          "cost": 9198,
-          "flights": 7748,
+          "cost": 9134,
+          "flights": 7684,
           "car": 1450,
           "dropoff": 0,
           "flightDetails": {
@@ -6361,8 +6361,8 @@
         "D": {
           "type": "D",
           "name": "Hub Foz (REC ⇄ Foz Voo)",
-          "cost": 9338,
-          "flights": 7748,
+          "cost": 9274,
+          "flights": 7684,
           "car": 1450,
           "dropoff": 0,
           "flightDetails": {
@@ -6395,8 +6395,8 @@
         "A": {
           "type": "A",
           "name": "Open-Jaw A (Entra Foz / Sai Curitiba)",
-          "cost": 10011,
-          "flights": 7748,
+          "cost": 9947,
+          "flights": 7684,
           "car": 2263,
           "dropoff": 813,
           "flightDetails": {
@@ -6429,8 +6429,8 @@
         "B": {
           "type": "B",
           "name": "Open-Jaw B (Entra Curitiba / Sai Foz)",
-          "cost": 10011,
-          "flights": 7748,
+          "cost": 9947,
+          "flights": 7684,
           "car": 2263,
           "dropoff": 813,
           "flightDetails": {
@@ -6469,19 +6469,19 @@
       "days": 10,
       "winnerType": "C",
       "winnerName": "Hub Curitiba (REC ⇄ Curitiba Voo | Circuito Carro)",
-      "cheapestTotal": 9198,
-      "totalFlights": 7748,
-      "flightPerPaxRoundTrip": 1937,
-      "flightOneWayEst": 1011,
+      "cheapestTotal": 9134,
+      "totalFlights": 7684,
+      "flightPerPaxRoundTrip": 1921,
+      "flightOneWayEst": 1003,
       "carTotal": 1450,
       "dropoffFee": 0,
       "savedChildSeatCost": 900,
       "marketStatus": "ALTA (Tarifa Cheia Hoje - NÃO compre agora, espere o feirão!)",
       "targetPricePromo": 4600,
       "airlineComparison": {
-        "latamOneWay": 996,
-        "golOneWay": 1011,
-        "azulOneWay": 1076
+        "latamOneWay": 988,
+        "golOneWay": 1003,
+        "azulOneWay": 1068
       },
       "preFilledBooking": {
         "googleFlightsRoundTrip": "https://www.google.com/travel/flights?q=passagens%20de%20REC%20para%20CWB%20em%202027-04-25%20com%20retorno%202027-05-05%20para%202%20adultos%202%20criancas",
@@ -6491,8 +6491,8 @@
         "C": {
           "type": "C",
           "name": "Hub Curitiba (REC ⇄ Curitiba Voo)",
-          "cost": 9198,
-          "flights": 7748,
+          "cost": 9134,
+          "flights": 7684,
           "car": 1450,
           "dropoff": 0,
           "flightDetails": {
@@ -6525,8 +6525,8 @@
         "D": {
           "type": "D",
           "name": "Hub Foz (REC ⇄ Foz Voo)",
-          "cost": 9338,
-          "flights": 7748,
+          "cost": 9274,
+          "flights": 7684,
           "car": 1450,
           "dropoff": 0,
           "flightDetails": {
@@ -6559,8 +6559,8 @@
         "A": {
           "type": "A",
           "name": "Open-Jaw A (Entra Foz / Sai Curitiba)",
-          "cost": 10011,
-          "flights": 7748,
+          "cost": 9947,
+          "flights": 7684,
           "car": 2263,
           "dropoff": 813,
           "flightDetails": {
@@ -6593,8 +6593,8 @@
         "B": {
           "type": "B",
           "name": "Open-Jaw B (Entra Curitiba / Sai Foz)",
-          "cost": 10011,
-          "flights": 7748,
+          "cost": 9947,
+          "flights": 7684,
           "car": 2263,
           "dropoff": 813,
           "flightDetails": {
@@ -6633,19 +6633,19 @@
       "days": 10,
       "winnerType": "C",
       "winnerName": "Hub Curitiba (REC ⇄ Curitiba Voo | Circuito Carro)",
-      "cheapestTotal": 9318,
-      "totalFlights": 7868,
-      "flightPerPaxRoundTrip": 1967,
-      "flightOneWayEst": 1011,
+      "cheapestTotal": 9254,
+      "totalFlights": 7804,
+      "flightPerPaxRoundTrip": 1951,
+      "flightOneWayEst": 1003,
       "carTotal": 1450,
       "dropoffFee": 0,
       "savedChildSeatCost": 900,
       "marketStatus": "ALTA (Tarifa Cheia Hoje - NÃO compre agora, espere o feirão!)",
       "targetPricePromo": 4600,
       "airlineComparison": {
-        "latamOneWay": 996,
-        "golOneWay": 1011,
-        "azulOneWay": 1076
+        "latamOneWay": 988,
+        "golOneWay": 1003,
+        "azulOneWay": 1068
       },
       "preFilledBooking": {
         "googleFlightsRoundTrip": "https://www.google.com/travel/flights?q=passagens%20de%20REC%20para%20CWB%20em%202027-04-16%20com%20retorno%202027-04-26%20para%202%20adultos%202%20criancas",
@@ -6655,8 +6655,8 @@
         "C": {
           "type": "C",
           "name": "Hub Curitiba (REC ⇄ Curitiba Voo)",
-          "cost": 9318,
-          "flights": 7868,
+          "cost": 9254,
+          "flights": 7804,
           "car": 1450,
           "dropoff": 0,
           "flightDetails": {
@@ -6689,8 +6689,8 @@
         "D": {
           "type": "D",
           "name": "Hub Foz (REC ⇄ Foz Voo)",
-          "cost": 9458,
-          "flights": 7868,
+          "cost": 9394,
+          "flights": 7804,
           "car": 1450,
           "dropoff": 0,
           "flightDetails": {
@@ -6723,8 +6723,8 @@
         "A": {
           "type": "A",
           "name": "Open-Jaw A (Entra Foz / Sai Curitiba)",
-          "cost": 10131,
-          "flights": 7868,
+          "cost": 10067,
+          "flights": 7804,
           "car": 2263,
           "dropoff": 813,
           "flightDetails": {
@@ -6757,8 +6757,8 @@
         "B": {
           "type": "B",
           "name": "Open-Jaw B (Entra Curitiba / Sai Foz)",
-          "cost": 10131,
-          "flights": 7868,
+          "cost": 10067,
+          "flights": 7804,
           "car": 2263,
           "dropoff": 813,
           "flightDetails": {
@@ -6797,19 +6797,19 @@
       "days": 10,
       "winnerType": "C",
       "winnerName": "Hub Curitiba (REC ⇄ Curitiba Voo | Circuito Carro)",
-      "cheapestTotal": 9318,
-      "totalFlights": 7868,
-      "flightPerPaxRoundTrip": 1967,
-      "flightOneWayEst": 966,
+      "cheapestTotal": 9254,
+      "totalFlights": 7804,
+      "flightPerPaxRoundTrip": 1951,
+      "flightOneWayEst": 958,
       "carTotal": 1450,
       "dropoffFee": 0,
       "savedChildSeatCost": 900,
       "marketStatus": "ALTA (Tarifa Cheia Hoje - NÃO compre agora, espere o feirão!)",
       "targetPricePromo": 4600,
       "airlineComparison": {
-        "latamOneWay": 951,
-        "golOneWay": 966,
-        "azulOneWay": 1031
+        "latamOneWay": 943,
+        "golOneWay": 958,
+        "azulOneWay": 1023
       },
       "preFilledBooking": {
         "googleFlightsRoundTrip": "https://www.google.com/travel/flights?q=passagens%20de%20REC%20para%20CWB%20em%202027-04-22%20com%20retorno%202027-05-02%20para%202%20adultos%202%20criancas",
@@ -6819,8 +6819,8 @@
         "C": {
           "type": "C",
           "name": "Hub Curitiba (REC ⇄ Curitiba Voo)",
-          "cost": 9318,
-          "flights": 7868,
+          "cost": 9254,
+          "flights": 7804,
           "car": 1450,
           "dropoff": 0,
           "flightDetails": {
@@ -6853,8 +6853,8 @@
         "D": {
           "type": "D",
           "name": "Hub Foz (REC ⇄ Foz Voo)",
-          "cost": 9458,
-          "flights": 7868,
+          "cost": 9394,
+          "flights": 7804,
           "car": 1450,
           "dropoff": 0,
           "flightDetails": {
@@ -6887,8 +6887,8 @@
         "A": {
           "type": "A",
           "name": "Open-Jaw A (Entra Foz / Sai Curitiba)",
-          "cost": 10131,
-          "flights": 7868,
+          "cost": 10067,
+          "flights": 7804,
           "car": 2263,
           "dropoff": 813,
           "flightDetails": {
@@ -6921,8 +6921,8 @@
         "B": {
           "type": "B",
           "name": "Open-Jaw B (Entra Curitiba / Sai Foz)",
-          "cost": 10131,
-          "flights": 7868,
+          "cost": 10067,
+          "flights": 7804,
           "car": 2263,
           "dropoff": 813,
           "flightDetails": {
@@ -6961,19 +6961,19 @@
       "days": 10,
       "winnerType": "C",
       "winnerName": "Hub Curitiba (REC ⇄ Curitiba Voo | Circuito Carro)",
-      "cheapestTotal": 9318,
-      "totalFlights": 7868,
-      "flightPerPaxRoundTrip": 1967,
-      "flightOneWayEst": 1011,
+      "cheapestTotal": 9254,
+      "totalFlights": 7804,
+      "flightPerPaxRoundTrip": 1951,
+      "flightOneWayEst": 1003,
       "carTotal": 1450,
       "dropoffFee": 0,
       "savedChildSeatCost": 900,
       "marketStatus": "ALTA (Tarifa Cheia Hoje - NÃO compre agora, espere o feirão!)",
       "targetPricePromo": 4600,
       "airlineComparison": {
-        "latamOneWay": 996,
-        "golOneWay": 1011,
-        "azulOneWay": 1076
+        "latamOneWay": 988,
+        "golOneWay": 1003,
+        "azulOneWay": 1068
       },
       "preFilledBooking": {
         "googleFlightsRoundTrip": "https://www.google.com/travel/flights?q=passagens%20de%20REC%20para%20CWB%20em%202027-04-23%20com%20retorno%202027-05-03%20para%202%20adultos%202%20criancas",
@@ -6983,8 +6983,8 @@
         "C": {
           "type": "C",
           "name": "Hub Curitiba (REC ⇄ Curitiba Voo)",
-          "cost": 9318,
-          "flights": 7868,
+          "cost": 9254,
+          "flights": 7804,
           "car": 1450,
           "dropoff": 0,
           "flightDetails": {
@@ -7017,8 +7017,8 @@
         "D": {
           "type": "D",
           "name": "Hub Foz (REC ⇄ Foz Voo)",
-          "cost": 9458,
-          "flights": 7868,
+          "cost": 9394,
+          "flights": 7804,
           "car": 1450,
           "dropoff": 0,
           "flightDetails": {
@@ -7051,8 +7051,8 @@
         "A": {
           "type": "A",
           "name": "Open-Jaw A (Entra Foz / Sai Curitiba)",
-          "cost": 10131,
-          "flights": 7868,
+          "cost": 10067,
+          "flights": 7804,
           "car": 2263,
           "dropoff": 813,
           "flightDetails": {
@@ -7085,8 +7085,8 @@
         "B": {
           "type": "B",
           "name": "Open-Jaw B (Entra Curitiba / Sai Foz)",
-          "cost": 10131,
-          "flights": 7868,
+          "cost": 10067,
+          "flights": 7804,
           "car": 2263,
           "dropoff": 813,
           "flightDetails": {
@@ -7125,19 +7125,19 @@
       "days": 9,
       "winnerType": "C",
       "winnerName": "Hub Curitiba (REC ⇄ Curitiba Voo | Circuito Carro)",
-      "cheapestTotal": 9353,
-      "totalFlights": 8048,
-      "flightPerPaxRoundTrip": 2012,
-      "flightOneWayEst": 1011,
+      "cheapestTotal": 9289,
+      "totalFlights": 7984,
+      "flightPerPaxRoundTrip": 1996,
+      "flightOneWayEst": 1003,
       "carTotal": 1305,
       "dropoffFee": 0,
       "savedChildSeatCost": 810,
       "marketStatus": "ALTA (Tarifa Cheia Hoje - NÃO compre agora, espere o feirão!)",
       "targetPricePromo": 4600,
       "airlineComparison": {
-        "latamOneWay": 996,
-        "golOneWay": 1011,
-        "azulOneWay": 1076
+        "latamOneWay": 988,
+        "golOneWay": 1003,
+        "azulOneWay": 1068
       },
       "preFilledBooking": {
         "googleFlightsRoundTrip": "https://www.google.com/travel/flights?q=passagens%20de%20REC%20para%20CWB%20em%202027-04-16%20com%20retorno%202027-04-25%20para%202%20adultos%202%20criancas",
@@ -7147,8 +7147,8 @@
         "C": {
           "type": "C",
           "name": "Hub Curitiba (REC ⇄ Curitiba Voo)",
-          "cost": 9353,
-          "flights": 8048,
+          "cost": 9289,
+          "flights": 7984,
           "car": 1305,
           "dropoff": 0,
           "flightDetails": {
@@ -7181,8 +7181,8 @@
         "D": {
           "type": "D",
           "name": "Hub Foz (REC ⇄ Foz Voo)",
-          "cost": 9493,
-          "flights": 8048,
+          "cost": 9429,
+          "flights": 7984,
           "car": 1305,
           "dropoff": 0,
           "flightDetails": {
@@ -7215,8 +7215,8 @@
         "A": {
           "type": "A",
           "name": "Open-Jaw A (Entra Foz / Sai Curitiba)",
-          "cost": 10166,
-          "flights": 8048,
+          "cost": 10102,
+          "flights": 7984,
           "car": 2118,
           "dropoff": 813,
           "flightDetails": {
@@ -7249,8 +7249,8 @@
         "B": {
           "type": "B",
           "name": "Open-Jaw B (Entra Curitiba / Sai Foz)",
-          "cost": 10166,
-          "flights": 8048,
+          "cost": 10102,
+          "flights": 7984,
           "car": 2118,
           "dropoff": 813,
           "flightDetails": {
@@ -7289,19 +7289,19 @@
       "days": 9,
       "winnerType": "C",
       "winnerName": "Hub Curitiba (REC ⇄ Curitiba Voo | Circuito Carro)",
-      "cheapestTotal": 9353,
-      "totalFlights": 8048,
-      "flightPerPaxRoundTrip": 2012,
-      "flightOneWayEst": 1011,
+      "cheapestTotal": 9289,
+      "totalFlights": 7984,
+      "flightPerPaxRoundTrip": 1996,
+      "flightOneWayEst": 1003,
       "carTotal": 1305,
       "dropoffFee": 0,
       "savedChildSeatCost": 810,
       "marketStatus": "ALTA (Tarifa Cheia Hoje - NÃO compre agora, espere o feirão!)",
       "targetPricePromo": 4600,
       "airlineComparison": {
-        "latamOneWay": 996,
-        "golOneWay": 1011,
-        "azulOneWay": 1076
+        "latamOneWay": 988,
+        "golOneWay": 1003,
+        "azulOneWay": 1068
       },
       "preFilledBooking": {
         "googleFlightsRoundTrip": "https://www.google.com/travel/flights?q=passagens%20de%20REC%20para%20CWB%20em%202027-04-23%20com%20retorno%202027-05-02%20para%202%20adultos%202%20criancas",
@@ -7311,8 +7311,8 @@
         "C": {
           "type": "C",
           "name": "Hub Curitiba (REC ⇄ Curitiba Voo)",
-          "cost": 9353,
-          "flights": 8048,
+          "cost": 9289,
+          "flights": 7984,
           "car": 1305,
           "dropoff": 0,
           "flightDetails": {
@@ -7345,8 +7345,8 @@
         "D": {
           "type": "D",
           "name": "Hub Foz (REC ⇄ Foz Voo)",
-          "cost": 9493,
-          "flights": 8048,
+          "cost": 9429,
+          "flights": 7984,
           "car": 1305,
           "dropoff": 0,
           "flightDetails": {
@@ -7379,8 +7379,8 @@
         "A": {
           "type": "A",
           "name": "Open-Jaw A (Entra Foz / Sai Curitiba)",
-          "cost": 10166,
-          "flights": 8048,
+          "cost": 10102,
+          "flights": 7984,
           "car": 2118,
           "dropoff": 813,
           "flightDetails": {
@@ -7413,8 +7413,8 @@
         "B": {
           "type": "B",
           "name": "Open-Jaw B (Entra Curitiba / Sai Foz)",
-          "cost": 10166,
-          "flights": 8048,
+          "cost": 10102,
+          "flights": 7984,
           "car": 2118,
           "dropoff": 813,
           "flightDetails": {
